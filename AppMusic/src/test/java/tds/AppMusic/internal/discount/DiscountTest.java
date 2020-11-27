@@ -5,6 +5,7 @@ import org.junit.Test;
 import tds.AppMusic.internal.users.User;
 
 import static org.junit.Assert.*;
+
 public class DiscountTest {
     double testPrize;
     Discount discount1 = new FixedDiscount();

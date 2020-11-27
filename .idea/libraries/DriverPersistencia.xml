@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DriverPersistencia">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AppMusic/lib/DriverPersistencia.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="javax.persistence_2.0.3.v201010191057">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AppMusic/lib/javax.persistence_2.0.3.v201010191057.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

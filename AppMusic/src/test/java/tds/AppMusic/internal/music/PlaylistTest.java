@@ -5,18 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-class MockSong extends Song {
-    private final String name;
-
-    public MockSong(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-
 public class PlaylistTest {
 
     Playlist playlist;
@@ -36,14 +24,14 @@ public class PlaylistTest {
     public void SongsTest() {
 
         // Test 1: inserting and retrieving a song
-        Song expected = new MockSong("Test song");
+        Song expected = new Song("Test name", Genre.POP, "Test path");
         playlist.addSong(expected);
 
         Song result = playlist.getSongs().get(0);
         assertSame(expected, result);
 
         // Test 2: Playlist size check
-        playlist.addSong(new MockSong("Test song 2"));
+        playlist.addSong(new Song("Test song 2", Genre.POP, "Test path 2"));
         assertEquals(2, playlist.getSongs().size());
 
         // Test 3: Duplicate song

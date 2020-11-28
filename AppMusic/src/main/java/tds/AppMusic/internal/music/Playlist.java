@@ -2,6 +2,7 @@ package tds.AppMusic.internal.music;
 
 import java.util.List;
 
+// TODO add documentation
 public class Playlist {
 
     private final String name;

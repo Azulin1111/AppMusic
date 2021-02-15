@@ -71,7 +71,7 @@ public class User {
     }
 
     public boolean premiumPayment() {
-        discount.calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
+        createDiscount(typeDiscount).calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
         premium = true;
         return premium;
     }

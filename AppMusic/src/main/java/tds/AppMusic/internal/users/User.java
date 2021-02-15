@@ -1,13 +1,16 @@
 package tds.AppMusic.internal.users;
 
 import tds.AppMusic.internal.discount.Discount;
+import tds.AppMusic.internal.discount.DiscountNull;
 import tds.AppMusic.internal.music.Playlist;
 import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.lang.Class;
+
+import static java.lang.Class.forName;
 
 // TODO add documentation
 public class User {
@@ -73,13 +76,23 @@ public class User {
         return premium;
     }
 
-    public void addRecientSong(Song s){
+    public void addRecientSong(Song s) {
         recients.add(s);
     }
 
-    public void addPlayList(Playlist playlist){
+    public void addPlayList(Playlist playlist) {
         playlists.add(playlist);
     }
+
+    public Discount createDiscount(String typeDiscount) {  //Factory method: create a type of discount
+        try {
+            return (Discount) Class.forName(typeDiscount).newInstance();
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return new DiscountNull();
+    }
+
 
     @Override
     public boolean equals(Object o) {

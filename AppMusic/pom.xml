@@ -23,5 +23,13 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>tds</groupId>
+      <artifactId>driver</artifactId>
+      <scope>system</scope>
+      <version>1</version>
+      <systemPath>${basedir}/lib/DriverPersistencia.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>

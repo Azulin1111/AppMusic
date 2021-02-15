@@ -17,5 +17,14 @@
     <orderEntry type="library" name="javax.persistence_2.0.3.v201010191057" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: tds:driver:1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/DriverPersistencia.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -1,7 +1,13 @@
 package tds.AppMusic.internal.users;
 
+import tds.AppMusic.internal.discount.Discount;
+import tds.AppMusic.internal.music.Playlist;
+import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 // TODO add documentation
 public class User {
@@ -18,6 +24,9 @@ public class User {
     private final String password;
     private final LocalDate birthday;
     private final String email;
+    private List<Playlist> playlists;
+    private List<Song> recients;
+    private Discount discount;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -26,6 +35,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.birthday = birthday;
+        playlists = new LinkedList<>();
+        recients = new LinkedList<>();
     }
 
     public String getEmail() {
@@ -57,6 +68,34 @@ public class User {
     }
 
     public boolean premiumPayment() {
+        discount.calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
+        premium = true;
         return premium;
+    }
+
+    public void addRecientSong(Song s){
+        recients.add(s);
+    }
+
+    public void addPlayList(Playlist playlist){
+        playlists.add(playlist);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return premium == user.premium &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(nickname, user.nickname) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, premium, nickname, password, birthday, email);
     }
 }

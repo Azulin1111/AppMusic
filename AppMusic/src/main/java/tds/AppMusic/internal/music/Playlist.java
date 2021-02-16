@@ -1,14 +1,17 @@
 package tds.AppMusic.internal.music;
 
+import java.util.LinkedList;
 import java.util.List;
 
 // TODO add documentation
 public class Playlist {
 
     private final String name;
+    private List<Song> songs;
 
     public Playlist(String name) {
         this.name = name;
+        songs = new LinkedList<>();
     }
 
     public String getName() {
@@ -16,10 +19,10 @@ public class Playlist {
     }
 
     public List<Song> getSongs() {
-        return null; // TODO
+        return new LinkedList<Song>(songs);
     }
 
     public boolean addSong(Song song) {
-        return false; // TODO
+        return songs.add(song);
     }
 }

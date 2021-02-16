@@ -5,6 +5,7 @@ import tds.AppMusic.internal.discount.DiscountNull;
 import tds.AppMusic.internal.music.Playlist;
 import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,6 @@ public class User {
     private final LocalDate birthday;
     private final String email;
     private List<Playlist> playlists;
-    private List<Song> recients;
     private Discount discount;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
@@ -39,7 +39,7 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
-        recients = new LinkedList<>();
+
     }
 
     public String getEmail() {
@@ -70,13 +70,22 @@ public class User {
         return name;
     }
 
-    public void addRecientSong(Song s) {
-        recients.add(s);
+
+
+    public List<Song> getRecientSongs(){
+        List<Song> recients = new ArrayList<>(10);
+        //TODO stream para obtener lista de 10 canciones más reproducidas por el usuario
     }
 
-    public void addPlayList(Playlist playlist) {
+    public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
     }
+
+    public void removePlaylist(Playlist playlist){
+        playlists.remove(playlist);
+    }
+
+
 
 
     private Discount createDiscount(String typeDiscount) {  //Factory method: create a type of discount
@@ -89,7 +98,7 @@ public class User {
     }
 
     public boolean premiumPayment(String typeDiscount) {
-        createDiscount(typeDiscount).calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
+        createDiscount(typeDiscount).calcDescuento();
         premium = true;
         return premium;
     }

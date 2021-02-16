@@ -28,7 +28,7 @@ public class UserTest {
     }
 
     @Test
-    public void fixedDiscountTest(){
+    public void fixedDiscountTest(){ //TODO probar estos tests
         double payment = user.premiumPayment("FixedDiscount");
 
         // Expected payment
@@ -50,17 +50,30 @@ public class UserTest {
         assertEquals(payment, expectedPayment, 0.001);
     }
 
-    @Test
-    public void nullDiscountTest(){
+    @Test(expected=ReflectiveOperationException.class)  //TODO debería salir una excepción
+    public void nullDiscountTest1(){ // Explicit form
         double payment1 = user.premiumPayment("ninguno");
-        double payment2 = user.premiumPayment("NullDiscount");
 
         // Expected payment
         double expectedPayment = User.PREMIUM_PRIZE;
 
         // Test
         assertEquals(payment1, expectedPayment, 0.001);
+    }
+
+    @Test
+    public void nullDiscountTest2(){ // Implicit form
+        double payment2 = user.premiumPayment("NullDiscount");
+
+        // Expected payment
+        double expectedPayment = User.PREMIUM_PRIZE;
+
+        // Test
         assertEquals(payment2, expectedPayment, 0.001);
+    }
+
+    @Test
+    public void mostPlayedSongsTest(){
 
     }
 

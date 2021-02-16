@@ -12,6 +12,8 @@ import java.util.Objects;
 import java.lang.Class;
 
 import static java.lang.Class.forName;
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 // TODO add documentation
 public class User {
@@ -78,10 +80,14 @@ public class User {
     }
 
 
-    public List<Song> getMostPlayedSongs(){
-        
+    public List<Song> getMostPlayedSongs(){ //TODO test
+        List<Song> mostPlayedSongs = playlists.stream()
+                .flatMap(p -> p.getSongs().stream())
+                .sorted(comparing(Song::getPlayCount).reversed())
+                .limit(10)
+                .collect(toList());
 
-
+        return mostPlayedSongs;
     }
 
 
@@ -94,11 +100,9 @@ public class User {
     }
 
 
-
-
-    private Discount createDiscount(String typeDiscount) {  //Factory method: create a type of discount
+    private Discount createDiscount(String typeDiscount) {  // Factory method: create a type of discount
         try {
-            return (Discount) Class.forName(typeDiscount).newInstance();
+            return (Discount) Class.forName("tds.AppMusic.internal.discount."+typeDiscount).newInstance();
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }

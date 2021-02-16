@@ -1,7 +1,7 @@
 package tds.AppMusic.internal.users;
 
 import tds.AppMusic.internal.discount.Discount;
-import tds.AppMusic.internal.discount.DiscountNull;
+import tds.AppMusic.internal.discount.NullDiscount;
 import tds.AppMusic.internal.music.Playlist;
 import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
@@ -29,6 +29,7 @@ public class User {
     private final LocalDate birthday;
     private final String email;
     private List<Playlist> playlists;
+    private List<Song> recientSongs;
     private Discount discount;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
@@ -39,6 +40,8 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
+        recientSongs = new LinkedList<>();  // Structure FIFO
+
 
     }
 
@@ -70,12 +73,17 @@ public class User {
         return name;
     }
 
-
-
-    public List<Song> getRecientSongs(){
-        List<Song> recients = new ArrayList<>(10);
-        //TODO stream para obtener lista de 10 canciones más reproducidas por el usuario
+    public List<Song> getRecientSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
+        return new LinkedList<Song>(recientSongs);
     }
+
+
+    public List<Song> getMostPlayedSongs(){
+        
+
+
+    }
+
 
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
@@ -94,13 +102,12 @@ public class User {
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
-        return new DiscountNull();
+        return new NullDiscount();
     }
 
-    public boolean premiumPayment(String typeDiscount) {
-        createDiscount(typeDiscount).calcDescuento();
+    public double premiumPayment(String typeDiscount) {
         premium = true;
-        return premium;
+        return createDiscount(typeDiscount).calcDescuento();
     }
 
 

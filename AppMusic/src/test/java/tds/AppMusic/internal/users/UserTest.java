@@ -27,4 +27,42 @@ public class UserTest {
         assertSame(date, user.getBirthday());
     }
 
+    @Test
+    public void fixedDiscountTest(){
+        double payment = user.premiumPayment("FixedDiscount");
+
+        // Expected payment
+        double expectedPayment = User.PREMIUM_PRIZE * 0.70;
+
+        // Test
+        assertEquals(payment, expectedPayment, 0.001);
+
+    }
+
+    @Test
+    public void youngDiscountTest(){
+        double payment = user.premiumPayment("YoungDiscount");
+
+        // Expected payment
+        double expectedPayment = User.PREMIUM_PRIZE * 0.85;
+
+        // Test
+        assertEquals(payment, expectedPayment, 0.001);
+    }
+
+    @Test
+    public void nullDiscountTest(){
+        double payment1 = user.premiumPayment("ninguno");
+        double payment2 = user.premiumPayment("NullDiscount");
+
+        // Expected payment
+        double expectedPayment = User.PREMIUM_PRIZE;
+
+        // Test
+        assertEquals(payment1, expectedPayment, 0.001);
+        assertEquals(payment2, expectedPayment, 0.001);
+
+    }
+
+
 }

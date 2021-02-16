@@ -5,7 +5,6 @@ import tds.AppMusic.internal.discount.NullDiscount;
 import tds.AppMusic.internal.music.Playlist;
 import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +40,7 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
-        recientSongs = new LinkedList<>();  // Structure FIFO
+        recientSongs = new LinkedList<>();  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
     }
 
     public String getEmail() {
@@ -81,7 +80,7 @@ public class User {
     }
 
 
-    public List<Song> getMostPlayedSongs(){ //TODO test
+    public List<Song> getMostPlayedSongs(){
         List<Song> mostPlayedSongs = playlists.stream()
                 .flatMap(p -> p.getSongs().stream())
                 .sorted(comparing(Song::getPlayCount).reversed())
@@ -113,9 +112,6 @@ public class User {
         premium = true;
         return createDiscount(typeDiscount).calcDescuento();
     }
-
-
-
 
 
     @Override

@@ -32,7 +32,6 @@ public class User {
     private final String email;
     private List<Playlist> playlists;
     private List<Song> recientSongs;
-    private Discount discount;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -43,8 +42,6 @@ public class User {
         this.birthday = birthday;
         playlists = new LinkedList<>();
         recientSongs = new LinkedList<>();  // Structure FIFO
-
-
     }
 
     public String getEmail() {

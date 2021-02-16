@@ -101,9 +101,8 @@ public class User {
         try {
             return (Discount) Class.forName("tds.AppMusic.internal.discount."+typeDiscount).newInstance();
         } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+            return new NullDiscount();
         }
-        return new NullDiscount();
     }
 
     public double premiumPayment(String typeDiscount) {

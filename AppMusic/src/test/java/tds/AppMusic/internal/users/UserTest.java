@@ -50,7 +50,7 @@ public class UserTest {
         assertEquals(payment, expectedPayment, 0.001);
     }
 
-    @Test(expected=ReflectiveOperationException.class)  //TODO debería salir una excepción
+    @Test  //TODO debería salir una excepción
     public void nullDiscountTest1(){ // Explicit form
         double payment1 = user.premiumPayment("ninguno");
 

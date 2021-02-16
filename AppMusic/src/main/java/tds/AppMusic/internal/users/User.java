@@ -70,12 +70,6 @@ public class User {
         return name;
     }
 
-    public boolean premiumPayment() {
-        createDiscount(typeDiscount).calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
-        premium = true;
-        return premium;
-    }
-
     public void addRecientSong(Song s) {
         recients.add(s);
     }
@@ -84,7 +78,8 @@ public class User {
         playlists.add(playlist);
     }
 
-    public Discount createDiscount(String typeDiscount) {  //Factory method: create a type of discount
+
+    private Discount createDiscount(String typeDiscount) {  //Factory method: create a type of discount
         try {
             return (Discount) Class.forName(typeDiscount).newInstance();
         } catch (ReflectiveOperationException e) {
@@ -92,6 +87,15 @@ public class User {
         }
         return new DiscountNull();
     }
+
+    public boolean premiumPayment(String typeDiscount) {
+        createDiscount(typeDiscount).calcDescuento();  // TODO esto no sé cómo indicarlo, ya que no hay precio
+        premium = true;
+        return premium;
+    }
+
+
+
 
 
     @Override

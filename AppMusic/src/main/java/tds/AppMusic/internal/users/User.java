@@ -72,6 +72,10 @@ public class User {
         return name;
     }
 
+    public List<Playlist> getPlaylists(){
+        return new LinkedList<>(playlists);
+    }
+
     public List<Song> getRecientSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
         return new LinkedList<Song>(recientSongs);
     }

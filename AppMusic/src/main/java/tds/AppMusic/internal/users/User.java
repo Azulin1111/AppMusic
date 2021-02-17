@@ -29,8 +29,8 @@ public class User {
     private final String password;
     private final LocalDate birthday;
     private final String email;
-    private List<Playlist> playlists;
-    private List<Song> recientSongs;
+    private final List<Playlist> playlists;
+    private final List<Song> recientSongs;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -75,8 +75,8 @@ public class User {
         return new LinkedList<>(playlists);
     }
 
-    public List<Song> getRecientSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
-        return new LinkedList<Song>(recientSongs);
+    public List<Song> getRecentSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
+        return new LinkedList<>(recientSongs);
     }
 
 

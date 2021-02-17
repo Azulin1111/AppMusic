@@ -30,7 +30,7 @@ public class User {
     private final LocalDate birthday;
     private final String email;
     private final List<Playlist> playlists;
-    private final List<Song> recientSongs;
+    private final List<Song> recentSongs;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -40,7 +40,7 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
-        recientSongs = new LinkedList<>();  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
+        recentSongs = new LinkedList<>();  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
     }
 
     public String getEmail() {
@@ -76,7 +76,13 @@ public class User {
     }
 
     public List<Song> getRecentSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
-        return new LinkedList<>(recientSongs);
+        return new LinkedList<>(recentSongs);
+    }
+
+    public void addRecentSongs(Song song){
+        recentSongs.add(song);
+        if(recentSongs.size()==11) // Remove first song
+            recentSongs.remove(0);
     }
 
 

@@ -2,12 +2,13 @@ package tds.AppMusic.internal.music;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 // TODO add documentation
 public class Playlist {
 
-    private final String name;
-    private List<Song> songs;
+    private String name;
+    protected List<Song> songs;
 
     public Playlist(String name) {
         this.name = name;
@@ -18,12 +19,12 @@ public class Playlist {
         return name;
     }
 
-    public List<Song> getSongs() {
-        return new LinkedList<Song>(songs);
+    public void setName() {
+        this.name = name;
     }
 
-    protected List<Song> songs(){
-        return songs;
+    public List<Song> getSongs() {
+        return new LinkedList<Song>(songs);
     }
 
     public boolean addSong(Song song) {
@@ -33,4 +34,5 @@ public class Playlist {
     public boolean removeSong(Song song) {
         return songs.remove(song);
     }
+
 }

@@ -76,7 +76,7 @@ public class User {
         return new LinkedList<>(playlists);
     }
 
-    public Playlist getRecentSongs(){  //TODO habría que hacer una copia (?)
+    public Playlist getRecentSongs(){  //TODO habría que hacer una copia (?): no si se capa la opción de borrar desde el controlador
         return recentSongs;
     }
 

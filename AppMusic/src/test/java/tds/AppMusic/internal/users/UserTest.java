@@ -134,6 +134,25 @@ public class UserTest {
         assertEquals(mostPlayedSongs, expected);
     }
 
+    @Test
+    public void addRecentSongTest(){
+        user.addRecentSong(s1); user.addRecentSong(s2); user.addRecentSong(s3); user.addRecentSong(s4);
+        user.addRecentSong(s5); user.addRecentSong(s6); user.addRecentSong(s7); user.addRecentSong(s8);
+        user.addRecentSong(s9); user.addRecentSong(s10); user.addRecentSong(s11); user.addRecentSong(s12);
+
+        List<Song> recentSongs = user.getRecentSongs().getSongs(); //TODO esto es un solapamiento entre clases (?)
+
+        // Expected
+        List<Song> expected = new LinkedList<>();
+        expected.add(s12); expected.add(s11); expected.add(s10); expected.add(s9); expected.add(s8);
+        expected.add(s7);  expected.add(s6);  expected.add(s5);  expected.add(s4); expected.add(s3);
+
+        // Test
+        assertEquals(recentSongs, expected);
+
+
+
+    }
 
 
 }

@@ -22,7 +22,15 @@ public class Playlist {
         return new LinkedList<Song>(songs);
     }
 
+    protected List<Song> songs(){
+        return songs;
+    }
+
     public boolean addSong(Song song) {
         return songs.add(song);
+    }
+
+    public boolean removeSong(Song song) {
+        return songs.remove(song);
     }
 }

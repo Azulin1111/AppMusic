@@ -3,6 +3,7 @@ package tds.AppMusic.internal.users;
 import tds.AppMusic.internal.discount.Discount;
 import tds.AppMusic.internal.discount.NullDiscount;
 import tds.AppMusic.internal.music.Playlist;
+import tds.AppMusic.internal.music.PlaylistRecentSongs;
 import tds.AppMusic.internal.music.Song;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -30,7 +31,7 @@ public class User {
     private final LocalDate birthday;
     private final String email;
     private final List<Playlist> playlists;
-    private final List<Song> recentSongs;
+    private final Playlist recentSongs;
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -40,7 +41,7 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
-        recentSongs = new LinkedList<>();  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
+        recentSongs = new PlaylistRecentSongs("Recent Songs");  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
     }
 
     public String getEmail() {
@@ -75,16 +76,13 @@ public class User {
         return new LinkedList<>(playlists);
     }
 
-    public List<Song> getRecentSongs(){  //TODO tratamiento de la lista: cuando se escuche una cancion habrá que incluirla
-        return new LinkedList<>(recentSongs);
+    public Playlist getRecentSongs(){  //TODO habría que hacer una copia (?)
+        return recentSongs;
     }
 
-    public void addRecentSongs(Song song){
-        recentSongs.add(song);
-        if(recentSongs.size()==11) // Remove first song
-            recentSongs.remove(0);
+    public boolean addRecentSong(Song song){
+        return recentSongs.addSong(song);
     }
-
 
     public List<Song> getMostPlayedSongs(){
         List<Song> mostPlayedSongs = playlists.stream()

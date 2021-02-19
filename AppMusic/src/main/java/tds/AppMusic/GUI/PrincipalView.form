@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tds.AppMusic.GUI.PrincipalView">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="1082" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="6220b" binding="northPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-8747097"/>
+          <enabled value="false"/>
+        </properties>
+        <border type="etched">
+          <font/>
+          <title-color color="-9336645"/>
+        </border>
+        <children>
+          <component id="5fc06" class="javax.swing.JLabel" binding="textName">
+            <constraints/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c057e" class="javax.swing.JButton" binding="buttonPremium">
+            <constraints/>
+            <properties>
+              <text value="Premium"/>
+            </properties>
+          </component>
+          <component id="13d00" class="javax.swing.JButton" binding="buttonLogout">
+            <constraints/>
+            <properties>
+              <text value="Logout"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8bd21" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
+        <margin top="100" left="0" bottom="100" right="0"/>
+        <constraints border-constraint="West"/>
+        <properties>
+          <background color="-13223359"/>
+          <enabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="74783" class="javax.swing.JButton" binding="newListButton">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="140" height="59"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="New Playlist"/>
+            </properties>
+          </component>
+          <component id="f83ec" class="javax.swing.JButton" binding="recentButton">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="140" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Recent Songs"/>
+            </properties>
+          </component>
+          <component id="68a7e" class="javax.swing.JButton" binding="myPlaylistsButton">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="140" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="My Playlists"/>
+            </properties>
+          </component>
+          <component id="95cc9" class="javax.swing.JButton" binding="explorerButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="140" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Explorer"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="6a415" binding="centralPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="c0f7" binding="startWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <card name="start"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="eaa9e" class="javax.swing.JLabel" binding="labelWelcome">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <font size="28"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="WELCOME TO APPMUSIC"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="6b783" binding="explorerWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <card name="explorer"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="EXPLORER" title-justification="2">
+              <font style="1"/>
+              <title-color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+          <grid id="87311" binding="newPlaylistWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <card name="newPlaylist"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="NEW PLAYLIST" title-justification="2">
+              <font style="1"/>
+              <title-color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+          <grid id="d7b3d" binding="recentWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <card name="recent"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="RECENT SONGS" title-justification="2">
+              <font style="1"/>
+              <title-color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+          <grid id="2168e" binding="myPlaylistWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <card name="myPlaylists"/>
+            </constraints>
+            <properties/>
+            <border type="none" title="MY PLAYLISTS" title-justification="2">
+              <font style="1"/>
+              <title-color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

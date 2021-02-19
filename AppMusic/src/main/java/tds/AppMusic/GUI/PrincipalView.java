@@ -3,9 +3,6 @@ package tds.AppMusic.GUI;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
 
 public class PrincipalView extends JFrame {
     private JPanel mainPanel;
@@ -25,6 +22,12 @@ public class PrincipalView extends JFrame {
     private JPanel recentWindow;
     private JPanel myPlaylistWindow;
     private JLabel labelWelcome;
+    private JTextField interpreterField;
+    private JTextField titleField;
+    private JTextField genreField;
+    private JLabel titleLabel;
+    private JLabel genreLabel;
+    private JLabel interpreterLabel;
     private String user = "Evangeline";
 
 
@@ -59,7 +62,6 @@ public class PrincipalView extends JFrame {
         this.setVisible(true);
         this.add(mainPanel);
         textName.setText("Hello, " + user); //TODO esto no sé si irá aquí (?)
-
     }
 
 
@@ -119,9 +121,26 @@ public class PrincipalView extends JFrame {
         labelWelcome.setText("WELCOME TO APPMUSIC");
         startWindow.add(labelWelcome, BorderLayout.CENTER);
         explorerWindow = new JPanel();
-        explorerWindow.setLayout(new BorderLayout(0, 0));
+        explorerWindow.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         centralPanel.add(explorerWindow, "explorer");
         explorerWindow.setBorder(BorderFactory.createTitledBorder(null, "EXPLORER", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, this.$$$getFont$$$(null, Font.BOLD, -1, explorerWindow.getFont()), new Color(-16777216)));
+        interpreterField = new JTextField();
+        explorerWindow.add(interpreterField, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        explorerWindow.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        titleField = new JTextField();
+        explorerWindow.add(titleField, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        genreField = new JTextField();
+        explorerWindow.add(genreField, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setText("Label");
+        explorerWindow.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("Label");
+        explorerWindow.add(label2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label3 = new JLabel();
+        label3.setText("Label");
+        explorerWindow.add(label3, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         newPlaylistWindow = new JPanel();
         newPlaylistWindow.setLayout(new BorderLayout(0, 0));
         centralPanel.add(newPlaylistWindow, "newPlaylist");

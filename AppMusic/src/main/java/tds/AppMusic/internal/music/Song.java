@@ -6,17 +6,20 @@ public class Song {
     private final String name;
     private final Genre genre;
     private final String path;
+    private final String singer;
     private int playCount = 0;
 
-    public Song(String name, Genre genre, String path) {
+    public Song(String name, String singer, Genre genre, String path) {
         this.name = name;
+        this.singer = singer;
         this.genre = genre;
         this.path = path;
     }
 
-    public Song(String name, Genre genre, String path, int playCount) {
+    public Song(String name, String singer, Genre genre, String path, int playCount) {
         this.name = name;
         this.genre = genre;
+        this.singer = singer;
         this.path = path;
         this.playCount = playCount;
     }
@@ -27,6 +30,10 @@ public class Song {
 
     public Genre getGenre() {
         return genre;
+    }
+
+    public String getSinger(){
+        return singer;
     }
 
     public String getPath() {
@@ -41,5 +48,8 @@ public class Song {
         playCount++;
     }
 
-
+    @Override
+    public String toString() {
+        return name + ": " + singer;
+    }
 }

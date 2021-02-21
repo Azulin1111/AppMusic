@@ -184,14 +184,6 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="c6921" class="javax.swing.JButton" binding="searchButton">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Search"/>
-                    </properties>
-                  </component>
                   <component id="f6653" class="javax.swing.JButton" binding="cancelButton">
                     <constraints>
                       <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -225,7 +217,7 @@
                         <border type="none"/>
                         <children/>
                       </grid>
-                      <grid id="39996" binding="explorerListPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                      <grid id="39996" binding="explorerListPanel" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
                           <card name="table"/>
@@ -233,29 +225,93 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <component id="99690" class="javax.swing.JList" binding="explorerList">
+                          <component id="cd435" class="javax.swing.JButton" binding="playButton">
                             <constraints>
-                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                                <preferred-size width="150" height="50"/>
+                              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="40" height="40"/>
+                                <preferred-size width="40" height="40"/>
+                                <maximum-size width="40" height="40"/>
                               </grid>
                             </constraints>
-                            <properties/>
+                            <properties>
+                              <icon value="Pictures/BotonPlay.png"/>
+                              <text value=""/>
+                            </properties>
                           </component>
+                          <component id="b4a40" class="javax.swing.JButton" binding="pauseButton">
+                            <constraints>
+                              <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="40" height="40"/>
+                                <preferred-size width="40" height="40"/>
+                                <maximum-size width="40" height="40"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <icon value="Pictures/BotonPausa.png"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                          <scrollpane id="dd65e">
+                            <constraints>
+                              <grid row="0" column="1" row-span="2" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="99690" class="javax.swing.JList" binding="explorerList">
+                                <constraints/>
+                                <properties>
+                                  <layoutOrientation value="0"/>
+                                  <model/>
+                                  <selectionMode value="0"/>
+                                </properties>
+                                <clientProperties>
+                                  <List.isFileList class="java.lang.Boolean" value="false"/>
+                                </clientProperties>
+                              </component>
+                            </children>
+                          </scrollpane>
                           <hspacer id="7618">
                             <constraints>
-                              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
                                 <minimum-size width="100" height="10"/>
                                 <preferred-size width="100" height="10"/>
                                 <maximum-size width="100" height="10"/>
                               </grid>
                             </constraints>
                           </hspacer>
-                          <hspacer id="2eb7a">
+                          <component id="3eb2f" class="javax.swing.JButton" binding="nextButton">
+                            <constraints>
+                              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="40" height="40"/>
+                                <preferred-size width="40" height="40"/>
+                                <maximum-size width="40" height="40"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <icon value="Pictures/BotonSiguiente.png"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                          <component id="b30af" class="javax.swing.JButton" binding="previousButton">
+                            <constraints>
+                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="40" height="40"/>
+                                <preferred-size width="40" height="40"/>
+                                <maximum-size width="40" height="40"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <icon value="Pictures/BotonAnterior.png"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                          <hspacer id="97889">
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                                <minimum-size width="100" height="-1"/>
-                                <preferred-size width="100" height="-1"/>
-                                <maximum-size width="100" height="-1"/>
+                                <minimum-size width="100" height="10"/>
+                                <preferred-size width="100" height="10"/>
+                                <maximum-size width="100" height="10"/>
                               </grid>
                             </constraints>
                           </hspacer>
@@ -263,6 +319,14 @@
                       </grid>
                     </children>
                   </grid>
+                  <component id="c6921" class="javax.swing.JButton" binding="searchButton">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Search"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
             </children>

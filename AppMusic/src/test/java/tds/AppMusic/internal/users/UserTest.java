@@ -21,18 +21,18 @@ public class UserTest {
 
     @BeforeClass
     public static void beforeAll() {
-        s1 = new Song("t1", Genre.POP, "/home", 1);
-        s2 = new Song("t2", Genre.POP, "/home", 2);
-        s3 = new Song("t3", Genre.POP, "/home", 3);
-        s4 = new Song("t4", Genre.POP, "/home", 4);
-        s5 = new Song("t5", Genre.POP, "/home", 5);
-        s6 = new Song("t6", Genre.POP, "/home", 6);
-        s7 = new Song("t7", Genre.POP, "/home", 7);
-        s8 = new Song("t8", Genre.POP, "/home", 8);
-        s9 = new Song("t9", Genre.POP, "/home", 9);
-        s10 = new Song("t10", Genre.POP, "/home", 10);
-        s11 = new Song("t11", Genre.POP, "/home", 11);
-        s12 = new Song("t12", Genre.POP, "/home", 12);
+        s1 = new Song("t1", "Singer", Genre.POP, "/home", 1);
+        s2 = new Song("t2", "Singer", Genre.POP, "/home", 2);
+        s3 = new Song("t3", "Singer", Genre.POP, "/home", 3);
+        s4 = new Song("t4", "Singer", Genre.POP, "/home", 4);
+        s5 = new Song("t5", "Singer", Genre.POP, "/home", 5);
+        s6 = new Song("t6", "Singer", Genre.POP, "/home", 6);
+        s7 = new Song("t7", "Singer", Genre.POP, "/home", 7);
+        s8 = new Song("t8", "Singer", Genre.POP, "/home", 8);
+        s9 = new Song("t9", "Singer", Genre.POP, "/home", 9);
+        s10 = new Song("t10", "Singer", Genre.POP, "/home", 10);
+        s11 = new Song("t11", "Singer", Genre.POP, "/home", 11);
+        s12 = new Song("t12", "Singer", Genre.POP, "/home", 12);
     }
 
     @Before

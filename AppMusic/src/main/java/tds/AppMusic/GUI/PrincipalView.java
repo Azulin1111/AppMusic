@@ -5,6 +5,8 @@ import tds.AppMusic.internal.Controller;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PrincipalView extends JFrame {
     private Controller controller;
@@ -40,6 +42,10 @@ public class PrincipalView extends JFrame {
     private JPanel explorerNoListPanel;
     private JPanel explorerListPanel;
     private JList explorerList;
+    private JButton playButton;
+    private JButton nextButton;
+    private JButton previousButton;
+    private JButton pauseButton;
 
 
     public PrincipalView() {
@@ -63,13 +69,35 @@ public class PrincipalView extends JFrame {
             CardLayout cl = (CardLayout) (centralPanel.getLayout());
             cl.show(centralPanel, "myPlaylists");
         });
+
+
         searchButton.addActionListener(e -> {
             CardLayout cl = (CardLayout) (explorerOriginalListPanel.getLayout());
             cl.show(explorerOriginalListPanel, "table");
+
+            String interpreter = interpreterField.getText();
+            String title = titleField.getText();
+            String genre = genreField.getText();
+            explorerList.setModel(controller.filterSongs(interpreter, title, genre));
         });
+
         cancelButton.addActionListener(e -> {
             CardLayout cl = (CardLayout) (explorerOriginalListPanel.getLayout());
             cl.show(explorerOriginalListPanel, "noTable");
+        });
+
+
+        pauseButton.addActionListener(e -> {
+
+        });
+        playButton.addActionListener(e -> {
+
+        });
+        previousButton.addActionListener(e -> {
+
+        });
+        nextButton.addActionListener(e -> {
+
         });
     }
 
@@ -83,7 +111,9 @@ public class PrincipalView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.add(mainPanel);
-        textName.setText("Hello, " + controller.getCurrentUser()); //TODO esto no sé si irá aquí (?)
+        textName.setText("Hello, " + controller.getCurrentUser());
+
+
     }
 
 
@@ -167,9 +197,6 @@ public class PrincipalView extends JFrame {
         explorerCenterPanel = new JPanel();
         explorerCenterPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
         explorerWindow.add(explorerCenterPanel, BorderLayout.CENTER);
-        searchButton = new JButton();
-        searchButton.setText("Search");
-        explorerCenterPanel.add(searchButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cancelButton = new JButton();
         cancelButton.setText("Cancel");
         explorerCenterPanel.add(cancelButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -184,14 +211,40 @@ public class PrincipalView extends JFrame {
         explorerNoListPanel.setLayout(new BorderLayout(0, 0));
         explorerOriginalListPanel.add(explorerNoListPanel, "noTable");
         explorerListPanel = new JPanel();
-        explorerListPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
+        explorerListPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 5, new Insets(0, 0, 0, 0), -1, -1));
         explorerOriginalListPanel.add(explorerListPanel, "table");
+        playButton = new JButton();
+        playButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
+        playButton.setText("");
+        explorerListPanel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, 40), new Dimension(40, 40), new Dimension(40, 40), 0, false));
+        pauseButton = new JButton();
+        pauseButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPausa.png")));
+        pauseButton.setText("");
+        explorerListPanel.add(pauseButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, 40), new Dimension(40, 40), new Dimension(40, 40), 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        explorerListPanel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 2, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         explorerList = new JList();
-        explorerListPanel.add(explorerList, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        explorerList.setLayoutOrientation(0);
+        final DefaultListModel defaultListModel1 = new DefaultListModel();
+        explorerList.setModel(defaultListModel1);
+        explorerList.setSelectionMode(0);
+        explorerList.putClientProperty("List.isFileList", Boolean.FALSE);
+        scrollPane1.setViewportView(explorerList);
         final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
-        explorerListPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, new Dimension(100, 10), new Dimension(100, 10), new Dimension(100, 10), 0, false));
+        explorerListPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, new Dimension(100, 10), new Dimension(100, 10), new Dimension(100, 10), 0, false));
+        nextButton = new JButton();
+        nextButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonSiguiente.png")));
+        nextButton.setText("");
+        explorerListPanel.add(nextButton, new com.intellij.uiDesigner.core.GridConstraints(3, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, 40), new Dimension(40, 40), new Dimension(40, 40), 0, false));
+        previousButton = new JButton();
+        previousButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonAnterior.png")));
+        previousButton.setText("");
+        explorerListPanel.add(previousButton, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, 40), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
-        explorerListPanel.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, new Dimension(100, -1), new Dimension(100, -1), new Dimension(100, -1), 0, false));
+        explorerListPanel.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, new Dimension(100, 10), new Dimension(100, 10), new Dimension(100, 10), 0, false));
+        searchButton = new JButton();
+        searchButton.setText("Search");
+        explorerCenterPanel.add(searchButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         newPlaylistWindow = new JPanel();
         newPlaylistWindow.setLayout(new BorderLayout(0, 0));
         centralPanel.add(newPlaylistWindow, "newPlaylist");

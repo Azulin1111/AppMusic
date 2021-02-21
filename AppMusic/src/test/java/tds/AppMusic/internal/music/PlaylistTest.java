@@ -24,14 +24,14 @@ public class PlaylistTest {
     public void SongsTest() {
 
         // Test 1: inserting and retrieving a song
-        Song expected = new Song("Test name", Genre.POP, "Test path");
+        Song expected = new Song("Test name", "Singer", Genre.POP, "Test path");
         playlist.addSong(expected);
 
         Song result = playlist.getSongs().get(0);
         assertSame(expected, result);
 
         // Test 2: Playlist size check
-        playlist.addSong(new Song("Test song 2", Genre.POP, "Test path 2"));
+        playlist.addSong(new Song("Test song 2", "Singer",Genre.POP, "Test path 2"));
         assertEquals(2, playlist.getSongs().size());
 
         // Test 3: Duplicate song

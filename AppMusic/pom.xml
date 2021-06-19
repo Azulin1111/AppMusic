@@ -31,5 +31,28 @@
       <version>1</version>
       <systemPath>${basedir}/lib/DriverPersistencia.jar</systemPath>
     </dependency>
+      <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+	<dependency>
+	  <groupId>org.eclipse.persistence</groupId>
+	  <artifactId>eclipselink</artifactId>
+	  <version>2.7.7</version>
+	  <scope>compile</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+	<dependency>
+	  <groupId>javax.persistence</groupId>
+	  <artifactId>javax.persistence-api</artifactId>
+	  <version>2.2</version>
+	  <scope>compile</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+	<dependency>
+	  <groupId>com.h2database</groupId>
+	  <artifactId>h2</artifactId>
+	  <version>1.4.200</version>
+	  <scope>compile</scope>
+	</dependency>
   </dependencies>
 </project>

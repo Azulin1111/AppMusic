@@ -46,5 +46,8 @@
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.200" level="project" />
     <orderEntry type="library" name="uiDesigner" level="project" />
+    <orderEntry type="library" name="java-guiForms-jps" level="project" />
+    <orderEntry type="library" name="core-3.4.0" level="project" />
+    <orderEntry type="library" name="forms_rt" level="project" />
   </component>
 </module>

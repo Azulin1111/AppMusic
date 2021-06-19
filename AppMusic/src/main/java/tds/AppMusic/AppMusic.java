@@ -18,5 +18,7 @@ public class AppMusic {
 
         List<Entidad> l = sp.recuperarEntidades();
         l.forEach(en -> System.out.println(en.getNombre()));
+        
+        System.out.println("EXITO");
     }
 }

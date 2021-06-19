@@ -102,7 +102,7 @@
             <border type="none"/>
             <children>
               <component id="eaa9e" class="javax.swing.JLabel" binding="labelWelcome">
-                <constraints border-constraint="Center"/>
+                <constraints border-constraint="North"/>
                 <properties>
                   <font size="28"/>
                   <horizontalAlignment value="0"/>

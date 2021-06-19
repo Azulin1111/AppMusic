@@ -28,11 +28,11 @@ public class Controller { //TODO whole class
     }
 
 
-    public void play(){
+    public void play(){ //TODO
 
     }
 
-    public void createPlayList(){
+    public void createPlayList(){ //TODO
 
     }
 

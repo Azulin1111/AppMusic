@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Actualizada la estructura del proyecto">
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaLogin.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaPrincipal.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="1oWcu7tdoW9ib5rziWDFJFucDks" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AppMusic/lib" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.3617021" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Min\Projects\IdeaProjects\AppMusic\AppMusic\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.AppMusic">
+    <configuration name="AppMusic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.AppMusic" />
+      <module name="AppMusic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tds.AppMusic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppMusic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tds.AppMusic.model.users.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tds.AppMusic.model.users" />
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.model.users.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.nullDiscountTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppMusic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tds.AppMusic.model.users.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tds.AppMusic.model.users" />
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.model.users.UserTest" />
+      <option name="METHOD_NAME" value="nullDiscountTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.AppMusic" />
+      <item itemvalue="JUnit.UserTest" />
+      <item itemvalue="JUnit.UserTest.nullDiscountTest1" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AppMusic" />
+        <item itemvalue="JUnit.UserTest.nullDiscountTest1" />
+        <item itemvalue="JUnit.UserTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="" />
+      <created>1613406007257</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613406007257</updated>
+    </task>
+    <task id="LOCAL-00001" summary="New gitignore">
+      <created>1613406050848</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613406050848</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Deleted test class">
+      <created>1613406648438</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613406648438</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Simplified createDiscount method">
+      <created>1613499290754</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613499290754</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed user method">
+      <created>1613499308548</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1613499308548</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed use of deprecated method">
+      <created>1613588981838</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1613588981838</updated>
+    </task>
+    <task id="LOCAL-00006" summary="IDE generates code now">
+      <created>1613589001885</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1613589001885</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Small changes to getRecentSongs">
+      <created>1613589555765</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1613589555765</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added IntelliJ UI library">
+      <created>1624119170572</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1624119170572</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Esta vez si es la libreria GUI correcta">
+      <created>1624120263902</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1624120263902</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Pruebas GUI">
+      <created>1624121209652</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1624121209652</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Ventana registro">
+      <created>1624202227348</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1624202227348</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Ventana principal, eliminados recursos innecesarios">
+      <created>1624204925594</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1624204925594</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Ventana login">
+      <created>1624206561243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1624206561243</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Actualizada la estructura del proyecto">
+      <created>1624207287818</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1624207287818</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New gitignore" />
+    <MESSAGE value="Deleted test class" />
+    <MESSAGE value="Simplified" />
+    <MESSAGE value="Simplified createDiscount method" />
+    <MESSAGE value="Fixed user method" />
+    <MESSAGE value="Fixed use of deprecated method" />
+    <MESSAGE value="IDE generates code now" />
+    <MESSAGE value="Small changes to getRecentSongs" />
+    <MESSAGE value="Added IntelliJ UI library" />
+    <MESSAGE value="Esta vez si es la libreria GUI correcta" />
+    <MESSAGE value="Pruebas GUI" />
+    <MESSAGE value="Ventana registro" />
+    <MESSAGE value="Ventana principal, eliminados recursos innecesarios" />
+    <MESSAGE value="Ventana login" />
+    <MESSAGE value="Actualizada la estructura del proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizada la estructura del proyecto" />
+  </component>
+</project>

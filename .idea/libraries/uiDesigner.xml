@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="uiDesigner">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AppMusic/lib/uiDesigner.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-guiForms-jps">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AppMusic/lib/java-guiForms-jps.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

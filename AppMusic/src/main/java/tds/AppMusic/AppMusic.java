@@ -12,8 +12,11 @@ public class AppMusic {
         // TODO app launch, GUI launch, etc.
 
         // TESTING
-
         ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+        Entidad e = new Entidad();
+        e.setNombre("test1");
+        sp.registrarEntidad(e);
+
         System.out.println("Cosa insertada. Recuperandola...");
 
         List<Entidad> l = sp.recuperarEntidades();

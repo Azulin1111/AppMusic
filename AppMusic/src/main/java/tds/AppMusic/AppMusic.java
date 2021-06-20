@@ -1,7 +1,6 @@
 package tds.AppMusic;
 
 import beans.Entidad;
-import tds.AppMusic.GUI.TestForm;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 
@@ -13,13 +12,9 @@ public class AppMusic {
         // TODO app launch, GUI launch, etc.
 
         // TESTING
-
-        TestForm tf = new TestForm();
-        tf.setVisible(true);
-
         ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
         Entidad e = new Entidad();
-        e.setNombre("test");
+        e.setNombre("test1");
         sp.registrarEntidad(e);
 
         System.out.println("Cosa insertada. Recuperandola...");

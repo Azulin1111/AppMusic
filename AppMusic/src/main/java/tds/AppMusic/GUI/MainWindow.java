@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaPrincipal extends JFrame {
+public class MainWindow extends JFrame {
     private JPanel mainPanel;
     private JButton logoutButton;
     private JButton upgradeAccButton;

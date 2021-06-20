@@ -1,2 +1,3 @@
 
-SongCatalog y UserCatalog son Singleton
+SongCatalog y UserCatalog son Singleton.
+Para la creación de descuentos se emplea el método factoría empleando introspección.

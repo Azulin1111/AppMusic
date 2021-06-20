@@ -94,6 +94,10 @@ public class User {
         return mostPlayedSongs;
     }
 
+    public void createPlayList(String name){
+        Playlist newPlayList = new Playlist(name);
+        addPlaylist(newPlayList);
+    }
 
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);

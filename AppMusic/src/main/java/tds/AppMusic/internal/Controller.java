@@ -32,8 +32,8 @@ public class Controller { //TODO whole class
 
     }
 
-    public void createPlayList(){ //TODO
-
+    public void createPlayList(String name){ //TODO
+        this.currentUser.createPlayList(name);
     }
 
 }

@@ -1,0 +1,986 @@
+Index: AppMusic/src/main/java/tds/AppMusic/GUI/PrincipalView.form
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/GUI/PrincipalView.form	(revision 8c7fc9b104bc1fb887c3212cee2a36c482882cb0)
++++ AppMusic/src/main/java/tds/AppMusic/GUI/PrincipalView.form	(revision 8c7fc9b104bc1fb887c3212cee2a36c482882cb0)
+@@ -1,371 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tds.AppMusic.GUI.PrincipalView">
+-  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+-    <constraints>
+-      <xy x="20" y="20" width="1082" height="499"/>
+-    </constraints>
+-    <properties/>
+-    <border type="none"/>
+-    <children>
+-      <grid id="6220b" binding="northPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+-        <constraints border-constraint="North"/>
+-        <properties>
+-          <background color="-8747097"/>
+-          <enabled value="false"/>
+-        </properties>
+-        <border type="etched">
+-          <font/>
+-          <title-color color="-9336645"/>
+-        </border>
+-        <children>
+-          <component id="5fc06" class="javax.swing.JLabel" binding="textName">
+-            <constraints/>
+-            <properties>
+-              <text value=""/>
+-            </properties>
+-          </component>
+-          <component id="c057e" class="javax.swing.JButton" binding="buttonPremium">
+-            <constraints/>
+-            <properties>
+-              <text value="Premium"/>
+-            </properties>
+-          </component>
+-          <component id="13d00" class="javax.swing.JButton" binding="buttonLogout">
+-            <constraints/>
+-            <properties>
+-              <text value="Logout"/>
+-            </properties>
+-          </component>
+-        </children>
+-      </grid>
+-      <grid id="8bd21" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
+-        <margin top="100" left="0" bottom="100" right="0"/>
+-        <constraints border-constraint="West"/>
+-        <properties>
+-          <background color="-13223359"/>
+-          <enabled value="true"/>
+-        </properties>
+-        <border type="none"/>
+-        <children>
+-          <component id="74783" class="javax.swing.JButton" binding="newListButton">
+-            <constraints>
+-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                <preferred-size width="140" height="50"/>
+-              </grid>
+-            </constraints>
+-            <properties>
+-              <text value="New Playlist"/>
+-            </properties>
+-          </component>
+-          <component id="f83ec" class="javax.swing.JButton" binding="recentButton">
+-            <constraints>
+-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                <preferred-size width="140" height="50"/>
+-              </grid>
+-            </constraints>
+-            <properties>
+-              <text value="Recent Songs"/>
+-            </properties>
+-          </component>
+-          <component id="68a7e" class="javax.swing.JButton" binding="myPlaylistsButton">
+-            <constraints>
+-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                <preferred-size width="140" height="50"/>
+-              </grid>
+-            </constraints>
+-            <properties>
+-              <text value="My Playlists"/>
+-            </properties>
+-          </component>
+-          <component id="95cc9" class="javax.swing.JButton" binding="explorerButton">
+-            <constraints>
+-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                <preferred-size width="140" height="50"/>
+-              </grid>
+-            </constraints>
+-            <properties>
+-              <text value="Explorer"/>
+-            </properties>
+-          </component>
+-        </children>
+-      </grid>
+-      <grid id="6a415" binding="centralPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+-        <constraints border-constraint="Center"/>
+-        <properties/>
+-        <border type="none"/>
+-        <children>
+-          <grid id="c0f7" binding="startWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+-            <constraints>
+-              <card name="start"/>
+-            </constraints>
+-            <properties/>
+-            <border type="none"/>
+-            <children>
+-              <component id="eaa9e" class="javax.swing.JLabel" binding="labelWelcome">
+-                <constraints border-constraint="North"/>
+-                <properties>
+-                  <font size="28"/>
+-                  <horizontalAlignment value="0"/>
+-                  <horizontalTextPosition value="0"/>
+-                  <text value="WELCOME TO APPMUSIC"/>
+-                </properties>
+-              </component>
+-            </children>
+-          </grid>
+-          <grid id="6b783" binding="explorerWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+-            <constraints>
+-              <card name="explorer"/>
+-            </constraints>
+-            <properties/>
+-            <border type="none" title="EXPLORER" title-justification="2">
+-              <font style="1"/>
+-              <title-color color="-16777216"/>
+-            </border>
+-            <children>
+-              <grid id="45806" binding="explorerNorthPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+-                <margin top="0" left="0" bottom="0" right="0"/>
+-                <constraints border-constraint="North"/>
+-                <properties/>
+-                <border type="none"/>
+-                <children>
+-                  <component id="c224d" class="javax.swing.JLabel" binding="interpreterLabel">
+-                    <constraints>
+-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties>
+-                      <text value="Interpreter"/>
+-                    </properties>
+-                  </component>
+-                  <component id="3027d" class="javax.swing.JLabel" binding="titleLabel">
+-                    <constraints>
+-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties>
+-                      <text value="Title"/>
+-                    </properties>
+-                  </component>
+-                  <component id="c36f3" class="javax.swing.JLabel" binding="GenreLabel">
+-                    <constraints>
+-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties>
+-                      <text value="Genre"/>
+-                    </properties>
+-                  </component>
+-                  <component id="7e043" class="javax.swing.JTextField" binding="interpreterField">
+-                    <constraints>
+-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+-                        <preferred-size width="150" height="-1"/>
+-                      </grid>
+-                    </constraints>
+-                    <properties/>
+-                  </component>
+-                  <component id="7d093" class="javax.swing.JTextField" binding="titleField">
+-                    <constraints>
+-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+-                        <preferred-size width="150" height="-1"/>
+-                      </grid>
+-                    </constraints>
+-                    <properties/>
+-                  </component>
+-                  <component id="26871" class="javax.swing.JTextField" binding="genreField">
+-                    <constraints>
+-                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+-                        <preferred-size width="150" height="-1"/>
+-                      </grid>
+-                    </constraints>
+-                    <properties/>
+-                  </component>
+-                </children>
+-              </grid>
+-              <grid id="e6ced" binding="explorerCenterPanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+-                <margin top="0" left="0" bottom="0" right="0"/>
+-                <constraints border-constraint="Center"/>
+-                <properties/>
+-                <border type="none"/>
+-                <children>
+-                  <component id="f6653" class="javax.swing.JButton" binding="cancelButton">
+-                    <constraints>
+-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties>
+-                      <text value="Cancel"/>
+-                    </properties>
+-                  </component>
+-                  <hspacer id="e0b88">
+-                    <constraints>
+-                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                  </hspacer>
+-                  <hspacer id="66f3d">
+-                    <constraints>
+-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                  </hspacer>
+-                  <grid id="22569" binding="explorerOriginalListPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+-                    <constraints>
+-                      <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties/>
+-                    <border type="none"/>
+-                    <children>
+-                      <grid id="15ebd" binding="explorerNoListPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+-                        <constraints>
+-                          <card name="noTable"/>
+-                        </constraints>
+-                        <properties/>
+-                        <border type="none"/>
+-                        <children/>
+-                      </grid>
+-                      <grid id="39996" binding="explorerListPanel" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+-                        <margin top="0" left="0" bottom="0" right="0"/>
+-                        <constraints>
+-                          <card name="table"/>
+-                        </constraints>
+-                        <properties/>
+-                        <border type="none"/>
+-                        <children>
+-                          <component id="cd435" class="javax.swing.JButton" binding="playButton">
+-                            <constraints>
+-                              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="40" height="40"/>
+-                                <preferred-size width="40" height="40"/>
+-                                <maximum-size width="40" height="40"/>
+-                              </grid>
+-                            </constraints>
+-                            <properties>
+-                              <icon value="Pictures/BotonPlay.png"/>
+-                              <text value=""/>
+-                            </properties>
+-                          </component>
+-                          <component id="b4a40" class="javax.swing.JButton" binding="pauseButton">
+-                            <constraints>
+-                              <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="40" height="40"/>
+-                                <preferred-size width="40" height="40"/>
+-                                <maximum-size width="40" height="40"/>
+-                              </grid>
+-                            </constraints>
+-                            <properties>
+-                              <icon value="Pictures/BotonPausa.png"/>
+-                              <text value=""/>
+-                            </properties>
+-                          </component>
+-                          <scrollpane id="dd65e">
+-                            <constraints>
+-                              <grid row="0" column="1" row-span="2" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+-                            </constraints>
+-                            <properties/>
+-                            <border type="none"/>
+-                            <children>
+-                              <component id="99690" class="javax.swing.JList" binding="explorerList">
+-                                <constraints/>
+-                                <properties>
+-                                  <layoutOrientation value="0"/>
+-                                  <model/>
+-                                  <selectionMode value="0"/>
+-                                </properties>
+-                                <clientProperties>
+-                                  <List.isFileList class="java.lang.Boolean" value="false"/>
+-                                </clientProperties>
+-                              </component>
+-                            </children>
+-                          </scrollpane>
+-                          <hspacer id="7618">
+-                            <constraints>
+-                              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="100" height="10"/>
+-                                <preferred-size width="100" height="10"/>
+-                                <maximum-size width="100" height="10"/>
+-                              </grid>
+-                            </constraints>
+-                          </hspacer>
+-                          <component id="3eb2f" class="javax.swing.JButton" binding="nextButton">
+-                            <constraints>
+-                              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="40" height="40"/>
+-                                <preferred-size width="40" height="40"/>
+-                                <maximum-size width="40" height="40"/>
+-                              </grid>
+-                            </constraints>
+-                            <properties>
+-                              <icon value="Pictures/BotonSiguiente.png"/>
+-                              <text value=""/>
+-                            </properties>
+-                          </component>
+-                          <component id="b30af" class="javax.swing.JButton" binding="previousButton">
+-                            <constraints>
+-                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="40" height="40"/>
+-                                <preferred-size width="40" height="40"/>
+-                                <maximum-size width="40" height="40"/>
+-                              </grid>
+-                            </constraints>
+-                            <properties>
+-                              <icon value="Pictures/BotonAnterior.png"/>
+-                              <text value=""/>
+-                            </properties>
+-                          </component>
+-                          <hspacer id="97889">
+-                            <constraints>
+-                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+-                                <minimum-size width="100" height="10"/>
+-                                <preferred-size width="100" height="10"/>
+-                                <maximum-size width="100" height="10"/>
+-                              </grid>
+-                            </constraints>
+-                          </hspacer>
+-                        </children>
+-                      </grid>
+-                    </children>
+-                  </grid>
+-                  <component id="c6921" class="javax.swing.JButton" binding="searchButton">
+-                    <constraints>
+-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+-                    </constraints>
+-                    <properties>
+-                      <text value="Search"/>
+-                    </properties>
+-                  </component>
+-                </children>
+-              </grid>
+-            </children>
+-          </grid>
+-          <grid id="87311" binding="newPlaylistWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+-            <constraints>
+-              <card name="newPlaylist"/>
+-            </constraints>
+-            <properties/>
+-            <border type="none" title="NEW PLAYLIST" title-justification="2">
+-              <font style="1"/>
+-              <title-color color="-16777216"/>
+-            </border>
+-            <children/>
+-          </grid>
+-          <grid id="d7b3d" binding="recentWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+-            <constraints>
+-              <card name="recent"/>
+-            </constraints>
+-            <properties/>
+-            <border type="none" title="RECENT SONGS" title-justification="2">
+-              <font style="1"/>
+-              <title-color color="-16777216"/>
+-            </border>
+-            <children/>
+-          </grid>
+-          <grid id="2168e" binding="myPlaylistWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+-            <constraints>
+-              <card name="myPlaylists"/>
+-            </constraints>
+-            <properties/>
+-            <border type="none" title="MY PLAYLISTS" title-justification="2">
+-              <font style="1"/>
+-              <title-color color="-16777216"/>
+-            </border>
+-            <children/>
+-          </grid>
+-        </children>
+-      </grid>
+-    </children>
+-  </grid>
+-</form>
+Index: AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java	(date 1624202165357)
++++ AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java	(date 1624202165357)
+@@ -0,0 +1,136 @@
++package tds.AppMusic.GUI;
++
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class LoginView {
++    private JPanel panel1;
++    private JPanel northPanel;
++    private JLabel title;
++    private JTextField textField1;
++    private JTextField textField2;
++    private JPanel southPanel;
++    private JPanel centerPanel;
++    private JLabel userLabel;
++    private JLabel passwdLabel;
++    private JButton aceptarButton;
++    private JButton cancelarButton;
++
++    public LoginView() {
++        aceptarButton.addActionListener(e -> {
++
++        });
++    }
++
++    private void createUIComponents() {
++        // TODO: place custom component creation code here
++    }
++
++    {
++// GUI initializer generated by IntelliJ IDEA GUI Designer
++// >>> IMPORTANT!! <<<
++// DO NOT EDIT OR ADD ANY CODE HERE!
++        $$$setupUI$$$();
++    }
++
++    /**
++     * Method generated by IntelliJ IDEA GUI Designer
++     * >>> IMPORTANT!! <<<
++     * DO NOT edit this method OR call it in your code!
++     *
++     * @noinspection ALL
++     */
++    private void $$$setupUI$$$() {
++        panel1 = new JPanel();
++        panel1.setLayout(new BorderLayout(10, 10));
++        panel1.setEnabled(true);
++        panel1.setFocusCycleRoot(false);
++        panel1.setFocusable(true);
++        Font panel1Font = this.$$$getFont$$$(null, -1, 36, panel1.getFont());
++        if (panel1Font != null) panel1.setFont(panel1Font);
++        panel1.setPreferredSize(new Dimension(100, 100));
++        northPanel = new JPanel();
++        northPanel.setLayout(new BorderLayout(0, 0));
++        panel1.add(northPanel, BorderLayout.NORTH);
++        title = new JLabel();
++        title.setDoubleBuffered(false);
++        title.setEnabled(true);
++        Font titleFont = this.$$$getFont$$$(null, -1, 36, title.getFont());
++        if (titleFont != null) title.setFont(titleFont);
++        title.setHorizontalAlignment(0);
++        title.setHorizontalTextPosition(0);
++        title.setIconTextGap(10);
++        title.setOpaque(false);
++        title.setText("AppMusic");
++        northPanel.add(title, BorderLayout.SOUTH);
++        centerPanel = new JPanel();
++        centerPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
++        panel1.add(centerPanel, BorderLayout.CENTER);
++        userLabel = new JLabel();
++        userLabel.setText("Usuario:");
++        centerPanel.add(userLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
++        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
++        centerPanel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
++        final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
++        centerPanel.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
++        textField1 = new JTextField();
++        centerPanel.add(textField1, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
++        textField2 = new JTextField();
++        centerPanel.add(textField2, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
++        passwdLabel = new JLabel();
++        passwdLabel.setText("Clave:");
++        centerPanel.add(passwdLabel, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
++        southPanel = new JPanel();
++        southPanel.setLayout(new BorderLayout(0, 0));
++        panel1.add(southPanel, BorderLayout.SOUTH);
++        final JPanel panel2 = new JPanel();
++        panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
++        southPanel.add(panel2, BorderLayout.NORTH);
++        aceptarButton = new JButton();
++        aceptarButton.setText("Aceptar");
++        panel2.add(aceptarButton);
++        cancelarButton = new JButton();
++        cancelarButton.setText("Cancelar");
++        panel2.add(cancelarButton);
++        final JPanel panel3 = new JPanel();
++        panel3.setLayout(new BorderLayout(0, 0));
++        southPanel.add(panel3, BorderLayout.SOUTH);
++        final JLabel label1 = new JLabel();
++        label1.setEnabled(true);
++        label1.setFocusable(true);
++        label1.setHorizontalAlignment(0);
++        label1.setHorizontalTextPosition(0);
++        label1.setText("Si no estás registrado, regístrate");
++        panel3.add(label1, BorderLayout.CENTER);
++        final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
++        panel3.add(spacer3, BorderLayout.SOUTH);
++    }
++
++    /**
++     * @noinspection ALL
++     */
++    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
++        if (currentFont == null) return null;
++        String resultName;
++        if (fontName == null) {
++            resultName = currentFont.getName();
++        } else {
++            Font testFont = new Font(fontName, Font.PLAIN, 10);
++            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
++                resultName = fontName;
++            } else {
++                resultName = currentFont.getName();
++            }
++        }
++        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
++    }
++
++    /**
++     * @noinspection ALL
++     */
++    public JComponent $$$getRootComponent$$$() {
++        return panel1;
++    }
++}
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/uiDesigner.xml	(date 1624201911237)
++++ .idea/uiDesigner.xml	(date 1624201911237)
+@@ -0,0 +1,128 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.png" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++  <component name="uidesigner-configuration">
++    <option name="INSTRUMENT_CLASSES" value="false" />
++    <option name="DEFAULT_LAYOUT_MANAGER" value="BorderLayout" />
++  </component>
++</project>
+\ No newline at end of file
+Index: AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form	(date 1624201812452)
++++ AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form	(date 1624201812452)
+@@ -0,0 +1,134 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tds.AppMusic.GUI.LoginView">
++  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="10" vgap="10">
++    <constraints>
++      <xy x="20" y="20" width="500" height="400"/>
++    </constraints>
++    <properties>
++      <enabled value="true"/>
++      <focusCycleRoot value="false"/>
++      <focusable value="true"/>
++      <font size="36"/>
++      <preferredSize width="100" height="100"/>
++    </properties>
++    <border type="none"/>
++    <children>
++      <grid id="c2c81" binding="northPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
++        <constraints border-constraint="North"/>
++        <properties/>
++        <border type="none"/>
++        <children>
++          <component id="bde9b" class="javax.swing.JLabel" binding="title">
++            <constraints border-constraint="South"/>
++            <properties>
++              <doubleBuffered value="false"/>
++              <enabled value="true"/>
++              <font size="36"/>
++              <horizontalAlignment value="0"/>
++              <horizontalTextPosition value="0"/>
++              <iconTextGap value="10"/>
++              <opaque value="false"/>
++              <text value="AppMusic"/>
++            </properties>
++          </component>
++        </children>
++      </grid>
++      <grid id="75a2a" binding="centerPanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
++        <margin top="0" left="0" bottom="0" right="0"/>
++        <constraints border-constraint="Center"/>
++        <properties/>
++        <border type="none"/>
++        <children>
++          <component id="faf07" class="javax.swing.JLabel" binding="userLabel">
++            <constraints>
++              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
++            </constraints>
++            <properties>
++              <text value="Usuario:"/>
++            </properties>
++          </component>
++          <hspacer id="b44f1">
++            <constraints>
++              <grid row="0" column="3" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
++            </constraints>
++          </hspacer>
++          <hspacer id="6a802">
++            <constraints>
++              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
++            </constraints>
++          </hspacer>
++          <component id="6c312" class="javax.swing.JTextField" binding="textField1" default-binding="true">
++            <constraints>
++              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
++                <preferred-size width="150" height="-1"/>
++              </grid>
++            </constraints>
++            <properties/>
++          </component>
++          <component id="d7d87" class="javax.swing.JTextField" binding="textField2" default-binding="true">
++            <constraints>
++              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
++                <preferred-size width="150" height="-1"/>
++              </grid>
++            </constraints>
++            <properties/>
++          </component>
++          <component id="b605b" class="javax.swing.JLabel" binding="passwdLabel">
++            <constraints>
++              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
++            </constraints>
++            <properties>
++              <text value="Clave:"/>
++            </properties>
++          </component>
++        </children>
++      </grid>
++      <grid id="eb941" binding="southPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
++        <constraints border-constraint="South"/>
++        <properties/>
++        <border type="none"/>
++        <children>
++          <grid id="c0874" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
++            <constraints border-constraint="North"/>
++            <properties/>
++            <border type="none"/>
++            <children>
++              <component id="e35bd" class="javax.swing.JButton" binding="aceptarButton" default-binding="true">
++                <constraints/>
++                <properties>
++                  <text value="Aceptar"/>
++                </properties>
++              </component>
++              <component id="c9b00" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
++                <constraints/>
++                <properties>
++                  <text value="Cancelar"/>
++                </properties>
++              </component>
++            </children>
++          </grid>
++          <grid id="efeb6" layout-manager="BorderLayout" hgap="0" vgap="0">
++            <constraints border-constraint="South"/>
++            <properties/>
++            <border type="none"/>
++            <children>
++              <component id="5710e" class="javax.swing.JLabel">
++                <constraints border-constraint="Center"/>
++                <properties>
++                  <enabled value="true"/>
++                  <focusable value="true"/>
++                  <horizontalAlignment value="0"/>
++                  <horizontalTextPosition value="0"/>
++                  <text value="Si no estás registrado, regístrate"/>
++                </properties>
++              </component>
++              <vspacer id="42533">
++                <constraints border-constraint="South"/>
++              </vspacer>
++            </children>
++          </grid>
++        </children>
++      </grid>
++    </children>
++  </grid>
++</form>
+Index: AppMusic/src/main/java/tds/AppMusic/GUI/LoginViewPrueba.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/GUI/LoginViewPrueba.java	(date 1624199678990)
++++ AppMusic/src/main/java/tds/AppMusic/GUI/LoginViewPrueba.java	(date 1624199678990)
+@@ -0,0 +1,179 @@
++package tds.AppMusic.GUI;
++
++import java.awt.BorderLayout;
++import java.awt.Color;
++import java.awt.FlowLayout;
++import java.awt.Font;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++import javax.swing.BoxLayout;
++import javax.swing.JButton;
++import javax.swing.JFrame;
++import javax.swing.JLabel;
++import javax.swing.JOptionPane;
++import javax.swing.JPanel;
++import javax.swing.JPasswordField;
++import javax.swing.JTextField;
++import javax.swing.SwingConstants;
++import javax.swing.border.TitledBorder;
++
++import javax.swing.border.EmptyBorder;
++
++public class LoginViewPrueba {
++
++	private JFrame frmLogin;
++	private JTextField textUsuario;
++	private JPasswordField textPassword;
++
++	/**
++	 * Create the application.
++	 */
++	public LoginViewPrueba() {
++		initialize();
++	}
++
++	public void mostrarVentana() {
++		frmLogin.setLocationRelativeTo(null);
++		frmLogin.setVisible(true);
++	}
++	
++	private void initialize() {
++		frmLogin = new JFrame();
++		frmLogin.setTitle("Login AppMusic");
++		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++		frmLogin.getContentPane().setLayout(new BorderLayout());
++
++		crearPanelTitulo();
++		crearPanelLogin();
++
++		frmLogin.setResizable(false);
++		frmLogin.pack();
++	}
++
++	private void crearPanelTitulo() {
++		JPanel panel_Norte = new JPanel();
++		frmLogin.getContentPane().add(panel_Norte, BorderLayout.NORTH);
++		panel_Norte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
++
++		JLabel lblTitulo = new JLabel("AppMusic");
++		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
++		lblTitulo.setForeground(Color.DARK_GRAY);
++		panel_Norte.add(lblTitulo);
++	}
++
++	private void crearPanelLogin() {
++		JPanel panelLogin = new JPanel();
++		panelLogin.setBorder(new EmptyBorder(10, 10, 10, 10));
++		frmLogin.getContentPane().add(panelLogin, BorderLayout.CENTER);
++		panelLogin.setLayout(new BorderLayout(0, 0));
++
++		panelLogin.add(crearPanelCampos(), BorderLayout.NORTH);
++		panelLogin.add(crearPanelBotones(), BorderLayout.SOUTH);
++	}
++
++	private JPanel crearPanelCampos() {
++		JPanel panelCampos = new JPanel();
++		panelCampos.setBorder(new TitledBorder(null, "Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
++		panelCampos.setLayout(new BoxLayout(panelCampos, BoxLayout.Y_AXIS));
++
++		// Panel Campo Login
++		JPanel panelCampoUsuario = new JPanel();
++		panelCampos.add(panelCampoUsuario);
++		panelCampoUsuario.setLayout(new BorderLayout(0, 0));
++
++		JLabel lblUsuario = new JLabel("Usuario: ");
++		panelCampoUsuario.add(lblUsuario);
++		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
++		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
++
++		textUsuario = new JTextField();
++		panelCampoUsuario.add(textUsuario, BorderLayout.EAST);
++		textUsuario.setColumns(15);
++
++		// Panel Campo Password
++		JPanel panelCampoPassword = new JPanel();
++		panelCampos.add(panelCampoPassword);
++		panelCampoPassword.setLayout(new BorderLayout(0, 0));
++
++		JLabel lblPassword = new JLabel("Contrase\u00F1a: ");
++		panelCampoPassword.add(lblPassword);
++		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
++		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
++
++		textPassword = new JPasswordField();
++		panelCampoPassword.add(textPassword, BorderLayout.EAST);
++		textPassword.setColumns(15);
++		
++		return panelCampos;
++	}
++
++	private JPanel crearPanelBotones() {
++		JPanel panelBotones = new JPanel();
++		panelBotones.setBorder(new EmptyBorder(5, 0, 5, 0));
++		panelBotones.setLayout(new BorderLayout(0, 0));
++
++		JPanel panelBotonesLoginRegistro = new JPanel();
++		panelBotones.add(panelBotonesLoginRegistro, BorderLayout.WEST);
++
++		JButton btnLogin = new JButton("Login");
++		panelBotonesLoginRegistro.add(btnLogin);
++		btnLogin.setVerticalAlignment(SwingConstants.BOTTOM);
++
++		JButton btnRegistro = new JButton("Registro");
++		panelBotonesLoginRegistro.add(btnRegistro);
++		btnRegistro.setVerticalAlignment(SwingConstants.BOTTOM);
++
++		JPanel panelBotonSalir = new JPanel();
++		panelBotones.add(panelBotonSalir, BorderLayout.EAST);
++
++		JButton btnSalir = new JButton("Salir");
++		btnSalir.setVerticalAlignment(SwingConstants.BOTTOM);
++		panelBotonSalir.add(btnSalir);
++
++		addManejadorBotonLogin(btnLogin);
++		addManejadorBotonRegistro(btnRegistro);
++		addManejadorBotonSalir(btnSalir);
++		
++		return panelBotones;
++	}
++
++	private void addManejadorBotonSalir(JButton btnSalir) {
++		btnSalir.addActionListener(new ActionListener() {
++			public void actionPerformed(ActionEvent e) {
++				frmLogin.dispose();
++				System.exit(0);
++			}
++		});
++	}
++
++	private void addManejadorBotonRegistro(JButton btnRegistro) {
++		btnRegistro.addActionListener(new ActionListener() {
++			public void actionPerformed(ActionEvent e) {
++				//RegistroView registroView = new RegistroView();
++				//registroView.mostrarVentana();
++				//frmLogin.dispose();
++			}
++		});
++	}
++
++	private void addManejadorBotonLogin(JButton btnLogin) {
++		btnLogin.addActionListener(new ActionListener() {
++			public void actionPerformed(ActionEvent e) {
++				/*
++				boolean login = Controlador.getUnicaInstancia().loginUsuario(textUsuario.getText(),
++						new String(textPassword.getPassword()));
++
++				if (login) {
++					VentanaPrincipal window = new VentanaPrincipal();
++					window.mostrarVentana();
++					frmLogin.dispose();
++				} else
++					JOptionPane.showMessageDialog(frmLogin, "Nombre de usuario o contrase�a no valido",
++							"Error", JOptionPane.ERROR_MESSAGE);
++				*/
++			}
++		});
++	}
++
++}

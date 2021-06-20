@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Actualizada la estructura del proyecto">
-      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaLogin.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaPrincipal.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" afterDir="false" />
+    <list default="true" id="b8706672-2567-47fc-ab72-c62c71e72668" name="Default Changelist" comment="LoginView cosas nazis">
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,34 +39,49 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProjectId" id="1oWcu7tdoW9ib5rziWDFJFucDks" />
+  <component name="ProjectId" id="1oWZ9qEkyy6qbnvjqvVslVD58m6" />
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/AppMusic/lib" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="145" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="314" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.3617021" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Min\Projects\IdeaProjects\AppMusic\AppMusic\lib" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="tds.AppMusic" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Desktop\Sergio\3º\1er cuatrimestre\Tecnologías de desarrollo de Software\AppMusicFinal\AppMusic\src\main\java\tds\AppMusic\GUI" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AppMusic">
-    <configuration name="AppMusic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.AppMusic" />
+  <component name="RunManager" selected="Application.Launcher">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.GUI.Launcher" />
+      <module name="AppMusic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tds.AppMusic.GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PRUEBASSERGIO" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.PRUEBASSERGIO" />
       <module name="AppMusic" />
       <extension name="coverage">
         <pattern>
@@ -67,158 +93,227 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AppMusic" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tds.AppMusic.model.users.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tds.AppMusic.model.users" />
-      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.model.users.UserTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.nullDiscountTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AppMusic" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tds.AppMusic.model.users.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tds.AppMusic.model.users" />
-      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.model.users.UserTest" />
-      <option name="METHOD_NAME" value="nullDiscountTest1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.AppMusic" />
-      <item itemvalue="JUnit.UserTest" />
-      <item itemvalue="JUnit.UserTest.nullDiscountTest1" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AppMusic" />
-        <item itemvalue="JUnit.UserTest.nullDiscountTest1" />
-        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="" />
-      <created>1613406007257</created>
+      <changelist id="b8706672-2567-47fc-ab72-c62c71e72668" name="Default Changelist" comment="" />
+      <created>1613404158837</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1613406007257</updated>
+      <updated>1613404158837</updated>
     </task>
-    <task id="LOCAL-00001" summary="New gitignore">
-      <created>1613406050848</created>
+    <task id="LOCAL-00001" summary="Añadir clase Pene">
+      <created>1613404244089</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1613406050848</updated>
+      <updated>1613404244089</updated>
     </task>
-    <task id="LOCAL-00002" summary="Deleted test class">
-      <created>1613406648438</created>
+    <task id="LOCAL-00002" summary="Borrar clase Pene">
+      <created>1613404287056</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1613406648438</updated>
+      <updated>1613404287056</updated>
     </task>
-    <task id="LOCAL-00003" summary="Simplified createDiscount method">
-      <created>1613499290754</created>
+    <task id="LOCAL-00003" summary="Test UserCatalog&#10;UserCatalog&#10;Cambios a User (listas y descuento)">
+      <created>1613417344655</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1613499290754</updated>
+      <updated>1613417344655</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixed user method">
-      <created>1613499308548</created>
+    <task id="LOCAL-00004" summary="Cambios a User: método factoría para la creación de descuentos mediante introspección. Acompañado de crear la clase DiscountNull (patrón Null Object)">
+      <created>1613427597529</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1613499308548</updated>
+      <updated>1613427597529</updated>
     </task>
-    <task id="LOCAL-00005" summary="Fixed use of deprecated method">
-      <created>1613588981838</created>
+    <task id="LOCAL-00005" summary="Cambio en la política de descuentos de la clase de usuario:&#10; -Se ha usado introspección (Método Factoría).&#10; -Creación de la clase DiscountNull, para tratar de forma igual a un no descuento que a un descuento.">
+      <created>1613428792027</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1613588981838</updated>
+      <updated>1613428792027</updated>
     </task>
-    <task id="LOCAL-00006" summary="IDE generates code now">
-      <created>1613589001885</created>
+    <task id="LOCAL-00006" summary="Incluir argumento string tipo de descuento que se le indicará cuando se seleccione de la lista de descuentos.">
+      <created>1613467185440</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1613589001885</updated>
+      <updated>1613467185440</updated>
     </task>
-    <task id="LOCAL-00007" summary="Small changes to getRecentSongs">
-      <created>1613589555765</created>
+    <task id="LOCAL-00007" summary="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar).">
+      <created>1613468415890</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1613589555765</updated>
+      <updated>1613468415890</updated>
     </task>
-    <task id="LOCAL-00008" summary="Added IntelliJ UI library">
-      <created>1624119170572</created>
+    <task id="LOCAL-00008" summary="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()">
+      <created>1613488860021</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1624119170572</updated>
+      <updated>1613488860021</updated>
     </task>
-    <task id="LOCAL-00009" summary="Esta vez si es la libreria GUI correcta">
-      <created>1624120263902</created>
+    <task id="LOCAL-00009" summary="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests">
+      <created>1613493635220</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1624120263902</updated>
+      <updated>1613493635220</updated>
     </task>
-    <task id="LOCAL-00010" summary="Pruebas GUI">
-      <created>1624121209652</created>
+    <task id="LOCAL-00010" summary="Class Playlist:&#10;-Song lists functions.&#10;&#10;Class User:&#10;-Remove discount (only necessary for a function).">
+      <created>1613494090353</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1624121209652</updated>
+      <updated>1613494090354</updated>
     </task>
-    <task id="LOCAL-00011" summary="Ventana registro">
-      <created>1624202227348</created>
+    <task id="LOCAL-00011" summary="Class Playlist:&#10;-Song lists functions.&#10;&#10;Class User:&#10;-Remove discount (only necessary for a function).">
+      <created>1613494110460</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1624202227348</updated>
+      <updated>1613494110460</updated>
     </task>
-    <task id="LOCAL-00012" summary="Ventana principal, eliminados recursos innecesarios">
-      <created>1624204925594</created>
+    <task id="LOCAL-00012" summary="UserTest:&#10;-add test mostPlayedSongsTest1()&#10;-add test mostPlayedSongsTest2()">
+      <created>1613511375463</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1624204925594</updated>
+      <updated>1613511375463</updated>
     </task>
-    <task id="LOCAL-00013" summary="Ventana login">
-      <created>1624206561243</created>
+    <task id="LOCAL-00013" summary="User:&#10;-Add function getPlayLists().">
+      <created>1613511683848</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1624206561243</updated>
+      <updated>1613511683849</updated>
     </task>
-    <task id="LOCAL-00014" summary="Actualizada la estructura del proyecto">
-      <created>1624207287818</created>
+    <task id="LOCAL-00014" summary="User:&#10;-TODOs">
+      <created>1613512129227</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1624207287818</updated>
+      <updated>1613512129227</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="User:&#10;-Add function addRecentSongs().">
+      <created>1613590093202</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613590093202</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Playlist:&#10;-Add protected songs() for the son class get this attribute.&#10;-Add removeSong().&#10;&#10;&#10;Creation class PlaylistRecentSongs:&#10;-Override addSong().&#10;&#10;User:&#10;-Change recentSongs: List&lt;Song&gt; to PlaylistRecentSongs">
+      <created>1613592299085</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613592299085</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Playlist:&#10;-Add function setName().&#10;&#10;UserTest:&#10;-Add function addRecentSongTest().">
+      <created>1613597867285</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1613597867285</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Playlist:&#10;-Add function setName().&#10;&#10;UserTest:&#10;-Add function addRecentSongTest().">
+      <created>1613597882575</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1613597882575</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Principal View:&#10;-Some things of the principal view.">
+      <created>1613750686078</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1613750686078</updated>
+    </task>
+    <task id="LOCAL-00020" summary="PrincipalView:&#10;-View Explorer">
+      <created>1613755373087</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1613755373087</updated>
+    </task>
+    <task id="LOCAL-00021" summary="PrincipalView:&#10;-View Explorer">
+      <created>1613756613676</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1613756613676</updated>
+    </task>
+    <task id="LOCAL-00022" summary="PrincipalView:&#10;-View Explorer">
+      <created>1613833915687</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1613833915687</updated>
+    </task>
+    <task id="LOCAL-00023" summary="PrincipalView:&#10;-View Explorer">
+      <created>1613837976834</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1613837976834</updated>
+    </task>
+    <task id="LOCAL-00024" summary="PrincipalView:&#10;-View Explorer&#10;&#10;Song:&#10;-add singer.&#10;-add toString().">
+      <created>1613842085124</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1613842085124</updated>
+    </task>
+    <task id="LOCAL-00025" summary="PrincipalView:&#10;-All structure of explorer window.&#10;&#10;UserTest &amp;&amp; PlaylistTest:&#10;-Changes for add Singer to Song.&#10;&#10;Controller:&#10;-add function filterSongs (without implementation)">
+      <created>1613906331808</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1613906331809</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Controller:&#10;-Add function play() and createPlayList()">
+      <created>1624113425043</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1624113425043</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Documentación:&#10;-Un fichero para ir detallando decisiones de diseño.&#10;&#10;Song Catalog:&#10;-Funciones básicas de funcionamiento.">
+      <created>1624114819821</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1624114819821</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Controller:&#10;-Función createPlayList()&#10;&#10;User:&#10;-Función createPlayList()">
+      <created>1624198847130</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1624198847130</updated>
+    </task>
+    <task id="LOCAL-00029" summary="LoginView cosas nazis">
+      <created>1624202279013</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1624202279013</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,21 +329,77 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New gitignore" />
-    <MESSAGE value="Deleted test class" />
-    <MESSAGE value="Simplified" />
-    <MESSAGE value="Simplified createDiscount method" />
-    <MESSAGE value="Fixed user method" />
-    <MESSAGE value="Fixed use of deprecated method" />
-    <MESSAGE value="IDE generates code now" />
-    <MESSAGE value="Small changes to getRecentSongs" />
-    <MESSAGE value="Added IntelliJ UI library" />
-    <MESSAGE value="Esta vez si es la libreria GUI correcta" />
-    <MESSAGE value="Pruebas GUI" />
-    <MESSAGE value="Ventana registro" />
-    <MESSAGE value="Ventana principal, eliminados recursos innecesarios" />
-    <MESSAGE value="Ventana login" />
-    <MESSAGE value="Actualizada la estructura del proyecto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizada la estructura del proyecto" />
+    <MESSAGE value="Cambios a User: método factoría para la creación de descuentos." />
+    <MESSAGE value="Cambios a User: método factoría para la creación de descuentos mediante introspección. Acompañado de crear la clase DiscountNull (patrón Null Object)" />
+    <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10;-" />
+    <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10; -Se ha usado introspección (Método Factoría).&#10; -Creación de la clase DiscountNull, para tratar de forma igual a un no descuento que a un descuento." />
+    <MESSAGE value="Incluir argumento string tipo de descuento que se le indicará cuando se seleccione de la lista de descuentos." />
+    <MESSAGE value="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar)." />
+    <MESSAGE value="Class User:&#10;-Function premiumPayment return double." />
+    <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
+    <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
+    <MESSAGE value="UserTest:&#10;-add test mostPlayedSongsTest1()&#10;-add test mostPlayedSongsTest2()" />
+    <MESSAGE value="User:&#10;-Add function getPlayLists()." />
+    <MESSAGE value="Class Playlist:&#10;-Song lists functions.&#10;&#10;Class User:&#10;-Remove discount (only necessary for a function)." />
+    <MESSAGE value="User:&#10;-TODOs" />
+    <MESSAGE value="User:&#10;-Add function addRecentSongs()." />
+    <MESSAGE value="Playlist:&#10;-Add protected songs() for the son class get this attribute.&#10;-Add removeSong().&#10;&#10;&#10;Creation class PlaylistRecentSongs:&#10;-Override addSong().&#10;&#10;User:&#10;-Change recentSongs: List&lt;Song&gt; to PlaylistRecentSongs" />
+    <MESSAGE value="Playlist:&#10;-Add function setName().&#10;&#10;UserTest:&#10;-Add function addRecentSongTest()." />
+    <MESSAGE value="Principal View:&#10;-Some things of the principal view." />
+    <MESSAGE value="PrincipalView:&#10;-View Explorer" />
+    <MESSAGE value="PrincipalView:&#10;-View Explorer&#10;&#10;Song:&#10;-add singer.&#10;-add toString()." />
+    <MESSAGE value="PrincipalView:&#10;-All structure of explorer window." />
+    <MESSAGE value="PrincipalView:&#10;-All structure of explorer window.&#10;&#10;UserTest &amp;&amp; PlaylistTest:&#10;-Changes for add Singer to Song.&#10;&#10;Controller:&#10;-add function filterSongs (without implementation)" />
+    <MESSAGE value="Controller:&#10;-Add function play() and createPlayList()" />
+    <MESSAGE value="Documentación:&#10;-Un fichero para ir detallando decisiones de diseño.&#10;&#10;Song Catalog:&#10;-Funciones básicas de funcionamiento." />
+    <MESSAGE value="Controller:&#10;-Función createPlayList()&#10;&#10;User:&#10;-Función createPlayList()" />
+    <MESSAGE value="LoginView cosas nazis" />
+    <option name="LAST_COMMIT_MESSAGE" value="LoginView cosas nazis" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="510" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1624113658917">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="510" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624113658917" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624202051040">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202051040" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618842562519">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618842562519" />
+    <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1624202418053">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
+    <state width="1493" height="218" key="GridCell.Tab.0.center" timestamp="1624202418053">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="218" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
+    <state width="1493" height="218" key="GridCell.Tab.0.left" timestamp="1624202418053">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="218" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
+    <state width="1493" height="218" key="GridCell.Tab.0.right" timestamp="1624202418053">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1624201910878">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624201910878" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624202283587">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202283587" />
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624202239471">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202239471" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1624203131373">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624203131373" />
   </component>
 </project>

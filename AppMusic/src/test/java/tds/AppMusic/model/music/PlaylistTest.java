@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.music;
+package tds.AppMusic.model.music;
 
 import org.junit.Before;
 import org.junit.Test;

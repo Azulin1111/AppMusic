@@ -1,6 +1,4 @@
-package tds.AppMusic.internal.music;
-
-import java.util.List;
+package tds.AppMusic.model.music;
 
 public class PlaylistRecentSongs extends Playlist{
     public PlaylistRecentSongs(String name) {

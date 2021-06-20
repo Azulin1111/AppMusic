@@ -1,8 +1,6 @@
-package tds.AppMusic.internal.users;
+package tds.AppMusic.model.users;
 
 import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;

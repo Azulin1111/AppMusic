@@ -1,8 +1,8 @@
-package tds.AppMusic.internal.discount;
+package tds.AppMusic.model.discount;
 
 import org.junit.Before;
 import org.junit.Test;
-import tds.AppMusic.internal.users.User;
+import tds.AppMusic.model.users.User;
 
 import static org.junit.Assert.*;
 

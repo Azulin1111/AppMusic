@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.music;
+package tds.AppMusic.model.music;
 
 // TODO add documentation
 public class Song {

@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.music;
+package tds.AppMusic.model.music;
 
 public enum Genre {
     LOFI, ROCK, COUNTRY, DB, DISCO, JAZZ, HIPHOP, REGGAE, DUBSTEP, REGGAETON, VAPORWAVE, SWING, HOUSE, TRAP, EDM, TECHNO, TRANCE, GARAGE, CHIPTUNE, FLAMENCO, FOLK, POP, RB, METAL, PUNK

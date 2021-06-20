@@ -1,10 +1,10 @@
-package tds.AppMusic.internal.users;
+package tds.AppMusic.model.users;
 
-import tds.AppMusic.internal.discount.Discount;
-import tds.AppMusic.internal.discount.NullDiscount;
-import tds.AppMusic.internal.music.Playlist;
-import tds.AppMusic.internal.music.PlaylistRecentSongs;
-import tds.AppMusic.internal.music.Song;
+import tds.AppMusic.model.discount.Discount;
+import tds.AppMusic.model.discount.NullDiscount;
+import tds.AppMusic.model.music.Playlist;
+import tds.AppMusic.model.music.PlaylistRecentSongs;
+import tds.AppMusic.model.music.Song;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -110,7 +110,7 @@ public class User {
 
     private Discount createDiscount(String typeDiscount) {  // Factory method: create a type of discount
         try {
-            return (Discount) Class.forName("tds.AppMusic.internal.discount."+typeDiscount).getDeclaredConstructor().newInstance();
+            return (Discount) Class.forName("tds.AppMusic.model.discount."+typeDiscount).getDeclaredConstructor().newInstance();
         } catch (ReflectiveOperationException e) {
             return new NullDiscount();
         }

@@ -1,6 +1,6 @@
-package tds.AppMusic.internal.discount;
+package tds.AppMusic.model.discount;
 
-import tds.AppMusic.internal.users.User;
+import tds.AppMusic.model.users.User;
 
 public class FixedDiscount implements Discount {
 

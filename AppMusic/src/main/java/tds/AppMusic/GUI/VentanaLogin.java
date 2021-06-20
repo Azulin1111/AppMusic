@@ -10,7 +10,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
-public class VentanaLogin {
+public class VentanaLogin extends JFrame {
     private JPanel mainPanel;
     private JButton okButton;
     private JPanel centerPanel;

@@ -1,6 +1,6 @@
-package tds.AppMusic.internal;
+package tds.AppMusic.app;
 
-import tds.AppMusic.internal.users.User;
+import tds.AppMusic.model.users.User;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -28,7 +28,7 @@ public class Controller { //TODO whole class
     }
 
 
-    public void play(){ //TODO
+    public void play() { //TODO
 
     }
 

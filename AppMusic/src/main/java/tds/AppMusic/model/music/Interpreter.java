@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.music;
+package tds.AppMusic.model.music;
 
 import java.util.Collections;
 import java.util.LinkedList;

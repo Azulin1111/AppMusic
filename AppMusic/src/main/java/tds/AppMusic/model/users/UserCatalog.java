@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.users;
+package tds.AppMusic.model.users;
 
 
 import java.time.LocalDate;

@@ -1,11 +1,11 @@
-package tds.AppMusic.internal.users;
+package tds.AppMusic.model.users;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tds.AppMusic.internal.music.Genre;
-import tds.AppMusic.internal.music.Playlist;
-import tds.AppMusic.internal.music.Song;
+import tds.AppMusic.model.music.Genre;
+import tds.AppMusic.model.music.Playlist;
+import tds.AppMusic.model.music.Song;
 
 import java.time.LocalDate;
 import java.util.LinkedList;

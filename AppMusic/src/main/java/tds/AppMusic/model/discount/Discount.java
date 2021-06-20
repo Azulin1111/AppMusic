@@ -1,4 +1,4 @@
-package tds.AppMusic.internal.discount;
+package tds.AppMusic.model.discount;
 
 public interface Discount {
 

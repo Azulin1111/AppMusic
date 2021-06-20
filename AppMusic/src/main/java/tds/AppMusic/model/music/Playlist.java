@@ -1,8 +1,7 @@
-package tds.AppMusic.internal.music;
+package tds.AppMusic.model.music;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 // TODO add documentation
 public class Playlist {

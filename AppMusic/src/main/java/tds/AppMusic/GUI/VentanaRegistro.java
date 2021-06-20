@@ -8,7 +8,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaRegistro {
+public class VentanaRegistro extends JFrame {
     private JPanel mainPanel;
     private JTextField nameTextField;
     private JTextField emailTextField;

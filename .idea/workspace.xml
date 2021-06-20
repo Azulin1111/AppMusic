@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,10 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8706672-2567-47fc-ab72-c62c71e72668" name="Default Changelist" comment="LoginView cosas nazis">
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/VentanaRegistro.form" afterDir="false" />
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="???">
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1oWZ9qEkyy6qbnvjqvVslVD58m6" />
   <component name="ProjectViewState">
@@ -59,11 +66,11 @@
     <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="tds.AppMusic" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Desktop\Sergio\3º\1er cuatrimestre\Tecnologías de desarrollo de Software\AppMusicFinal\AppMusic\src\main\java\tds\AppMusic\GUI" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="tds.AppMusic" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Launcher">
@@ -317,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624202279013</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="???">
+      <created>1624208064050</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1624208064050</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +347,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambios a User: método factoría para la creación de descuentos." />
     <MESSAGE value="Cambios a User: método factoría para la creación de descuentos mediante introspección. Acompañado de crear la clase DiscountNull (patrón Null Object)" />
     <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10;-" />
     <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10; -Se ha usado introspección (Método Factoría).&#10; -Creación de la clase DiscountNull, para tratar de forma igual a un no descuento que a un descuento." />
@@ -358,52 +371,7 @@
     <MESSAGE value="Documentación:&#10;-Un fichero para ir detallando decisiones de diseño.&#10;&#10;Song Catalog:&#10;-Funciones básicas de funcionamiento." />
     <MESSAGE value="Controller:&#10;-Función createPlayList()&#10;&#10;User:&#10;-Función createPlayList()" />
     <MESSAGE value="LoginView cosas nazis" />
-    <option name="LAST_COMMIT_MESSAGE" value="LoginView cosas nazis" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="510" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1624113658917">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="510" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624113658917" />
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624202051040">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202051040" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618842562519">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618842562519" />
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1624202418053">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
-    <state width="1493" height="218" key="GridCell.Tab.0.center" timestamp="1624202418053">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
-    <state width="1493" height="218" key="GridCell.Tab.0.left" timestamp="1624202418053">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
-    <state width="1493" height="218" key="GridCell.Tab.0.right" timestamp="1624202418053">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202418053" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1624201910878">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624201910878" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624202283587">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202283587" />
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624202239471">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624202239471" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1624203131373">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624203131373" />
+    <MESSAGE value="???" />
+    <option name="LAST_COMMIT_MESSAGE" value="???" />
   </component>
 </project>

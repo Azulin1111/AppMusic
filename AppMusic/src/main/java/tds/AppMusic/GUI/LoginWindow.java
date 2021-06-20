@@ -25,12 +25,6 @@ public class LoginWindow extends JFrame {
     private JPanel titlePanel;
     private JLabel titleLabel;
 
-    public LoginWindow() {
-        okButton.addActionListener(e -> {
-
-        });
-    }
-
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }

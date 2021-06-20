@@ -1,0 +1,62 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/AppMusic/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 8cf0be5b061ad5c873c86c4c02608417c1057a99)
++++ .idea/misc.xml	(date 1613405699774)
+@@ -7,7 +7,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tds.AppMusic.internal.users;\r\n\r\npublic class UserCatalog {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java	(revision 8cf0be5b061ad5c873c86c4c02608417c1057a99)
++++ AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java	(date 1613406071307)
+@@ -1,4 +1,32 @@
+ package tds.AppMusic.internal.users;
+ 
+-public class UserCatalog {
++
++import java.util.LinkedList;
++import java.util.List;
++
++public enum UserCatalog {
++    INSTANCE; //Es un singleton
++    private List<User> users;
++
++    private UserCatalog(){
++        users = new LinkedList<>();
++    }
++
++    public void addUser(User user){
++        users.add(user);
++    }
++
++    public void removeUser(User user){ //TODO no se sabe si es hay que poner esta función
++    public void removeUser(User user){ //TODO no se sabe si es hay que poner esta función
++    public void removeUser(User user){ //TODO no se sabe si es hay que poner esta función
++    public void removeUser(User user){ //TODO no se sabe si es hay que poner esta función
++        users.remove(user);
++    }
++
++    public List<User> getUsers(){
++        return (LinkedList) users.clone();
++    }
++
++
++
+ }

@@ -1,0 +1,79 @@
+Index: AppMusic/src/test/java/tds/AppMusic/internal/users/UserTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tds.AppMusic.internal.users;\r\n\r\nimport org.junit.Before;\r\nimport org.junit.Test;\r\n\r\nimport java.time.LocalDate;\r\n\r\nimport static org.junit.Assert.*;\r\n\r\npublic class UserTest {\r\n\r\n    User user;\r\n    LocalDate date = LocalDate.now();\r\n\r\n    @Before\r\n    public void setUp() {\r\n        user = new User(\"Test name\", \"Test nickname\", false, \"Test password\", \"Test email\", date);\r\n    }\r\n\r\n    @Test\r\n    public void parameterTests() {\r\n        assertEquals(\"Test name\", user.getName());\r\n        assertEquals(\"Test nickname\", user.getNickname());\r\n        assertFalse(user.isPremium());\r\n        assertEquals(\"Test password\", user.getPassword());\r\n        assertEquals(\"Test email\", user.getEmail());\r\n        assertSame(date, user.getBirthday());\r\n    }\r\n\r\n    @Test\r\n    public void fixedDiscountTest(){ //TODO probar estos tests\r\n        double payment = user.premiumPayment(\"FixedDiscount\");\r\n\r\n        // Expected payment\r\n        double expectedPayment = User.PREMIUM_PRIZE * 0.70;\r\n\r\n        // Test\r\n        assertEquals(payment, expectedPayment, 0.001);\r\n\r\n    }\r\n\r\n    @Test\r\n    public void youngDiscountTest(){\r\n        double payment = user.premiumPayment(\"YoungDiscount\");\r\n\r\n        // Expected payment\r\n        double expectedPayment = User.PREMIUM_PRIZE * 0.85;\r\n\r\n        // Test\r\n        assertEquals(payment, expectedPayment, 0.001);\r\n    }\r\n\r\n    @Test(expected=ReflectiveOperationException.class)  //TODO debería salir una excepción\r\n    public void nullDiscountTest1(){ // Explicit form\r\n        double payment1 = user.premiumPayment(\"ninguno\");\r\n\r\n        // Expected payment\r\n        double expectedPayment = User.PREMIUM_PRIZE;\r\n\r\n        // Test\r\n        assertEquals(payment1, expectedPayment, 0.001);\r\n    }\r\n\r\n    @Test\r\n    public void nullDiscountTest2(){ // Implicit form\r\n        double payment2 = user.premiumPayment(\"NullDiscount\");\r\n\r\n        // Expected payment\r\n        double expectedPayment = User.PREMIUM_PRIZE;\r\n\r\n        // Test\r\n        assertEquals(payment2, expectedPayment, 0.001);\r\n    }\r\n\r\n    @Test\r\n    public void mostPlayedSongsTest(){\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/test/java/tds/AppMusic/internal/users/UserTest.java	(revision 0fc5193e0b4a48f26fc23a7d4b520b4170379ae5)
++++ AppMusic/src/test/java/tds/AppMusic/internal/users/UserTest.java	(date 1613495486633)
+@@ -2,8 +2,13 @@
+ 
+ import org.junit.Before;
+ import org.junit.Test;
++import tds.AppMusic.internal.music.Genre;
++import tds.AppMusic.internal.music.Playlist;
++import tds.AppMusic.internal.music.Song;
+ 
+ import java.time.LocalDate;
++import java.util.LinkedList;
++import java.util.List;
+ 
+ import static org.junit.Assert.*;
+ 
+@@ -28,7 +33,7 @@
+     }
+ 
+     @Test
+-    public void fixedDiscountTest(){ //TODO probar estos tests
++    public void fixedDiscountTest(){
+         double payment = user.premiumPayment("FixedDiscount");
+ 
+         // Expected payment
+@@ -50,7 +55,7 @@
+         assertEquals(payment, expectedPayment, 0.001);
+     }
+ 
+-    @Test(expected=ReflectiveOperationException.class)  //TODO debería salir una excepción
++    @Test(expected=ReflectiveOperationException.class)  //TODO debería salir una excepción (?)
+     public void nullDiscountTest1(){ // Explicit form
+         double payment1 = user.premiumPayment("ninguno");
+ 
+@@ -74,6 +79,37 @@
+ 
+     @Test
+     public void mostPlayedSongsTest(){
++        Playlist test = new Playlist("playlistTest");
++
++        Song s1 = new Song("t1", Genre.POP, "/home", 1);
++        Song s2 = new Song("t2", Genre.POP, "/home", 2);
++        Song s3 = new Song("t3", Genre.POP, "/home", 3);
++        Song s4 = new Song("t4", Genre.POP, "/home", 4);
++        Song s5 = new Song("t5", Genre.POP, "/home", 5);
++        Song s6 = new Song("t6", Genre.POP, "/home", 6);
++        Song s7 = new Song("t7", Genre.POP, "/home", 7);
++        Song s8 = new Song("t8", Genre.POP, "/home", 8);
++        Song s9 = new Song("t9", Genre.POP, "/home", 9);
++        Song s10 = new Song("t10", Genre.POP, "/home", 10);
++        Song s11 = new Song("t11", Genre.POP, "/home", 11);
++        Song s12 = new Song("t12", Genre.POP, "/home", 12);
++
++        test.addSong(s1); test.addSong(s2); test.addSong(s3); test.addSong(s4); test.addSong(s5); test.addSong(s6);
++        test.addSong(s7); test.addSong(s8); test.addSong(s9); test.addSong(s10); test.addSong(s11); test.addSong(s12);
++        user.addPlaylist(test);
++
++        List<Song> mostPlayedSongs = user.getMostPlayedSongs();
++
++        // Expected
++        List<Song> expected = new LinkedList<>();
++        expected.add(s12); expected.add(s11); expected.add(s10); expected.add(s9); expected.add(s8);
++        expected.add(s7); expected.add(s6); expected.add(s5); expected.add(s4); expected.add(s3);
++
++        // Test
++        assertEquals(test, expected);
++
++
++
+ 
+     }
+ 

@@ -1,0 +1,66 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/AppMusic/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"false\" project-jdk-name=\"13\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision e4ea948f7e4d2f69cdc9c01f912401405d978eb7)
++++ .idea/misc.xml	(date 1613405237618)
+@@ -7,7 +7,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="13" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: Diagrama de clases/AppMusicFinal.vpd
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Diagrama de clases/AppMusicFinal.vpd	(date 1602603497948)
++++ Diagrama de clases/AppMusicFinal.vpd	(date 1602603497948)
+@@ -0,0 +1,1 @@
++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18Jut156
+\ No newline at end of file
+Index: AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tds.AppMusic.internal.users;\r\n\r\npublic class UserCatalog {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java	(revision e4ea948f7e4d2f69cdc9c01f912401405d978eb7)
++++ AppMusic/src/main/java/tds/AppMusic/internal/users/UserCatalog.java	(date 1613405549575)
+@@ -1,4 +1,26 @@
+ package tds.AppMusic.internal.users;
+ 
+-public class UserCatalog {
++
++import java.util.LinkedList;
++import java.util.List;
++
++public enum UserCatalog {
++    INSTANCE; //Es un singleton
++    private List<User> users;
++
++    private UserCatalog(){
++        users = new LinkedList<>();
++    }
++
++    public void addUser(User user){
++        users.add(user);
++    }
++
++    public void removeUser(User user){ //TODO no se sabe si es hay que poner esta función
++        users.remove(user);
++    }
++
++
++
++
+ }

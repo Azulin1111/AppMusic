@@ -32,25 +32,50 @@ public class LoginWindow extends AppWindow {
 
     public LoginWindow() {
         super();
+        this.setResizable(false);
+
         $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
+
 
         okButton.addActionListener(ev -> {
                     String user = userTextField.getText();
                     String passwd = passwordTextField.getText();
 
-
-                    boolean existUser = Controller.INSTANCE.login(user, passwd);
+                    //boolean existUser = Controller.INSTANCE.login(user, passwd);
+                    boolean existUser = true; //TODO BORRAR
                     if (existUser) { // MainWindow
-
+                        mainWindow();
                     } else { // ErrorWindow
                         say("Usuario no válido", "Nombre de usuario o contraseña no valido");
                     }
-
                 }
-
         );
+
+        cancelButton.addActionListener(e -> {
+            userTextField.setText("");
+            passwordTextField.setText("");
+        });
     }
+
+    //TODO Poner listener a registrate
+    private void register() {
+        JFrame frame = new SignupWindow();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private void mainWindow() {
+        this.dispose();
+
+        JFrame frame = new MainWindow();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -71,7 +96,7 @@ public class LoginWindow extends AppWindow {
         mainPanel.setFocusable(true);
         Font mainPanelFont = this.$$$getFont$$$(null, -1, 36, mainPanel.getFont());
         if (mainPanelFont != null) mainPanel.setFont(mainPanelFont);
-        mainPanel.setPreferredSize(new Dimension(100, 100));
+        mainPanel.setPreferredSize(new Dimension(254, 214));
         titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout(0, 0));
         mainPanel.add(titlePanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));

@@ -19,13 +19,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="DAO">
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Persistencia">
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorSongDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorPlaylistDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorSongDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/TDSFactoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/PersistenceManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Song.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,14 +353,7 @@
       <option name="project" value="LOCAL" />
       <updated>1624375386982</updated>
     </task>
-    <task id="LOCAL-00035" summary="DAO">
-      <created>1624388518089</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1624388518089</updated>
-    </task>
-    <option name="localTasksCounter" value="36" />
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,6 +369,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar)." />
     <MESSAGE value="Class User:&#10;-Function premiumPayment return double." />
     <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
     <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
@@ -392,14 +394,13 @@
     <MESSAGE value="Clase documentada" />
     <MESSAGE value="Actualizacion UI" />
     <MESSAGE value="Actualizacion UI 2" />
-    <MESSAGE value="DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="DAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion UI 2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624390163813">
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624379458599">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624390163813" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624379458599" />
     <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1624380117497">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -416,13 +417,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624380117497" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624388520318">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624388520318" />
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624390200026">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624390200026" />
   </component>
 </project>

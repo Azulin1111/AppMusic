@@ -42,8 +42,7 @@ public class SignupWindow extends AppWindow {
     public SignupWindow() {
         super();
         $$$setupUI$$$();
-
-
+        setContentPane($$$getRootComponent$$$());
 
         // Register listener
         registerButton.addActionListener(e -> {
@@ -160,7 +159,6 @@ public class SignupWindow extends AppWindow {
     /**
      * @noinspection ALL
      */
-    @Override
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }

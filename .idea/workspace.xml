@@ -22,21 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="DAO">
-      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/DAOFactories.java" afterDir="false" />
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Un millon de cambios">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorSongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorSongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/TDSFactoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/TDSFactoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624375386982</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Un millon de cambios">
+      <created>1624394942228</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1624394942228</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,7 +368,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar)." />
     <MESSAGE value="Class User:&#10;-Function premiumPayment return double." />
     <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
     <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
@@ -397,6 +392,7 @@
     <MESSAGE value="Clase documentada" />
     <MESSAGE value="Actualizacion UI" />
     <MESSAGE value="Actualizacion UI 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion UI 2" />
+    <MESSAGE value="Un millon de cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Un millon de cambios" />
   </component>
 </project>

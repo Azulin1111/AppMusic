@@ -17,7 +17,7 @@ public enum Controller { //TODO whole class
     private PersistenceManager persistenceManager = new PersistenceManager();
     private User currentUser;
 
-    private Controller(){
+    Controller() {
         currentUser = new User("Evangeline", "Evangeline", false,
                 "123345","pepitaEmail", null);
     }

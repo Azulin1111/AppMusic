@@ -2,13 +2,24 @@ package tds.AppMusic.persistance;
 
 import tds.AppMusic.model.music.Playlist;
 
+import java.util.List;
+
 
 public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     INSTANCE;
 
-    public void storePlaylist(Playlist playlist){}
+    @Override
+    public void storePlaylist(Playlist playlist) {}
 
-    public void getPlaylist(int code){
+    @Override
+    public void deletePlaylist(Playlist playlist){}
 
-    }
+    @Override
+    public void setPlaylist(Playlist playlist){}
+
+    @Override
+    public Playlist getPlaylist(int code){}
+
+    @Override
+    public List<Playlist> getAllPlaylists{}
 }

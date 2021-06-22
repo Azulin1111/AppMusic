@@ -107,6 +107,8 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
 
     public User getUser(int code){}
 
+    public List<User> getAllUsers{}
+
 
     private String getCodesFromPlaylists(List<Playlist> playlists){
         String aux = "";

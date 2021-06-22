@@ -8,12 +8,15 @@ public class Song {
     private final String path;
     private final String singer;
     private int playCount = 0;
+    private int code;
 
     public Song(String name, String singer, Genre genre, String path) {
         this.name = name;
         this.singer = singer;
         this.genre = genre;
         this.path = path;
+        code = 0;
+
     }
 
     public Song(String name, String singer, Genre genre, String path, int playCount) {

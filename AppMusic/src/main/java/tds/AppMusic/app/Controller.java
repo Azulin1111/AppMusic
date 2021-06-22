@@ -4,6 +4,7 @@ import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
+import tds.AppMusic.persistance.PersistenceManager;
 
 import javax.swing.*;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package tds.AppMusic.app;
+package tds.AppMusic.persistance;
 
 import beans.Entidad;
 import beans.Propiedad;

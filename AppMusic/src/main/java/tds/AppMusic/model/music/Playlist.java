@@ -6,10 +6,12 @@ import java.util.List;
 // TODO add documentation
 public class Playlist {
 
+    private int code;
     private String name;
     protected List<Song> songs;
 
     public Playlist(String name) {
+        code = 0;
         this.name = name;
         songs = new LinkedList<>();
     }

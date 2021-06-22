@@ -21,7 +21,7 @@ public abstract class FactoryDAO {
 
     protected FactoryDAO(){}
 
-    public abstract IAdaptadorUserDAO getClienteDAO();
+    public abstract IAdaptadorUserDAO getUserDAO();
     public abstract IAdaptadorSongDAO getSongDAO();
 
 }

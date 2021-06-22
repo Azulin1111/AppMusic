@@ -32,6 +32,15 @@ public class User {
     private final String email;
     private final List<Playlist> playlists;
     private final Playlist recentSongs;
+    private int code;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
         this.name = name;
@@ -42,6 +51,7 @@ public class User {
         this.birthday = birthday;
         playlists = new LinkedList<>();
         recentSongs = new PlaylistRecentSongs("Recent Songs");  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
+        code = 0;
     }
 
     public String getEmail() {
@@ -78,6 +88,10 @@ public class User {
 
     public Playlist getRecentSongs(){  //TODO habría que hacer una copia (?): no si se capa la opción de borrar desde el controlador
         return recentSongs;
+    }
+
+    public int getCodeRecentSongs(){
+        return recentSongs.getCode();
     }
 
     public boolean addRecentSong(Song song){

@@ -8,4 +8,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
 
     public void storePlaylist(Playlist playlist){}
 
+    public void getPlaylist(int code){
+
+    }
 }

@@ -25,6 +25,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
     private static final String TYPE_USER_BIRTHDAY = "Birthday";
     private static final String TYPE_USER_PREMIUM = "Premium";
     private static final String TYPE_USER_PLAYLISTS = "Playlists";
+    private static final String TYPE_USER_RECENTSONGS = "Recents";
 
 
     private AdaptadorUserDAO(){
@@ -60,6 +61,9 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
             adapterPlaylist.storePlaylist(p);
         }
 
+        adapterPlaylist.storePlaylist(user.getRecentSongs());
+
+
         // Crear entidad User
         eUser = new Entidad();
         eUser.setNombre(TYPE_USER);
@@ -71,13 +75,16 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
                         new Propiedad(TYPE_USER_PASSWORD, user.getPassword()),
                         new Propiedad(TYPE_USER_EMAIL, user.getEmail()),
                         new Propiedad(TYPE_USER_BIRTHDAY, user.getBirthday().toString()),
-                        new Propiedad(TYPE_USER_PLAYLISTS, getCodesPlaylists(user.getPlaylists()))
-
-
+                        new Propiedad(TYPE_USER_PLAYLISTS, getCodesFromPlaylists(user.getPlaylists())),
+                        new Propiedad(TYPE_USER_RECENTSONGS, user.getCodeRecentSongs())
                 )
         ));
 
-
+        // Registrar entidad User
+        eUser = sp.registrarEntidad(eUser);
+        // La base de datos es un identificador único
+        // Se usa el que genera el servicio de persistencia
+        user.setCode(eUser.getId());
     }
 
 
@@ -86,6 +93,11 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
      * @param username El nombre del usuario.
      */
     public void deleteUser(User user){
+        // Se borran las playlists del usuario y la de recientes
+        Entidad eUser = sp.recuperarEntidad(user.getCode());
+
+
+
 
     }
 
@@ -93,11 +105,25 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
 
     }
 
-    public User getUser(int ){}
+    public User getUser(int code){}
 
 
-    private String getCodesPlaylists(List<Playlist> playlists){
+    private String getCodesFromPlaylists(List<Playlist> playlists){
+        String aux = "";
+        for(Playlist p : playlists){
+            aux += p.getCode() + " ";
+        }
+        return aux.trim();
+    }
 
+    private List<Playlist> getPlaylistsFromCodes(String playlists){
+        List<Playlist> listPlaylists = new LinkedList<Playlist>();
+        StringTokenizer strTok = new StringTokenizer(playlists, " ");
+        AdaptadorPlaylistDAO adaptadorPlaylist = AdaptadorPlaylistDAO.INSTANCE;
+        while (strTok.hasMoreTokens()) {
+            listPlaylists.add(adaptadorPlaylist.getPlaylist(Integer.valueOf((String) strTok.nextElement())));
+        }
+        return listPlaylists;
     }
 
 

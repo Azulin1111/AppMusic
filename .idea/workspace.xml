@@ -22,12 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Actualizacion UI 2">
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Fixes">
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SongTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/AppWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/AppWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" afterDir="false" />
     </list>
@@ -359,7 +359,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624375709619</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Implementación ventana registro">
+      <created>1624377588255</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1624377588255</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fixes">
+      <created>1624378084806</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1624378084806</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,8 +389,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar)." />
-    <MESSAGE value="Class User:&#10;-Function premiumPayment return double." />
     <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
     <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
     <MESSAGE value="UserTest:&#10;-add test mostPlayedSongsTest1()&#10;-add test mostPlayedSongsTest2()" />
@@ -400,6 +412,8 @@
     <MESSAGE value="Clase documentada" />
     <MESSAGE value="Actualizacion UI" />
     <MESSAGE value="Actualizacion UI 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion UI 2" />
+    <MESSAGE value="Implementación ventana registro" />
+    <MESSAGE value="Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes" />
   </component>
 </project>

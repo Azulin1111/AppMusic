@@ -1,10 +1,13 @@
 package tds.AppMusic.app;
 
+import tds.AppMusic.model.music.Genre;
+import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
 
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public enum Controller { //TODO whole class
     INSTANCE;
@@ -40,7 +43,19 @@ public enum Controller { //TODO whole class
     }
 
 
-    public void cargarCanciones(){
+    public List<Song> getSongsFiltered(String title, String interprete, Genre genre) {
+        return null;
+    }
+
+    public void switchTrack(Song song) {
+
+    }
+
+    public void pauseTrack() {
+
+    }
+
+    public void resumeTrack() {
 
     }
 

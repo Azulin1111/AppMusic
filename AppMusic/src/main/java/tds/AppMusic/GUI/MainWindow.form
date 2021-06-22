@@ -34,7 +34,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <text value="" noi18n="true"/>
             </properties>
           </component>
           <hspacer id="56258">
@@ -55,7 +55,9 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <horizontalAlignment value="2"/>
+              <icon value="Pictures/BotonBuscar.png"/>
+              <text value="Explorar" noi18n="true"/>
             </properties>
           </component>
           <component id="c4d0" class="javax.swing.JButton" binding="newPlaylistButton">
@@ -63,7 +65,9 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <horizontalAlignment value="2"/>
+              <icon value="Pictures/BotonNewPlaylists.png"/>
+              <text value="Nueva lista" noi18n="true"/>
             </properties>
           </component>
           <component id="6092e" class="javax.swing.JButton" binding="recentButton">
@@ -71,7 +75,9 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <horizontalAlignment value="2"/>
+              <icon value="Pictures/BotonRecientes.png"/>
+              <text value="Recientes" noi18n="true"/>
             </properties>
           </component>
           <component id="66517" class="javax.swing.JButton" binding="myPlaylistsButton">
@@ -79,17 +85,25 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="Pictures/BotonPlaylists.png"/>
+              <text value="Mis listas" noi18n="true"/>
             </properties>
           </component>
-          <component id="5650a" class="javax.swing.JList" binding="playlistList">
+          <scrollpane id="3c922" binding="playlistScrollPane">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="5650a" class="javax.swing.JList" binding="playlistList">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
       <grid id="b23c4" binding="mainCardPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="ccf9c">
@@ -145,7 +159,7 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Button"/>
+                          <text value="Buscar" noi18n="true"/>
                         </properties>
                       </component>
                       <component id="5e647" class="javax.swing.JButton" binding="searchCancelButton">
@@ -153,7 +167,7 @@
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Button"/>
+                          <text value="Cancelar" noi18n="true"/>
                         </properties>
                       </component>
                       <hspacer id="799ae">
@@ -228,7 +242,10 @@
                 <children>
                   <component id="682a0" class="javax.swing.JTable" binding="searchTable">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <doubleBuffered value="false"/>
+                      <dragEnabled value="false"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>

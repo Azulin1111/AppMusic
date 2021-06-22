@@ -98,6 +98,7 @@ public class SignupWindow extends AppWindow {
         }
 
         // Success, nothing else to do
+        // TODO
         noErrors();
         say("Success", "Success.");
         dispose();

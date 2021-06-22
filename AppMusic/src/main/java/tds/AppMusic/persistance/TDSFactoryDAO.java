@@ -18,4 +18,9 @@ public class TDSFactoryDAO extends FactoryDAO {
     public IAdaptadorSongDAO getSongDAO() {
         return AdaptadorSongDAO.INSTANCE;
     }
+
+    @Override
+    public IAdaptadorPlaylistDAO getPlaylistDAO() {
+        return AdaptadorPlaylistDAO.INSTANCE;
+    }
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IAdaptadorPlaylistDAO {
 
-    public void storePlaylist(Playlist playlist) {}
+    void storePlaylist(Playlist playlist);
 
-    public void deletePlaylist(Playlist playlist){}
+    void deletePlaylist(Playlist playlist);
 
-    public void setPlaylist(Playlist playlist){}
+    void setPlaylist(Playlist playlist);
 
-    public Playlist getPlaylist(int code){}
+    Playlist getPlaylist(int code);
 
-    public List<Playlist> getAllPlaylists{}
+    List<Playlist> getAllPlaylists();
 }

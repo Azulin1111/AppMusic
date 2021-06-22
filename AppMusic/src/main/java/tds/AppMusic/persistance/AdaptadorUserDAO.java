@@ -61,7 +61,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
             adapterPlaylist.storePlaylist(p);
         }
 
-        adapterPlaylist.storePlaylist(user.getRecentSongs());
+        adapterPlaylist.storePlaylist(user.getRecentPlaylist());
 
 
         // Crear entidad User

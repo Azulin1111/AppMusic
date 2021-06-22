@@ -44,4 +44,9 @@ public class Playlist {
         return songs.remove(song);
     }
 
+    public void updateSongs(List<Song> songs) {
+        this.songs.clear();
+        this.songs.addAll(songs);
+    }
+
 }

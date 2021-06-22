@@ -130,7 +130,7 @@ public class MainWindow extends AppWindow {
             switchCards();
 
             // Additional work: update playlist list
-            playlistModel.replaceWith(Controller.INSTANCE.getPlaylists(username));
+            playlistModel.replaceWith(Controller.INSTANCE.getPlaylists());
 
             // Additional work: select the first one and display contents
             playlistList.getSelectionModel().setSelectionInterval(0, 0);

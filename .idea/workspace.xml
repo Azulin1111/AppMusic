@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,13 +23,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="DAO">
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/DAOFactories.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorSongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorSongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/FactoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorPlaylistDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorSongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorSongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/IAdaptadorUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/TDSFactoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/TDSFactoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +55,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1oWZ9qEkyy6qbnvjqvVslVD58m6" />
   <component name="ProjectViewState">
@@ -388,31 +398,5 @@
     <MESSAGE value="Actualizacion UI" />
     <MESSAGE value="Actualizacion UI 2" />
     <option name="LAST_COMMIT_MESSAGE" value="Actualizacion UI 2" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624379458599">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624379458599" />
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1624380117497">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624380117497" />
-    <state width="1493" height="218" key="GridCell.Tab.0.center" timestamp="1624380117496">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624380117496" />
-    <state width="1493" height="218" key="GridCell.Tab.0.left" timestamp="1624380117496">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624380117496" />
-    <state width="1493" height="218" key="GridCell.Tab.0.right" timestamp="1624380117497">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624380117497" />
-    <state x="425" y="66" width="670" height="676" key="search.everywhere.popup" timestamp="1624391471915">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="66" width="670" height="676" key="search.everywhere.popup/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624391471915" />
   </component>
 </project>

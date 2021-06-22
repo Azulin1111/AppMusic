@@ -4,12 +4,12 @@ import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
+import tds.AppMusic.persistance.DAOFactories;
+import tds.AppMusic.persistance.FactoryDAO;
+import tds.AppMusic.persistance.IAdaptadorPlaylistDAO;
 import tds.AppMusic.persistance.PersistenceManager;
 
-import javax.swing.*;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public enum Controller { //TODO whole class
@@ -17,36 +17,33 @@ public enum Controller { //TODO whole class
     private PersistenceManager persistenceManager = new PersistenceManager();
     private User currentUser;
 
-    Controller() {
-        currentUser = new User("Evangeline", "Evangeline", false,
-                "123345","pepitaEmail", null);
+    /**
+     * Crea una playlist, o actualiza una existente.
+     * @param name El nombre de la playlist.
+     * @param songs Las canciones que componen la playlist.
+     * @return {@code true} si se ha creado una playlist, {@code false} si no.
+     */
+    public boolean createOrUpdatePlaylist(String name, List<Song> songs) {
+        IAdaptadorPlaylistDAO pdao = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
+        boolean exists = currentUser.hasPlaylist(name);
+
+        if (exists) pdao.setPlaylist(currentUser.updatePlaylist(name, songs));
+        else pdao.storePlaylist(currentUser.createPlaylist(name, songs));
+
+        return exists;
     }
 
-    public String getCurrentUser(){
-        return currentUser.getName();
-    }
-
-    public DefaultListModel filterSongs(String interpreter, String title, String genre){ //TODO
-        DefaultListModel model = new DefaultListModel();
-        model.add(model.size(), interpreter + ": " + title);
-
-        for(int i =0; i<40; i++)
-            model.add(model.size(), genre + ": adgilla");
-
-        return model;
-    }
-
-    public boolean createOrUpdatePlaylist(String name, List<Song> songs) { //TODO
-        this.currentUser.createPlayList(name);
-        return false;
-    }
-
+    /**
+     * Comprueba si un nombre de playlist está libre.
+     * @param name El nombre de la playlist.
+     * @return {@code true} si el nombre no está disponible, {@code false} se
+     */
     public boolean playlistExists(String name) {
-        return false;
+         return currentUser.hasPlaylist(name);
     }
 
-    public List<Playlist> getPlaylists(String username) {
-        return null;
+    public List<Playlist> getPlaylists() {
+        return currentUser.getPlaylists();
     }
 
     public List<Song> getSongsFiltered(String title, String interprete, Genre genre) {
@@ -54,11 +51,11 @@ public enum Controller { //TODO whole class
     }
 
     public List<Song> getSongsPlaylist(String name) {
-        return new LinkedList<>();
+        return currentUser.getPlaylistSongs(name);
     }
 
     public List<Song> getSongsRecientes() {
-        return null;
+        return currentUser.getRecentSongs();
     }
 
     public void switchTrack(Song song) {

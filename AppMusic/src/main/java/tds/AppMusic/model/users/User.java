@@ -6,6 +6,7 @@ import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRecentSongs;
 import tds.AppMusic.model.music.Song;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class User {
 
     private final String nickname;
     private final String password;
-    private final LocalDate birthday;
+    private final Date birthday;
     private final String email;
     private final List<Playlist> playlists;
     private final Playlist recentSongs;
@@ -42,7 +43,7 @@ public class User {
         this.code = code;
     }
 
-    public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
+    public User(String name, String nickname, boolean premium, String password, String email, Date birthday) {
         this.name = name;
         this.nickname = nickname;
         this.premium = premium;
@@ -58,7 +59,7 @@ public class User {
         return email;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
@@ -86,8 +87,19 @@ public class User {
         return new LinkedList<>(playlists);
     }
 
-    public Playlist getRecentSongs(){  //TODO habría que hacer una copia (?): no si se capa la opción de borrar desde el controlador
+    public List<Song> getPlaylistSongs(String name) {
+        for (Playlist p : playlists)
+            if (p.getName().equals(name))
+                return p.getSongs();
+        return null;
+    }
+
+    public Playlist getRecentPlaylist(){  //TODO habría que hacer una copia (?): no si se capa la opción de borrar desde el controlador
         return recentSongs;
+    }
+
+    public List<Song> getRecentSongs() {
+        return recentSongs.getSongs();
     }
 
     public int getCodeRecentSongs(){
@@ -108,13 +120,28 @@ public class User {
         return mostPlayedSongs;
     }
 
-    public void createPlayList(String name){
+    public Playlist createPlaylist(String name, List<Song> songs) {
         Playlist newPlayList = new Playlist(name);
-        addPlaylist(newPlayList);
+        for (Song s : songs) newPlayList.addSong(s);
+        playlists.add(newPlayList);
+        return newPlayList;
     }
 
-    public void addPlaylist(Playlist playlist) {
-        playlists.add(playlist);
+    public Playlist createPlaylist(String name) {
+        return createPlaylist(name, new LinkedList<>());
+    }
+
+    public Playlist updatePlaylist(String name, List<Song> songs) {
+        for (Playlist p : playlists)
+            if (p.getName().equals(name)) {
+                p.updateSongs(songs);
+                return p;
+            }
+        return null;
+    }
+
+    public boolean hasPlaylist(String name) {
+        return playlists.stream().anyMatch(p -> p.getName().equals(name));
     }
 
     public void removePlaylist(Playlist playlist){

@@ -101,11 +101,10 @@ public class UserTest {
 
     @Test
     public void mostPlayedSongsTest1(){
-        Playlist test = new Playlist("playlistTest");
+        Playlist test = user.createPlaylist("test");
 
         test.addSong(s1); test.addSong(s2); test.addSong(s3); test.addSong(s4); test.addSong(s5); test.addSong(s6);
         test.addSong(s7); test.addSong(s8); test.addSong(s9); test.addSong(s10); test.addSong(s11); test.addSong(s12);
-        user.addPlaylist(test);
         List<Song> mostPlayedSongs = user.getMostPlayedSongs();
 
         // Expected
@@ -119,12 +118,12 @@ public class UserTest {
 
     @Test
     public void mostPlayedSongsTest2(){
-        Playlist p1 = new Playlist("p1");
-        Playlist p2 = new Playlist("p2");
+        Playlist p1 = user.createPlaylist("p1");
+        Playlist p2 = user.createPlaylist("p2");
 
         p1.addSong(s1); p2.addSong(s2); p2.addSong(s3); p1.addSong(s4); p2.addSong(s5); p1.addSong(s6);
         p1.addSong(s7); p2.addSong(s8); p1.addSong(s9); p2.addSong(s10); p1.addSong(s11); p2.addSong(s12);
-        user.addPlaylist(p1); user.addPlaylist(p2);
+
         List<Song> mostPlayedSongs = user.getMostPlayedSongs();
 
         // Expected
@@ -142,7 +141,7 @@ public class UserTest {
         user.addRecentSong(s5); user.addRecentSong(s6); user.addRecentSong(s7); user.addRecentSong(s8);
         user.addRecentSong(s9); user.addRecentSong(s10); user.addRecentSong(s11); user.addRecentSong(s12);
 
-        List<Song> recentSongs = user.getRecentSongs().getSongs(); //TODO esto es un solapamiento entre clases (?)
+        List<Song> recentSongs = user.getRecentSongs(); //TODO esto es un solapamiento entre clases (?)
 
         // Expected
         List<Song> expected = new LinkedList<>();

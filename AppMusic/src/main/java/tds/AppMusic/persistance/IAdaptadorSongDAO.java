@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface IAdaptadorSongDAO {
 
-    public void storeSong(Song song) {}
+    void storeSong(Song song);
 
-    public void deleteSong(Song song){}
+    void deleteSong(Song song);
 
-    public void setSong(Song song){}
+    void setSong(Song song);
 
-    public User getSong(int code){}
+    User getSong(int code);
 
-    public List<Song> getAllSongs{}
+    List<Song> getAllSongs();
 
 }

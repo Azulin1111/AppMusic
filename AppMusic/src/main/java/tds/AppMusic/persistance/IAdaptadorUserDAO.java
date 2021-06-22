@@ -8,15 +8,15 @@ import tds.AppMusic.model.users.User;
 import java.util.*;
 
 public interface IAdaptadorUserDAO {
-    public void storeUser(User user) {}
+    void storeUser(User user);
 
-    public void deleteUser(User user){}
+    void deleteUser(User user);
 
-    public void setUser(User user){}
+    void setUser(User user);
 
-    public User getUser(int code){}
+    User getUser(int code);
 
-    public List<User> getAllUsers{}
+    List<User> getAllUsers();
 
 
 }

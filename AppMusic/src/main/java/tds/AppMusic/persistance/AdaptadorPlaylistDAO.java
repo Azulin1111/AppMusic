@@ -12,14 +12,18 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     public void storePlaylist(Playlist playlist) {}
 
     @Override
-    public void deletePlaylist(Playlist playlist){}
+    public void deletePlaylist(Playlist playlist) {}
 
     @Override
-    public void setPlaylist(Playlist playlist){}
+    public void setPlaylist(Playlist playlist) {}
 
     @Override
-    public Playlist getPlaylist(int code){}
+    public Playlist getPlaylist(int code) {
+        return null;
+    }
 
     @Override
-    public List<Playlist> getAllPlaylists{}
+    public List<Playlist> getAllPlaylists() {
+        return null;
+    }
 }

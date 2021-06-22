@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,25 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="???">
-      <change afterPath="$PROJECT_DIR$/Pulsador.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/bin/pulsador/Luz$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/bin/pulsador/Luz.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pulsador/Pulsador/src/pulsador/Luz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pulsador.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_02_2021_17_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_02_2021_17_13__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_02_2021_17_21__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_02_2021_17_21__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_02_2021_19_23__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_02_2021_19_23__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_06_2021_17_51__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_06_2021_17_51__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2021_17_17__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2021_17_17__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2021_18_45__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2021_18_45__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +44,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Playlist.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/Controller.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1oWZ9qEkyy6qbnvjqvVslVD58m6" />
   <component name="ProjectViewState">
@@ -78,7 +65,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -88,22 +75,9 @@
       <recent name="tds.AppMusic" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.pulsador.jar">
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.GUI.Launcher" />
-      <module name="AppMusic" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tds.AppMusic.GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PRUEBASSERGIO" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.PRUEBASSERGIO" />
+  <component name="RunManager">
+    <configuration name="AppMusic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tds.AppMusic.AppMusic" />
       <module name="AppMusic" />
       <extension name="coverage">
         <pattern>
@@ -115,19 +89,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pulsador.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/pulsador.jar" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.PRUEBASSERGIO" />
-      <item itemvalue="Application.Launcher" />
-      <item itemvalue="JAR Application.pulsador.jar" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.pulsador.jar" />
-        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.AppMusic" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +100,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="???" />
+      <changelist id="b8706672-2567-47fc-ab72-c62c71e72668" name="Default Changelist" comment="" />
       <created>1613404158837</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -352,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624208064050</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="???">
+      <created>1624208126099</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1624208126099</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -394,43 +365,5 @@
     <MESSAGE value="LoginView cosas nazis" />
     <MESSAGE value="???" />
     <option name="LAST_COMMIT_MESSAGE" value="???" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1624371563838">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1624371563838" />
-    <state x="537" y="242" width="460" height="496" key="#com.intellij.tools.ToolEditorDialog" timestamp="1624297465891">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="537" y="242" width="460" height="496" key="#com.intellij.tools.ToolEditorDialog/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624297465891" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1624297460194">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624297460194" />
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1624298167189">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624298167189" />
-    <state width="1493" height="218" key="GridCell.Tab.0.center" timestamp="1624298167189">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624298167189" />
-    <state width="1493" height="218" key="GridCell.Tab.0.left" timestamp="1624298167189">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624298167189" />
-    <state width="1493" height="218" key="GridCell.Tab.0.right" timestamp="1624298167189">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624298167189" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1624298001356">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624298001356" />
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624372894809">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624372894809" />
   </component>
 </project>

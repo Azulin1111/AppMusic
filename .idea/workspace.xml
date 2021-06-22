@@ -22,10 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="???">
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Clase documentada">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pulsador.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/AppWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/AppMusic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/AppMusic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/app/PersistenceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/GUI/SignupWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +73,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Min\Projects\IdeaProjects\AppMusic\AppMusic\lib" />
       <recent name="C:\Users\Usuario\Desktop\Sergio\3º\1er cuatrimestre\Tecnologías de desarrollo de Software\AppMusicFinal\AppMusic\src\main\java\tds\AppMusic\GUI" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -323,7 +328,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624208126099</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Añadida librería pulsador.jar">
+      <created>1624374196751</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1624374196751</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Clase documentada">
+      <created>1624374226857</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1624374226857</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -339,8 +358,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambios a User: método factoría para la creación de descuentos mediante introspección. Acompañado de crear la clase DiscountNull (patrón Null Object)" />
-    <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10;-" />
     <MESSAGE value="Cambio en la política de descuentos de la clase de usuario:&#10; -Se ha usado introspección (Método Factoría).&#10; -Creación de la clase DiscountNull, para tratar de forma igual a un no descuento que a un descuento." />
     <MESSAGE value="Incluir argumento string tipo de descuento que se le indicará cuando se seleccione de la lista de descuentos." />
     <MESSAGE value="Class User:&#10;-Add function removePlayList().&#10;-Add funcion getRecientSongs() (sin implementar)." />
@@ -364,6 +381,8 @@
     <MESSAGE value="Controller:&#10;-Función createPlayList()&#10;&#10;User:&#10;-Función createPlayList()" />
     <MESSAGE value="LoginView cosas nazis" />
     <MESSAGE value="???" />
-    <option name="LAST_COMMIT_MESSAGE" value="???" />
+    <MESSAGE value="Añadida librería pulsador.jar" />
+    <MESSAGE value="Clase documentada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clase documentada" />
   </component>
 </project>

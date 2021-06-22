@@ -29,19 +29,6 @@ public class LoginWindow extends JFrame {
 
     public LoginWindow() {
 
-        okButton.addActionListener(ev -> {
-                    String user = userTextField.getText();
-                    String passwd = passwordTextField.getText();
-
-                    boolean existUser = controller.login(user, passwd);
-                    if (existUser) { // MainWindow
-
-                    } else { // ErrorWindow
-
-                    }
-                }
-
-        )
     }
 
     private void createUIComponents() {

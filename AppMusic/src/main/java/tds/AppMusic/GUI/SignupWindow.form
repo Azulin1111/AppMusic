@@ -208,7 +208,8 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label" noi18n="true"/>
+                      <foreground color="-16777216"/>
+                      <text value="" noi18n="true"/>
                     </properties>
                   </component>
                   <component id="51f2" class="javax.swing.JLabel" binding="mismatchingPasswordsLabel">
@@ -216,7 +217,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <foreground color="-16777216"/>
+                      <text value="" noi18n="true"/>
                     </properties>
                   </component>
                   <component id="8e3ed" class="javax.swing.JLabel" binding="duplicateFoundLabel">
@@ -224,7 +226,8 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <foreground color="-16777216"/>
+                      <text value="" noi18n="true"/>
                     </properties>
                   </component>
                 </children>

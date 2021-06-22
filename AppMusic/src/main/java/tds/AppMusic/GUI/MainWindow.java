@@ -71,7 +71,6 @@ public class MainWindow extends AppWindow {
 
     public MainWindow() {
         super();
-        $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
     }
 

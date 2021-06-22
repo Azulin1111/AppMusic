@@ -3,6 +3,7 @@ package tds.AppMusic.model.users;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public enum UserCatalog {
         this.users = new LinkedList<>();
     }
 
-    public void addUser(String name, String nickname, boolean premium, String password, String email, LocalDate birthday){
+    public void addUser(String name, String nickname, boolean premium, String password, String email, Date birthday){
         User newUser = new User(name, nickname, premium, password, email, birthday);
         this.users.add(newUser);
     }

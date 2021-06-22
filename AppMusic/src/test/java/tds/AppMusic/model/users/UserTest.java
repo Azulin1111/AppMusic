@@ -7,7 +7,9 @@ import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import static org.junit.Assert.*;
 public class UserTest {
 
     User user;
-    LocalDate date = LocalDate.now();
+    Date date = Date.from(Instant.now());
     private static Song s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
     @BeforeClass

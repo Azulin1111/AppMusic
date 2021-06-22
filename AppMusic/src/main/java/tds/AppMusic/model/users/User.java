@@ -6,6 +6,7 @@ import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRecentSongs;
 import tds.AppMusic.model.music.Song;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -28,12 +29,12 @@ public class User {
 
     private final String nickname;
     private final String password;
-    private final LocalDate birthday;
+    private final Date birthday;
     private final String email;
     private final List<Playlist> playlists;
     private final Playlist recentSongs;
 
-    public User(String name, String nickname, boolean premium, String password, String email, LocalDate birthday) {
+    public User(String name, String nickname, boolean premium, String password, String email, Date birthday) {
         this.name = name;
         this.nickname = nickname;
         this.premium = premium;
@@ -48,7 +49,7 @@ public class User {
         return email;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 

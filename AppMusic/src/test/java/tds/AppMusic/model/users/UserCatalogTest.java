@@ -11,13 +11,13 @@ public class UserCatalogTest {
      @Test
      public void getFirstUser(){
           UserCatalog.INSTANCE.addUser("Pepe", "Pepito123", false, "123456",
-                   "pepito@gmail.com", LocalDate.of(2020, 7, 7));
+                   "pepito@gmail.com", null);
 
           User user = UserCatalog.INSTANCE.getUsers().get(0);
 
           // Expected user
           User expected = new User("Pepe", "Pepito123", false, "123456",
-                  "pepito@gmail.com", LocalDate.of(2020, 7, 7));
+                  "pepito@gmail.com", null);
 
           // Test
           assertEquals(user, expected);

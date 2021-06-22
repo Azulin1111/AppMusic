@@ -1,12 +1,14 @@
 package tds.AppMusic.app;
 
 import tds.AppMusic.model.music.Genre;
+import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
 
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public enum Controller { //TODO whole class
@@ -16,7 +18,7 @@ public enum Controller { //TODO whole class
 
     private Controller(){
         currentUser = new User("Evangeline", "Evangeline", false,
-                "123345","pepitaEmail", LocalDate.of(2020, 1,1 ));
+                "123345","pepitaEmail", null);
     }
 
     public String getCurrentUser(){
@@ -33,17 +35,28 @@ public enum Controller { //TODO whole class
         return model;
     }
 
-
-    public void play() { //TODO
-
-    }
-
-    public void createPlayList(String name){ //TODO
+    public boolean createOrUpdatePlaylist(String name, List<Song> songs) { //TODO
         this.currentUser.createPlayList(name);
+        return false;
     }
 
+    public boolean playlistExists(String name) {
+        return false;
+    }
+
+    public List<Playlist> getPlaylists(String username) {
+        return null;
+    }
 
     public List<Song> getSongsFiltered(String title, String interprete, Genre genre) {
+        return null;
+    }
+
+    public List<Song> getSongsPlaylist(String name) {
+        return new LinkedList<>();
+    }
+
+    public List<Song> getSongsRecientes() {
         return null;
     }
 

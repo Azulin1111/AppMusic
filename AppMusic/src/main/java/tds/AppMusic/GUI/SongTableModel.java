@@ -16,32 +16,24 @@ public class SongTableModel implements TableModel {
 
     private final List<TableModelListener> listeners = new LinkedList<>();
 
-    private final List<Song> songs;
+    private final List<Song> songs = new LinkedList<>();
 
     static {
         Collections.addAll(COLUMN_HEADERS, "Título", "Intérprete", "Género");
-    }
-
-    public SongTableModel() {
-        this.songs = new LinkedList<>();
     }
 
     public void addAll(Collection<Song> songs) {
         int begin = this.songs.size() - 1;
         this.songs.addAll(songs);
         TableModelEvent e = new TableModelEvent(this, begin, this.songs.size() - 1);
-        for (TableModelListener l : listeners) {
-            l.tableChanged(e);
-        }
+        for (TableModelListener l : listeners) l.tableChanged(e);
     }
 
     public void clear() {
         int end = songs.size() - 1;
         songs.clear();
         TableModelEvent e = new TableModelEvent(this, 0, end);
-        for (TableModelListener l : listeners) {
-            l.tableChanged(e);
-        }
+        for (TableModelListener l : listeners) l.tableChanged(e);
     }
 
     public void add(Song song) {
@@ -49,9 +41,18 @@ public class SongTableModel implements TableModel {
         int index = songs.indexOf(song);
 
         TableModelEvent e = new TableModelEvent(this, index, songs.size() - 1);
-        for (TableModelListener l : listeners) {
-            l.tableChanged(e);
+        for (TableModelListener l : listeners) l.tableChanged(e);
+    }
+
+    public void remove(Song song) {
+        int begin = songs.indexOf(song);
+        songs.remove(song);
+
+        if (begin != -1) {
+            TableModelEvent e = new TableModelEvent(this, begin, songs.size() - 1);
+            for (TableModelListener l : listeners) l.tableChanged(e);
         }
+
     }
 
     public void replaceWith(Collection<Song> songs) {
@@ -61,6 +62,10 @@ public class SongTableModel implements TableModel {
 
     public Song getSongAt(int rowIndex) {
         return songs.get(rowIndex);
+    }
+
+    public List<Song> getSongs() {
+        return Collections.unmodifiableList(songs);
     }
 
     @Override

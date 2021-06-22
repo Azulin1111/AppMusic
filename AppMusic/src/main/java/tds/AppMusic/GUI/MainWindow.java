@@ -85,8 +85,17 @@ public class MainWindow extends AppWindow {
     private JTable selectedTable;
     private JScrollPane selectedScrollPane;
     private JScrollPane playlistScrollPane;
+    private JButton playlistCancelButton;
+    private JButton playlistAcceptButton;
+    private JButton playlistSearchButton;
 
     private final SongTableModel searchModel = new SongTableModel();
+    private final SongTableModel playlistAddModel = new SongTableModel();
+    private final SongTableModel playlistAddedModel = new SongTableModel();
+    private final SongTableModel recentModel = new SongTableModel();
+    private final SongTableModel selectedModel = new SongTableModel();
+
+    private final PlaylistListModel playlistModel = new PlaylistListModel();
 
     public MainWindow(String username) {
         super();
@@ -95,6 +104,10 @@ public class MainWindow extends AppWindow {
 
         // Set user welcome label
         welcomeLabel.setText(WELCOME_TEXT + username);
+
+        // Playlist list model
+        playlistList.setModel(playlistModel);
+        playlistList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Main button listeners
         searchButton.addActionListener(e -> {
@@ -107,10 +120,22 @@ public class MainWindow extends AppWindow {
         });
         recentButton.addActionListener(e -> {
             switchCards();
+
+            // Additional work: update recent playlist
+            recentModel.replaceWith(Controller.INSTANCE.getSongsRecientes());
+
             cl.show(mainCardPanel, CARD_RECENT);
         });
         myPlaylistsButton.addActionListener(e -> {
             switchCards();
+
+            // Additional work: update playlist list
+            playlistModel.replaceWith(Controller.INSTANCE.getPlaylists(username));
+
+            // Additional work: select the first one and display contents
+            playlistList.getSelectionModel().setSelectionInterval(0, 0);
+            selectedModel.replaceWith(playlistList.getSelectedValue().getSongs());
+
             cl.show(mainCardPanel, CARD_PLAYLISTS);
         });
 
@@ -138,7 +163,7 @@ public class MainWindow extends AppWindow {
 
     private void switchCards() {
         // Default: stop all music being played
-        // TODO
+        Controller.INSTANCE.switchTrack(null);
 
         // Default: return all play buttons back to play state
         searchPlayButton.setIcon(ICON_PLAY);
@@ -189,7 +214,7 @@ public class MainWindow extends AppWindow {
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
                     searchPlayButton.setIcon(ICON_PAUSE);
-                    // TODO play track
+                    Controller.INSTANCE.switchTrack(searchModel.getSongAt(searchTable.getSelectedRow()));
                 }
             }
         });
@@ -208,6 +233,132 @@ public class MainWindow extends AppWindow {
         searchNextButton.addActionListener(e -> songStep(1, searchTable, searchModel));
     }
 
+    private void newPlaylistSetup() {
+        // Hide playlist editing on first go
+        playlistEditPanel.setVisible(false);
+
+        // Table models
+        playlistAddTable.setModel(playlistAddModel);
+        playlistAddTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        playlistAddedTable.setModel(playlistAddedModel);
+        playlistAddedTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Creation listener
+        playlistCreateButton.addActionListener(e -> {
+            // Check for duplicates
+            String name = playlistNameTextField.getText().trim();
+            boolean success = Controller.INSTANCE.playlistExists(name);
+
+            // Exists?
+            playlistAddModel.clear();
+            if (success) playlistAddedModel.clear();
+            else {
+                say("Error al crear la playlist", "La playlist indicada ya existe.");
+                playlistAddedModel.replaceWith(Controller.INSTANCE.getSongsPlaylist(name));
+            }
+            playlistEditPanel.setVisible(true);
+        });
+
+        // Search listener
+        playlistSearchButton.addActionListener(e -> {
+            // TODO SwingWorker?
+            playlistSearchButton.setEnabled(false);
+
+            // Search songs
+            String title = playlistTitleTextField.getText().trim();
+            String interprete = playlistInterpreteTextField.getText().trim();
+            Genre genre = (Genre) playlistGenreComboBox.getSelectedItem();
+            java.util.List<Song> songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
+
+            // Display search results
+            playlistAddModel.replaceWith(songs);
+            playlistSearchButton.setEnabled(true);
+        });
+
+        // Add/remove listeners
+        playlistAddButton.addActionListener(e -> {
+            if (playlistAddTable.getSelectedRow() == -1) return;
+            playlistAddedModel.add(playlistAddModel.getSongAt(playlistAddTable.getSelectedRow()));
+        });
+        playlistRemoveButton.addActionListener(e -> {
+            if (playlistAddedTable.getSelectedRow() == -1) return;
+            playlistAddedModel.remove(playlistAddedModel.getSongAt(playlistAddedTable.getSelectedRow()));
+        });
+
+        // Accept listener
+        playlistAcceptButton.addActionListener(e -> {
+            // Create playlist
+            String name = playlistNameTextField.getText().trim();
+            Controller.INSTANCE.createOrUpdatePlaylist(name, playlistAddedModel.getSongs());
+            say("Playlist creada", "Playlist creada con éxito.");
+        });
+    }
+
+    private void recentSetup() {
+        // Table setup
+        recentTable.setModel(recentModel);
+        recentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Music selection listener
+        recentTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                // If double clicked, play
+                if (e.getClickCount() == 2) {
+                    recentPlayButton.setIcon(ICON_PAUSE);
+                    Controller.INSTANCE.switchTrack(recentModel.getSongAt(recentTable.getSelectedRow()));
+                }
+            }
+        });
+
+        // Music button listeners
+        recentBackButton.addActionListener(e -> songStep(-1, recentTable, recentModel));
+        recentPlayButton.addActionListener(e -> {
+            if (recentPlayButton.getIcon().equals(ICON_PLAY)) {
+                recentPlayButton.setIcon(ICON_PAUSE);
+                Controller.INSTANCE.resumeTrack();
+            } else if (recentPlayButton.getIcon().equals(ICON_PAUSE)) {
+                recentPlayButton.setIcon(ICON_PLAY);
+                Controller.INSTANCE.pauseTrack();
+            }
+        });
+        recentNextButton.addActionListener(e -> songStep(1, recentTable, recentModel));
+    }
+
+    private void myPlaylistsSetup() {
+        // Table setup
+        selectedTable.setModel(selectedModel);
+        selectedTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Music selection listener
+        selectedTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                // If double clicked, play
+                if (e.getClickCount() == 2) {
+                    selectedPlayButton.setIcon(ICON_PAUSE);
+                    Controller.INSTANCE.switchTrack(selectedModel.getSongAt(selectedTable.getSelectedRow()));
+                }
+            }
+        });
+
+        // Music button listeners
+        selectedBackButton.addActionListener(e -> songStep(-1, selectedTable, selectedModel));
+        selectedPlayButton.addActionListener(e -> {
+            if (selectedPlayButton.getIcon().equals(ICON_PLAY)) {
+                selectedPlayButton.setIcon(ICON_PAUSE);
+                Controller.INSTANCE.resumeTrack();
+            } else if (selectedPlayButton.getIcon().equals(ICON_PAUSE)) {
+                selectedPlayButton.setIcon(ICON_PLAY);
+                Controller.INSTANCE.pauseTrack();
+            }
+        });
+        selectedNextButton.addActionListener(e -> songStep(1, selectedTable, selectedModel));
+    }
+
+
     private void songStep(int step, JTable table, SongTableModel model) {
         // Do nothing if nothing was selected
         int current = table.getSelectedRow();
@@ -222,49 +373,6 @@ public class MainWindow extends AppWindow {
 
         // Switch track
         Controller.INSTANCE.switchTrack(model.getSongAt(current));
-    }
-
-    private void newPlaylistSetup() {
-        // Hide playlist editing on first go
-        playlistEditPanel.setVisible(false);
-    }
-
-    private void recentSetup() {
-        // Music button listeners
-        recentBackButton.addActionListener(e -> {
-            // TODO previous track
-        });
-        recentPlayButton.addActionListener(e -> {
-            if (recentPlayButton.getIcon().equals(ICON_PLAY)) {
-                recentPlayButton.setIcon(ICON_PAUSE);
-                // TODO play music
-            } else if (recentPlayButton.getIcon().equals(ICON_PAUSE)) {
-                recentPlayButton.setIcon(ICON_PLAY);
-                // TODO pause music
-            }
-        });
-        recentNextButton.addActionListener(e -> {
-            // TODO next track
-        });
-    }
-
-    private void myPlaylistsSetup() {
-        // Music button listeners
-        selectedBackButton.addActionListener(e -> {
-            // TODO previous track
-        });
-        selectedPlayButton.addActionListener(e -> {
-            if (selectedPlayButton.getIcon().equals(ICON_PLAY)) {
-                selectedPlayButton.setIcon(ICON_PAUSE);
-                // TODO play music
-            } else if (selectedPlayButton.getIcon().equals(ICON_PAUSE)) {
-                selectedPlayButton.setIcon(ICON_PLAY);
-                // TODO pause music
-            }
-        });
-        selectedNextButton.addActionListener(e -> {
-            // TODO next track
-        });
     }
 
     {

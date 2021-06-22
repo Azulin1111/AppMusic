@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pulsador">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AppMusic/lib/pulsador.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

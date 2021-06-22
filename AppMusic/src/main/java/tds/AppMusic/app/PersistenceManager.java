@@ -96,7 +96,9 @@ public class PersistenceManager {
      * @return {@code true} solo si se ha iniciado sesión con éxito.
      */
     public boolean login(String username, String password) {
+        System.out.println("Dentro del servicio de persistencia");
         Entidad user = findEntity(TYPE_USER, TYPE_USER_USERNAME, username);
+        System.out.println("Pasan cosas");
         if (user == null) return false;
 
         for (Propiedad p : user.getPropiedades())
@@ -203,11 +205,13 @@ public class PersistenceManager {
     }
 
     private Entidad findEntity(String entityType, String propertyType, String propertyName) {
-        for (Entidad e : sp.recuperarEntidades())
+        System.out.println("FindEntity()");
+        for (Entidad e : sp.recuperarEntidades()) {
             if (e.getNombre().equals(entityType))
                 for (Propiedad p : e.getPropiedades())
                     if (p.getNombre().equals(propertyType) && p.getValor().equals(propertyName))
                         return e;
+        }
         return null;
     }
 }

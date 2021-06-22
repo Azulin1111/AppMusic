@@ -38,17 +38,15 @@ public class LoginWindow extends AppWindow {
         okButton.addActionListener(ev -> {
                     String user = userTextField.getText();
                     String passwd = passwordTextField.getText();
-                    JFileChooser chooser = new JFileChooser();
-                    chooser.showOpenDialog(this);
-                    File currentFile = chooser.getSelectedFile();
-                    /*
+
+
                     boolean existUser = Controller.INSTANCE.login(user, passwd);
                     if (existUser) { // MainWindow
-                        //int res = JOptionPane.showConfirmDialog(this, "Responda Si o no", "Dialogo de Opción", JOptionPane.YES_NO_OPTION);
-                    } else { // ErrorWindow
 
+                    } else { // ErrorWindow
+                        say("Usuario no válido", "Nombre de usuario o contraseña no valido");
                     }
-                    */
+
                 }
 
         );
@@ -136,10 +134,7 @@ public class LoginWindow extends AppWindow {
                 resultName = currentFont.getName();
             }
         }
-        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
-        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
-        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
-        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
     /**

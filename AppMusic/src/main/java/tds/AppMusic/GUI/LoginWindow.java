@@ -3,13 +3,16 @@ package tds.AppMusic.GUI;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import tds.AppMusic.app.Controller;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;import java.util.Locale;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Locale;
 
 public class LoginWindow extends JFrame {
     private JPanel mainPanel;
@@ -29,6 +32,23 @@ public class LoginWindow extends JFrame {
 
     public LoginWindow() {
 
+        okButton.addActionListener(ev -> {
+                    String user = userTextField.getText();
+                    String passwd = passwordTextField.getText();
+                    JFileChooser chooser = new JFileChooser();
+                    chooser.showOpenDialog(this);
+                    File currentFile = chooser.getSelectedFile();
+                    /*
+                    boolean existUser = Controller.INSTANCE.login(user, passwd);
+                    if (existUser) { // MainWindow
+                        //int res = JOptionPane.showConfirmDialog(this, "Responda Si o no", "Dialogo de Opción", JOptionPane.YES_NO_OPTION);
+                    } else { // ErrorWindow
+
+                    }
+                    */
+                }
+
+        );
     }
 
     private void createUIComponents() {
@@ -120,10 +140,7 @@ public class LoginWindow extends JFrame {
                 resultName = currentFont.getName();
             }
         }
-        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
-        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
-        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
-        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
     /**

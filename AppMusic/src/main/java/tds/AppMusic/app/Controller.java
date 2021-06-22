@@ -4,6 +4,7 @@ import tds.AppMusic.model.users.User;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 public enum Controller { //TODO whole class
     INSTANCE;
@@ -45,5 +46,12 @@ public enum Controller { //TODO whole class
 
     public boolean login(String username, String password){
         return persistenceManager.login(username, password);
+    }
+
+    public boolean signup(String username, String password, String name, String surnames, String email, Date birthday) {
+        PersistenceManager pm = new PersistenceManager();
+        if (pm.findUser(username)) return false;
+        pm.storeUser(username, password, name, surnames, email, birthday);
+        return true;
     }
 }

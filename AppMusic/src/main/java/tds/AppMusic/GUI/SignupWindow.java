@@ -4,13 +4,24 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.toedter.calendar.JDateChooser;
+import tds.AppMusic.app.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class SignupWindow extends AppWindow {
+
+    private static final String ERROR_BADFIELDS = "* Hay campos sin rellenar.";
+    private static final String ERROR_BADPASSWDS = "* Las contraseñas no coinciden.";
+    private static final String ERROR_USERTAKEN = "* Nombre de usuario ya en uso.";
+
+    private static final String CANCEL_TITLE = "Cancelar";
+    private static final String CANCEL_MESSAGE = "¿Está seguro de cancelar?";
+
+    private static final Color ERROR_COLOR = Color.RED;
+
     private JPanel mainPanel;
     private JTextField nameTextField;
     private JTextField emailTextField;
@@ -44,20 +55,80 @@ public class SignupWindow extends AppWindow {
         $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
 
+        missingFieldsLabel.setForeground(ERROR_COLOR);
+        mismatchingPasswordsLabel.setForeground(ERROR_COLOR);
+        duplicateFoundLabel.setForeground(ERROR_COLOR);
+
         // Register listener
-        registerButton.addActionListener(e -> {
-            // Make sure fields are filled
-            String name = nameTextField.getText().trim();
-            String surnames = surnameTextField.getText().trim();
-            String email = emailLabel.getText().trim();
-            String username = usernameTextField.getText().trim();
+        registerButton.addActionListener(this::registerAction);
 
-            if (name.equals("") || surnames.equals("") || email.equals("") || username.equals("")) {
-                say("Campos inválidos", "Por favor, rellena todos los campos.");
-                return;
-            }
+        // Cancel button
+        cancelButton.addActionListener(this::cancelAction);
+    }
 
-        });
+    private void registerAction(ActionEvent e) {
+        // Make sure fields are filled
+        String name = nameTextField.getText().trim();
+        String surnames = surnameTextField.getText().trim();
+        String email = emailLabel.getText().trim();
+        String username = usernameTextField.getText().trim();
+
+        Date birthday = dateChooser.getDate();
+
+        if (name.equals("") || surnames.equals("") || email.equals("") || username.equals("") || birthday == null) {
+            errorMissingFields();
+            return;
+        }
+
+        // Make sure passwords match
+        String p1 = new String(keyPasswordField.getPassword());
+        String p2 = new String(keyConfirmPasswordField.getPassword());
+        if (!p1.equals(p2)) {
+            errorMismatchingPasswords();
+            return;
+        }
+
+        // Delegate to controller
+        boolean success = Controller.INSTANCE.signup(username, p1, name, surnames, email, birthday);
+
+        // Make sure user doesn't exist
+        if (!success) {
+            errorUserTaken();
+            return;
+        }
+
+        // Success, nothing else to do
+        noErrors();
+        say("Success", "Success.");
+        dispose();
+    }
+
+    private void cancelAction(ActionEvent e) {
+        if (ask(CANCEL_TITLE, CANCEL_MESSAGE)) this.dispose();
+    }
+
+    private void errorMissingFields() {
+        missingFieldsLabel.setText(ERROR_BADFIELDS);
+        mismatchingPasswordsLabel.setText(null);
+        duplicateFoundLabel.setText(null);
+    }
+
+    private void errorMismatchingPasswords() {
+        missingFieldsLabel.setText(null);
+        mismatchingPasswordsLabel.setText(ERROR_BADPASSWDS);
+        duplicateFoundLabel.setText(null);
+    }
+
+    private void errorUserTaken() {
+        missingFieldsLabel.setText(null);
+        mismatchingPasswordsLabel.setText(null);
+        duplicateFoundLabel.setText(ERROR_USERTAKEN);
+    }
+
+    private void noErrors() {
+        missingFieldsLabel.setText(null);
+        mismatchingPasswordsLabel.setText(null);
+        duplicateFoundLabel.setText(null);
     }
 
     private void createUIComponents() {
@@ -139,13 +210,16 @@ public class SignupWindow extends AppWindow {
         errorsPanel.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         boxesPanel.add(errorsPanel, new GridConstraints(6, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         missingFieldsLabel = new JLabel();
-        missingFieldsLabel.setText("Label");
+        missingFieldsLabel.setForeground(new Color(-16777216));
+        missingFieldsLabel.setText("");
         errorsPanel.add(missingFieldsLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         mismatchingPasswordsLabel = new JLabel();
-        mismatchingPasswordsLabel.setText("Label");
+        mismatchingPasswordsLabel.setForeground(new Color(-16777216));
+        mismatchingPasswordsLabel.setText("");
         errorsPanel.add(mismatchingPasswordsLabel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         duplicateFoundLabel = new JLabel();
-        duplicateFoundLabel.setText("Label");
+        duplicateFoundLabel.setForeground(new Color(-16777216));
+        duplicateFoundLabel.setText("");
         errorsPanel.add(duplicateFoundLabel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         boxesPanel.add(dateChooser, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();

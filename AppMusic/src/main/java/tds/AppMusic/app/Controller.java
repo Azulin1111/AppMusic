@@ -5,10 +5,12 @@ import tds.AppMusic.model.users.User;
 import javax.swing.*;
 import java.time.LocalDate;
 
-public class Controller { //TODO whole class
+public enum Controller { //TODO whole class
+    INSTANCE;
+    private PersistenceManager persistenceManager = new PersistenceManager();
     private User currentUser;
 
-    public Controller(){
+    private Controller(){
         currentUser = new User("Evangeline", "Evangeline", false,
                 "123345","pepitaEmail", LocalDate.of(2020, 1,1 ));
     }
@@ -36,4 +38,12 @@ public class Controller { //TODO whole class
         this.currentUser.createPlayList(name);
     }
 
+
+    public void cargarCanciones(){
+
+    }
+
+    public boolean login(String username, String password){
+        return persistenceManager.login(username, password);
+    }
 }

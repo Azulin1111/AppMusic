@@ -8,7 +8,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.util.Locale;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;import java.util.Locale;
 
 public class LoginWindow extends JFrame {
     private JPanel mainPanel;
@@ -24,6 +25,24 @@ public class LoginWindow extends JFrame {
     private JLabel registerLabel;
     private JPanel titlePanel;
     private JLabel titleLabel;
+
+
+    public LoginWindow() {
+
+        okButton.addActionListener(ev -> {
+                    String user = userTextField.getText();
+                    String passwd = passwordTextField.getText();
+
+                    boolean existUser = controller.login(user, passwd);
+                    if (existUser) { // MainWindow
+
+                    } else { // ErrorWindow
+
+                    }
+                }
+
+        )
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

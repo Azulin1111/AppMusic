@@ -39,10 +39,10 @@ public class LoginWindow extends AppWindow {
                     String user = userTextField.getText();
                     String passwd = passwordTextField.getText();
 
-                    //boolean existUser = Controller.INSTANCE.login(user, passwd);
-                    boolean existUser = true; //TODO BORRAR
+                    boolean existUser = Controller.INSTANCE.login(user, passwd);//TODO REHACER
+                    //boolean existUser = true;
                     if (existUser) { // MainWindow
-                        mainWindow();
+                        mainWindow(user);
                     } else { // ErrorWindow
                         say("Usuario no válido", "Nombre de usuario o contraseña no valido");
                     }
@@ -63,10 +63,10 @@ public class LoginWindow extends AppWindow {
         frame.setVisible(true);
     }
 
-    private void mainWindow() {
+    private void mainWindow(String user) {
         this.dispose();
 
-        JFrame frame = new MainWindow();
+        JFrame frame = new MainWindow(user);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -156,10 +156,7 @@ public class LoginWindow extends AppWindow {
                 resultName = currentFont.getName();
             }
         }
-        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
-        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
-        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
-        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
     /**

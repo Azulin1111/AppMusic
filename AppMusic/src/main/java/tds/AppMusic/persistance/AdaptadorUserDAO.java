@@ -170,7 +170,10 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
         for (Playlist p : playlists)
             user.addPlaylist(p);
 
-        recentSongs = AdaptadorPlaylistDAO.INSTANCE.getPlaylist(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS));
+        recentSongs = AdaptadorPlaylistDAO.INSTANCE.getPlaylist(Integer.parseInt(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS)));
+        List<Song> recSongs = recentSongs.getSongs();
+        for(Song s : recSongs)
+
 
     }
 

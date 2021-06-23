@@ -9,18 +9,18 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
     INSTANCE;
 
     @Override
-    public void storeSong(Song song) {}
+    public void storeSong(Song song) {};
 
     @Override
-    public void deleteSong(Song song){}
+    public void deleteSong(Song song){};
 
     @Override
-    public void setSong(Song song){}
+    public void setSong(Song song){};
 
     @Override
-    public User getSong(int code){}
+    public User getSong(int code){return null;};
 
     @Override
-    public List<Song> getAllSongs{}
+    public List<Song> getAllSongs(){return null;};
 
 }

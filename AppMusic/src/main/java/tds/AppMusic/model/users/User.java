@@ -120,6 +120,10 @@ public class User {
         return mostPlayedSongs;
     }
 
+    public void addPlaylist(Playlist playlist){
+        playlists.add(playlist);
+    }
+
     public Playlist createPlaylist(String name, List<Song> songs) {
         Playlist newPlayList = new Playlist(name);
         for (Song s : songs) newPlayList.addSong(s);

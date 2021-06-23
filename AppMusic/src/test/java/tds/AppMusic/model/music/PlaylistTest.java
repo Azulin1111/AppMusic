@@ -7,34 +7,33 @@ import static org.junit.Assert.*;
 
 public class PlaylistTest {
 
-    Playlist playlist;
+    private static final String PLAYLIST_NAME = "test";
+    private Playlist playlist;
 
     @Before
     public void setUp() {
-        playlist = new Playlist("Test playlist");
+        playlist = new Playlist(PLAYLIST_NAME);
     }
 
     @Test
     public void getNameTest() {
-        String expected = "Test playlist";
-        assertEquals(expected, playlist.getName());
+        // Assert that the playlist name is correctly set
+        assertEquals(PLAYLIST_NAME, playlist.getName());
     }
 
     @Test
     public void SongsTest() {
-
-        // Test 1: inserting and retrieving a song
+        // Assert that inserting and retrieving a song works properly
         Song expected = new Song("Test name", "Singer", Genre.POP, "Test path");
         playlist.addSong(expected);
-
         Song result = playlist.getSongs().get(0);
         assertSame(expected, result);
 
-        // Test 2: Playlist size check
+        // Assert that playlist size increases correctly
         playlist.addSong(new Song("Test song 2", "Singer",Genre.POP, "Test path 2"));
         assertEquals(2, playlist.getSongs().size());
 
-        // Test 3: Duplicate song
+        // Assert that duplicate songs cannot be added
         assertFalse(playlist.addSong(expected));
 
     }

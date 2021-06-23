@@ -22,12 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Documentación de la clase Controller">
-      <change afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/PlaylistRepository.java" afterDir="false" />
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Repositorios">
+      <change afterPath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/music/InterpreterTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/SongCatalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/SongRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/UserCatalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserCatalogTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/test/java/tds/AppMusic/model/users/UserCatalogTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Genre.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Genre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Interpreter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +38,7 @@
       <list>
         <option value="Class" />
         <option value="Enum" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -65,6 +65,8 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="145" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="314" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -76,8 +78,14 @@
       <recent name="C:\Users\Min\Projects\IdeaProjects\AppMusic\AppMusic\lib" />
       <recent name="C:\Users\Usuario\Desktop\Sergio\3º\1er cuatrimestre\Tecnologías de desarrollo de Software\AppMusicFinal\AppMusic\src\main\java\tds\AppMusic\GUI" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="tds.AppMusic" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="tds.AppMusic.model.music" />
     </key>
   </component>
   <component name="RunManager">
@@ -364,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624397398954</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Repositorios">
+      <created>1624449419357</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1624449419357</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,7 +395,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
     <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
     <MESSAGE value="UserTest:&#10;-add test mostPlayedSongsTest1()&#10;-add test mostPlayedSongsTest2()" />
     <MESSAGE value="User:&#10;-Add function getPlayLists()." />
@@ -405,6 +419,7 @@
     <MESSAGE value="Actualizacion UI 2" />
     <MESSAGE value="Un millon de cambios" />
     <MESSAGE value="Documentación de la clase Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentación de la clase Controller" />
+    <MESSAGE value="Repositorios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repositorios" />
   </component>
 </project>

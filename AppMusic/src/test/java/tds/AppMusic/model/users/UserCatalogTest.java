@@ -3,17 +3,15 @@ package tds.AppMusic.model.users;
 import org.junit.After;
 import org.junit.Test;
 
-import java.time.LocalDate;
-
 import static org.junit.Assert.assertEquals;
 
 public class UserCatalogTest {
      @Test
      public void getFirstUser(){
-          UserCatalog.INSTANCE.addUser("Pepe", "Pepito123", false, "123456",
+          UserRepository.INSTANCE.addUser("Pepe", "Pepito123", false, "123456",
                    "pepito@gmail.com", null);
 
-          User user = UserCatalog.INSTANCE.getUsers().get(0);
+          User user = UserRepository.INSTANCE.getUsers().get(0);
 
           // Expected user
           User expected = new User("Pepe", "Pepito123", false, "123456",
@@ -25,6 +23,6 @@ public class UserCatalogTest {
 
      @After
      public void tearDown(){
-          UserCatalog.INSTANCE.getUsers().clear();
+          UserRepository.INSTANCE.getUsers().clear();
      }
 }

@@ -1,3 +1,5 @@
 
 SongCatalog y UserCatalog son Singleton.
 Para la creación de descuentos se emplea el método factoría empleando introspección.
+
+El adaptadorPlaylistDAO almacena si una playlist es normal o de recientes a través de un booleano "isRecent".

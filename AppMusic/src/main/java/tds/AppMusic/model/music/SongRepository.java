@@ -4,6 +4,7 @@ import tds.AppMusic.persistance.DAOFactories;
 import tds.AppMusic.persistance.FactoryDAO;
 import tds.AppMusic.persistance.IAdaptadorSongDAO;
 
+import java.net.URI;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,11 +23,11 @@ public enum SongRepository {
         return Collections.unmodifiableList(SONGS);
     }
 
-    public void addSong(String name, String singer, Genre genre, String path){
+    public void addSong(String name, String singer, Genre genre, URI path){
         addSong(name, singer, genre, path, 0);
     }
 
-    public void addSong(String name, String singer, Genre genre, String path, int playCount) {
+    public void addSong(String name, String singer, Genre genre, URI path, int playCount) {
         Song newSong = new Song(name, singer, genre, path);
         SONGS.add(newSong);
         DAO.storeSong(newSong);

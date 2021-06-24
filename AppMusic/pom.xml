@@ -47,13 +47,21 @@
 	  <scope>compile</scope>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-	<dependency>
-	  <groupId>com.h2database</groupId>
-	  <artifactId>h2</artifactId>
-	  <version>1.4.200</version>
-	  <scope>compile</scope>
-	</dependency>
+    <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.200</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.toedler</groupId>
+      <artifactId>jcalendar</artifactId>
+      <version>1.4</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/jcalendar-1.4.jar</systemPath>
+    </dependency>
 
 
   </dependencies>

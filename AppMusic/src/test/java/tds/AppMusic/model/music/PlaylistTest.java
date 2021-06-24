@@ -32,9 +32,5 @@ public class PlaylistTest {
         // Assert that playlist size increases correctly
         playlist.addSong(new Song("Test song 2", "Singer",Genre.POP, null));
         assertEquals(2, playlist.getSongs().size());
-
-        // Assert that duplicate songs cannot be added
-        assertFalse(playlist.addSong(expected));
-
     }
 }

@@ -11,10 +11,9 @@ import tds.driver.ServicioPersistencia;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
-public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
+public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     INSTANCE;
     private static final ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
@@ -142,7 +141,6 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
         String password;
         String email;
         Date birthday;
-        int id;
         List<Playlist> playlists;
         Playlist recentSongs;
 
@@ -192,7 +190,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
 
     public List<User> getAllUsers(){
         List<Entidad> eUsers = sp.recuperarEntidades(TYPE_USER);
-        List<User> users = new LinkedList<User>();
+        List<User> users = new LinkedList<>();
 
         for (Entidad eUser : eUsers) {
             users.add(getUser(eUser.getId()));

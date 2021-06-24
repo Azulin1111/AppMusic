@@ -3,17 +3,18 @@ package tds.AppMusic.persistance;
 import beans.Entidad;
 import beans.Propiedad;
 import tds.AppMusic.model.music.Genre;
-import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
-import tds.AppMusic.model.users.User;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
+public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     INSTANCE;
     private static final ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
@@ -57,7 +58,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
         // La base de datos da un identificador único
         // Se usa el que genera el servicio de persistencia
         song.setCode(eSong.getId());
-    };
+    }
 
     @Override
     public void deleteSong(Song song){
@@ -65,7 +66,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
 
         // Se borra la canción
         sp.borrarEntidad(eSong);
-    };
+    }
 
     @Override
     public void setSong(Song song){
@@ -85,7 +86,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
 
         sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT);
         sp.anadirPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT, Integer.toString(song.getPlayCount()));
-    };
+    }
 
     @Override
     public Song getSong(int code){
@@ -100,7 +101,6 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
         URI path;
         String singer;
         int playCount;
-        int id;
 
         // Recuperar entidad
         eSong = sp.recuperarEntidad(code);
@@ -124,17 +124,17 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
         PoolDAO.INSTANCE.addObject(code, song);
 
         return song;
-    };
+    }
 
     @Override
     public List<Song> getAllSongs(){
         List<Entidad> eSongs = sp.recuperarEntidades(TYPE_SONG);
-        List<Song> songs = new LinkedList<Song>();
+        List<Song> songs = new LinkedList<>();
 
         for (Entidad eSong : eSongs) {
             songs.add(getSong(eSong.getId()));
         }
         return songs;
-    };
+    }
 
 }

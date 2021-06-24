@@ -5,7 +5,6 @@ import beans.Propiedad;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRecentSongs;
 import tds.AppMusic.model.music.Song;
-import tds.AppMusic.model.users.User;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 
@@ -14,7 +13,7 @@ import java.util.*;
 
 public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     INSTANCE;
-    private final ServicioPersistencia sp;
+    private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
@@ -25,11 +24,6 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     private static final String TYPE_PLAYLIST_NAME = "Name";
     private static final String TYPE_PLAYLIST_SONGS = "Songs";
 
-
-    private AdaptadorPlaylistDAO(){
-        sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
-    }
-
     @Override
     public void storePlaylist(Playlist playlist) {
         Entidad ePlaylist;
@@ -37,7 +31,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
 
         // Si la entidad está registrada no la registra de nuevo
         try{
-            ePlaylist = sp.recuperarEntidad(playlist.getCode());
+            SP.recuperarEntidad(playlist.getCode());
         }catch (NullPointerException e) {
             existe = false;
         }
@@ -51,7 +45,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         // Crear entidad Playlist
         ePlaylist = new Entidad();
         ePlaylist.setNombre(TYPE_PLAYLIST);
-        ePlaylist.setPropiedades(new ArrayList<Propiedad>(
+        ePlaylist.setPropiedades(new ArrayList<>(
                 Arrays.asList(
                         new Propiedad(TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs)), // True en caso de que sea una PlaylistRecentSongs
                         new Propiedad(TYPE_PLAYLIST_NAME, playlist.getName()),
@@ -60,35 +54,35 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         ));
 
         // Registrar entidad Playlist
-        ePlaylist = sp.registrarEntidad(ePlaylist);
+        ePlaylist = SP.registrarEntidad(ePlaylist);
         // La base de datos da un identificador único
         // Se usa el que genera el servicio de persistencia
         playlist.setCode(ePlaylist.getId());
-    };
+    }
 
     @Override
     public void deletePlaylist(Playlist playlist){
         // No hay que borrar las canciones
-        Entidad ePlaylist = sp.recuperarEntidad(playlist.getCode());
+        Entidad ePlaylist = SP.recuperarEntidad(playlist.getCode());
 
         // Se borra la playlist
-        sp.borrarEntidad(ePlaylist);
+        SP.borrarEntidad(ePlaylist);
 
-    };
+    }
 
     @Override
     public void setPlaylist(Playlist playlist){
-        Entidad ePlaylist = sp.recuperarEntidad(playlist.getCode());
+        Entidad ePlaylist = SP.recuperarEntidad(playlist.getCode());
 
-        sp.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT);
-        sp.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs));
+        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT);
+        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs));
 
-        sp.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME);
-        sp.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME, playlist.getName());
+        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME);
+        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME, playlist.getName());
 
-        sp.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS);
-        sp.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS, getCodesFromSongs(playlist.getSongs()));
-    };
+        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS);
+        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS, getCodesFromSongs(playlist.getSongs()));
+    }
 
     @Override
     public Playlist getPlaylist(int code){
@@ -104,11 +98,11 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         List<Song> songs;
 
         // Recuperar entidad
-        ePlaylist = sp.recuperarEntidad(code);
+        ePlaylist = SP.recuperarEntidad(code);
 
         // Recuperar propiedades que no son objetos
-        isRecent = Boolean.parseBoolean(sp.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT));
-        name = sp.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME);
+        isRecent = Boolean.parseBoolean(SP.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT));
+        name = SP.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME);
 
         Playlist playlist;
         if (isRecent)
@@ -121,35 +115,35 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         PoolDAO.INSTANCE.addObject(code, playlist);
 
         // Recuperar propiedades que son objetos
-        songs = getSongsFromCodes(sp.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS));
+        songs = getSongsFromCodes(SP.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS));
         for (Song s : songs)
             playlist.addSong(s);
 
         return playlist;
-    };
+    }
 
     @Override
     public List<Playlist> getAllPlaylists(){
-        List<Entidad> ePlaylists = sp.recuperarEntidades(TYPE_PLAYLIST);
-        List<Playlist> playlists = new LinkedList<Playlist>();
+        List<Entidad> ePlaylists = SP.recuperarEntidades(TYPE_PLAYLIST);
+        List<Playlist> playlists = new LinkedList<>();
 
         for (Entidad ePlaylist : ePlaylists) {
             playlists.add(getPlaylist(ePlaylist.getId()));
         }
         return playlists;
-    };
+    }
 
     private String getCodesFromSongs(List<Song> songs){
-        String aux = "";
+        StringBuilder aux = new StringBuilder();
         for (Song s : songs) {
-            aux += s.getCode() + " ";
+            aux.append(s.getCode()).append(" ");
         }
-        return aux.trim();
+        return aux.toString().trim();
     }
 
     private List<Song> getSongsFromCodes(String songs) {
 
-        List<Song> listSongs = new LinkedList<Song>();
+        List<Song> listSongs = new LinkedList<>();
         StringTokenizer strTok = new StringTokenizer(songs, " ");
         AdaptadorSongDAO adaptadorSong = AdaptadorSongDAO.INSTANCE;
         while (strTok.hasMoreTokens()) {

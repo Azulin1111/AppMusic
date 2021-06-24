@@ -20,8 +20,6 @@ public class SignupWindow extends AppWindow {
     private static final String CANCEL_TITLE = "Cancelar";
     private static final String CANCEL_MESSAGE = "¿Está seguro de cancelar?";
 
-    private static final Color ERROR_COLOR = Color.RED;
-
     private JPanel mainPanel;
     private JTextField nameTextField;
     private JTextField emailTextField;

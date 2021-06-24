@@ -100,29 +100,34 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     public void setUser(User user) {
         Entidad eUser = SP.recuperarEntidad(user.getCode());
 
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_NAME);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_NAME, user.getName());
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_USERNAME, user.getNickname());
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PREMIUM);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PREMIUM, Boolean.toString(user.isPremium()));
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PASSWORD, user.getPassword());
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_EMAIL, user.getEmail());
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY, user.getBirthday().toString());
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS, getCodesFromPlaylists(user.getPlaylists()));
-
-        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS);
-        SP.anadirPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS, Integer.toString(user.getCodeRecentSongs()));
+        eUser.getPropiedades().forEach(p -> {
+                    switch (p.getNombre()) {
+                        case TYPE_USER_NAME:
+                            p.setValor(user.getName());
+                            break;
+                        case TYPE_USER_USERNAME:
+                            p.setValor(user.getNickname());
+                            break;
+                        case TYPE_USER_EMAIL:
+                            p.setValor(user.getEmail());
+                            break;
+                        case TYPE_USER_PASSWORD:
+                            p.setValor(user.getPassword());
+                            break;
+                        case TYPE_USER_PREMIUM:
+                            p.setValor(Boolean.toString(user.isPremium()));
+                            break;
+                        case TYPE_USER_BIRTHDAY:
+                            p.setValor(parse(user.getBirthday()));
+                            break;
+                        case TYPE_USER_PLAYLISTS:
+                            String ids = getCodesFromPlaylists(user.getPlaylists());
+                            p.setValor(ids);
+                            break;
+                        case TYPE_USER_RECENTSONGS:
+                            p.setValor(Integer.toString(user.getCodeRecentSongs()));
+                    }
+                });
 
         SP.modificarEntidad(eUser);
     }

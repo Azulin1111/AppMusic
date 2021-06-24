@@ -5,12 +5,13 @@ import tds.AppMusic.GUI.MainWindow;
 import tds.driver.FactoriaServicioPersistencia;
 
 import javax.swing.*;
+import java.util.stream.Collectors;
 
 public class AppMusic {
     public static void main(String[] args) {
         System.out.println("No functionality yet!");
 
-//        clearDB();
+        clearDB();
 
         LoginWindow lw = new LoginWindow();
         lw.pack();
@@ -21,7 +22,7 @@ public class AppMusic {
 
     public static void clearDB() {
         FactoriaServicioPersistencia.getInstance().getServicioPersistencia().recuperarEntidades().forEach(e -> {
-            System.out.println("Borrando " + e.getNombre() + e.getPropiedades());
+            System.out.println("Borrando " + e.getNombre() + e.getPropiedades().stream().map(p -> p.getNombre() + ": " + p.getValor()).collect(Collectors.toList()));
             FactoriaServicioPersistencia.getInstance().getServicioPersistencia().borrarEntidad(e);
         });
     }

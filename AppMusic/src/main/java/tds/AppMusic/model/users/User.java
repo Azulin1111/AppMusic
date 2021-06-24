@@ -112,6 +112,14 @@ public class User {
 
     public List<Song> getMostPlayedSongs(){ //TODO: hay que delegar esta función al controlador
         // Requisito: "Reproducir las 10 canciones más escuchadas en toda la aplicación".
+        /*
+        List<Song> mostPlayedSongs = playlists.stream()
+                .flatMap(p -> p.getSongs().stream())
+                .sorted(comparing(Song::getPlayCount).reversed())
+                .limit(10)
+                .collect(toList());
+
+         */
         return null;
     }
 

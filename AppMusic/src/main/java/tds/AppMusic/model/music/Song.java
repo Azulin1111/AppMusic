@@ -61,6 +61,7 @@ public class Song {
         this.singer = singer;
         this.path = path;
         this.playCount = playCount;
+        code = 0;
     }
 
     /**
@@ -108,5 +109,21 @@ public class Song {
      */
     public void addPlay() {
         playCount++;
+    }
+
+    /**
+     * Devuelve el código de la canción.
+     * @return El código de la canción.
+     */
+    public int getCode() {
+        return code;
+    }
+
+    /**
+     * Modifica el código de la canción.
+     * @param code Código de la canción.
+     */
+    public void setCode(int code) {
+        this.code = code;
     }
 }

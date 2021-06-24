@@ -54,8 +54,9 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         ePlaylist.setNombre(TYPE_PLAYLIST);
         ePlaylist.setPropiedades(new ArrayList<Propiedad>(
                 Arrays.asList(
-                        new Propiedad(TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs)),
-                        new Propiedad(TYPE_PLAYLIST_NAME, )
+                        new Propiedad(TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs)), // True en caso de que sea una PlaylistRecentSongs
+                        new Propiedad(TYPE_PLAYLIST_NAME, playlist.getName(),
+                        new Propiedad(TYPE_PLAYLIST_SONGS, getCodesFromSongs(playlist.getSongs())))
                 )
         ));
 
@@ -76,4 +77,23 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     public List<Playlist> getAllPlaylists(){
         return null;
     };
+
+    private String getCodesFromSongs(List<Song> songs){
+        String aux = "";
+        for (Song s : songs) {
+            aux += s.getCode() + " ";
+        }
+        return aux.trim();
+    }
+
+    private List<Song> getSongsFromCode(String ventas) {
+
+        List<Venta> listaVentas = new LinkedList<Venta>();
+        StringTokenizer strTok = new StringTokenizer(ventas, " ");
+        AdaptadorVentaTDS adaptadorV = AdaptadorVentaTDS.getUnicaInstancia();
+        while (strTok.hasMoreTokens()) {
+            listaVentas.add(adaptadorV.recuperarVenta(Integer.valueOf((String) strTok.nextElement())));
+        }
+        return listaVentas;
+    }
 }

@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="DAO">
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="AdaptadorUserDAO acabado&#10;&#10;AdaptadorPlaylistDAO en proceso.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/music/Song.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/resources/other/Documentación" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/resources/other/Documentación" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +98,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b8706672-2567-47fc-ab72-c62c71e72668" name="Default Changelist" comment="" />
+      <changelist id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="AdaptadorUserDAO acabado&#10;&#10;AdaptadorPlaylistDAO en proceso." />
       <created>1613404158837</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -364,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624458857388</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="AdaptadorUserDAO acabado&#10;&#10;AdaptadorPlaylistDAO en proceso.">
+      <created>1624460808313</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1624460808313</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,7 +386,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UserTest:&#10;-Añadir test para los descuentos (sin probar)&#10;&#10;User:&#10;-add function getRecienSongs()&#10;-add function getMostplayedSongs()" />
     <MESSAGE value="Class User:&#10;-Function getMostPlayedSongs().&#10;-Add User Tests" />
     <MESSAGE value="UserTest:&#10;-add test mostPlayedSongsTest1()&#10;-add test mostPlayedSongsTest2()" />
     <MESSAGE value="User:&#10;-Add function getPlayLists()." />
@@ -405,9 +410,26 @@
     <MESSAGE value="Actualizacion UI 2" />
     <MESSAGE value="Un millon de cambios" />
     <MESSAGE value="DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="DAO" />
+    <MESSAGE value="AdaptadorUserDAO acabado&#10;&#10;AdaptadorPlaylistDAO en proceso." />
+    <option name="LAST_COMMIT_MESSAGE" value="AdaptadorUserDAO acabado&#10;&#10;AdaptadorPlaylistDAO en proceso." />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1493" height="110" key="GridCell.Tab.0.bottom" timestamp="1624461010702">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="110" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
+    <state width="1493" height="110" key="GridCell.Tab.0.center" timestamp="1624461010702">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="110" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
+    <state width="1493" height="110" key="GridCell.Tab.0.left" timestamp="1624461010702">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="110" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
+    <state width="1493" height="110" key="GridCell.Tab.0.right" timestamp="1624461010702">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="110" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
     <state x="147" y="64" key="MergeDialog" timestamp="1624460339584">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -416,14 +438,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="337" y="114" key="RollbackChangesDialog/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624460409481" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624458858771">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624460810837">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624458858771" />
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624460270309">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624460810837" />
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624460965986">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624460270309" />
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624460965986" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1624458834485">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

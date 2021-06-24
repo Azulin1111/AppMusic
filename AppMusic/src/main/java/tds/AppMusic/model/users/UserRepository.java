@@ -21,7 +21,7 @@ public enum UserRepository {
     }
 
     public List<User> getUsers(){
-        return Collections.unmodifiableList(USERS);
+        return USERS;
     }
 
     public void addUser(String name, String nickname, String password, String email, Date birthday) {

@@ -26,10 +26,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="AdaptadorPlaylistDAO acabado.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/model/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorSongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/persistance/AdaptadorSongDAO.java" afterDir="false" />
+    <list default="true" id="14dbd5ee-72ac-419c-8775-48f7eaea9738" name="Default Changelist" comment="Persistencia finiquitada.">
+      <change beforePath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/AppMusic/src/main/java/tds/AppMusic/AppMusic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -398,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624547598546</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Persistencia finiquitada.">
+      <created>1624549480712</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1624549480712</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,7 +431,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Class Playlist:&#10;-Song lists functions.&#10;&#10;Class User:&#10;-Remove discount (only necessary for a function)." />
     <MESSAGE value="User:&#10;-TODOs" />
     <MESSAGE value="User:&#10;-Add function addRecentSongs()." />
     <MESSAGE value="Playlist:&#10;-Add protected songs() for the son class get this attribute.&#10;-Add removeSong().&#10;&#10;&#10;Creation class PlaylistRecentSongs:&#10;-Override addSong().&#10;&#10;User:&#10;-Change recentSongs: List&lt;Song&gt; to PlaylistRecentSongs" />
@@ -451,7 +455,8 @@
     <MESSAGE value="Métodos para atributo code de Song&#10;&#10;AdaptadorPlaylistDAO en proceso." />
     <MESSAGE value="AdaptadorPlaylistDAO en proceso." />
     <MESSAGE value="AdaptadorPlaylistDAO acabado." />
-    <option name="LAST_COMMIT_MESSAGE" value="AdaptadorPlaylistDAO acabado." />
+    <MESSAGE value="Persistencia finiquitada." />
+    <option name="LAST_COMMIT_MESSAGE" value="Persistencia finiquitada." />
   </component>
   <component name="WindowStateProjectService">
     <state x="654" y="275" key="#Notifications" timestamp="1624545156512">
@@ -470,22 +475,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624545639499" />
-    <state width="1493" height="110" key="GridCell.Tab.0.bottom" timestamp="1624461010702">
+    <state width="1493" height="110" key="GridCell.Tab.0.bottom" timestamp="1624549753433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="110" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
-    <state width="1493" height="110" key="GridCell.Tab.0.center" timestamp="1624461010702">
+    <state width="1493" height="110" key="GridCell.Tab.0.bottom/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624549753433" />
+    <state width="1493" height="110" key="GridCell.Tab.0.center" timestamp="1624549753432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="110" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
-    <state width="1493" height="110" key="GridCell.Tab.0.left" timestamp="1624461010702">
+    <state width="1493" height="110" key="GridCell.Tab.0.center/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624549753432" />
+    <state width="1493" height="110" key="GridCell.Tab.0.left" timestamp="1624549753432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="110" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
-    <state width="1493" height="110" key="GridCell.Tab.0.right" timestamp="1624461010702">
+    <state width="1493" height="110" key="GridCell.Tab.0.left/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624549753432" />
+    <state width="1493" height="110" key="GridCell.Tab.0.right" timestamp="1624549753432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="110" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624461010702" />
+    <state width="1493" height="110" key="GridCell.Tab.0.right/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624549753432" />
     <state x="147" y="64" key="MergeDialog" timestamp="1624460339584">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -494,10 +499,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="337" y="114" key="RollbackChangesDialog/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624460409481" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624547602019">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1624549484309">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624547602019" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/90.-1080.1920.1040@0.0.1536.824" timestamp="1624549484309" />
     <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1624547578547">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

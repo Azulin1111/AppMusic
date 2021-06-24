@@ -66,14 +66,18 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     public void setPlaylist(Playlist playlist) {
         Entidad ePlaylist = SP.recuperarEntidad(playlist.getCode());
 
-        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT);
-        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT, Boolean.toString(playlist instanceof PlaylistRecentSongs));
-
-        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME);
-        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_NAME, playlist.getName());
-
-        SP.eliminarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS);
-        SP.anadirPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS, getCodesFromSongs(playlist.getSongs()));
+        ePlaylist.getPropiedades().forEach(p -> {
+            switch (p.getNombre()) {
+                case TYPE_PLAYLIST_IS_RECENT:
+                    p.setValor(Boolean.toString(playlist instanceof PlaylistRecentSongs));
+                    break;
+                case TYPE_PLAYLIST_NAME:
+                    p.setValor(playlist.getName());
+                    break;
+                case TYPE_PLAYLIST_SONGS:
+                    p.setValor(getCodesFromSongs(playlist.getSongs()));
+            }
+        });
 
         SP.modificarEntidad(ePlaylist);
     }

@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 public enum PoolDAO {
     INSTANCE;
-    private Hashtable<Integer, Object> pool;
+    private final Hashtable<Integer, Object> pool = new Hashtable<>();
 
     public Object getObject(int id) {
         return pool.get(id);

@@ -17,7 +17,7 @@ public class MainWindow extends AppWindow {
     private static final String CARD_SEARCH = "searchPanel";
     private static final String CARD_NEWPL = "newPlaylistPanel";
     private static final String CARD_RECENT = "recentPanel";
-    private static final String CARD_PLAYLISTS = "selectedPlaylistsPanel";
+    private static final String CARD_PLAYLISTS = "selectedPlaylistPanel";
 
     private static final String WELCOME_TEXT = "Hola, ";
 
@@ -134,7 +134,8 @@ public class MainWindow extends AppWindow {
 
             // Additional work: select the first one and display contents
             playlistList.getSelectionModel().setSelectionInterval(0, 0);
-            selectedModel.replaceWith(playlistList.getSelectedValue().getSongs());
+            if (playlistList.getSelectedValue() != null)
+                selectedModel.replaceWith(playlistList.getSelectedValue().getSongs());
 
             cl.show(mainCardPanel, CARD_PLAYLISTS);
         });
@@ -174,7 +175,7 @@ public class MainWindow extends AppWindow {
 
     private void searchSetup() {
         // Hide search table on first go
-        searchScrollPane.setVisible(false);
+        setComponentVisible(false, searchScrollPane);
 
         // Set search table model
         searchTable.setModel(searchModel);
@@ -197,12 +198,12 @@ public class MainWindow extends AppWindow {
 
             // Display search results
             searchModel.replaceWith(songs);
-            searchScrollPane.setVisible(true);
+            setComponentVisible(true, searchScrollPane);
             searchSearchButton.setEnabled(true);
         });
 
         // Cancel listener
-        searchCancelButton.addActionListener(e -> searchScrollPane.setVisible(false));
+        searchCancelButton.addActionListener(e -> setComponentVisible(false, searchScrollPane));
 
         // Music selection listener
         searchTable.addMouseListener(new MouseAdapter() {
@@ -233,7 +234,7 @@ public class MainWindow extends AppWindow {
 
     private void newPlaylistSetup() {
         // Hide playlist editing on first go
-        playlistEditPanel.setVisible(false);
+        setComponentVisible(false, playlistModifyPanel);
 
         // Table models
         playlistAddTable.setModel(playlistAddModel);
@@ -249,12 +250,12 @@ public class MainWindow extends AppWindow {
 
             // Exists?
             playlistAddModel.clear();
-            if (success) playlistAddedModel.clear();
+            if (!success) playlistAddedModel.clear();
             else {
                 say("Error al crear la playlist", "La playlist indicada ya existe.");
                 playlistAddedModel.replaceWith(Controller.INSTANCE.getSongsPlaylist(name));
             }
-            playlistEditPanel.setVisible(true);
+            setComponentVisible(true, playlistModifyPanel);
         });
 
         // Search listener
@@ -371,6 +372,13 @@ public class MainWindow extends AppWindow {
 
         // Switch track
         Controller.INSTANCE.switchTrack(model.getSongAt(current));
+    }
+
+    private void setComponentVisible(boolean visible, Component component) {
+        if (component instanceof Container)
+            for (Component c : ((Container) component).getComponents())
+                setComponentVisible(visible, c);
+        component.setVisible(visible);
     }
 
     {

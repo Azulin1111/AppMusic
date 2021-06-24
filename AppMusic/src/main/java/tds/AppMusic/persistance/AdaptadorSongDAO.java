@@ -16,7 +16,7 @@ import java.util.List;
 
 public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     INSTANCE;
-    private static final ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+    private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
@@ -34,11 +34,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     public void storeSong(Song song) {
         Entidad eSong;
         // Si ya está registrado, no se registra de nuevo
-        try {
-            sp.recuperarEntidad(song.getCode());
-            return;
-        } catch(NullPointerException ignored) { }
-
+        if (SP.recuperarEntidad(song.getCode()) != null) return;
 
         // Crear entidad Song
         eSong = new Entidad();
@@ -54,7 +50,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
         ));
 
         // Registrar entidad Song
-        eSong = sp.registrarEntidad(eSong);
+        eSong = SP.registrarEntidad(eSong);
         // La base de datos da un identificador único
         // Se usa el que genera el servicio de persistencia
         song.setCode(eSong.getId());
@@ -62,30 +58,32 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
     @Override
     public void deleteSong(Song song){
-        Entidad eSong = sp.recuperarEntidad(song.getCode());
+        Entidad eSong = SP.recuperarEntidad(song.getCode());
 
         // Se borra la canción
-        sp.borrarEntidad(eSong);
+        SP.borrarEntidad(eSong);
     }
 
     @Override
     public void setSong(Song song){
-        Entidad eSong = sp.recuperarEntidad(song.getCode());
+        Entidad eSong = SP.recuperarEntidad(song.getCode());
 
-        sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_NAME);
-        sp.anadirPropiedadEntidad(eSong, TYPE_SONG_NAME, song.getName());
+        SP.eliminarPropiedadEntidad(eSong, TYPE_SONG_NAME);
+        SP.anadirPropiedadEntidad(eSong, TYPE_SONG_NAME, song.getName());
 
-        sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_GENRE);
-        sp.anadirPropiedadEntidad(eSong, TYPE_SONG_GENRE, song.getGenre().name());
+        SP.eliminarPropiedadEntidad(eSong, TYPE_SONG_GENRE);
+        SP.anadirPropiedadEntidad(eSong, TYPE_SONG_GENRE, song.getGenre().name());
 
-        sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_PATH);
-        sp.anadirPropiedadEntidad(eSong, TYPE_SONG_PATH, song.getPath().toString());
+        SP.eliminarPropiedadEntidad(eSong, TYPE_SONG_PATH);
+        SP.anadirPropiedadEntidad(eSong, TYPE_SONG_PATH, song.getPath().toString());
 
-        sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_SINGER);
-        sp.anadirPropiedadEntidad(eSong, TYPE_SONG_SINGER, song.getSinger());
+        SP.eliminarPropiedadEntidad(eSong, TYPE_SONG_SINGER);
+        SP.anadirPropiedadEntidad(eSong, TYPE_SONG_SINGER, song.getSinger());
 
-        sp.eliminarPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT);
-        sp.anadirPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT, Integer.toString(song.getPlayCount()));
+        SP.eliminarPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT);
+        SP.anadirPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT, Integer.toString(song.getPlayCount()));
+
+        SP.modificarEntidad(eSong);
     }
 
     @Override
@@ -103,18 +101,18 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
         int playCount;
 
         // Recuperar entidad
-        eSong = sp.recuperarEntidad(code);
+        eSong = SP.recuperarEntidad(code);
 
         // Recuperar propiedades que no son objetos
-        name = sp.recuperarPropiedadEntidad(eSong, TYPE_SONG_NAME);
-        genre = Genre.valueOf(sp.recuperarPropiedadEntidad(eSong, TYPE_SONG_GENRE));
+        name = SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_NAME);
+        genre = Genre.valueOf(SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_GENRE));
         try {
-            path = new URI(sp.recuperarPropiedadEntidad(eSong, TYPE_SONG_PATH));
+            path = new URI(SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_PATH));
         } catch (URISyntaxException e) {
             path = null;
         }
-        singer = sp.recuperarPropiedadEntidad(eSong, TYPE_SONG_SINGER);
-        playCount = Integer.parseInt(sp.recuperarPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT));
+        singer = SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_SINGER);
+        playCount = Integer.parseInt(SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_PLAYCOUNT));
 
 
         Song song = new Song(name, singer, genre, path, playCount);
@@ -128,7 +126,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
     @Override
     public List<Song> getAllSongs(){
-        List<Entidad> eSongs = sp.recuperarEntidades(TYPE_SONG);
+        List<Entidad> eSongs = SP.recuperarEntidades(TYPE_SONG);
         List<Song> songs = new LinkedList<>();
 
         for (Entidad eSong : eSongs) {

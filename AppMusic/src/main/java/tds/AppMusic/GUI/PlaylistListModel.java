@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PlaylistListModel implements ListModel<Playlist> {
+public class PlaylistListModel implements ListModel<Playlist>{
 
     private final List<Playlist> playlists = new LinkedList<>();
     private final List<ListDataListener> listeners = new LinkedList<>();

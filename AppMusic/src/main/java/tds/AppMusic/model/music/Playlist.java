@@ -96,4 +96,8 @@ public class Playlist {
         this.songs.addAll(songs);
     }
 
+    @Override
+    public String toString() {
+        return name + " (" + songs.size() + " songs)";
+    }
 }

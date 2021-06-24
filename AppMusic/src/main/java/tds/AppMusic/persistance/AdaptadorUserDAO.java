@@ -15,7 +15,7 @@ import java.util.*;
 
 public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     INSTANCE;
-    private static final ServicioPersistencia sp = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+    private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
@@ -37,10 +37,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     public void storeUser(User user) {
         Entidad eUser;
         // Si ya está registrado, no se registra de nuevo
-        try {
-            sp.recuperarEntidad(user.getCode());
-            return;
-        } catch(NullPointerException ignored) { }
+        if (SP.recuperarEntidad(user.getCode()) != null) return;
 
         // Registrar primero los atributos que son objetos
         AdaptadorPlaylistDAO adapterPlaylist = AdaptadorPlaylistDAO.INSTANCE;
@@ -68,7 +65,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         ));
 
         // Registrar entidad User
-        eUser = sp.registrarEntidad(eUser);
+        eUser = SP.registrarEntidad(eUser);
         // La base de datos da un identificador único
         // Se usa el que genera el servicio de persistencia
         user.setCode(eUser.getId());
@@ -81,51 +78,53 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
      */
     public void deleteUser(User user) {
         // Se borran las playlists del usuario y la de recientes
-        Entidad eUser = sp.recuperarEntidad(user.getCode());
+        Entidad eUser = SP.recuperarEntidad(user.getCode());
 
         List<Playlist> playlists = user.getPlaylists();
         Playlist recents = user.getRecentPlaylist();
 
         Entidad ePlaylist;
         for (Playlist p : playlists){
-            ePlaylist = sp.recuperarEntidad(p.getCode());
-            sp.borrarEntidad(ePlaylist);
+            ePlaylist = SP.recuperarEntidad(p.getCode());
+            SP.borrarEntidad(ePlaylist);
         }
 
-        ePlaylist = sp.recuperarEntidad(recents.getCode());
-        sp.borrarEntidad(ePlaylist);
+        ePlaylist = SP.recuperarEntidad(recents.getCode());
+        SP.borrarEntidad(ePlaylist);
 
         // Se borra el usuario
-        sp.borrarEntidad(eUser);
+        SP.borrarEntidad(eUser);
 
     }
 
     public void setUser(User user) {
-        Entidad eUser = sp.recuperarEntidad(user.getCode());
+        Entidad eUser = SP.recuperarEntidad(user.getCode());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_NAME);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_NAME, user.getName());
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_NAME);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_NAME, user.getName());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_USERNAME, user.getNickname());
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_USERNAME, user.getNickname());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_PREMIUM);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_PREMIUM, Boolean.toString(user.isPremium()));
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PREMIUM);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PREMIUM, Boolean.toString(user.isPremium()));
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_PASSWORD, user.getPassword());
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PASSWORD, user.getPassword());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_EMAIL, user.getEmail());
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_EMAIL, user.getEmail());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY, user.getBirthday().toString());
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY, user.getBirthday().toString());
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS, getCodesFromPlaylists(user.getPlaylists()));
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS, getCodesFromPlaylists(user.getPlaylists()));
 
-        sp.eliminarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS);
-        sp.anadirPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS, Integer.toString(user.getCodeRecentSongs()));
+        SP.eliminarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS);
+        SP.anadirPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS, Integer.toString(user.getCodeRecentSongs()));
+
+        SP.modificarEntidad(eUser);
     }
 
     public User getUser(int code) {
@@ -145,15 +144,15 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         Playlist recentSongs;
 
         // Recuperar entidad
-        eUser = sp.recuperarEntidad(code);
+        eUser = SP.recuperarEntidad(code);
 
         // Recuperar propiedades que no son objetos
-        name = sp.recuperarPropiedadEntidad(eUser, TYPE_USER_NAME);
-        nickname = sp.recuperarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
-        premium = Boolean.parseBoolean(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_PREMIUM));
-        password = sp.recuperarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
-        email = sp.recuperarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
-        birthday = parse(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY));
+        name = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_NAME);
+        nickname = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
+        premium = Boolean.parseBoolean(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PREMIUM));
+        password = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
+        email = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
+        birthday = parse(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY));
 
         User user = new User(name, nickname, premium, password, email, birthday);
         user.setCode(code);
@@ -162,11 +161,11 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         PoolDAO.INSTANCE.addObject(code, user);
 
         // Recuperar propiedades que son objetos
-        playlists = getPlaylistsFromCodes(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS));
+        playlists = getPlaylistsFromCodes(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS));
         for (Playlist p : playlists)
             user.addPlaylist(p);
 
-        recentSongs = AdaptadorPlaylistDAO.INSTANCE.getPlaylist(Integer.parseInt(sp.recuperarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS)));
+        recentSongs = AdaptadorPlaylistDAO.INSTANCE.getPlaylist(Integer.parseInt(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS)));
         if (recentSongs != null) {
             List<Song> recSongs = recentSongs.getSongs();
             for(Song s : recSongs)
@@ -189,7 +188,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     }
 
     public List<User> getAllUsers(){
-        List<Entidad> eUsers = sp.recuperarEntidades(TYPE_USER);
+        List<Entidad> eUsers = SP.recuperarEntidades(TYPE_USER);
         List<User> users = new LinkedList<>();
 
         for (Entidad eUser : eUsers) {

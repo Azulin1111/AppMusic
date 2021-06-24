@@ -25,8 +25,12 @@ public enum Controller { //TODO whole class
         IAdaptadorPlaylistDAO pdao = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
         boolean exists = currentUser.hasPlaylist(name);
 
-        if (exists) pdao.setPlaylist(currentUser.updatePlaylist(name, songs));
-        else pdao.storePlaylist(currentUser.createPlaylist(name, songs));
+        if (exists) {
+            pdao.setPlaylist(currentUser.updatePlaylist(name, songs));
+        } else {
+            pdao.storePlaylist(currentUser.createPlaylist(name, songs));
+            FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO().setUser(currentUser);
+        }
 
         return exists;
     }
@@ -116,6 +120,10 @@ public enum Controller { //TODO whole class
                 .filter(u -> u.compareNickname(username) && u.comparePassword(password))
                 .findAny();
         login.ifPresent(user -> currentUser = user);
+
+        if (login.isPresent()) {
+            // TODO set up user
+        }
         return login.isPresent();
     }
 
@@ -131,7 +139,8 @@ public enum Controller { //TODO whole class
      */
     public boolean signup(String username, String password, String name, String surnames, String email, Date birthday) {
         IAdaptadorUserDAO udao = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
-        if (udao.getAllUsers().stream().anyMatch(u -> u.getNickname().equals(username))) return false;
+        if (udao.getAllUsers().stream().anyMatch(u -> u.getNickname().equals(username)))
+            return false;
         udao.storeUser(new User(name, username, false, password, email, birthday));
         return true;
     }

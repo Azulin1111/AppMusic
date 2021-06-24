@@ -5,6 +5,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.toedter.calendar.JDateChooser;
 import tds.AppMusic.app.Controller;
+import tds.AppMusic.model.users.User;
+import tds.AppMusic.persistance.DAOFactories;
+import tds.AppMusic.persistance.FactoryDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,7 +99,6 @@ public class SignupWindow extends AppWindow {
         }
 
         // Success, nothing else to do
-        // TODO
         noErrors();
         say("Success", "Success.");
         dispose();

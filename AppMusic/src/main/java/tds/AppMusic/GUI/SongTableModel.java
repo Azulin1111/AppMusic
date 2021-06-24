@@ -57,7 +57,7 @@ public class SongTableModel implements TableModel {
 
     public void replaceWith(Collection<Song> songs) {
         clear();
-        addAll(songs);
+        if (songs != null) addAll(songs);
     }
 
     public Song getSongAt(int rowIndex) {

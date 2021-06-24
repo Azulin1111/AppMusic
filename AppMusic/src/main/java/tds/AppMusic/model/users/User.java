@@ -242,6 +242,7 @@ public class User {
         Playlist newPlayList = new Playlist(name);
         for (Song s : songs) newPlayList.addSong(s);
         playlists.add(newPlayList);
+
         return newPlayList;
     }
 

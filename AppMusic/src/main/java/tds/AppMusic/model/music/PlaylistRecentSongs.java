@@ -26,7 +26,7 @@ public class PlaylistRecentSongs extends Playlist {
     @Override
     public boolean addSong(Song song) {
         songs.add(0, song);
-        if(songs.size() == 11) songs.remove(10);
+        while (songs.size() > 10) songs.remove(songs.size() - 1);
         return true;
     }
 }

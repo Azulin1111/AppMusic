@@ -70,7 +70,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO{
 
         // Registrar entidad User
         eUser = sp.registrarEntidad(eUser);
-        // La base de datos es un identificador único
+        // La base de datos da un identificador único
         // Se usa el que genera el servicio de persistencia
         user.setCode(eUser.getId());
     }

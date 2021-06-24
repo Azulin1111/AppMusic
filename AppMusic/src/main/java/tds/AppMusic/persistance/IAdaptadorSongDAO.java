@@ -13,7 +13,7 @@ public interface IAdaptadorSongDAO {
 
     void setSong(Song song);
 
-    User getSong(int code);
+    Song getSong(int code);
 
     List<Song> getAllSongs();
 

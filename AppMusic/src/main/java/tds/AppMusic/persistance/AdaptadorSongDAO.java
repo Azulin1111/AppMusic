@@ -18,7 +18,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO{
     public void setSong(Song song){};
 
     @Override
-    public User getSong(int code){return null;};
+    public Song getSong(int code){return null;};
 
     @Override
     public List<Song> getAllSongs(){return null;};

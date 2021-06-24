@@ -113,7 +113,7 @@ public enum Controller { //TODO whole class
     public boolean login(String username, String password) {
         IAdaptadorUserDAO udao = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
         Optional<User> login = udao.getAllUsers().stream()
-                .filter(u -> u.getNickname().equals(username) && u.getPassword().equals(password))
+                .filter(u -> u.compareNickname(username) && u.comparePassword(password))
                 .findAny();
         login.ifPresent(user -> currentUser = user);
         return login.isPresent();

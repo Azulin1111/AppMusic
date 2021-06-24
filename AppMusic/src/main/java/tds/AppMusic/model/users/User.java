@@ -304,6 +304,14 @@ public class User {
         return createDiscount(typeDiscount).calcDescuento();
     }
 
+    public boolean compareNickname(String nickname){
+        return nickname.equals(this.nickname);
+    }
+
+    public boolean comparePassword(String password){
+        return password.equals(this.password);
+    }
+
 
     @Override
     public boolean equals(Object o) {

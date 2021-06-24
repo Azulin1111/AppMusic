@@ -86,7 +86,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         return aux.trim();
     }
 
-    private List<Song> getSongsFromCode(String ventas) {
+    private List<Song> getSongsFromCodes(String songs) {
 
         List<Venta> listaVentas = new LinkedList<Venta>();
         StringTokenizer strTok = new StringTokenizer(ventas, " ");

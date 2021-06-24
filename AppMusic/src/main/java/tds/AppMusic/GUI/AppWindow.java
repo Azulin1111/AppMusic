@@ -6,6 +6,7 @@ import java.awt.*;
 public abstract class AppWindow extends JFrame {
 
     protected static final Color ERROR_COLOR = Color.RED;
+    protected static final Color SUCCESS_COLOR = Color.GREEN;
 
     protected void say(String windowTitle, String windowText) {
         JOptionPane.showMessageDialog(this, windowText, windowTitle, JOptionPane.ERROR_MESSAGE);

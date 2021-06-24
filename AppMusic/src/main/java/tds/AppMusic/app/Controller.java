@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 
 public enum Controller { //TODO whole class
     INSTANCE;
-    private PersistenceManager persistenceManager = new PersistenceManager();
     private User currentUser;
 
     /**

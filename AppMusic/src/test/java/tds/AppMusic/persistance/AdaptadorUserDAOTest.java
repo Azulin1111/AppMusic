@@ -190,7 +190,7 @@ public class AdaptadorUserDAOTest {
     public void deleteUser1() {
         // Assert that deleting a user deletes the associated playlists
         DAO.deleteUser(USER);
-        -assertEquals(0, PERSISTENCIA.recuperarEntidades().size());
+        assertEquals(0, PERSISTENCIA.recuperarEntidades().size());
     }
 
     @Test

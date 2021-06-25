@@ -86,18 +86,24 @@
       <systemPath>${project.basedir}/lib/ProyectoComponenteCanciones.jar</systemPath>
     </dependency>
 
-      <dependency>
-          <groupId>org.glassfish.jaxb</groupId>
-          <artifactId>jaxb-runtime</artifactId>
-          <version>2.3.1</version>
-      </dependency>
+    <dependency>
+      <groupId>umu.tds</groupId>
+      <artifactId>pulsador</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/pulsador.jar</systemPath>
+    </dependency>
 
-      <dependency>
-          <groupId>org.openjfx</groupId>
-          <artifactId>javafx-media</artifactId>
-          <version>11-ea+25</version>
-      </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.1</version>
+    </dependency>
 
-
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-media</artifactId>
+      <version>11-ea+25</version>
+    </dependency>
   </dependencies>
 </project>

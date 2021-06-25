@@ -3,6 +3,7 @@ package tds.AppMusic.model.music;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Representa una playlist del sistema, creada por un usuario.
@@ -99,5 +100,20 @@ public class Playlist {
     @Override
     public String toString() {
         return name + " (" + songs.size() + " songs)";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playlist playlist = (Playlist) o;
+        return code == playlist.code &&
+                Objects.equals(name, playlist.name) &&
+                Objects.equals(songs, playlist.songs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, songs);
     }
 }

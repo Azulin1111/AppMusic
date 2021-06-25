@@ -2,7 +2,6 @@ package tds.AppMusic.persistance;
 
 import beans.Entidad;
 import beans.Propiedad;
-import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Song;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -42,7 +41,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
         eSong.setPropiedades(new ArrayList<>(
                 Arrays.asList(
                         new Propiedad(TYPE_SONG_NAME, song.getName()),
-                        new Propiedad(TYPE_SONG_GENRE, song.getGenre().name()),
+                        new Propiedad(TYPE_SONG_GENRE, song.getGenre()),
                         new Propiedad(TYPE_SONG_PATH, song.getPath().toString()),
                         new Propiedad(TYPE_SONG_SINGER, song.getSinger()),
                         new Propiedad(TYPE_SONG_PLAYCOUNT, Integer.toString(song.getPlayCount()))
@@ -76,7 +75,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
                     p.setValor(song.getName());
                     break;
                 case TYPE_SONG_GENRE:
-                    p.setValor(song.getGenre().name());
+                    p.setValor(song.getGenre());
                     break;
                 case TYPE_SONG_PATH:
                     p.setValor(song.getPath().toString());
@@ -103,7 +102,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
         // Si no está en el pool, se recupera de la base de datos
         Entidad eSong;
         String name;
-        Genre genre;
+        String genre;
         URI path;
         String singer;
         int playCount;
@@ -114,7 +113,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
         // Recuperar propiedades que no son objetos
         name = SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_NAME);
-        genre = Genre.valueOf(SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_GENRE));
+        genre = SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_GENRE);
         try {
             path = new URI(SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_PATH));
         } catch (URISyntaxException e) {

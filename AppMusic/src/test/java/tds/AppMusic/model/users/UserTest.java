@@ -3,7 +3,6 @@ package tds.AppMusic.model.users;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
@@ -31,18 +30,18 @@ public class UserTest {
 
     @BeforeClass
     public static void beforeAll() {
-        s1 = new Song("t1", "Singer", Genre.POP, null, 1);
-        s2 = new Song("t2", "Singer", Genre.POP, null, 2);
-        s3 = new Song("t3", "Singer", Genre.POP, null, 3);
-        s4 = new Song("t4", "Singer", Genre.POP, null, 4);
-        s5 = new Song("t5", "Singer", Genre.POP, null, 5);
-        s6 = new Song("t6", "Singer", Genre.POP, null, 6);
-        s7 = new Song("t7", "Singer", Genre.POP, null, 7);
-        s8 = new Song("t8", "Singer", Genre.POP, null, 8);
-        s9 = new Song("t9", "Singer", Genre.POP, null, 9);
-        s10 = new Song("t10", "Singer", Genre.POP, null, 10);
-        s11 = new Song("t11", "Singer", Genre.POP, null, 11);
-        s12 = new Song("t12", "Singer", Genre.POP, null, 12);
+        s1 = new Song("t1", "Singer", "Genre", null, 1);
+        s2 = new Song("t2", "Singer", "Genre", null, 2);
+        s3 = new Song("t3", "Singer", "Genre", null, 3);
+        s4 = new Song("t4", "Singer", "Genre", null, 4);
+        s5 = new Song("t5", "Singer", "Genre", null, 5);
+        s6 = new Song("t6", "Singer", "Genre", null, 6);
+        s7 = new Song("t7", "Singer", "Genre", null, 7);
+        s8 = new Song("t8", "Singer", "Genre", null, 8);
+        s9 = new Song("t9", "Singer", "Genre", null, 9);
+        s10 = new Song("t10", "Singer", "Genre", null, 10);
+        s11 = new Song("t11", "Singer", "Genre", null, 11);
+        s12 = new Song("t12", "Singer", "Genre", null, 12);
     }
 
     @Before

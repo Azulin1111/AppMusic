@@ -80,5 +80,14 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: umu.tds:CargadorCanciones:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/CargadorCanciones.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

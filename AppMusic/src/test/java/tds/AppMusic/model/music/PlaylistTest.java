@@ -24,13 +24,13 @@ public class PlaylistTest {
     @Test
     public void SongsTest() {
         // Assert that inserting and retrieving a song works properly
-        Song expected = new Song("Test name", "Singer", Genre.POP, null);
+        Song expected = new Song("Test name", "Singer", "Genre", null);
         playlist.addSong(expected);
         Song result = playlist.getSongs().get(0);
         assertSame(expected, result);
 
         // Assert that playlist size increases correctly
-        playlist.addSong(new Song("Test song 2", "Singer",Genre.POP, null));
+        playlist.addSong(new Song("Test song 2", "Singer", "Genre", null));
         assertEquals(2, playlist.getSongs().size());
     }
 }

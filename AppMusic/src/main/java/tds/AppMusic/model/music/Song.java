@@ -18,7 +18,7 @@ public class Song {
     /**
      * El género de la canción.
      */
-    private final Genre genre;
+    private final String genre;
     /**
      * La ruta al fichero que contiene la canción.
      */
@@ -43,7 +43,7 @@ public class Song {
      * @param genre El género de la canción.
      * @param path La ruta al fichero de la canción.
      */
-    public Song(String name, String singer, Genre genre, URI path) {
+    public Song(String name, String singer, String genre, URI path) {
         this(name, singer, genre, path, 0);
     }
 
@@ -55,7 +55,7 @@ public class Song {
      * @param path La ruta al fichero de la canción.
      * @param playCount El número de reproducciones de la canción.
      */
-    public Song(String name, String singer, Genre genre, URI path, int playCount) {
+    public Song(String name, String singer, String genre, URI path, int playCount) {
         this.name = name;
         this.genre = genre;
         this.singer = singer;
@@ -76,7 +76,7 @@ public class Song {
      * Devuelve el género de la canción.
      * @return El género de la canción.
      */
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 

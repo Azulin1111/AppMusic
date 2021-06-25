@@ -11,6 +11,7 @@ import tds.driver.ServicioPersistencia;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 
 public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
@@ -30,9 +31,6 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     private static final String TYPE_USER_PREMIUM = "Premium";
     private static final String TYPE_USER_PLAYLISTS = "Playlists";
     private static final String TYPE_USER_RECENTSONGS = "Recents";
-
-    private static final DateFormat formatter = new SimpleDateFormat();
-
 
     public void storeUser(User user) {
         Entidad eUser;
@@ -181,15 +179,11 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     }
 
     private String parse(Date d) {
-        return formatter.format(d);
+        return d.toInstant().toString();
     }
 
     private Date parse(String s) {
-        try {
-            return formatter.parse(s);
-        } catch (ParseException e) {
-            return null;
-        }
+        return Date.from(Instant.parse(s));
     }
 
     public List<User> getAllUsers(){

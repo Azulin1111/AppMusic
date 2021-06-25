@@ -2,6 +2,8 @@ package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
+import java.time.Instant;
+
 public class YoungDiscount implements Discount {
 
     /**
@@ -11,5 +13,10 @@ public class YoungDiscount implements Discount {
     @Override
     public double calcDescuento() {
         return User.PREMIUM_PRIZE * 0.85;
+    }
+
+    @Override
+    public boolean isApplicable(User user) {
+        return false; // TODO
     }
 }

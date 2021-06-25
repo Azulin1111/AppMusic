@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class UserCatalogTest {
      @Test
-     public void getFirstUser(){
+     public void getFirstUser() {
           Date d = Date.from(Instant.now());
           UserRepository.INSTANCE.addUser("Pepe", "Pepito123", false, "123456",
                    "pepito@gmail.com", d);

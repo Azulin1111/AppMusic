@@ -78,6 +78,14 @@
       <systemPath>${project.basedir}/lib/jcalendar-1.4.jar</systemPath>
     </dependency>
 
+    <dependency>
+      <groupId>umu.tds</groupId>
+      <artifactId>ComponenteCanciones</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/ProyectoComponenteCanciones.jar</systemPath>
+    </dependency>
+
       <dependency>
           <groupId>org.glassfish.jaxb</groupId>
           <artifactId>jaxb-runtime</artifactId>

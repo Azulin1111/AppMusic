@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public enum Controller { //TODO whole class
+public enum Controller {
     INSTANCE;
     private User currentUser;
 

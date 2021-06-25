@@ -16,6 +16,21 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -62,6 +77,18 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/lib/jcalendar-1.4.jar</systemPath>
     </dependency>
+
+      <dependency>
+          <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+          <version>2.3.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-media</artifactId>
+          <version>11-ea+25</version>
+      </dependency>
 
 
   </dependencies>

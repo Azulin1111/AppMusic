@@ -63,15 +63,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: umu.tds:ComponenteCanciones:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/ProyectoComponenteCanciones.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="Maven: umu.tds:pulsador:1.0">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/pulsador.jar!/" />
@@ -80,18 +71,14 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.7" level="project" />
-    <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.8" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:11-ea+25" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:11-ea+25" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:11-ea+25" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:11-ea+25" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:11-ea+25" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:11-ea+25" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.intellij:forms_rt:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/forms_rt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

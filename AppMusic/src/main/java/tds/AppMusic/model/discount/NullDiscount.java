@@ -8,4 +8,9 @@ public class NullDiscount implements Discount{ // Patron Null Object
     public double calcDescuento() {
         return User.PREMIUM_PRIZE;
     }
+
+    @Override
+    public boolean isApplicable(User user) {
+        return true;
+    }
 }

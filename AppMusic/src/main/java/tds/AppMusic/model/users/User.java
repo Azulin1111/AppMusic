@@ -313,6 +313,9 @@ public class User {
         return password.equals(this.password);
     }
 
+    public void setCodeRecent(int code) {
+        recentSongs.setCode(code);
+    }
 
     @Override
     public boolean equals(Object o) {

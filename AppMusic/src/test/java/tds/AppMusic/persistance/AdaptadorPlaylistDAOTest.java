@@ -62,7 +62,6 @@ public class AdaptadorPlaylistDAOTest {
 
         // Assert that it has been stored correctly
         Entidad e = PERSISTENCIA.recuperarEntidad(code);
-        int c = user.getCodeRecentSongs();
         e.getPropiedades().forEach(p -> {
             switch (p.getNombre()) {
                 case TYPE_PLAYLIST_IS_RECENT:

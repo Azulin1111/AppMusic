@@ -23,11 +23,11 @@ public enum SongRepository {
         return Collections.unmodifiableList(SONGS);
     }
 
-    public void addSong(String name, String singer, Genre genre, URI path){
+    public void addSong(String name, String singer, String genre, URI path){
         addSong(name, singer, genre, path, 0);
     }
 
-    public void addSong(String name, String singer, Genre genre, URI path, int playCount) {
+    public void addSong(String name, String singer, String genre, URI path, int playCount) {
         Song newSong = new Song(name, singer, genre, path);
         SONGS.add(newSong);
         DAO.storeSong(newSong);

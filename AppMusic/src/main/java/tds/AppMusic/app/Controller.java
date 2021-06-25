@@ -1,6 +1,5 @@
 package tds.AppMusic.app;
 
-import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
@@ -64,7 +63,7 @@ public enum Controller {
      * @param genre Género de la canción.
      * @return Una lista con todas las canciones que pasan el filtro.
      */
-    public List<Song> getSongsFiltered(String title, String interprete, Genre genre) {
+    public List<Song> getSongsFiltered(String title, String interprete, String genre) {
         // TODO
         return null;
     }

@@ -4,7 +4,6 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import tds.AppMusic.app.Controller;
-import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
@@ -39,7 +38,7 @@ public class MainWindow extends AppWindow {
     private JPanel newPlaylistPanel;
     private JPanel recentPanel;
     private JPanel selectedPlaylistsPanel;
-    private JComboBox<Genre> searchGenreComboBox;
+    private JComboBox<String> searchGenreComboBox;
     private JTextField searchTitleTextField;
     private JTextField searchInterpreteTextField;
     private JPanel searchFiltersPanel;
@@ -60,7 +59,7 @@ public class MainWindow extends AppWindow {
     private JPanel playlistFiltersPanel;
     private JTextField playlistInterpreteTextField;
     private JTextField playlistTitleTextField;
-    private JComboBox<Genre> playlistGenreComboBox;
+    private JComboBox<String> playlistGenreComboBox;
     private JButton playlistAddButton;
     private JButton playlistRemoveButton;
     private JTable playlistAddTable;
@@ -193,7 +192,7 @@ public class MainWindow extends AppWindow {
             // Search songs
             String title = searchTitleTextField.getText().trim();
             String interprete = searchInterpreteTextField.getText().trim();
-            Genre genre = (Genre) searchGenreComboBox.getSelectedItem();
+            String genre = (String) searchGenreComboBox.getSelectedItem();
             java.util.List<Song> songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
 
             // Display search results
@@ -266,7 +265,7 @@ public class MainWindow extends AppWindow {
             // Search songs
             String title = playlistTitleTextField.getText().trim();
             String interprete = playlistInterpreteTextField.getText().trim();
-            Genre genre = (Genre) playlistGenreComboBox.getSelectedItem();
+            String genre = (String) playlistGenreComboBox.getSelectedItem();
             java.util.List<Song> songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
 
             // Display search results

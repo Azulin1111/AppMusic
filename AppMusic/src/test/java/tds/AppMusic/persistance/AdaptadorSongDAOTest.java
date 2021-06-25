@@ -5,8 +5,6 @@ import beans.Propiedad;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import tds.AppMusic.model.music.Genre;
-import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -28,7 +26,7 @@ public class AdaptadorSongDAOTest {
     private static final String TYPE_SONG_SINGER = "Singer";
     private static final String TYPE_SONG_PLAYCOUNT = "Playcount";
 
-    private static final Song SONG = new Song("song", "singer", Genre.CHIPTUNE, URI.create(""));
+    private static final Song SONG = new Song("song", "singer", "Genre", URI.create(""));
 
     @Before
     public void setUp() {
@@ -36,7 +34,7 @@ public class AdaptadorSongDAOTest {
         Entidad s = new Entidad();
         s.setPropiedades(Arrays.asList(
                 new Propiedad(TYPE_SONG_NAME, SONG.getName()),
-                new Propiedad(TYPE_SONG_GENRE, SONG.getGenre().name()),
+                new Propiedad(TYPE_SONG_GENRE, SONG.getGenre()),
                 new Propiedad(TYPE_SONG_PATH, SONG.getPath().toString()),
                 new Propiedad(TYPE_SONG_SINGER, SONG.getSinger()),
                 new Propiedad(TYPE_SONG_PLAYCOUNT, Integer.toString(SONG.getPlayCount()))
@@ -73,7 +71,7 @@ public class AdaptadorSongDAOTest {
                     assertEquals("song", p.getValor());
                     break;
                 case TYPE_SONG_GENRE:
-                    assertEquals(Genre.CHIPTUNE, Genre.valueOf(p.getValor()));
+                    assertEquals("Genre", p.getValor());
                     break;
                 case TYPE_SONG_PATH:
                     assertEquals(URI.create(""), URI.create(p.getValor()));

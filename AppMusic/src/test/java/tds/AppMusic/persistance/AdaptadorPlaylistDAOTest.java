@@ -5,7 +5,6 @@ import beans.Propiedad;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import tds.AppMusic.model.music.Genre;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.driver.FactoriaServicioPersistencia;
@@ -33,7 +32,7 @@ public class AdaptadorPlaylistDAOTest {
     private static final String TYPE_SONG_PLAYCOUNT = "Playcount";
     private static final String NAME = "Playlist";
 
-    private static final Song SONG = new Song("Song", "Singer", Genre.CHIPTUNE, URI.create(""));
+    private static final Song SONG = new Song("Song", "Singer", "Genre", URI.create(""));
     private static final Playlist PLAYLIST = new Playlist(NAME);
 
     private static final String ID_FORMAT = "[0-9]+";
@@ -53,7 +52,7 @@ public class AdaptadorPlaylistDAOTest {
         Entidad s = new Entidad();
         s.setPropiedades(Arrays.asList(
                 new Propiedad(TYPE_SONG_NAME, SONG.getName()),
-                new Propiedad(TYPE_SONG_GENRE, SONG.getGenre().name()),
+                new Propiedad(TYPE_SONG_GENRE, SONG.getGenre()),
                 new Propiedad(TYPE_SONG_PATH, SONG.getPath().toString()),
                 new Propiedad(TYPE_SONG_SINGER, SONG.getSinger()),
                 new Propiedad(TYPE_SONG_PLAYCOUNT, Integer.toString(SONG.getPlayCount()))

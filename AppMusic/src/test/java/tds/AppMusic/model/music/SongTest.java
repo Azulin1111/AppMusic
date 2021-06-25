@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SongTest {
 
     private static final String SONG_NAME = "Song name";
-    private static final Genre SONG_GENRE = Genre.DB;
+    private static final String SONG_GENRE = "Genre";
     private static final String SONG_SINGER = "Song singer";
     private static final URI SONG_PATH = null;
     private Song song;

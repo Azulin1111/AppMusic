@@ -27,7 +27,7 @@ public class UserCatalogTest {
           assertEquals(user.getPassword(), expected.getPassword());
           assertEquals(user.getEmail(), expected.getEmail());
           assertEquals(user.getNickname(), expected.getNickname());
-          assertTrue(user.isPremium() ^ expected.isPremium());
+          assertEquals(user.isPremium(), expected.isPremium());
      }
 
      @After

@@ -327,7 +327,9 @@ public class User {
                 Objects.equals(nickname, user.nickname) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(birthday, user.birthday) &&
-                Objects.equals(email, user.email);
+                Objects.equals(email, user.email) &&
+                Objects.equals(playlists, user.getPlaylists()) &&
+                Objects.equals(recentSongs, user.getRecentPlaylist());
     }
 
     @Override

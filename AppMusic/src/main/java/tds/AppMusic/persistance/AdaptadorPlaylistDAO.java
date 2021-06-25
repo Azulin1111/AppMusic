@@ -56,6 +56,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     public void deletePlaylist(Playlist playlist) {
         // No hay que borrar las canciones
         Entidad ePlaylist = SP.recuperarEntidad(playlist.getCode());
+        if(ePlaylist == null) return;
 
         // Se borra la playlist
         SP.borrarEntidad(ePlaylist);
@@ -65,6 +66,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     @Override
     public void setPlaylist(Playlist playlist) {
         Entidad ePlaylist = SP.recuperarEntidad(playlist.getCode());
+        if(ePlaylist == null) return;
 
         ePlaylist.getPropiedades().forEach(p -> {
             switch (p.getNombre()) {
@@ -97,6 +99,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
 
         // Recuperar entidad
         ePlaylist = SP.recuperarEntidad(code);
+        if(ePlaylist == null) return null;
 
         // Recuperar propiedades que no son objetos
         isRecent = Boolean.parseBoolean(SP.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_IS_RECENT));

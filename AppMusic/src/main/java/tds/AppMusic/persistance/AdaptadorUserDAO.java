@@ -77,6 +77,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     public void deleteUser(User user) {
         // Se borran las playlists del usuario y la de recientes
         Entidad eUser = SP.recuperarEntidad(user.getCode());
+        if(eUser == null) return;
 
         List<Playlist> playlists = user.getPlaylists();
         Playlist recents = user.getRecentPlaylist();
@@ -96,7 +97,24 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     }
 
     public void setUser(User user) {
+        // Se obtiene el usuario almacenado en memoria
         Entidad eUser = SP.recuperarEntidad(user.getCode());
+        if(eUser == null) return;
+
+        // Hay que obtener la lista de playlist, comparar las actuales con las nuevas y borrar o añadir playlists en función de esto.
+        IAdaptadorPlaylistDAO pdao = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
+        List<Playlist> oldPlaylists = getPlaylistsFromCodes(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS));
+        List<Playlist> newPlaylists = user.getPlaylists();
+
+        // Si hay una nueva playlist, hay que añadirla a memoria
+        for(Playlist newPlaylist : newPlaylists)
+            if(! oldPlaylists.contains(newPlaylist))
+                pdao.storePlaylist(newPlaylist);
+
+        // Si hay una playlist que ya no forma parte del usuario, hay que eliminarla de memoria
+        for(Playlist oldPlaylist : oldPlaylists)
+            if (! newPlaylists.contains(oldPlaylist))
+                pdao.deletePlaylist(oldPlaylist);
 
         eUser.getPropiedades().forEach(p -> {
                     switch (p.getNombre()) {
@@ -148,6 +166,8 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
 
         // Recuperar entidad
         eUser = SP.recuperarEntidad(code);
+        if (eUser == null)  // Si no existe, devuelve null
+            return null;
 
         // Recuperar propiedades que no son objetos
         name = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_NAME);

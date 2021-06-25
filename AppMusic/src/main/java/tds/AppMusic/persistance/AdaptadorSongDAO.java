@@ -59,6 +59,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     @Override
     public void deleteSong(Song song){
         Entidad eSong = SP.recuperarEntidad(song.getCode());
+        if(eSong == null) return;
 
         // Se borra la canción
         SP.borrarEntidad(eSong);
@@ -67,6 +68,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     @Override
     public void setSong(Song song){
         Entidad eSong = SP.recuperarEntidad(song.getCode());
+        if(eSong == null) return;
 
         eSong.getPropiedades().forEach(p -> {
             switch (p.getNombre()) {
@@ -108,6 +110,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
         // Recuperar entidad
         eSong = SP.recuperarEntidad(code);
+        if(eSong == null) return null;
 
         // Recuperar propiedades que no son objetos
         name = SP.recuperarPropiedadEntidad(eSong, TYPE_SONG_NAME);

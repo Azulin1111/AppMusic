@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 public class AdaptadorPlaylistDAOTest {
 
     private static final ServicioPersistencia PERSISTENCIA = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+    private static final IAdaptadorPlaylistDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
 
     private static final String TYPE_PLAYLIST = "Playlist";
     private static final String TYPE_PLAYLIST_IS_RECENT = "IsRecent";
@@ -51,14 +52,39 @@ public class AdaptadorPlaylistDAOTest {
     public void storePlaylist() {
         // Assert that the playlist is stored in memory
         int before = PERSISTENCIA.recuperarEntidades().size();
-    }
+        DAO.storePlaylist(PLAYLIST);
+        int after = PERSISTENCIA.recuperarEntidades().size();
+        assertEquals(before, after - 1);
 
-    @Test
-    public void deletePlaylist() {
+        // Assert that the playlistCode has been set
+        int code = PLAYLIST.getCode();
+        assertNotEquals(code, 0);
+
+        // Assert that it has been stored correctly
+        Entidad e = PERSISTENCIA.recuperarEntidad(code);
+        int c = user.getCodeRecentSongs();
+        e.getPropiedades().forEach(p -> {
+            switch (p.getNombre()) {
+                case TYPE_PLAYLIST_IS_RECENT:
+                    assertEquals(Boolean.valueOf(p.getValor()), false);
+                    break;
+                case TYPE_PLAYLIST_NAME:
+                    assertEquals(p.getValor(), NAME);
+                    break;
+                case TYPE_PLAYLIST_SONGS:
+                    assertEquals(p.getValor(), "");
+            }
+        });
     }
 
     @Test
     public void setPlaylist() {
+
+
+    }
+
+    @Test
+    public void deletePlaylist() {
     }
 
     @Test

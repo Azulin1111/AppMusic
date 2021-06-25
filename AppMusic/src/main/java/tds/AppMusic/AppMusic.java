@@ -11,7 +11,7 @@ public class AppMusic {
     public static void main(String[] args) {
         System.out.println("No functionality yet!");
 
-        clearDB();
+        //clearDB();
 
         LoginWindow lw = new LoginWindow();
         lw.pack();

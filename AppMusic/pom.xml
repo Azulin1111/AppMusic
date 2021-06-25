@@ -93,5 +93,13 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/lib/forms_rt.jar</systemPath>
     </dependency>
+
+    <dependency>
+      <groupId>umu.tds</groupId>
+      <artifactId>CargadorCanciones</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/CargadorCanciones.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>

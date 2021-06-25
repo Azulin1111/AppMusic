@@ -70,6 +70,15 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: umu.tds:pulsador:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/pulsador.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.1" level="project" />

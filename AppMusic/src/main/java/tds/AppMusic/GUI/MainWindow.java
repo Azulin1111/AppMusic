@@ -13,6 +13,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.URI;
 
 public class MainWindow extends AppWindow {
     private static final String CARD_SEARCH = "searchPanel";
@@ -102,6 +104,9 @@ public class MainWindow extends AppWindow {
 
     private final PlaylistListModel playlistModel = new PlaylistListModel();
 
+    private final GenreComboBoxModel genreCBModel = new GenreComboBoxModel();
+    private final GenreComboBoxModel genreCBModel2 = new GenreComboBoxModel();
+
     public MainWindow(String username) {
         super();
         $$$setupUI$$$();
@@ -118,11 +123,21 @@ public class MainWindow extends AppWindow {
         // Main button listeners
         searchButton.addActionListener(e -> {
             switchCards();
+
+            // Additional work: update genres
+            genreCBModel.updateGenres();
+
             cl.show(mainCardPanel, CARD_SEARCH);
+            pack();
         });
         newPlaylistButton.addActionListener(e -> {
             switchCards();
+
+            // Additional work: update genres
+            genreCBModel2.updateGenres();
+
             cl.show(mainCardPanel, CARD_NEWPL);
+            pack();
         });
         recentButton.addActionListener(e -> {
             switchCards();
@@ -131,6 +146,7 @@ public class MainWindow extends AppWindow {
             recentModel.replaceWith(Controller.INSTANCE.getSongsRecientes());
 
             cl.show(mainCardPanel, CARD_RECENT);
+            pack();
         });
         myPlaylistsButton.addActionListener(e -> {
             switchCards();
@@ -144,6 +160,7 @@ public class MainWindow extends AppWindow {
                 selectedModel.replaceWith(playlistList.getSelectedValue().getSongs());
 
             cl.show(mainCardPanel, CARD_PLAYLISTS);
+            pack();
         });
 
         // Specific card listeners
@@ -169,6 +186,7 @@ public class MainWindow extends AppWindow {
 
         // Sign out listener
         logoutButton.addActionListener(e -> {
+            Controller.INSTANCE.switchTrack(null);
             dispose();
 
             LoginWindow l2 = new LoginWindow();
@@ -197,9 +215,11 @@ public class MainWindow extends AppWindow {
         searchTable.setModel(searchModel);
         searchTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Set search combobox model
+        searchGenreComboBox.setModel(genreCBModel);
+
         // Search listener
         searchSearchButton.addActionListener(e -> {
-            // TODO SwingWorker?
             searchSearchButton.setEnabled(false);
 
             // Stop music
@@ -219,7 +239,9 @@ public class MainWindow extends AppWindow {
         });
 
         // Cancel listener
-        searchCancelButton.addActionListener(e -> setComponentVisible(false, searchScrollPane));
+        searchCancelButton.addActionListener(e -> {
+            setComponentVisible(false, searchScrollPane);
+        });
 
         // Music selection listener
         searchTable.addMouseListener(new MouseAdapter() {
@@ -249,6 +271,7 @@ public class MainWindow extends AppWindow {
     }
 
     private void newPlaylistSetup() {
+        // TODO song searcher doesn't work here. Investigate
         // Hide playlist editing on first go
         setComponentVisible(false, playlistModifyPanel);
 
@@ -257,6 +280,9 @@ public class MainWindow extends AppWindow {
         playlistAddTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         playlistAddedTable.setModel(playlistAddedModel);
         playlistAddedTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Combobox model
+        playlistGenreComboBox.setModel(genreCBModel2);
 
         // Creation listener
         playlistCreateButton.addActionListener(e -> {
@@ -272,11 +298,11 @@ public class MainWindow extends AppWindow {
                 playlistAddedModel.replaceWith(Controller.INSTANCE.getSongsPlaylist(name));
             }
             setComponentVisible(true, playlistModifyPanel);
+            pack();
         });
 
         // Search listener
         playlistSearchButton.addActionListener(e -> {
-            // TODO SwingWorker?
             playlistSearchButton.setEnabled(false);
 
             // Search songs
@@ -287,17 +313,21 @@ public class MainWindow extends AppWindow {
 
             // Display search results
             playlistAddModel.replaceWith(songs);
+            revalidate();
+            repaint();
             playlistSearchButton.setEnabled(true);
         });
 
         // Add/remove listeners
         playlistAddButton.addActionListener(e -> {
             if (playlistAddTable.getSelectedRow() == -1) return;
-            playlistAddedModel.add(playlistAddModel.getSongAt(playlistAddTable.getSelectedRow()));
+            Song song = playlistAddModel.getSongAt(playlistAddTable.getSelectedRow());
+            playlistAddedModel.add(song);
         });
         playlistRemoveButton.addActionListener(e -> {
             if (playlistAddedTable.getSelectedRow() == -1) return;
-            playlistAddedModel.remove(playlistAddedModel.getSongAt(playlistAddedTable.getSelectedRow()));
+            Song song = playlistAddedModel.getSongAt(playlistAddedTable.getSelectedRow());
+            playlistAddedModel.remove(song);
         });
 
         // Accept listener
@@ -310,6 +340,7 @@ public class MainWindow extends AppWindow {
     }
 
     private void recentSetup() {
+        // TODO Verify
         // Table setup
         recentTable.setModel(recentModel);
         recentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -342,6 +373,7 @@ public class MainWindow extends AppWindow {
     }
 
     private void myPlaylistsSetup() {
+        // TODO Verify
         // Table setup
         selectedTable.setModel(selectedModel);
         selectedTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -381,6 +413,8 @@ public class MainWindow extends AppWindow {
 
         // Change selection to the next one
         current = (current + step) % model.getRowCount();
+        while (current < 0) current += model.getRowCount();
+
         table.getSelectionModel().setSelectionInterval(current, current);
 
         // Update visibly
@@ -393,15 +427,17 @@ public class MainWindow extends AppWindow {
     private void setComponentVisible(boolean visible, Component component) {
         if (component instanceof Container)
             for (Component c : ((Container) component).getComponents())
-                setComponentVisible(visible, c);
+                setComponentVisibleRecursive(visible, c);
         component.setVisible(visible);
+        revalidate();
+        repaint();
     }
 
-    {
-// GUI initializer generated by IntelliJ IDEA GUI Designer
-// >>> IMPORTANT!! <<<
-// DO NOT EDIT OR ADD ANY CODE HERE!
-        $$$setupUI$$$();
+    private void setComponentVisibleRecursive(boolean visible, Component component) {
+        if (component instanceof Container)
+            for (Component c : ((Container) component).getComponents())
+                setComponentVisibleRecursive(visible, c);
+        component.setVisible(visible);
     }
 
 
@@ -512,6 +548,8 @@ public class MainWindow extends AppWindow {
         final Spacer spacer5 = new Spacer();
         searchControlsPanel.add(spacer5, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         searchScrollPane = new JScrollPane();
+        searchScrollPane.setPreferredSize(new Dimension(453, -1));
+        searchScrollPane.setRequestFocusEnabled(false);
         searchPanel.add(searchScrollPane, BorderLayout.CENTER);
         searchTable = new JTable();
         searchTable.setDoubleBuffered(false);

@@ -7,21 +7,19 @@ import tds.AppMusic.GUI.GenreComboBoxModel;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
-import tds.AppMusic.persistance.DAOFactories;
-import tds.AppMusic.persistance.FactoryDAO;
-import tds.AppMusic.persistance.IAdaptadorPlaylistDAO;
-import tds.AppMusic.persistance.IAdaptadorUserDAO;
 import tds.AppMusic.persistance.*;
+import umu.tds.ISongFinder;
+import umu.tds.ISongsListener;
+import umu.tds.LoaderSong;
+import umu.tds.SongsEvent;
 import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
 import java.net.URI;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public enum Controller {
+public enum Controller implements ISongsListener {
     INSTANCE;
 
     static {
@@ -30,6 +28,7 @@ public enum Controller {
 
     private static User currentUser;
     private static MediaPlayer player;
+    private static ISongFinder loader;
 
     /**
      * Crea una playlist, o actualiza una existente.
@@ -164,8 +163,19 @@ public enum Controller {
         return true;
     }
 
-    public void loadSongs(String fileXML){
-        loader.setFileSongs(fileXML);
+    public void loadSongs(URI fileXML) {
+        loader.setFileSongs(fileXML.getRawPath());
+    }
+
+    public void setLoader(ISongFinder loader) {
+        Controller.loader = loader;
+        ((LoaderSong)loader).addSongsListener(this);
+    }
+
+    public List<String> getGenres() {
+        Set<String> set = new HashSet<>();
+        FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO().getAllSongs().forEach(s -> set.add(s.getGenre()));
+        return set.stream().sorted().collect(Collectors.toList());
     }
 
     /**
@@ -174,14 +184,14 @@ public enum Controller {
      * @return Una lista de canciones que han sido cargadas.
      */
     private List<Song> convertCancionesToSongs(Canciones canciones){
-        List<Song> songs = new LinkedList<Song>();
+        List<Song> songs = new LinkedList<>();
 
         String nameSong;
         String singer;
         String genre;
         URI path;
         Song song;
-        for (Cancion cancion : canciones.getCancion()){
+        for (Cancion cancion : canciones.getCancion()) {
             nameSong = cancion.getTitulo();
             singer = cancion.getInterprete();
             genre = cancion.getEstilo();
@@ -191,5 +201,13 @@ public enum Controller {
         }
 
         return songs;
+    }
+
+    @Override
+    public void newSongs(SongsEvent songsEvent) {
+        Canciones c = songsEvent.getCanciones();
+        List<Song> songs = convertCancionesToSongs(c);
+        IAdaptadorSongDAO dao = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO();
+        songs.forEach(dao::storeSong);
     }
 }

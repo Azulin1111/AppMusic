@@ -1,6 +1,7 @@
 package tds.AppMusic.model.users;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.Instant;
@@ -9,6 +10,17 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 public class UserCatalogTest {
+
+     @Before
+     public void setUp() {
+          UserRepository.INSTANCE.getUsers().clear();
+     }
+
+     @After
+     public void tearDown(){
+          UserRepository.INSTANCE.getUsers().clear();
+     }
+
      @Test
      public void getFirstUser() {
           Date d = Date.from(Instant.now());
@@ -30,8 +42,4 @@ public class UserCatalogTest {
           assertEquals(user.isPremium(), expected.isPremium());
      }
 
-     @After
-     public void tearDown(){
-          UserRepository.INSTANCE.getUsers().clear();
-     }
 }

@@ -29,11 +29,6 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
         Entidad ePlaylist;
         if (SP.recuperarEntidad(playlist.getCode()) != null) return;
 
-        // Registrar primero los atributos que son objetos
-        AdaptadorSongDAO adaptadorSong = AdaptadorSongDAO.INSTANCE;
-        for (Song s : playlist.getSongs())
-            adaptadorSong.storeSong(s);
-
         // Crear entidad Playlist
         ePlaylist = new Entidad();
         ePlaylist.setNombre(TYPE_PLAYLIST);

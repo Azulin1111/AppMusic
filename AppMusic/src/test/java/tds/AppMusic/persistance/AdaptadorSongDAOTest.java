@@ -11,6 +11,7 @@ import tds.driver.ServicioPersistencia;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -41,9 +42,8 @@ public class AdaptadorSongDAOTest {
         ));
         s.setNombre(TYPE_SONG);
 
+        s = PERSISTENCIA.registrarEntidad(s);
         SONG.setCode(s.getId());
-
-        PERSISTENCIA.registrarEntidad(s);
     }
 
     @After
@@ -53,14 +53,15 @@ public class AdaptadorSongDAOTest {
 
     @Test
     public void storeSong() {
+        Song s = new Song("Name", "Singer", "Genre", URI.create(""));
         // Assert that the song is stored in memory
         int before = PERSISTENCIA.recuperarEntidades().size();
-        DAO.storeSong(SONG);
+        DAO.storeSong(s);
         int after = PERSISTENCIA.recuperarEntidades().size();
         assertEquals(before, after - 1);
 
         // Assert that the song code has been set
-        int code = SONG.getCode();
+        int code = s.getCode();
         assertNotEquals(code, 0);
 
         // Assert that it has been stored correctly
@@ -68,7 +69,7 @@ public class AdaptadorSongDAOTest {
         e.getPropiedades().forEach(p -> {
             switch (p.getNombre()) {
                 case TYPE_SONG_NAME:
-                    assertEquals("song", p.getValor());
+                    assertEquals("Name", p.getValor());
                     break;
                 case TYPE_SONG_GENRE:
                     assertEquals("Genre", p.getValor());
@@ -77,7 +78,7 @@ public class AdaptadorSongDAOTest {
                     assertEquals(URI.create(""), URI.create(p.getValor()));
                     break;
                 case TYPE_SONG_SINGER:
-                    assertEquals("singer", p.getValor());
+                    assertEquals("Singer", p.getValor());
                     break;
                 case TYPE_SONG_PLAYCOUNT:
                     assertSame(0, Integer.parseInt(p.getValor()));

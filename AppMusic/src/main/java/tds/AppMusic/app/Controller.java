@@ -110,9 +110,12 @@ public enum Controller implements ISongsListener {
      * @param song La nueva canción a reproducir, o {@code null}.
      */
     public void switchTrack(Song song) {
-        Media s = new Media(song.getPath().toString());
-        player = new MediaPlayer(s);
-        player.play();
+        if (song != null) {
+            Media s = new Media(song.getPath().toString());
+            if (player != null) player.stop();
+            player = new MediaPlayer(s);
+            player.play();
+        } else if (player != null) player.stop();
     }
 
     /**

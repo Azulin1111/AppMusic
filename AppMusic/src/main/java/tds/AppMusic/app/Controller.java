@@ -10,8 +10,13 @@ import tds.AppMusic.persistance.DAOFactories;
 import tds.AppMusic.persistance.FactoryDAO;
 import tds.AppMusic.persistance.IAdaptadorPlaylistDAO;
 import tds.AppMusic.persistance.IAdaptadorUserDAO;
+import tds.AppMusic.persistance.*;
+import umu.tds.componente.Cancion;
+import umu.tds.componente.Canciones;
 
+import java.net.URI;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -152,5 +157,34 @@ public enum Controller {
             return false;
         udao.storeUser(new User(name, username, false, password, email, birthday));
         return true;
+    }
+
+    public void loadSongs(String fileXML){
+        loader.setFileSongs(fileXML);
+    }
+
+    /**
+     * Convierte un objeto tipo Canciones a una lista de Songs.
+     * @param canciones Canciones en formato de CargadorCanciones.
+     * @return Una lista de canciones que han sido cargadas.
+     */
+    private List<Song> convertCancionesToSongs(Canciones canciones){
+        List<Song> songs = new LinkedList<Song>();
+
+        String nameSong;
+        String singer;
+        String genre;
+        URI path;
+        Song song;
+        for (Cancion cancion : canciones.getCancion()){
+            nameSong = cancion.getTitulo();
+            singer = cancion.getInterprete();
+            genre = cancion.getEstilo();
+            path = URI.create(cancion.getURL());
+            song = new Song(nameSong, singer, genre, path);
+            songs.add(song);
+        }
+
+        return songs;
     }
 }

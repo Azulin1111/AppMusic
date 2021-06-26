@@ -3,6 +3,7 @@ package tds.AppMusic.app;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import tds.AppMusic.GUI.GenreComboBoxModel;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
@@ -80,8 +81,12 @@ public enum Controller {
      * @return Una lista con todas las canciones que pasan el filtro.
      */
     public List<Song> getSongsFiltered(String title, String interprete, String genre) {
-        // TODO
-        return null;
+        List<Song> songs = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO().getAllSongs();
+        return songs.stream()
+                .filter(s -> s.getName().contains(title))
+                .filter(s -> s.getSinger().contains(interprete))
+                .filter(s -> genre.equals(GenreComboBoxModel.ALL_GENRES) || s.getGenre().equals(genre))
+                .collect(Collectors.toList());
     }
 
     /**

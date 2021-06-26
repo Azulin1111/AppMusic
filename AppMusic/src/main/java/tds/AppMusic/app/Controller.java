@@ -1,18 +1,29 @@
 package tds.AppMusic.app;
 
+import com.sun.javafx.application.PlatformImpl;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
-import tds.AppMusic.persistance.*;
+import tds.AppMusic.persistance.DAOFactories;
+import tds.AppMusic.persistance.FactoryDAO;
+import tds.AppMusic.persistance.IAdaptadorPlaylistDAO;
+import tds.AppMusic.persistance.IAdaptadorUserDAO;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 public enum Controller {
     INSTANCE;
-    private User currentUser;
+
+    static {
+        PlatformImpl.startup(()->{});
+    }
+
+    private static User currentUser;
+    private static MediaPlayer player;
 
     /**
      * Crea una playlist, o actualiza una existente.
@@ -90,21 +101,23 @@ public enum Controller {
      * @param song La nueva canción a reproducir, o {@code null}.
      */
     public void switchTrack(Song song) {
-        // TODO
+        Media s = new Media(song.getPath().toString());
+        player = new MediaPlayer(s);
+        player.play();
     }
 
     /**
      * Pausa la canción actualmente en reproducción. En caso de estar pausada, el método no hace nada.
      */
     public void pauseTrack() {
-        // TODO
+        if (player != null) player.pause();
     }
 
     /**
      * Continúa la reproducción de la canción actual. En caso de ya estar reproduciéndose, el método no hace nada.
      */
     public void resumeTrack() {
-        // TODO
+        if (player != null) player.play();
     }
 
     /**
@@ -120,9 +133,6 @@ public enum Controller {
                 .findAny();
         login.ifPresent(user -> currentUser = user);
 
-        if (login.isPresent()) {
-            // TODO set up user
-        }
         return login.isPresent();
     }
 

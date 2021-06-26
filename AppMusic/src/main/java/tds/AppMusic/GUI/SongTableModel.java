@@ -23,9 +23,8 @@ public class SongTableModel implements TableModel {
     }
 
     public void addAll(Collection<Song> songs) {
-        int begin = this.songs.size() - 1;
         this.songs.addAll(songs);
-        TableModelEvent e = new TableModelEvent(this, begin, this.songs.size() - 1);
+        TableModelEvent e = new TableModelEvent(this, 0, this.songs.size() - 1);
         for (TableModelListener l : listeners) l.tableChanged(e);
     }
 
@@ -38,9 +37,7 @@ public class SongTableModel implements TableModel {
 
     public void add(Song song) {
         this.songs.add(song);
-        int index = songs.indexOf(song);
-
-        TableModelEvent e = new TableModelEvent(this, index, songs.size() - 1);
+        TableModelEvent e = new TableModelEvent(this, 0, songs.size() - 1);
         for (TableModelListener l : listeners) l.tableChanged(e);
     }
 
@@ -49,7 +46,7 @@ public class SongTableModel implements TableModel {
         songs.remove(song);
 
         if (begin != -1) {
-            TableModelEvent e = new TableModelEvent(this, begin, songs.size() - 1);
+            TableModelEvent e = new TableModelEvent(this, 0, songs.size() - 1);
             for (TableModelListener l : listeners) l.tableChanged(e);
         }
 

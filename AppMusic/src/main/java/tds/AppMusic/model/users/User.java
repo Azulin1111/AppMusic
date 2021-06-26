@@ -98,7 +98,7 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         playlists = new LinkedList<>();
-        recentSongs = new PlaylistRecentSongs("Recent Songs");  // Structure FIFO TODO hay que hacer que cada vez que suene una canción se ajuste
+        recentSongs = new PlaylistRecentSongs("Recent Songs");
         code = 0;
     }
 

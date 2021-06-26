@@ -145,7 +145,7 @@ public class UserTest {
         user.addRecentSong(s5); user.addRecentSong(s6); user.addRecentSong(s7); user.addRecentSong(s8);
         user.addRecentSong(s9); user.addRecentSong(s10); user.addRecentSong(s11); user.addRecentSong(s12);
 
-        List<Song> recentSongs = user.getRecentSongs(); //TODO esto es un solapamiento entre clases (?)
+        List<Song> recentSongs = user.getRecentSongs();
 
         // Expected
         List<Song> expected = new LinkedList<>();

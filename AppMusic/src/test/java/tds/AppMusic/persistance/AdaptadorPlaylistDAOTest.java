@@ -12,6 +12,7 @@ import tds.driver.ServicioPersistencia;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -39,6 +40,7 @@ public class AdaptadorPlaylistDAOTest {
 
     @Before
     public void setUp() {
+        PERSISTENCIA.recuperarEntidades().forEach(PERSISTENCIA::borrarEntidad);
         // Store playlist
         Entidad p = new Entidad();
         p.setPropiedades(Arrays.asList(
@@ -59,42 +61,47 @@ public class AdaptadorPlaylistDAOTest {
         ));
         s.setNombre(TYPE_SONG);
 
+        p = PERSISTENCIA.registrarEntidad(p);
+        s = PERSISTENCIA.registrarEntidad(s);
+
         PLAYLIST.setCode(p.getId());
         SONG.setCode(s.getId());
-
-        PERSISTENCIA.registrarEntidad(p);
-        PERSISTENCIA.registrarEntidad(s);
     }
 
     @After
     public void tearDown()  {
         PERSISTENCIA.recuperarEntidades().forEach(PERSISTENCIA::borrarEntidad);
+        PLAYLIST.getSongs().forEach(PLAYLIST::removeSong);
     }
 
     @Test
     public void storePlaylist() {
+        Playlist p = new Playlist("Nombre");
         // Assert that the playlist is stored in memory
         int before = PERSISTENCIA.recuperarEntidades().size();
-        DAO.storePlaylist(PLAYLIST);
+        DAO.storePlaylist(p);
         int after = PERSISTENCIA.recuperarEntidades().size();
+        List<Entidad> list1 = PERSISTENCIA.recuperarEntidades();
         assertEquals(before, after - 1);
 
+        List<Entidad> list2 = PERSISTENCIA.recuperarEntidades();
+
         // Assert that the playlistCode has been set
-        int code = PLAYLIST.getCode();
+        int code = p.getCode();
         assertNotEquals(code, 0);
 
         // Assert that it has been stored correctly
         Entidad e = PERSISTENCIA.recuperarEntidad(code);
-        e.getPropiedades().forEach(p -> {
-            switch (p.getNombre()) {
+        e.getPropiedades().forEach(pp -> {
+            switch (pp.getNombre()) {
                 case TYPE_PLAYLIST_IS_RECENT:
-                    assertEquals(Boolean.valueOf(p.getValor()), false);
+                    assertEquals(Boolean.valueOf(pp.getValor()), false);
                     break;
                 case TYPE_PLAYLIST_NAME:
-                    assertEquals(p.getValor(), NAME);
+                    assertEquals(pp.getValor(), "Nombre");
                     break;
                 case TYPE_PLAYLIST_SONGS:
-                    assertEquals(p.getValor(), "");
+                    assertEquals(pp.getValor(), "");
             }
         });
     }
@@ -107,9 +114,10 @@ public class AdaptadorPlaylistDAOTest {
         DAO.setPlaylist(PLAYLIST);
         int after = PERSISTENCIA.recuperarEntidades().size();
         Entidad e = PERSISTENCIA.recuperarEntidad(PLAYLIST.getCode());
-        e.getPropiedades().forEach(p -> {
-            if (p.getNombre().equals(TYPE_PLAYLIST_SONGS)) assertTrue(p.getValor().matches(ID_FORMAT));
-        });
+        for (Propiedad propiedad : e.getPropiedades()) {
+            if (propiedad.getNombre().equals(TYPE_PLAYLIST_SONGS))
+                assertTrue(propiedad.getValor().matches(ID_FORMAT));
+        }
 
         // Assert that nothing has changed in the database
         assertEquals(before, after);
@@ -131,6 +139,7 @@ public class AdaptadorPlaylistDAOTest {
     @Test
     public void getPlaylist() {
         // Assert that the recovered playlist is the expected one
+        List<Entidad> list = PERSISTENCIA.recuperarEntidades();
         Playlist recovered = DAO.getPlaylist(PLAYLIST.getCode());
         assertEquals(PLAYLIST, recovered);
 
@@ -146,7 +155,7 @@ public class AdaptadorPlaylistDAOTest {
             int before = PERSISTENCIA.recuperarEntidades().size();
             DAO.deletePlaylist(PLAYLIST);
             int after = PERSISTENCIA.recuperarEntidades().size();
-            assertEquals(before, after);
+            assertEquals(before - 1, after);
     }
 
     @Test

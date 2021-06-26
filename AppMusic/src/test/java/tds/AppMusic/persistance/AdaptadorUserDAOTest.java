@@ -62,6 +62,17 @@ public class AdaptadorUserDAOTest {
 
     @Before
     public void setUp() {
+        // Store recent playlist
+        Entidad p = new Entidad();
+        p.setPropiedades(Arrays.asList(
+                new Propiedad(TYPE_PLAYLIST_IS_RECENT, Boolean.toString(true)),
+                new Propiedad(TYPE_PLAYLIST_NAME, "a"),
+                new Propiedad(TYPE_PLAYLIST_SONGS, "")
+        ));
+        p.setNombre(TYPE_PLAYLIST);
+        p = PERSISTENCIA.registrarEntidad(p);
+        USER.setCodeRecent(p.getId());
+
         // Store user
         Entidad e = new Entidad();
         e.setPropiedades(Arrays.asList(
@@ -75,24 +86,9 @@ public class AdaptadorUserDAOTest {
                 new Propiedad(TYPE_USER_RECENTSONGS, Integer.toString(USER.getCodeRecentSongs()))
         ));
         e.setNombre(TYPE_USER);
+        e = PERSISTENCIA.registrarEntidad(e);
 
-        // Store recent playlist
-        Entidad p = new Entidad();
-        p.setPropiedades(Arrays.asList(
-                new Propiedad(TYPE_PLAYLIST_IS_RECENT, Boolean.toString(true)),
-                new Propiedad(TYPE_PLAYLIST_NAME, "a"),
-                new Propiedad(TYPE_PLAYLIST_SONGS, "")
-        ));
-        p.setNombre(TYPE_PLAYLIST);
-
-        // Set reference
-        USER.setCodeRecent(p.getId());
-
-        // Store all
         USER.setCode(e.getId());
-        PERSISTENCIA.registrarEntidad(e);
-        PERSISTENCIA.registrarEntidad(p);
-
     }
 
     @After
@@ -173,7 +169,7 @@ public class AdaptadorUserDAOTest {
         int before2 = PERSISTENCIA.recuperarEntidades().size();
         DAO.setUser(USER);
         int after2 = PERSISTENCIA.recuperarEntidades().size();
-        assertEquals(before2, after2 - 2);
+        assertEquals(before2 - 2, after2);
     }
 
     @Test

@@ -1,14 +1,22 @@
 package tds.AppMusic.model.pdfs;
 
+import com.itextpdf.text.DocumentException;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
 
+import java.io.FileNotFoundException;
+
 // Builder's Director class
 public class ParserUser {
     BuilderPDFfromUser builder;
+    User user;
 
-    public void parse(User user, String nameFile){
+    public ParserUser(User user){
+        this.user = user;
+    }
+
+    public void parse(String nameFile) throws DocumentException, FileNotFoundException {
         builder.buildPDF(nameFile);
         builder.buildUser(user.getName());
         for(Playlist p : user.getPlaylists()){

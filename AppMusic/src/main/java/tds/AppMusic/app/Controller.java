@@ -1,6 +1,7 @@
 package tds.AppMusic.app;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.javafx.application.PlatformImpl;
@@ -23,6 +24,7 @@ import umu.tds.SongsEvent;
 import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.time.Instant;
@@ -293,8 +295,14 @@ public enum Controller implements ISongsListener {
         songs.forEach(SongRepository.INSTANCE::storeSong);
     }
 
-    public void generatePDF(String nameFilePDF){
-        ParserUser parser = new ParserUser();
-        parser.parse(currentUser, "C:\\hola.pdf");
+    // Si devuelve false ha habido un error.
+    public boolean generatePDF(String nameFileRDF){
+        ParserUser parser = new ParserUser(currentUser);
+        try {
+            parser.parse(nameFileRDF);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

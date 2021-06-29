@@ -28,7 +28,7 @@ public class UserCatalogTest {
                   "pepito@gmail.com", d);
           UserRepository.INSTANCE.storeUser(storedUser);
 
-          User user = UserRepository.INSTANCE.getAllUsers().get(0);
+          User user = UserRepository.INSTANCE.getAllUsers().iterator().next();
 
           // Expected user
           User expected = new User("Pepe", "Requena Nieto","Pepito123", false, "123456",

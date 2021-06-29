@@ -21,23 +21,23 @@ public enum SongRepository {
     public void storeSong(Song song){
         SONGS.put(song.getCode(), song);
         DAO.storeSong(song);
-    };
+    }
 
     public void deleteSong(Song song){
         SONGS.remove(song.getCode());
         DAO.deleteSong(song);
-    };
+    }
 
     public void setSong(Song song){
         SONGS.put(song.getCode(), song);
         DAO.setSong(song);
-    };
+    }
 
     public Song getSong(int code){
         return SONGS.get(code);
     };
 
-    public List<Song> getAllSongs(){
-        return (List<Song>) SONGS.values();
-    };
+    public Collection<Song> getAllSongs(){
+        return SONGS.values();
+    }
 }

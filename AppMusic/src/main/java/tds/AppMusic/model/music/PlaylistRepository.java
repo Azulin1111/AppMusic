@@ -37,8 +37,8 @@ public enum PlaylistRepository {
         return PLAYLISTS.get(code);
     };
 
-    public List<Playlist> getAllPlaylists(){
-        return (List<Playlist>) PLAYLISTS.values();
+    public Collection<Playlist> getAllPlaylists(){
+        return PLAYLISTS.values();
     };
 
 }

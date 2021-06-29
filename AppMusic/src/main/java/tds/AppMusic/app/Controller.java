@@ -30,6 +30,10 @@ public enum Controller implements ISongsListener {
 
     private static User currentUser;
     private static MediaPlayer player;
+
+    private static Playlist currentPlaylist;
+    private static Song currentSong;
+
     private static ISongFinder loader;
 
     /**
@@ -80,38 +84,43 @@ public enum Controller implements ISongsListener {
      * @param genre Género de la canción.
      * @return Una lista con todas las canciones que pasan el filtro.
      */
-    public List<Song> getSongsFiltered(String title, String interprete, String genre) {
-        List<Song> songs = SongRepository.INSTANCE.getAllSongs();
-        return songs.stream()
+    public Playlist getSongsFiltered(String title, String interprete, String genre) {
+        Playlist p = new Playlist("");
+        SongRepository.INSTANCE.getAllSongs().stream()
                 .filter(s -> s.getName().contains(title))
                 .filter(s -> s.getSinger().contains(interprete))
                 .filter(s -> genre.equals(GenreComboBoxModel.ALL_GENRES) || s.getGenre().equals(genre))
-                .collect(Collectors.toList());
+                .forEach(p::addSong);
+        return p;
     }
 
     /**
-     * Obtiene las canciones de una playlist específica.
+     * Obtiene una playlist específica.
      * @param name El nombre de la playlist.
-     * @return Una lista con las canciones de la playlist, o {@code null} si no existe playlist con el nombre indicado.
+     * @return La playlist, o {@code null} si no existe playlist con el nombre indicado.
      */
-    public List<Song> getSongsPlaylist(String name) {
-        return currentUser.getPlaylistSongs(name);
+    public Playlist getPlaylist(String name) {
+        return currentUser.getPlaylist(name);
     }
 
     /**
      * Obtiene las últimas canciones que ha escuchado el usuario actual.
-     * @return Una lista con las últimas canciones escuchadas.
+     * @return La playlist de canciones recientes del usuario.
      */
-    public List<Song> getSongsRecientes() {
-        return currentUser.getRecentSongs();
+    public Playlist getRecentPlaylist() {
+        return currentUser.getRecentPlaylist();
     }
 
     /**
      * Cambia la canción que reproducir. En caso de ser {@code null}, detiene el reproductor de música.
+     * @param playlist La nueva playlist a almacenar, o {@code null}.
      * @param song La nueva canción a reproducir, o {@code null}.
      * @param addToRecent Si la canción debería añadirse a la lista de recientes.
      */
-    public void switchTrack(Song song, boolean addToRecent) {
+    public void switchTrack(Playlist playlist, Song song, boolean addToRecent) {
+        Controller.currentPlaylist = playlist;
+        Controller.currentSong = song;
+
         if (song != null) {
             Media s = new Media(song.getPath().toString());
             if (player != null) player.stop();
@@ -119,6 +128,27 @@ public enum Controller implements ISongsListener {
             player.play();
             if (addToRecent) currentUser.addRecentSong(song);
         } else if (player != null) player.stop();
+    }
+
+    public void nextTrack(boolean addToRecent) {
+        if (currentPlaylist != null && currentSong != null) {
+           int index = currentPlaylist.getSongs().indexOf(currentSong);
+           if (index != -1) {
+               index = (index + 1) % currentPlaylist.getSongs().size();
+               switchTrack(currentPlaylist, currentPlaylist.getSongs().get(index), addToRecent);
+           }
+        }
+    }
+
+    public void previousTrack(boolean addToRecent) {
+        if (currentPlaylist != null && currentSong != null) {
+            int index = currentPlaylist.getSongs().indexOf(currentSong);
+            if (index != -1) {
+                index--;
+                if (index == -1) index = currentPlaylist.getSongs().size() - 1;
+                switchTrack(currentPlaylist, currentPlaylist.getSongs().get(index), addToRecent);
+            }
+        }
     }
 
     /**
@@ -133,6 +163,12 @@ public enum Controller implements ISongsListener {
      */
     public void resumeTrack() {
         if (player != null) player.play();
+    }
+
+    public int currentTrack() {
+        if (currentPlaylist == null) return -1;
+        if (currentSong == null) return -1;
+        return currentPlaylist.getSongs().indexOf(currentSong);
     }
 
     /**
@@ -205,6 +241,10 @@ public enum Controller implements ISongsListener {
         }
 
         return songs;
+    }
+
+    public Playlist getCurrentPlaylist() {
+        return currentPlaylist;
     }
 
     @Override

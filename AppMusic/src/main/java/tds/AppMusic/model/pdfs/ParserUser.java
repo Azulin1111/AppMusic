@@ -5,7 +5,9 @@ import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Locale;
 
 // Builder's Director class
@@ -21,8 +23,8 @@ public class ParserUser {
         builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(tipo);
     }
 
-    public void parse(String nameFile) throws DocumentException, FileNotFoundException {
-        builder.buildPDF(nameFile);
+    public void parse(File filePDF) throws DocumentException, IOException {
+        builder.buildPDF(filePDF);
         builder.buildUser(user.getName());
         for(Playlist p : user.getPlaylists()){
             builder.buildPlaylist(p.getName());

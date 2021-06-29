@@ -297,11 +297,11 @@ public enum Controller implements ISongsListener {
     }
 
     // Si devuelve false ha habido un error.
-    public boolean generatePDF(File nameFileRDF){
+    public boolean generatePDF(File filePDF){
         ParserUser parser = new ParserUser(currentUser);
         parser.setBuilder("iText");
         try {
-            parser.parse(nameFileRDF);
+            parser.parse(filePDF);
         } catch (Exception e) {
             return false;
         }

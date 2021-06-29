@@ -4,8 +4,9 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import tds.AppMusic.model.music.Song;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class BuilderItext implements BuilderPDFfromUser{
     private static final String SEPARATOR = "+--------------------------";
@@ -13,8 +14,10 @@ public class BuilderItext implements BuilderPDFfromUser{
     private Document document;
 
     @Override
-    public void buildPDF(String nameFile) throws DocumentException, FileNotFoundException {
-        file = new FileOutputStream(nameFile);
+    public void buildPDF(File filePDF) throws DocumentException, IOException {
+        // Creates a new, empty file named by this abstract pathname if and only if a file with this name does not yet exist.
+        filePDF.createNewFile();
+        file = new FileOutputStream(filePDF.getName());
         document = new Document();
         PdfWriter.getInstance(document, file);
         document.open();
@@ -43,9 +46,10 @@ public class BuilderItext implements BuilderPDFfromUser{
 
 
     @Override
-    public void getPDF() throws DocumentException {
+    public void getPDF() throws DocumentException, IOException {
         document.add(new Paragraph(SEPARATOR));
         document.close();
+        file.close();
     }
 
 

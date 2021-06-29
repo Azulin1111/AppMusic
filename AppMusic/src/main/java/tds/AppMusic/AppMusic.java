@@ -1,7 +1,6 @@
 package tds.AppMusic;
 
 import tds.AppMusic.GUI.LoginWindow;
-import tds.AppMusic.GUI.MainWindow;
 import tds.AppMusic.app.Controller;
 import tds.driver.FactoriaServicioPersistencia;
 import umu.tds.ISongFinder;
@@ -18,11 +17,19 @@ public class AppMusic {
 
 //        clearDB();
 
-        LoginWindow lw = new LoginWindow();
-        lw.pack();
-        lw.setLocationRelativeTo(null);
-        lw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        lw.setVisible(true);
+        // Clean L&F
+        try {
+             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            LoginWindow lw = new LoginWindow();
+            lw.pack();
+            lw.setLocationRelativeTo(null);
+            lw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            lw.setVisible(true);
+        }
     }
 
     public static void clearDB() {

@@ -1,4 +1,4 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 /* Esta clase implementa un pool para los adaptadores que lo necesiten */
 

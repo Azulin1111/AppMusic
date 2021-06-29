@@ -312,13 +312,10 @@ public class User {
     }
 
     /**
-     * Calcula el coste de premium dado un descuento elegido.
-     * @param typeDiscount El descuento elegido. Puede ser nulo.
-     * @return El precio final.
+     * Simula la compra del estatus premium.
      */
-    public double premiumPayment(String typeDiscount) {
+    public void buyPremium() {
         premium = true;
-        return createDiscount(typeDiscount).calcDescuento();
     }
 
     public boolean compareNickname(String nickname){

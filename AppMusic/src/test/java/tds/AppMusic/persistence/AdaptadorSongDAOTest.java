@@ -1,4 +1,4 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 import beans.Entidad;
 import beans.Propiedad;
@@ -11,7 +11,6 @@ import tds.driver.ServicioPersistencia;
 
 import java.net.URI;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 

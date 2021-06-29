@@ -1,7 +1,6 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 import tds.AppMusic.model.music.Song;
-import tds.AppMusic.model.users.User;
 
 import java.util.List;
 

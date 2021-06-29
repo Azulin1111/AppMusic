@@ -1,4 +1,4 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 public abstract class FactoryDAO {
     private static FactoryDAO unicaInstancia;

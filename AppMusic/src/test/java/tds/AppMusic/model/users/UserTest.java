@@ -3,6 +3,9 @@ package tds.AppMusic.model.users;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import tds.AppMusic.model.discount.FixedDiscount;
+import tds.AppMusic.model.discount.NullDiscount;
+import tds.AppMusic.model.discount.YoungDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
@@ -59,51 +62,6 @@ public class UserTest {
         assertEquals(TEST_PASSWORD, user.getPassword());
         assertEquals(TEST_EMAIL, user.getEmail());
         assertSame(date, user.getBirthday());
-    }
-
-    @Test
-    public void fixedDiscountTest() {
-        double payment = user.premiumPayment("FixedDiscount");
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE * 0.70;
-
-        // Test
-        assertEquals(payment, expectedPayment, 0.001);
-
-    }
-
-    @Test
-    public void youngDiscountTest() {
-        double payment = user.premiumPayment("YoungDiscount");
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE * 0.85;
-
-        // Test
-        assertEquals(payment, expectedPayment, 0.001);
-    }
-
-    @Test
-    public void nullDiscountTest1() { // Explicit form
-        double payment1 = user.premiumPayment("ninguno");
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE;
-
-        // Test
-        assertEquals(payment1, expectedPayment, 0.001);
-    }
-
-    @Test
-    public void nullDiscountTest2() { // Implicit form
-        double payment2 = user.premiumPayment("NullDiscount");
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE;
-
-        // Test
-        assertEquals(payment2, expectedPayment, 0.001);
     }
 
     @Test

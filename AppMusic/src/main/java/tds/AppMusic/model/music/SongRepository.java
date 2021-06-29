@@ -1,16 +1,18 @@
 package tds.AppMusic.model.music;
 
-import tds.AppMusic.persistance.DAOFactories;
-import tds.AppMusic.persistance.FactoryDAO;
-import tds.AppMusic.persistance.IAdaptadorSongDAO;
+import tds.AppMusic.persistence.DAOFactories;
+import tds.AppMusic.persistence.FactoryDAO;
+import tds.AppMusic.persistence.IAdaptadorSongDAO;
 
-import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public enum SongRepository {
     INSTANCE;
 
-    private static final Map<Integer, Song> SONGS = new HashMap<Integer, Song>();
+    private static final Map<Integer, Song> SONGS = new HashMap<>();
     private static final IAdaptadorSongDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO();
 
     static {
@@ -33,16 +35,13 @@ public enum SongRepository {
         SONGS.put(song.getCode(), song);
     }
 
-    public Song getSong(int code){
+    public Song getSong(int code) {
         Song song = SONGS.get(code);
         if (song == null) song = DAO.getSong(code);
         return song;
-    };
+    }
 
     public List<Song> getAllSongs(){
-        List<Song> listSongs = new LinkedList<>();
-        listSongs.addAll(SONGS.values());
-        return listSongs;
-
+        return new LinkedList<>(SONGS.values());
     }
 }

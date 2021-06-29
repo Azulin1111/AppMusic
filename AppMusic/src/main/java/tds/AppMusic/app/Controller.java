@@ -1,6 +1,7 @@
 package tds.AppMusic.app;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.javafx.application.PlatformImpl;
@@ -13,6 +14,7 @@ import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.music.SongRepository;
+import tds.AppMusic.model.pdfs.ParserUser;
 import tds.AppMusic.model.users.User;
 import tds.AppMusic.model.users.UserRepository;
 import umu.tds.ISongFinder;
@@ -22,6 +24,7 @@ import umu.tds.SongsEvent;
 import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.time.Instant;
@@ -292,13 +295,14 @@ public enum Controller implements ISongsListener {
         songs.forEach(SongRepository.INSTANCE::storeSong);
     }
 
-    public void generatePDF(){
-        FileOutputStream archivo = new FileOutputStream("C:\\hola.pdf");
-        Document documento = new Document();
-        PdfWriter.getInstance(documento, archivo);
-        documento.open();
-        documento.add(new Paragraph("Hola Mundo!"));
-        documento.add(new Paragraph("SoloInformaticaYAlgoMas.blogspot.com"));
-        documento.close();
+    // Si devuelve false ha habido un error.
+    public boolean generatePDF(String nameFileRDF){
+        ParserUser parser = new ParserUser(currentUser);
+        try {
+            parser.parse(nameFileRDF);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

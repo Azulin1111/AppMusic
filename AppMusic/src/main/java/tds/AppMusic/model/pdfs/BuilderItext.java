@@ -1,50 +1,51 @@
 package tds.AppMusic.model.pdfs;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
-import tds.AppMusic.model.music.Playlist;
+import tds.AppMusic.model.music.Song;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.LinkedList;
-import java.util.List;
 
 public class BuilderItext implements BuilderPDFfromUser{
+    private static final String SEPARATOR = "+--------------------------";
     private FileOutputStream file;
     private Document document;
-    private String nameUser;
-    private List<Playlist> playlists;
 
     @Override
-    public void buildPDF(String nameFile) {
+    public void buildPDF(String nameFile) throws DocumentException, FileNotFoundException {
         file = new FileOutputStream(nameFile);
         document = new Document();
-        playlists = new LinkedList<>();
-    }
-
-    @Override
-    public void buildUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
-
-    @Override
-    public void buildPlaylist(Playlist playlist) {
-        playlists.add(playlist);
-    }
-
-    @Override
-    public void buildSong() {
-
-    }
-
-    @Override
-    public void getPDF() {
         PdfWriter.getInstance(document, file);
         document.open();
-        document.add(new Paragraph(nameUser));
-        document.add(new Paragraph("---------------"));
-        document.
+    }
 
+    @Override
+    public void buildUser(String nameUser) throws DocumentException {
+        document.add(new Paragraph(nameUser));
+    }
+
+    @Override
+    public void buildPlaylist(String namePlaylist) throws DocumentException {
+        document.add(new Paragraph(SEPARATOR));
+        document.add(new Paragraph("| Playlist : \"" + namePlaylist + "\""));
+        document.add(new Paragraph(SEPARATOR));
+    }
+
+    @Override
+    public void buildSong(Song s) throws DocumentException {
+        document.add(new Paragraph("| Titulo: " + s.getName()));
+        document.add(new Paragraph("| Interprete: " + s.getSinger()));
+        document.add(new Paragraph("| Genero: " + s.getGenre()));
+
+        document.add(new Paragraph("| "));
+    }
+
+
+    @Override
+    public void getPDF() throws DocumentException {
+        document.add(new Paragraph(SEPARATOR));
+        document.close();
     }
 
 

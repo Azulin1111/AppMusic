@@ -6,14 +6,19 @@ import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.users.User;
 
 import java.io.FileNotFoundException;
+import java.util.Locale;
 
 // Builder's Director class
 public class ParserUser {
-    BuilderPDFfromUser builder;
-    User user;
+    private BuilderPDFfromUser builder;
+    private User user;
 
     public ParserUser(User user){
         this.user = user;
+    }
+
+    public void setBuilder(String tipo){
+        builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(tipo);
     }
 
     public void parse(String nameFile) throws DocumentException, FileNotFoundException {

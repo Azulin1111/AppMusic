@@ -501,6 +501,7 @@ public class MainWindow extends AppWindow {
         luzLabel.setText("Añadir canciones");
         userPanel.add(luzLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         starLabel = new JLabel();
+        starLabel.setIcon(new ImageIcon(getClass().getResource("/Pictures/star.png")));
         starLabel.setText("");
         userPanel.add(starLabel, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonsPanel = new JPanel();
@@ -533,10 +534,12 @@ public class MainWindow extends AppWindow {
         playlistScrollPane.setViewportView(playlistList);
         top10Button = new JButton();
         top10Button.setHorizontalAlignment(2);
+        top10Button.setIcon(new ImageIcon(getClass().getResource("/Pictures/Boton10.png")));
         top10Button.setText("Top 10");
         buttonsPanel.add(top10Button, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         makePDFButton = new JButton();
         makePDFButton.setHorizontalAlignment(2);
+        makePDFButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPDF.png")));
         makePDFButton.setText("Generar PDF");
         buttonsPanel.add(makePDFButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(142, 30), null, 0, false));
         mainCardPanel = new JPanel();

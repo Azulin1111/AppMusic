@@ -339,7 +339,6 @@ public class MainWindow extends AppWindow {
     }
 
     private void recentSetup() {
-        // TODO Verify
         // Table setup
         recentTable.setModel(recentModel);
         recentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -360,7 +359,6 @@ public class MainWindow extends AppWindow {
     }
 
     private void myPlaylistsSetup() {
-        // TODO Verify
         // Table setup
         selectedTable.setModel(selectedModel);
         selectedTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

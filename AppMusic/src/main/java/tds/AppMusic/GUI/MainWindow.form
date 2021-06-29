@@ -87,7 +87,7 @@
             <properties>
               <horizontalAlignment value="2"/>
               <icon value="Pictures/BotonNewPlaylists.png"/>
-              <text value="Nueva lista" noi18n="true"/>
+              <text value="Editor de listas" noi18n="true"/>
             </properties>
           </component>
           <component id="6092e" class="javax.swing.JButton" binding="recentButton">
@@ -210,57 +210,6 @@
                   </grid>
                 </children>
               </grid>
-              <grid id="14095" binding="searchControlsPanel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints border-constraint="South"/>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="144b" class="javax.swing.JButton" binding="searchBackButton">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonAnterior.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="935ba" class="javax.swing.JButton" binding="searchPlayButton">
-                    <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonPlay.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="b9aa3" class="javax.swing.JButton" binding="searchNextButton">
-                    <constraints>
-                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonSiguiente.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="1cee8" class="javax.swing.JProgressBar" binding="searchSongProgressBar">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <hspacer id="686ca">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                  <hspacer id="146c7">
-                    <constraints>
-                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                </children>
-              </grid>
               <scrollpane id="e71a4" binding="searchScrollPane">
                 <constraints border-constraint="Center"/>
                 <properties>
@@ -298,7 +247,7 @@
                       <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Crear" noi18n="true"/>
+                      <text value="Crear/Modificar" noi18n="true"/>
                     </properties>
                   </component>
                   <hspacer id="4970e">
@@ -325,6 +274,7 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints border-constraint="Center"/>
                 <properties>
+                  <enabled value="true"/>
                   <visible value="true"/>
                 </properties>
                 <border type="none"/>
@@ -504,57 +454,6 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="85721" binding="recentControlsPanel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints border-constraint="South"/>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="2fccb" class="javax.swing.JButton" binding="recentBackButton">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonAnterior.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="83fce" class="javax.swing.JButton" binding="recentPlayButton">
-                    <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonPlay.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="4969c" class="javax.swing.JButton" binding="recentNextButton">
-                    <constraints>
-                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonSiguiente.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="27e59" class="javax.swing.JProgressBar" binding="recentSongProgressBar">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <hspacer id="2ac8f">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                  <hspacer id="d0cb9">
-                    <constraints>
-                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                </children>
-              </grid>
               <scrollpane id="e082f" binding="recentScrollPane">
                 <constraints border-constraint="Center"/>
                 <properties/>
@@ -575,57 +474,6 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="84433" binding="selectedControlsPanel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints border-constraint="South"/>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="55d63" class="javax.swing.JButton" binding="selectedBackButton">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonAnterior.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="1fcaf" class="javax.swing.JButton" binding="selectedPlayButton">
-                    <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonPlay.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="910be" class="javax.swing.JButton" binding="selectedNextButton">
-                    <constraints>
-                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="Pictures/BotonSiguiente.png"/>
-                      <text value="" noi18n="true"/>
-                    </properties>
-                  </component>
-                  <component id="da89c" class="javax.swing.JProgressBar" binding="selectedSongProgressBar">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <hspacer id="194bf">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                  <hspacer id="af3d5">
-                    <constraints>
-                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                </children>
-              </grid>
               <scrollpane id="fad99" binding="selectedScrollPane">
                 <constraints border-constraint="Center"/>
                 <properties/>
@@ -641,6 +489,57 @@
               </scrollpane>
             </children>
           </grid>
+        </children>
+      </grid>
+      <grid id="ebff8" binding="musicPanel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="1cee8" class="javax.swing.JProgressBar" binding="songProgressBar">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="144b" class="javax.swing.JButton" binding="backButton">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="Pictures/BotonAnterior.png"/>
+              <text value="" noi18n="true"/>
+            </properties>
+          </component>
+          <component id="935ba" class="javax.swing.JButton" binding="playButton">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="Pictures/BotonPlay.png"/>
+              <text value="" noi18n="true"/>
+            </properties>
+          </component>
+          <component id="b9aa3" class="javax.swing.JButton" binding="nextButton">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="Pictures/BotonSiguiente.png"/>
+              <text value="" noi18n="true"/>
+            </properties>
+          </component>
+          <hspacer id="6eb34">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="81673">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
     </children>

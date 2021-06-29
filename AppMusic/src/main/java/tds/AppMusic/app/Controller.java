@@ -18,6 +18,7 @@ import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
 import java.net.URI;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public enum Controller implements ISongsListener {
     private static MediaPlayer player;
 
     private static Playlist currentPlaylist;
-    private static Song currentSong;
+    private static int currentTrack;
 
     private static ISongFinder loader;
 
@@ -85,7 +86,7 @@ public enum Controller implements ISongsListener {
      * @return Una lista con todas las canciones que pasan el filtro.
      */
     public Playlist getSongsFiltered(String title, String interprete, String genre) {
-        Playlist p = new Playlist("");
+        Playlist p = new Playlist("Search-" + Instant.now().toString());
         SongRepository.INSTANCE.getAllSongs().stream()
                 .filter(s -> s.getName().contains(title))
                 .filter(s -> s.getSinger().contains(interprete))
@@ -108,46 +109,51 @@ public enum Controller implements ISongsListener {
      * @return La playlist de canciones recientes del usuario.
      */
     public Playlist getRecentPlaylist() {
-        return currentUser.getRecentPlaylist();
+        Playlist recent = new Playlist("Recent-" + Instant.now().toString());
+        currentUser.getRecentPlaylist().getSongs().forEach(recent::addSong);
+        return recent;
     }
 
     /**
-     * Cambia la canción que reproducir. En caso de ser {@code null}, detiene el reproductor de música.
-     * @param playlist La nueva playlist a almacenar, o {@code null}.
-     * @param song La nueva canción a reproducir, o {@code null}.
+     * Cambia la canción que reproducir, o detiene el reproductor.
+     * @param playlist La nueva playlist a almacenar, o {@code null} si se quiere detener.
+     * @param song La nueva canción a reproducir, o {@code -1} si se quiere detener.
      * @param addToRecent Si la canción debería añadirse a la lista de recientes.
      */
-    public void switchTrack(Playlist playlist, Song song, boolean addToRecent) {
+    public void switchTrack(Playlist playlist, int song, boolean addToRecent) {
         Controller.currentPlaylist = playlist;
-        Controller.currentSong = song;
+        Controller.currentTrack = song;
 
-        if (song != null) {
-            Media s = new Media(song.getPath().toString());
+        // Stop if anything is null or -1
+        if (currentPlaylist == null || song == -1) {
             if (player != null) player.stop();
-            player = new MediaPlayer(s);
-            player.play();
-            if (addToRecent) currentUser.addRecentSong(song);
-        } else if (player != null) player.stop();
+            return;
+        }
+        Song s = currentPlaylist.getSongs().get(song);
+        Media mp = new Media(s.getPath().toString());
+        if (player != null) player.stop();
+        player = new MediaPlayer(mp);
+        player.play();
+        if (addToRecent) {
+            currentUser.addRecentSong(s);
+
+            // Save recent playlist
+            PlaylistRepository.INSTANCE.setPlaylist(currentUser.getRecentPlaylist());
+        }
     }
 
     public void nextTrack(boolean addToRecent) {
-        if (currentPlaylist != null && currentSong != null) {
-           int index = currentPlaylist.getSongs().indexOf(currentSong);
-           if (index != -1) {
-               index = (index + 1) % currentPlaylist.getSongs().size();
-               switchTrack(currentPlaylist, currentPlaylist.getSongs().get(index), addToRecent);
-           }
+        if (currentPlaylist != null && currentTrack != -1) {
+            currentTrack = (currentTrack + 1) % currentPlaylist.getSongs().size();
+            switchTrack(currentPlaylist, currentTrack, addToRecent);
         }
     }
 
     public void previousTrack(boolean addToRecent) {
-        if (currentPlaylist != null && currentSong != null) {
-            int index = currentPlaylist.getSongs().indexOf(currentSong);
-            if (index != -1) {
-                index--;
-                if (index == -1) index = currentPlaylist.getSongs().size() - 1;
-                switchTrack(currentPlaylist, currentPlaylist.getSongs().get(index), addToRecent);
-            }
+        if (currentPlaylist != null && currentTrack != -1) {
+            currentTrack--;
+            if (currentTrack == -1) currentTrack = currentPlaylist.getSongs().size() - 1;
+            switchTrack(currentPlaylist, currentTrack, addToRecent);
         }
     }
 
@@ -167,8 +173,7 @@ public enum Controller implements ISongsListener {
 
     public int currentTrack() {
         if (currentPlaylist == null) return -1;
-        if (currentSong == null) return -1;
-        return currentPlaylist.getSongs().indexOf(currentSong);
+        return currentTrack;
     }
 
     /**

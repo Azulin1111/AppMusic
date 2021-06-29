@@ -2,16 +2,21 @@ package tds.AppMusic;
 
 import tds.AppMusic.GUI.LoginWindow;
 import tds.AppMusic.GUI.MainWindow;
+import tds.AppMusic.app.Controller;
 import tds.driver.FactoriaServicioPersistencia;
+import umu.tds.ISongFinder;
+import umu.tds.LoaderSong;
 
 import javax.swing.*;
 import java.util.stream.Collectors;
 
 public class AppMusic {
-    public static void main(String[] args) {
-        System.out.println("No functionality yet!");
 
-        clearDB();
+    public static void main(String[] args) {
+        ISongFinder finder = new LoaderSong();
+        Controller.INSTANCE.setLoader(finder);
+
+//        clearDB();
 
         LoginWindow lw = new LoginWindow();
         lw.pack();

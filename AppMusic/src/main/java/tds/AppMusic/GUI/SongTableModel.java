@@ -1,5 +1,6 @@
 package tds.AppMusic.GUI;
 
+import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
 import javax.swing.event.TableModelEvent;
@@ -14,48 +15,48 @@ import java.util.List;
 public class SongTableModel extends DefaultTableModel {
 
     private static final List<String> COLUMN_HEADERS = new LinkedList<>();
-    private final List<Song> songs = new LinkedList<>();
+    private Playlist currentPlaylist = new Playlist("");
 
     static {
         Collections.addAll(COLUMN_HEADERS, "Título", "Intérprete", "Género");
     }
 
-    public void addAll(Collection<Song> songs) {
-        this.songs.addAll(songs);
-        fireTableDataChanged();
+    public Playlist getCurrentPlaylist() {
+        return currentPlaylist;
     }
 
     public void clear() {
-        songs.clear();
+        currentPlaylist = new Playlist("");
         fireTableDataChanged();
     }
 
     public void add(Song song) {
-        this.songs.add(song);
+        currentPlaylist.addSong(song);
         fireTableDataChanged();
     }
 
     public void remove(Song song) {
-        songs.remove(song);
+        currentPlaylist.removeSong(song);
         fireTableDataChanged();
     }
 
-    public void replaceWith(Collection<Song> songs) {
+    public void replaceWith(Playlist playlist) {
         clear();
-        if (songs != null) addAll(songs);
+        this.currentPlaylist = playlist;
+        fireTableDataChanged();
     }
 
     public Song getSongAt(int rowIndex) {
-        return songs.get(rowIndex);
+        return currentPlaylist.getSongs().get(rowIndex);
     }
 
     public List<Song> getSongs() {
-        return Collections.unmodifiableList(songs);
+        return Collections.unmodifiableList(currentPlaylist.getSongs());
     }
 
     @Override
     public int getRowCount() {
-        return songs != null ? songs.size() : 0;
+        return currentPlaylist != null ? currentPlaylist.getSongs().size() : 0;
     }
 
     @Override
@@ -75,7 +76,7 @@ public class SongTableModel extends DefaultTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Song song = songs.get(rowIndex);
+        Song song = currentPlaylist.getSongs().get(rowIndex);
         if (columnIndex == COLUMN_HEADERS.indexOf("Título")) return song.getName();
         if (columnIndex == COLUMN_HEADERS.indexOf("Intérprete")) return song.getSinger();
         if (columnIndex == COLUMN_HEADERS.indexOf("Género")) return song.getGenre();

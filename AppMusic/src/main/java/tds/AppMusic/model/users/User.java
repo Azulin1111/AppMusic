@@ -183,14 +183,14 @@ public class User {
     }
 
     /**
-     * Devuelve las canciones de una playlist.
+     * Devuelve una playlist.
      * @param name El nombre de la playlist.
-     * @return Una lista con las canciones de la playlist.
+     * @return La playlist, o {@code null} si no existe.
      */
-    public List<Song> getPlaylistSongs(String name) {
+    public Playlist getPlaylist(String name) {
         for (Playlist p : playlists)
             if (p.getName().equals(name))
-                return p.getSongs();
+                return p;
         return null;
     }
 

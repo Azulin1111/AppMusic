@@ -13,8 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.net.URI;
+import java.util.Objects;
 
 public class MainWindow extends AppWindow {
     private static final String CARD_SEARCH = "searchPanel";
@@ -22,10 +21,12 @@ public class MainWindow extends AppWindow {
     private static final String CARD_RECENT = "recentPanel";
     private static final String CARD_PLAYLISTS = "selectedPlaylistPanel";
 
+    private static String CURRENT_CARD = "recentPanel";
+
     private static final String WELCOME_TEXT = "Hola, ";
 
-    private static final Icon ICON_PLAY = new ImageIcon(MainWindow.class.getResource("/Pictures/BotonPlay.png"));
-    private static final Icon ICON_PAUSE = new ImageIcon(MainWindow.class.getResource("/Pictures/BotonPausa.png"));
+    private static final Icon ICON_PLAY = new ImageIcon(Objects.requireNonNull(MainWindow.class.getResource("/Pictures/BotonPlay.png")));
+    private static final Icon ICON_PAUSE = new ImageIcon(Objects.requireNonNull(MainWindow.class.getResource("/Pictures/BotonPausa.png")));
 
     private JPanel mainPanel;
     private JButton logoutButton;
@@ -46,11 +47,10 @@ public class MainWindow extends AppWindow {
     private JTextField searchTitleTextField;
     private JTextField searchInterpreteTextField;
     private JPanel searchFiltersPanel;
-    private JPanel searchControlsPanel;
-    private JButton searchBackButton;
-    private JButton searchPlayButton;
-    private JButton searchNextButton;
-    private JProgressBar searchSongProgressBar;
+    private JButton backButton;
+    private JButton playButton;
+    private JButton nextButton;
+    private JProgressBar songProgressBar;
     private JButton searchSearchButton;
     private JButton searchCancelButton;
     private JPanel searchButtonPanel;
@@ -72,19 +72,9 @@ public class MainWindow extends AppWindow {
     private JScrollPane playlistToAddScrollPane;
     private JScrollPane playlistAddedScrollPane;
     private JPanel playlistAddControlsPanel;
-    private JPanel recentControlsPanel;
-    private JButton recentBackButton;
-    private JButton recentPlayButton;
-    private JButton recentNextButton;
-    private JProgressBar recentSongProgressBar;
     private JScrollPane recentScrollPane;
     private JTable recentTable;
     private JList<Playlist> playlistList;
-    private JPanel selectedControlsPanel;
-    private JButton selectedBackButton;
-    private JButton selectedPlayButton;
-    private JButton selectedNextButton;
-    private JProgressBar selectedSongProgressBar;
     private JTable selectedTable;
     private JScrollPane selectedScrollPane;
     private JScrollPane playlistScrollPane;
@@ -93,6 +83,7 @@ public class MainWindow extends AppWindow {
     private JButton playlistSearchButton;
     private JPanel luzPanel;
     private JLabel luzLabel;
+    private JPanel musicPanel;
 
     private Luz luz;
 
@@ -111,7 +102,6 @@ public class MainWindow extends AppWindow {
         super();
         $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
-        CardLayout cl = (CardLayout) mainCardPanel.getLayout();
 
         // Set user welcome label
         welcomeLabel.setText(WELCOME_TEXT + username);
@@ -122,45 +112,33 @@ public class MainWindow extends AppWindow {
 
         // Main button listeners
         searchButton.addActionListener(e -> {
-            switchCards();
-
-            // Additional work: update genres
+            // Update genres
             genreCBModel.updateGenres();
 
-            cl.show(mainCardPanel, CARD_SEARCH);
-            pack();
+            switchCard(CARD_SEARCH);
         });
         newPlaylistButton.addActionListener(e -> {
-            switchCards();
-
-            // Additional work: update genres
+            // Update genres
             genreCBModel2.updateGenres();
 
-            cl.show(mainCardPanel, CARD_NEWPL);
-            pack();
+            switchCard(CARD_NEWPL);
         });
         recentButton.addActionListener(e -> {
-            switchCards();
-
             // Additional work: update recent playlist
-            recentModel.replaceWith(Controller.INSTANCE.getSongsRecientes());
+            recentModel.replaceWith(Controller.INSTANCE.getRecentPlaylist());
 
-            cl.show(mainCardPanel, CARD_RECENT);
-            pack();
+            switchCard(CARD_RECENT);
         });
         myPlaylistsButton.addActionListener(e -> {
-            switchCards();
-
-            // Additional work: update playlist list
+            // Update playlist list
             playlistModel.replaceWith(Controller.INSTANCE.getPlaylists());
 
-            // Additional work: select the first one and display contents
+            // Select the first one and display contents
             playlistList.getSelectionModel().setSelectionInterval(0, 0);
             if (playlistList.getSelectedValue() != null)
-                selectedModel.replaceWith(playlistList.getSelectedValue().getSongs());
+                selectedModel.replaceWith(playlistList.getSelectedValue());
 
-            cl.show(mainCardPanel, CARD_PLAYLISTS);
-            pack();
+            switchCard(CARD_PLAYLISTS);
         });
 
         // Specific card listeners
@@ -186,7 +164,7 @@ public class MainWindow extends AppWindow {
 
         // Sign out listener
         logoutButton.addActionListener(e -> {
-            Controller.INSTANCE.switchTrack(null, false);
+            Controller.INSTANCE.switchTrack(null, -1, false);
             dispose();
 
             LoginWindow l2 = new LoginWindow();
@@ -198,20 +176,38 @@ public class MainWindow extends AppWindow {
         // Playlist selection listener
         playlistList.addListSelectionListener(l -> {
             Playlist p = playlistList.getSelectedValue();
-            if (p != null) selectedModel.replaceWith(p.getSongs());
+            if (p != null) selectedModel.replaceWith(p);
+        });
+
+        // Music button listeners
+        backButton.addActionListener(e -> {
+            Controller.INSTANCE.previousTrack(true);
+            updateTableSelection();
+        });
+        playButton.addActionListener(e -> playSong());
+        nextButton.addActionListener(e -> {
+            Controller.INSTANCE.nextTrack(true);
+            updateTableSelection();
         });
     }
 
-    private void switchCards() {
-        // Default: stop all music being played
-        Controller.INSTANCE.switchTrack(null, false);
+    private void switchCard(String newCard) {
+        CardLayout cl = (CardLayout) mainCardPanel.getLayout();
 
-        // Default: return all play buttons back to play state
-        searchPlayButton.setIcon(ICON_PLAY);
-        recentPlayButton.setIcon(ICON_PLAY);
-        selectedPlayButton.setIcon(ICON_PLAY);
+        cl.show(mainCardPanel, newCard);
+        CURRENT_CARD = newCard;
+
+        // Hide playlist list contents
+        playlistModel.clear();
+
+        // Remove all (playable) table selections
+        selectedTable.clearSelection();
+        recentTable.clearSelection();
+        searchTable.clearSelection();
+
+        updateTableSelection();
+        pack();
     }
-
 
     private void searchSetup() {
         // Hide search table on first go
@@ -227,16 +223,11 @@ public class MainWindow extends AppWindow {
         // Search listener
         searchSearchButton.addActionListener(e -> {
             searchSearchButton.setEnabled(false);
-
-            // Stop music
-            Controller.INSTANCE.switchTrack(null, false);
-            searchPlayButton.setIcon(ICON_PLAY);
-
             // Search songs
             String title = searchTitleTextField.getText().trim();
             String interprete = searchInterpreteTextField.getText().trim();
             String genre = (String) searchGenreComboBox.getSelectedItem();
-            java.util.List<Song> songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
+            Playlist songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
 
             // Display search results
             searchModel.replaceWith(songs);
@@ -245,9 +236,7 @@ public class MainWindow extends AppWindow {
         });
 
         // Cancel listener
-        searchCancelButton.addActionListener(e -> {
-            setComponentVisible(false, searchScrollPane);
-        });
+        searchCancelButton.addActionListener(e -> setComponentVisible(false, searchScrollPane));
 
         // Music selection listener
         searchTable.addMouseListener(new MouseAdapter() {
@@ -256,16 +245,12 @@ public class MainWindow extends AppWindow {
                 super.mouseClicked(e);
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
-                    searchPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(searchModel.getSongAt(searchTable.getSelectedRow()), true);
+                    Playlist currentPlaylist = searchModel.getCurrentPlaylist();
+                    playButton.setIcon(ICON_PAUSE);
+                    Controller.INSTANCE.switchTrack(currentPlaylist, searchTable.getSelectedRow(), true);
                 }
             }
         });
-
-        // Music button listeners
-        searchBackButton.addActionListener(e -> songStep(-1, searchTable, searchModel, true));
-        searchPlayButton.addActionListener(e -> playSong(searchPlayButton));
-        searchNextButton.addActionListener(e -> songStep(1, searchTable, searchModel, true));
     }
 
     private void newPlaylistSetup() {
@@ -292,7 +277,7 @@ public class MainWindow extends AppWindow {
             if (!success) playlistAddedModel.clear();
             else {
                 say("Error al crear la playlist", "La playlist indicada ya existe.");
-                playlistAddedModel.replaceWith(Controller.INSTANCE.getSongsPlaylist(name));
+                playlistAddedModel.replaceWith(Controller.INSTANCE.getPlaylist(name));
             }
             setComponentVisible(true, playlistModifyPanel);
             pack();
@@ -306,7 +291,7 @@ public class MainWindow extends AppWindow {
             String title = playlistTitleTextField.getText().trim();
             String interprete = playlistInterpreteTextField.getText().trim();
             String genre = (String) playlistGenreComboBox.getSelectedItem();
-            java.util.List<Song> songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
+            Playlist songs = Controller.INSTANCE.getSongsFiltered(title, interprete, genre);
 
             // Display search results
             playlistAddModel.replaceWith(songs);
@@ -347,16 +332,12 @@ public class MainWindow extends AppWindow {
                 super.mouseClicked(e);
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
-                    recentPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(recentModel.getSongAt(recentTable.getSelectedRow()), false);
+                    Playlist currentPlaylist = recentModel.getCurrentPlaylist();
+                    playButton.setIcon(ICON_PAUSE);
+                    Controller.INSTANCE.switchTrack(currentPlaylist, recentTable.getSelectedRow(), false);
                 }
             }
         });
-
-        // Music button listeners
-        recentBackButton.addActionListener(e -> songStep(-1, recentTable, recentModel, false));
-        recentPlayButton.addActionListener(e -> playSong(recentPlayButton));
-        recentNextButton.addActionListener(e -> songStep(1, recentTable, recentModel, false));
     }
 
     private void myPlaylistsSetup() {
@@ -372,19 +353,16 @@ public class MainWindow extends AppWindow {
                 super.mouseClicked(e);
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
-                    selectedPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(selectedModel.getSongAt(selectedTable.getSelectedRow()), true);
+                    Playlist currentPlaylist = playlistList.getSelectedValue();
+                    playButton.setIcon(ICON_PAUSE);
+                    Controller.INSTANCE.switchTrack(currentPlaylist, selectedTable.getSelectedRow(), true);
                 }
             }
         });
-
-        // Music button listeners
-        selectedBackButton.addActionListener(e -> songStep(-1, selectedTable, selectedModel, true));
-        selectedPlayButton.addActionListener(e -> playSong(selectedPlayButton));
-        selectedNextButton.addActionListener(e -> songStep(1, selectedTable, selectedModel, true));
     }
 
-    private void playSong(JButton playButton) {
+
+    private void playSong() {
         if (playButton.getIcon().equals(ICON_PLAY)) {
             playButton.setIcon(ICON_PAUSE);
             Controller.INSTANCE.resumeTrack();
@@ -394,23 +372,38 @@ public class MainWindow extends AppWindow {
         }
     }
 
-    private void songStep(int step, JTable table, SongTableModel model, boolean addToRecent) {
-        // Do nothing if nothing was selected
-        int current = table.getSelectedRow();
-        if (current == -1) return;
+    private void updateTableSelection() {
+        // If there's nothing playing, do nothing
+        int cursong = Controller.INSTANCE.currentTrack();
+        if (cursong == -1) return;
+        if (Controller.INSTANCE.getCurrentPlaylist() == null) return;
+        String pname = Controller.INSTANCE.getCurrentPlaylist().getName();
 
-        // Change selection to the next one
-        current = (current + step) % model.getRowCount();
-        while (current < 0) current += model.getRowCount();
-
-        table.getSelectionModel().setSelectionInterval(current, current);
-
-        // Update visibly
-        table.scrollRectToVisible(table.getCellRect(current, 0, true));
-
-        // Switch track
-        Controller.INSTANCE.switchTrack(model.getSongAt(current), addToRecent);
+        // Different attitudes with different cards
+        switch (CURRENT_CARD) {
+            case CARD_SEARCH:
+                // Confirm that the music playing comes from the same search
+                if (searchModel.getCurrentPlaylist().getName().equals(pname)) {
+                    searchTable.getSelectionModel().setSelectionInterval(cursong, cursong);
+                    searchTable.scrollRectToVisible(searchTable.getCellRect(cursong, 0, true));
+                }
+                break;
+            case CARD_RECENT:
+                // Confirm that the music playing comes from the recent playlist
+                if (recentModel.getCurrentPlaylist().getName().equals(pname)) {
+                    recentTable.getSelectionModel().setSelectionInterval(cursong, cursong);
+                    recentTable.scrollRectToVisible(recentTable.getCellRect(cursong, 0, true));
+                }
+                break;
+            case CARD_PLAYLISTS:
+                // Confirm that the music playing comes from the selected playlist
+                if (selectedModel.getCurrentPlaylist().getName().equals(pname)) {
+                    selectedTable.getSelectionModel().setSelectionInterval(cursong, cursong);
+                    selectedTable.scrollRectToVisible(selectedTable.getCellRect(cursong, 0, true));
+                }
+        }
     }
+
 
     private void setComponentVisible(boolean visible, Component component) {
         if (component instanceof Container)
@@ -469,7 +462,7 @@ public class MainWindow extends AppWindow {
         newPlaylistButton = new JButton();
         newPlaylistButton.setHorizontalAlignment(2);
         newPlaylistButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonNewPlaylists.png")));
-        newPlaylistButton.setText("Nueva lista");
+        newPlaylistButton.setText("Editor de listas");
         buttonsPanel.add(newPlaylistButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
         recentButton = new JButton();
         recentButton.setHorizontalAlignment(2);
@@ -514,27 +507,6 @@ public class MainWindow extends AppWindow {
         searchButtonPanel.add(spacer2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         searchButtonPanel.add(spacer3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        searchControlsPanel = new JPanel();
-        searchControlsPanel.setLayout(new GridLayoutManager(2, 5, new Insets(0, 0, 0, 0), -1, -1));
-        searchPanel.add(searchControlsPanel, BorderLayout.SOUTH);
-        searchBackButton = new JButton();
-        searchBackButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonAnterior.png")));
-        searchBackButton.setText("");
-        searchControlsPanel.add(searchBackButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        searchPlayButton = new JButton();
-        searchPlayButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
-        searchPlayButton.setText("");
-        searchControlsPanel.add(searchPlayButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        searchNextButton = new JButton();
-        searchNextButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonSiguiente.png")));
-        searchNextButton.setText("");
-        searchControlsPanel.add(searchNextButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        searchSongProgressBar = new JProgressBar();
-        searchControlsPanel.add(searchSongProgressBar, new GridConstraints(1, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer4 = new Spacer();
-        searchControlsPanel.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer5 = new Spacer();
-        searchControlsPanel.add(spacer5, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         searchScrollPane = new JScrollPane();
         searchScrollPane.setPreferredSize(new Dimension(453, -1));
         searchScrollPane.setRequestFocusEnabled(false);
@@ -550,16 +522,17 @@ public class MainWindow extends AppWindow {
         playlistCreatePanel.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         newPlaylistPanel.add(playlistCreatePanel, BorderLayout.NORTH);
         playlistCreateButton = new JButton();
-        playlistCreateButton.setText("Crear");
+        playlistCreateButton.setText("Crear/Modificar");
         playlistCreatePanel.add(playlistCreateButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer6 = new Spacer();
-        playlistCreatePanel.add(spacer6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer4 = new Spacer();
+        playlistCreatePanel.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         playlistNameTextField = new JTextField();
         playlistCreatePanel.add(playlistNameTextField, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final Spacer spacer7 = new Spacer();
-        playlistCreatePanel.add(spacer7, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer5 = new Spacer();
+        playlistCreatePanel.add(spacer5, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         playlistModifyPanel = new JPanel();
         playlistModifyPanel.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        playlistModifyPanel.setEnabled(true);
         playlistModifyPanel.setVisible(true);
         newPlaylistPanel.add(playlistModifyPanel, BorderLayout.CENTER);
         playlistFiltersPanel = new JPanel();
@@ -571,13 +544,13 @@ public class MainWindow extends AppWindow {
         playlistFiltersPanel.add(playlistTitleTextField, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         playlistGenreComboBox = new JComboBox();
         playlistFiltersPanel.add(playlistGenreComboBox, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer8 = new Spacer();
-        playlistFiltersPanel.add(spacer8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer6 = new Spacer();
+        playlistFiltersPanel.add(spacer6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         playlistSearchButton = new JButton();
         playlistSearchButton.setText("Buscar");
         playlistFiltersPanel.add(playlistSearchButton, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer9 = new Spacer();
-        playlistFiltersPanel.add(spacer9, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer7 = new Spacer();
+        playlistFiltersPanel.add(spacer7, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         playlistEditPanel = new JPanel();
         playlistEditPanel.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         playlistModifyPanel.add(playlistEditPanel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(587, 432), null, 0, false));
@@ -598,47 +571,26 @@ public class MainWindow extends AppWindow {
         playlistRemoveButton = new JButton();
         playlistRemoveButton.setText("<<");
         playlistAddControlsPanel.add(playlistRemoveButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer10 = new Spacer();
-        playlistAddControlsPanel.add(spacer10, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final Spacer spacer11 = new Spacer();
-        playlistAddControlsPanel.add(spacer11, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final Spacer spacer8 = new Spacer();
+        playlistAddControlsPanel.add(spacer8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final Spacer spacer9 = new Spacer();
+        playlistAddControlsPanel.add(spacer9, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         playlistModifyPanel.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(587, 24), null, 0, false));
-        final Spacer spacer12 = new Spacer();
-        panel1.add(spacer12, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer10 = new Spacer();
+        panel1.add(spacer10, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         playlistCancelButton = new JButton();
         playlistCancelButton.setText("Cancelar");
         panel1.add(playlistCancelButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         playlistAcceptButton = new JButton();
         playlistAcceptButton.setText("Aceptar");
         panel1.add(playlistAcceptButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer13 = new Spacer();
-        panel1.add(spacer13, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer11 = new Spacer();
+        panel1.add(spacer11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         recentPanel = new JPanel();
         recentPanel.setLayout(new BorderLayout(0, 0));
         mainCardPanel.add(recentPanel, "recentPanel");
-        recentControlsPanel = new JPanel();
-        recentControlsPanel.setLayout(new GridLayoutManager(2, 5, new Insets(0, 0, 0, 0), -1, -1));
-        recentPanel.add(recentControlsPanel, BorderLayout.SOUTH);
-        recentBackButton = new JButton();
-        recentBackButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonAnterior.png")));
-        recentBackButton.setText("");
-        recentControlsPanel.add(recentBackButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        recentPlayButton = new JButton();
-        recentPlayButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
-        recentPlayButton.setText("");
-        recentControlsPanel.add(recentPlayButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        recentNextButton = new JButton();
-        recentNextButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonSiguiente.png")));
-        recentNextButton.setText("");
-        recentControlsPanel.add(recentNextButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        recentSongProgressBar = new JProgressBar();
-        recentControlsPanel.add(recentSongProgressBar, new GridConstraints(1, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer14 = new Spacer();
-        recentControlsPanel.add(spacer14, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer15 = new Spacer();
-        recentControlsPanel.add(spacer15, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         recentScrollPane = new JScrollPane();
         recentPanel.add(recentScrollPane, BorderLayout.CENTER);
         recentTable = new JTable();
@@ -646,32 +598,32 @@ public class MainWindow extends AppWindow {
         selectedPlaylistsPanel = new JPanel();
         selectedPlaylistsPanel.setLayout(new BorderLayout(0, 0));
         mainCardPanel.add(selectedPlaylistsPanel, "selectedPlaylistPanel");
-        selectedControlsPanel = new JPanel();
-        selectedControlsPanel.setLayout(new GridLayoutManager(2, 5, new Insets(0, 0, 0, 0), -1, -1));
-        selectedPlaylistsPanel.add(selectedControlsPanel, BorderLayout.SOUTH);
-        selectedBackButton = new JButton();
-        selectedBackButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonAnterior.png")));
-        selectedBackButton.setText("");
-        selectedControlsPanel.add(selectedBackButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        selectedPlayButton = new JButton();
-        selectedPlayButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
-        selectedPlayButton.setText("");
-        selectedControlsPanel.add(selectedPlayButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        selectedNextButton = new JButton();
-        selectedNextButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonSiguiente.png")));
-        selectedNextButton.setText("");
-        selectedControlsPanel.add(selectedNextButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        selectedSongProgressBar = new JProgressBar();
-        selectedControlsPanel.add(selectedSongProgressBar, new GridConstraints(1, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer16 = new Spacer();
-        selectedControlsPanel.add(spacer16, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer17 = new Spacer();
-        selectedControlsPanel.add(spacer17, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         selectedScrollPane = new JScrollPane();
         selectedPlaylistsPanel.add(selectedScrollPane, BorderLayout.CENTER);
         selectedTable = new JTable();
         selectedTable.setVisible(true);
         selectedScrollPane.setViewportView(selectedTable);
+        musicPanel = new JPanel();
+        musicPanel.setLayout(new GridLayoutManager(2, 5, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(musicPanel, BorderLayout.SOUTH);
+        songProgressBar = new JProgressBar();
+        musicPanel.add(songProgressBar, new GridConstraints(1, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        backButton = new JButton();
+        backButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonAnterior.png")));
+        backButton.setText("");
+        musicPanel.add(backButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        playButton = new JButton();
+        playButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
+        playButton.setText("");
+        musicPanel.add(playButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nextButton = new JButton();
+        nextButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonSiguiente.png")));
+        nextButton.setText("");
+        musicPanel.add(nextButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer12 = new Spacer();
+        musicPanel.add(spacer12, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer13 = new Spacer();
+        musicPanel.add(spacer13, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     }
 
     /**

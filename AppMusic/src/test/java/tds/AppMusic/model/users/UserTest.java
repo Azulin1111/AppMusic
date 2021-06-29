@@ -46,13 +46,14 @@ public class UserTest {
 
     @Before
     public void setUp() {
-        user = new User(TEST_NAME, TEST_NICKNAME, TEST_PREMIUM, TEST_PASSWORD, TEST_EMAIL, date);
+        user = new User(TEST_NAME, TEST_SURNAMES, TEST_NICKNAME, TEST_PREMIUM, TEST_PASSWORD, TEST_EMAIL, date);
     }
 
 
     @Test
     public void parameterTests() {
         assertEquals(TEST_NAME, user.getName());
+        assertEquals(TEST_SURNAMES, user.getSurnames());
         assertEquals(TEST_NICKNAME, user.getNickname());
         assertFalse(user.isPremium() ^ TEST_PREMIUM);
         assertEquals(TEST_PASSWORD, user.getPassword());

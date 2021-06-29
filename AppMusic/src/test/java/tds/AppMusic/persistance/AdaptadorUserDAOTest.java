@@ -25,6 +25,7 @@ public class AdaptadorUserDAOTest {
 
     private static final String TYPE_USER = "User";
     private static final String TYPE_USER_USERNAME = "Username";
+    private static final String TYPE_USER_SURNAMES = "Surnames";
     private static final String TYPE_USER_PASSWORD = "Password";
     private static final String TYPE_USER_NAME = "Name";
     private static final String TYPE_USER_EMAIL = "Email";
@@ -40,13 +41,14 @@ public class AdaptadorUserDAOTest {
 
     private static final IAdaptadorUserDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
     private static final String NOMBRE = "nombrePrueba";
+    private static final String SURNAMES = "surnamesPrueba";
     private static final String USERNAME = "userPrueba";
     private static final boolean PREMIUM = false;
     private static final String PASSWORD = "password";
     private static final String EMAIL = "email@prueba.com";
     private static final Date DATE = Date.from(Instant.now());
 
-    private static final User USER = new User(NOMBRE, USERNAME, PREMIUM, PASSWORD, EMAIL, DATE);
+    private static final User USER = new User(NOMBRE, SURNAMES, USERNAME, PREMIUM, PASSWORD, EMAIL, DATE);
 
     private static final String ID_FORMAT = "([0-9]+) ([0-9]+)";
 
@@ -77,6 +79,7 @@ public class AdaptadorUserDAOTest {
         Entidad e = new Entidad();
         e.setPropiedades(Arrays.asList(
                 new Propiedad(TYPE_USER_NAME, NOMBRE),
+                new Propiedad(TYPE_USER_SURNAMES, SURNAMES),
                 new Propiedad(TYPE_USER_USERNAME, USERNAME),
                 new Propiedad(TYPE_USER_PREMIUM, Boolean.toString(PREMIUM)),
                 new Propiedad(TYPE_USER_PASSWORD, PASSWORD),
@@ -98,7 +101,7 @@ public class AdaptadorUserDAOTest {
 
     @Test
     public void storeUser() {
-        User user = new User(NOMBRE, USERNAME, PREMIUM, PASSWORD, EMAIL, DATE);
+        User user = new User(NOMBRE, SURNAMES, USERNAME, PREMIUM, PASSWORD, EMAIL, DATE);
 
         // Assert that the user has been stored
         int before = PERSISTENCIA.recuperarEntidades().size();
@@ -118,6 +121,9 @@ public class AdaptadorUserDAOTest {
             switch (p.getNombre()) {
                 case TYPE_USER_NAME:
                     assertEquals(p.getValor(), NOMBRE);
+                    break;
+                case TYPE_USER_SURNAMES:
+                    assertEquals(p.getValor(), SURNAMES);
                     break;
                 case TYPE_USER_USERNAME:
                     assertEquals(p.getValor(), USERNAME);

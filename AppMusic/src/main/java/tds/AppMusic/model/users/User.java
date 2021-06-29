@@ -31,6 +31,12 @@ public class User {
      * Nombre real del usuario.
      */
     private final String name;
+
+    /**
+     * Apellidos reales del usuario.
+     */
+    private final String surnames;
+
     /**
      * Indica si el usuario es premium.
      */
@@ -84,14 +90,16 @@ public class User {
     /**
      * Crea un usuario nuevo.
      * @param name El nombre real del usuario.
+     * @param surnames Los apellidos reales del usuario.
      * @param nickname El nombre de usuario del usuario.
      * @param premium Si el usuario es premium o no.
      * @param password La contraseña del usuario.
      * @param email El correo electrónico del usuario.
      * @param birthday El cumpleaños del usuario.
      */
-    public User(String name, String nickname, boolean premium, String password, String email, Date birthday) {
+    public User(String name, String surnames, String nickname, boolean premium, String password, String email, Date birthday) {
         this.name = name;
+        this.surnames = surnames;
         this.nickname = nickname;
         this.premium = premium;
         this.password = password;
@@ -156,6 +164,14 @@ public class User {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Devuelve los apellidos reales del usuario.
+     * @return Los apellidos reales del usuario.
+     */
+    public String getSurnames() {
+        return surnames;
     }
 
     /**

@@ -24,6 +24,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     private static final String TYPE_USER = "User";
 
     private static final String TYPE_USER_USERNAME = "Username";
+    private static final String TYPE_USER_SURNAMES = "Surnames";
     private static final String TYPE_USER_PASSWORD = "Password";
     private static final String TYPE_USER_NAME = "Name";
     private static final String TYPE_USER_EMAIL = "Email";
@@ -52,6 +53,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         eUser.setPropiedades(new ArrayList<>(
                 Arrays.asList(
                         new Propiedad(TYPE_USER_NAME, user.getName()),
+                        new Propiedad(TYPE_USER_SURNAMES, user.getSurnames()),
                         new Propiedad(TYPE_USER_USERNAME, user.getNickname()),
                         new Propiedad(TYPE_USER_PREMIUM, Boolean.toString(user.isPremium())),
                         new Propiedad(TYPE_USER_PASSWORD, user.getPassword()),
@@ -121,6 +123,9 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
                         case TYPE_USER_NAME:
                             p.setValor(user.getName());
                             break;
+                        case TYPE_USER_SURNAMES:
+                            p.setValor(user.getSurnames());
+                            break;
                         case TYPE_USER_USERNAME:
                             p.setValor(user.getNickname());
                             break;
@@ -156,6 +161,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         // Si no está en el pool, se recupera de la base de datos
         Entidad eUser;
         String name;
+        String usernames;
         String nickname;
         boolean premium;
         String password;
@@ -171,13 +177,14 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
 
         // Recuperar propiedades que no son objetos
         name = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_NAME);
+        usernames = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_SURNAMES);
         nickname = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_USERNAME);
         premium = Boolean.parseBoolean(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PREMIUM));
         password = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PASSWORD);
         email = SP.recuperarPropiedadEntidad(eUser, TYPE_USER_EMAIL);
         birthday = parse(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_BIRTHDAY));
 
-        User user = new User(name, nickname, premium, password, email, birthday);
+        User user = new User(name, usernames, nickname, premium, password, email, birthday);
         user.setCode(code);
 
         // Se introduce user en el pool antes de llamar a otros adaptadores
@@ -189,7 +196,6 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
             user.addPlaylist(p);
 
         int recentCode = Integer.parseInt(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_RECENTSONGS));
-        List<Entidad> es = FactoriaServicioPersistencia.getInstance().getServicioPersistencia().recuperarEntidades();
         recentSongs = AdaptadorPlaylistDAO.INSTANCE.getPlaylist(recentCode);
         if (recentSongs != null) {
             user.setCodeRecent(recentCode);

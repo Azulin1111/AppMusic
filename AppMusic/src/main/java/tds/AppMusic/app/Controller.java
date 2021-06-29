@@ -10,7 +10,6 @@ import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.music.SongRepository;
 import tds.AppMusic.model.users.User;
 import tds.AppMusic.model.users.UserRepository;
-import tds.AppMusic.persistance.*;
 import umu.tds.ISongFinder;
 import umu.tds.ISongsListener;
 import umu.tds.LoaderSong;
@@ -164,7 +163,7 @@ public enum Controller implements ISongsListener {
     public boolean signup(String username, String password, String name, String surnames, String email, Date birthday) {
         if (UserRepository.INSTANCE.getAllUsers().stream().anyMatch(u -> u.getNickname().equals(username)))
             return false;
-        UserRepository.INSTANCE.storeUser(new User(name, username, false, password, email, birthday));
+        UserRepository.INSTANCE.storeUser(new User(name, surnames, username, false, password, email, birthday));
         return true;
     }
 

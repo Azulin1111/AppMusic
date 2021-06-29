@@ -5,8 +5,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tds.AppMusic.GUI.GenreComboBoxModel;
 import tds.AppMusic.model.music.Playlist;
+import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
+import tds.AppMusic.model.music.SongRepository;
 import tds.AppMusic.model.users.User;
+import tds.AppMusic.model.users.UserRepository;
 import tds.AppMusic.persistance.*;
 import umu.tds.ISongFinder;
 import umu.tds.ISongsListener;
@@ -37,14 +40,13 @@ public enum Controller implements ISongsListener {
      * @return {@code true} si se ha creado una playlist, {@code false} si no.
      */
     public boolean createOrUpdatePlaylist(String name, List<Song> songs) {
-        IAdaptadorPlaylistDAO pdao = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
         boolean exists = currentUser.hasPlaylist(name);
 
         if (exists) {
-            pdao.setPlaylist(currentUser.updatePlaylist(name, songs));
+            PlaylistRepository.INSTANCE.setPlaylist(currentUser.updatePlaylist(name, songs));
         } else {
-            pdao.storePlaylist(currentUser.createPlaylist(name, songs));
-            FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO().setUser(currentUser);
+            PlaylistRepository.INSTANCE.storePlaylist(currentUser.createPlaylist(name, songs));
+            UserRepository.INSTANCE.setUser(currentUser);
         }
 
         return exists;
@@ -80,7 +82,7 @@ public enum Controller implements ISongsListener {
      * @return Una lista con todas las canciones que pasan el filtro.
      */
     public List<Song> getSongsFiltered(String title, String interprete, String genre) {
-        List<Song> songs = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO().getAllSongs();
+        List<Song> songs = SongRepository.INSTANCE.getAllSongs();
         return songs.stream()
                 .filter(s -> s.getName().contains(title))
                 .filter(s -> s.getSinger().contains(interprete))
@@ -141,8 +143,7 @@ public enum Controller implements ISongsListener {
      * @return {@code true} si se ha iniciado sesión con éxito, {@code false} si no.
      */
     public boolean login(String username, String password) {
-        IAdaptadorUserDAO udao = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
-        Optional<User> login = udao.getAllUsers().stream()
+        Optional<User> login = UserRepository.INSTANCE.getAllUsers().stream()
                 .filter(u -> u.compareNickname(username) && u.comparePassword(password))
                 .findAny();
         login.ifPresent(user -> currentUser = user);
@@ -161,10 +162,9 @@ public enum Controller implements ISongsListener {
      * @return {@code true} si el usuario se ha registrado con éxito, {@code false} si el nombre de usuario ya existe.
      */
     public boolean signup(String username, String password, String name, String surnames, String email, Date birthday) {
-        IAdaptadorUserDAO udao = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
-        if (udao.getAllUsers().stream().anyMatch(u -> u.getNickname().equals(username)))
+        if (UserRepository.INSTANCE.getAllUsers().stream().anyMatch(u -> u.getNickname().equals(username)))
             return false;
-        udao.storeUser(new User(name, username, false, password, email, birthday));
+        UserRepository.INSTANCE.storeUser(new User(name, username, false, password, email, birthday));
         return true;
     }
 
@@ -179,7 +179,7 @@ public enum Controller implements ISongsListener {
 
     public List<String> getGenres() {
         Set<String> set = new HashSet<>();
-        FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO().getAllSongs().forEach(s -> set.add(s.getGenre()));
+        SongRepository.INSTANCE.getAllSongs().forEach(s -> set.add(s.getGenre()));
         return set.stream().sorted().collect(Collectors.toList());
     }
 
@@ -212,7 +212,7 @@ public enum Controller implements ISongsListener {
     public void newSongs(SongsEvent songsEvent) {
         Canciones c = songsEvent.getCanciones();
         List<Song> songs = convertCancionesToSongs(c);
-        IAdaptadorSongDAO dao = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO();
-        songs.forEach(dao::storeSong);
+        songs.forEach(s -> SongRepository.INSTANCE.storeSong(s));
+
     }
 }

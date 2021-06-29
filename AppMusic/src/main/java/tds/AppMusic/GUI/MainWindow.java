@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.Instant;
 import java.util.Objects;
 
 public class MainWindow extends AppWindow {
@@ -231,7 +232,13 @@ public class MainWindow extends AppWindow {
         });
 
         makePDFButton.addActionListener(e -> {
-            // TODO Misterio
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+            chooser.setFileFilter(new FileNameExtensionFilter("Fichero PDF", "pdf"));
+            chooser.showOpenDialog(this);
+            boolean success = Controller.INSTANCE.generatePDF(chooser.getSelectedFile());
+            if (!success) say("Generar PDF", "Fallo al generar el PDF! Intenta reiniciar la aplicación.");
+            else say("Generar PDF", "Fichero generado con éxito!");
         });
     }
 

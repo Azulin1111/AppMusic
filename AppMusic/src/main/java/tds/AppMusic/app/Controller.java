@@ -24,6 +24,7 @@ import umu.tds.SongsEvent;
 import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URI;
@@ -296,7 +297,7 @@ public enum Controller implements ISongsListener {
     }
 
     // Si devuelve false ha habido un error.
-    public boolean generatePDF(String nameFileRDF){
+    public boolean generatePDF(File nameFileRDF){
         ParserUser parser = new ParserUser(currentUser);
         parser.setBuilder("iText");
         try {

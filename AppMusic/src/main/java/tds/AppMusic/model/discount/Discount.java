@@ -26,4 +26,6 @@ public interface Discount {
         Collections.addAll(d, new YoungDiscount(), new FixedDiscount(), new NullDiscount());
         return d;
     }
+
+    // TODO toString() para mostrar el descuento en el mensajito
 }

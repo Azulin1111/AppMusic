@@ -5,37 +5,39 @@ import tds.AppMusic.persistance.FactoryDAO;
 import tds.AppMusic.persistance.IAdaptadorSongDAO;
 
 import java.net.URI;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public enum SongRepository {
     INSTANCE;
 
-    private static final List<Song> SONGS = new LinkedList<>();
+    private static final Map<Integer, Song> SONGS = new HashMap<Integer, Song>();
     private static final IAdaptadorSongDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getSongDAO();
 
     static {
-        SONGS.addAll(DAO.getAllSongs());
+        List<Song> listsSongs = DAO.getAllSongs();
+        listsSongs.forEach(s -> SONGS.put(s.getCode(), s));
     }
 
-    public List<Song> getSongs(){
-        return Collections.unmodifiableList(SONGS);
-    }
+    void storeSong(Song song){
+        SONGS.put(song.getCode(), song);
+        DAO.storeSong(song);
+    };
 
-    public void addSong(String name, String singer, String genre, URI path){
-        addSong(name, singer, genre, path, 0);
-    }
-
-    public void addSong(String name, String singer, String genre, URI path, int playCount) {
-        Song newSong = new Song(name, singer, genre, path);
-        SONGS.add(newSong);
-        DAO.storeSong(newSong);
-    }
-
-    public void removeSong(Song song) {
-        SONGS.remove(song);
+    void deleteSong(Song song){
+        SONGS.remove(song.getCode());
         DAO.deleteSong(song);
-    }
+    };
 
+    void setSong(Song song){
+        SONGS.put(song.getCode(), song);
+        DAO.setSong(song);
+    };
+
+    Song getSong(int code){
+        return SONGS.get(code);
+    };
+
+    List<Song> getAllSongs(){
+        return (List<Song>) SONGS.values();
+    };
 }

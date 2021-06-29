@@ -1,42 +1,45 @@
 package tds.AppMusic.model.users;
 
 
+import tds.AppMusic.model.music.Song;
 import tds.AppMusic.persistance.DAOFactories;
 import tds.AppMusic.persistance.FactoryDAO;
 import tds.AppMusic.persistance.IAdaptadorUserDAO;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public enum UserRepository {
     INSTANCE;
 
-    private static final List<User> USERS = new LinkedList<>();
+    private static final Map<Integer, User> USERS = new HashMap<Integer, User>();
     private static final IAdaptadorUserDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getUserDAO();
 
     static {
-        USERS.addAll(DAO.getAllUsers());
+        List<User> listUsers = DAO.getAllUsers();
+        listUsers.forEach(u -> USERS.put(u.getCode(), u));
     }
 
-    public List<User> getUsers(){
-        return USERS;
-    }
-
-    public void addUser(String name, String nickname, String password, String email, Date birthday) {
-        addUser(name, nickname, false, password, email, birthday);
-    }
-
-    public void addUser(String name, String nickname, boolean premium, String password, String email, Date birthday) {
-        User user = new User(name, nickname, premium, password, email, birthday);
-        USERS.add(user);
+    void storeUser(User user){
+        USERS.put(user.getCode(), user);
         DAO.storeUser(user);
-    }
+    };
 
-    public void removeUser(User user) {
-        USERS.remove(user);
+    void deleteUser(User user){
+        USERS.remove(user.getCode());
         DAO.deleteUser(user);
-    }
+    };
+
+    void setUser(User user){
+        USERS.put(user.getCode(), user);
+        DAO.setUser(user);
+    };
+
+    User getUser(int code){
+        return USERS.get(code);
+    };
+
+    List<User> getAllUsers(){
+        return (List<User>) USERS.values();
+    };
 
 }

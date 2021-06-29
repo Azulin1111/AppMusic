@@ -65,51 +65,6 @@ public class UserTest {
     }
 
     @Test
-    public void fixedDiscountTest() {
-        double payment = new FixedDiscount().calcDescuento();
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE * 0.90;
-
-        // Test
-        assertEquals(payment, expectedPayment, 0.001);
-
-    }
-
-    @Test
-    public void youngDiscountTest() {
-        double payment = new YoungDiscount().calcDescuento();
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE * 0.85;
-
-        // Test
-        assertEquals(payment, expectedPayment, 0.001);
-    }
-
-    @Test
-    public void nullDiscountTest1() { // Explicit form
-        double payment1 = new NullDiscount().calcDescuento();
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE;
-
-        // Test
-        assertEquals(payment1, expectedPayment, 0.001);
-    }
-
-    @Test
-    public void nullDiscountTest2() { // Implicit form
-        double payment2 = new NullDiscount().calcDescuento();
-
-        // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE;
-
-        // Test
-        assertEquals(payment2, expectedPayment, 0.001);
-    }
-
-    @Test
     public void mostPlayedSongsTest1() {
         List<Song> songs = new LinkedList<>();
         Collections.addAll(songs, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12);

@@ -1,4 +1,4 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 public class TDSFactoryDAO extends FactoryDAO {
 

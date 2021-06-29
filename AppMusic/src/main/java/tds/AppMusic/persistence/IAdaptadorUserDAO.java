@@ -1,8 +1,5 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
-import beans.Entidad;
-import beans.Propiedad;
-import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.users.User;
 
 import java.util.*;

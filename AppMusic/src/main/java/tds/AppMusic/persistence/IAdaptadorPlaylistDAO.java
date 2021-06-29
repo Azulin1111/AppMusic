@@ -1,4 +1,4 @@
-package tds.AppMusic.persistance;
+package tds.AppMusic.persistence;
 
 import tds.AppMusic.model.music.Playlist;
 

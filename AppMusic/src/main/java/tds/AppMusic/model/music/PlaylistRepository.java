@@ -1,8 +1,8 @@
 package tds.AppMusic.model.music;
 
-import tds.AppMusic.persistance.DAOFactories;
-import tds.AppMusic.persistance.FactoryDAO;
-import tds.AppMusic.persistance.IAdaptadorPlaylistDAO;
+import tds.AppMusic.persistence.DAOFactories;
+import tds.AppMusic.persistence.FactoryDAO;
+import tds.AppMusic.persistence.IAdaptadorPlaylistDAO;
 
 import java.util.*;
 

@@ -22,28 +22,28 @@ public enum UserRepository {
     }
 
     public void storeUser(User user){
-        USERS.put(user.getCode(), user);
         DAO.storeUser(user);
+        USERS.put(user.getCode(), user);
     }
 
     public void deleteUser(User user){
-        USERS.remove(user.getCode());
         DAO.deleteUser(user);
+        USERS.remove(user.getCode());
     }
 
     public void setUser(User user){
-        USERS.put(user.getCode(), user);
         DAO.setUser(user);
+        USERS.put(user.getCode(), user);
     }
 
     public User getUser(int code){
-        return USERS.get(code);
+        User user = USERS.get(code);
+        if (user == null) user = DAO.getUser(code);
+        return user;
     };
 
     public List<User> getAllUsers(){
-        List<User> listUsers = new LinkedList<>();
-        USERS.values().forEach(u -> listUsers.add(u));
-        return listUsers;
+        return new LinkedList<>(USERS.values());
     }
 
 }

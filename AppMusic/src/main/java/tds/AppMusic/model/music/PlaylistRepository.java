@@ -19,28 +19,28 @@ public enum PlaylistRepository {
 
 
     public void storePlaylist(Playlist playlist){
-        PLAYLISTS.put(playlist.getCode(), playlist);
         DAO.storePlaylist(playlist);
+        PLAYLISTS.put(playlist.getCode(), playlist);
     }
 
     public void deletePlaylist(Playlist playlist){
-        PLAYLISTS.remove(playlist.getCode());
         DAO.deletePlaylist(playlist);
+        PLAYLISTS.remove(playlist.getCode());
     }
 
     public void setPlaylist(Playlist playlist){
-        PLAYLISTS.put(playlist.getCode(), playlist);
         DAO.setPlaylist(playlist);
+        PLAYLISTS.put(playlist.getCode(), playlist);
     }
 
     public Playlist getPlaylist(int code){
-        return PLAYLISTS.get(code);
+        Playlist playlist = PLAYLISTS.get(code);
+        if (playlist == null) playlist = DAO.getPlaylist(code);
+        return playlist;
     };
 
     public List<Playlist> getAllPlaylists(){
-        List<Playlist> listPlaylists = new LinkedList<>();
-        PLAYLISTS.values().forEach(p -> listPlaylists.add(p));
-        return listPlaylists;
+        return new LinkedList<>(PLAYLISTS.values());
     }
 
 }

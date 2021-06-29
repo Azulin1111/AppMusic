@@ -38,9 +38,7 @@ public enum PlaylistRepository {
     };
 
     public List<Playlist> getAllPlaylists(){
-        List<Playlist> listPlaylists = new LinkedList<>();
-        PLAYLISTS.values().forEach(p -> listPlaylists.add(p));
-        return listPlaylists;
+        return new LinkedList<>(PLAYLISTS.values());
     }
 
 }

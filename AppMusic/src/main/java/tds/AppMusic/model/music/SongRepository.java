@@ -38,9 +38,6 @@ public enum SongRepository {
     };
 
     public List<Song> getAllSongs(){
-        List<Song> listSongs = new LinkedList<>();
-        SONGS.values().forEach(s -> listSongs.add(s));
-        return listSongs;
-
+        return new LinkedList<>(SONGS.values());
     }
 }

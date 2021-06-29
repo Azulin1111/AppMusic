@@ -41,9 +41,7 @@ public enum UserRepository {
     };
 
     public List<User> getAllUsers(){
-        List<User> listUsers = new LinkedList<>();
-        USERS.values().forEach(u -> listUsers.add(u));
-        return listUsers;
+        return new LinkedList<>(USERS.values());
     }
 
 }

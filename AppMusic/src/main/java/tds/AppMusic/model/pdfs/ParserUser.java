@@ -13,14 +13,14 @@ import java.util.Locale;
 // Builder's Director class
 public class ParserUser {
     private BuilderPDFfromUser builder;
-    private User user;
+    private final User user;
 
     public ParserUser(User user){
         this.user = user;
     }
 
     public void setBuilder(String tipo){
-        builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(tipo);
+        builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(Builders.ITEXT);
     }
 
     public void parse(File filePDF) throws DocumentException, IOException {

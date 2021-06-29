@@ -15,4 +15,8 @@ public abstract class AppWindow extends JFrame {
     protected boolean ask(String windowTitle, String windowText) {
         return JOptionPane.showConfirmDialog(this, windowText, windowTitle, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
+
+    protected String askString(String windowTitle, String windowText) {
+        return JOptionPane.showInputDialog(this, windowText, windowTitle, JOptionPane.INFORMATION_MESSAGE);
+    }
 }

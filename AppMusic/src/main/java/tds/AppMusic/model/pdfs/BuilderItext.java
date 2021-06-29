@@ -49,7 +49,7 @@ public class BuilderItext implements BuilderPDFfromUser{
     public void getPDF() throws DocumentException, IOException {
         document.add(new Paragraph(SEPARATOR));
         document.close();
-        file.close();
+//        file.close();
     }
 
 

@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -174,7 +175,6 @@ public class MainWindow extends AppWindow {
             Discount d = Controller.INSTANCE.getMaximumDiscount();
             if (Controller.INSTANCE.isPremium()) {
                 say("Comprar premium", "Usuario ya premium!");
-                return;
             } else if (ask("Comprar premium", "El descuento aplicado es: " + d.toString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
                 premiumSetup(true);
                 Controller.INSTANCE.buyPremium();
@@ -236,7 +236,8 @@ public class MainWindow extends AppWindow {
             chooser.setDialogType(JFileChooser.SAVE_DIALOG);
             chooser.setFileFilter(new FileNameExtensionFilter("Fichero PDF", "pdf"));
             chooser.showOpenDialog(this);
-            boolean success = Controller.INSTANCE.generatePDF(chooser.getSelectedFile());
+            File f = chooser.getSelectedFile();
+            boolean success = Controller.INSTANCE.generatePDF(f);
             if (!success) say("Generar PDF", "Fallo al generar el PDF! Intenta reiniciar la aplicación.");
             else say("Generar PDF", "Fichero generado con éxito!");
         });

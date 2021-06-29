@@ -1,5 +1,6 @@
 package tds.AppMusic;
 
+import beans.Entidad;
 import tds.AppMusic.GUI.LoginWindow;
 import tds.AppMusic.app.Controller;
 import tds.driver.FactoriaServicioPersistencia;
@@ -7,6 +8,8 @@ import umu.tds.ISongFinder;
 import umu.tds.LoaderSong;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.stream.Collectors;
 
 public class AppMusic {
@@ -16,6 +19,7 @@ public class AppMusic {
         Controller.INSTANCE.setLoader(finder);
 
 //        clearDB();
+        showDB();
 
         // Clean L&F
         try {
@@ -37,5 +41,10 @@ public class AppMusic {
             System.out.println("Borrando " + e.getNombre() + e.getPropiedades().stream().map(p -> p.getNombre() + ": " + p.getValor()).collect(Collectors.toList()));
             FactoriaServicioPersistencia.getInstance().getServicioPersistencia().borrarEntidad(e);
         });
+    }
+
+    public static void showDB() {
+        for (Entidad e : FactoriaServicioPersistencia.getInstance().getServicioPersistencia().recuperarEntidades())
+            System.out.println(e.getNombre() + e.getPropiedades().stream().map(p -> p.getNombre() + ": " + p.getValor() + "\n\t").collect(Collectors.toList()) + "\n\n");
     }
 }

@@ -2,6 +2,10 @@ package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
 public interface Discount {
 
     /**
@@ -16,4 +20,10 @@ public interface Discount {
      * @return {@code true} if the user is eligible for this discount, {@code false} otherwise.
      */
     boolean isApplicable(User user);
+
+    static Collection<Discount> descuentos() {
+        Collection<Discount> d = new HashSet<>();
+        Collections.addAll(d, new YoungDiscount(), new FixedDiscount(), new NullDiscount());
+        return d;
+    }
 }

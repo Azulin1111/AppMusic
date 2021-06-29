@@ -47,7 +47,7 @@ public class LoginWindow extends AppWindow {
 
         okButton.addActionListener(ev -> {
             String user = userTextField.getText();
-            String passwd = passwordField.getText();
+            String passwd = new String(passwordField.getPassword());
 
                     boolean existUser = Controller.INSTANCE.login(user, passwd);
                     if (existUser) { // MainWindow

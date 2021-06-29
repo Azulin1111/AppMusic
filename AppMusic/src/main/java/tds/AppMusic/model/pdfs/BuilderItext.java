@@ -17,7 +17,7 @@ public class BuilderItext implements BuilderPDFfromUser{
     public void buildPDF(File filePDF) throws DocumentException, IOException {
         // Creates a new, empty file named by this abstract pathname if and only if a file with this name does not yet exist.
         filePDF.createNewFile();
-        file = new FileOutputStream(filePDF.getName());
+        file = new FileOutputStream(filePDF.getPath());
         document = new Document();
         PdfWriter.getInstance(document, file);
         document.open();

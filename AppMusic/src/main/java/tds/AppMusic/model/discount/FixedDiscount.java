@@ -6,7 +6,7 @@ public class FixedDiscount implements Discount {
 
     @Override
     public double calcDescuento() {
-        return User.PREMIUM_PRIZE * 0.70;
+        return User.PREMIUM_PRIZE * 0.90;
     }
 
     @Override

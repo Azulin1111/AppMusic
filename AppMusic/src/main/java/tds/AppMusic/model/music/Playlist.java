@@ -99,7 +99,7 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return name + " (" + songs.size() + " songs)";
+        return name + " (" + songs.size() + " canciones)";
     }
 
     @Override

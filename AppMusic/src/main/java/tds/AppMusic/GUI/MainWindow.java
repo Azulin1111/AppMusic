@@ -85,6 +85,9 @@ public class MainWindow extends AppWindow {
     private JLabel luzLabel;
     private JPanel musicPanel;
     private JPanel playlistButtonsPanel;
+    private JButton makePDFButton;
+    private JButton top10Button;
+    private JLabel starLabel;
 
     private Luz luz;
 
@@ -103,6 +106,9 @@ public class MainWindow extends AppWindow {
         super();
         $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
+
+        // Set premium features
+        premiumSetup(Controller.INSTANCE.isPremium());
 
         // Set user welcome label
         welcomeLabel.setText(WELCOME_TEXT + username);
@@ -165,8 +171,12 @@ public class MainWindow extends AppWindow {
         // Upgrade account listener
         upgradeAccButton.addActionListener(e -> {
             Discount d = Controller.INSTANCE.getMaximumDiscount();
-            if (ask("Comprar premium", "El descuento aplicado es: " + d.toString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
+            if (Controller.INSTANCE.isPremium()) {
+                say("Comprar premium", "Usuario ya premium!");
+                return;
+            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.toString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
                 premiumSetup(true);
+                Controller.INSTANCE.buyPremium();
             }
         });
 
@@ -212,6 +222,17 @@ public class MainWindow extends AppWindow {
         playlistNameTextField.addMouseListener(selectAllListener);
         searchInterpreteTextField.addMouseListener(selectAllListener);
         searchTitleTextField.addMouseListener(selectAllListener);
+
+        // Premium listeners
+        top10Button.addActionListener(e -> {
+            // Implementation goes on in the My Playlists menu, but hidden to the average user.
+            switchCard(CARD_PLAYLISTS);
+            selectedModel.replaceWith(Controller.INSTANCE.getTopSongs());
+        });
+
+        makePDFButton.addActionListener(e -> {
+            // TODO Misterio
+        });
     }
 
     private void switchCard(String newCard) {
@@ -233,8 +254,11 @@ public class MainWindow extends AppWindow {
     }
 
     private void premiumSetup(boolean isPremium) {
-
+        top10Button.setEnabled(isPremium);
+        makePDFButton.setEnabled(isPremium);
+        starLabel.setVisible(isPremium);
     }
+
 
     private void searchSetup() {
         // Hide search table on first go
@@ -459,51 +483,62 @@ public class MainWindow extends AppWindow {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(0, 0));
         userPanel = new JPanel();
-        userPanel.setLayout(new GridLayoutManager(1, 6, new Insets(5, 5, 5, 5), -1, -1));
+        userPanel.setLayout(new GridLayoutManager(1, 7, new Insets(5, 5, 5, 5), -1, -1));
         mainPanel.add(userPanel, BorderLayout.NORTH);
         logoutButton = new JButton();
         logoutButton.setText("Cerrar sesión");
-        userPanel.add(logoutButton, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        userPanel.add(logoutButton, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         upgradeAccButton = new JButton();
         upgradeAccButton.setText("Mejora tu cuenta");
-        userPanel.add(upgradeAccButton, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        userPanel.add(upgradeAccButton, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         welcomeLabel = new JLabel();
         welcomeLabel.setText("");
-        userPanel.add(welcomeLabel, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        userPanel.add(welcomeLabel, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         userPanel.add(spacer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         userPanel.add(luzPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         luzLabel = new JLabel();
         luzLabel.setText("Añadir canciones");
         userPanel.add(luzLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        starLabel = new JLabel();
+        starLabel.setText("");
+        userPanel.add(starLabel, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
+        buttonsPanel.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(buttonsPanel, BorderLayout.WEST);
         searchButton = new JButton();
         searchButton.setHorizontalAlignment(2);
         searchButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonBuscar.png")));
         searchButton.setText("Explorar");
-        buttonsPanel.add(searchButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
+        buttonsPanel.add(searchButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
         newPlaylistButton = new JButton();
         newPlaylistButton.setHorizontalAlignment(2);
         newPlaylistButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonNewPlaylists.png")));
         newPlaylistButton.setText("Editor de listas");
-        buttonsPanel.add(newPlaylistButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
+        buttonsPanel.add(newPlaylistButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
         recentButton = new JButton();
         recentButton.setHorizontalAlignment(2);
         recentButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonRecientes.png")));
         recentButton.setText("Recientes");
-        buttonsPanel.add(recentButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
+        buttonsPanel.add(recentButton, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
         myPlaylistsButton = new JButton();
         myPlaylistsButton.setHorizontalAlignment(2);
         myPlaylistsButton.setHorizontalTextPosition(4);
         myPlaylistsButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlaylists.png")));
         myPlaylistsButton.setText("Mis listas");
-        buttonsPanel.add(myPlaylistsButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
+        buttonsPanel.add(myPlaylistsButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 46), null, 0, false));
         playlistScrollPane = new JScrollPane();
-        buttonsPanel.add(playlistScrollPane, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(72, 128), null, 0, false));
+        buttonsPanel.add(playlistScrollPane, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(72, 128), null, 0, false));
         playlistList = new JList();
         playlistScrollPane.setViewportView(playlistList);
+        top10Button = new JButton();
+        top10Button.setHorizontalAlignment(2);
+        top10Button.setText("Top 10");
+        buttonsPanel.add(top10Button, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        makePDFButton = new JButton();
+        makePDFButton.setHorizontalAlignment(2);
+        makePDFButton.setText("Generar PDF");
+        buttonsPanel.add(makePDFButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(142, 30), null, 0, false));
         mainCardPanel = new JPanel();
         mainCardPanel.setLayout(new CardLayout(0, 0));
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);

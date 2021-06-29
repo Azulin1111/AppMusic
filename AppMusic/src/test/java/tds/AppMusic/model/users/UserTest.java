@@ -3,6 +3,9 @@ package tds.AppMusic.model.users;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import tds.AppMusic.model.discount.FixedDiscount;
+import tds.AppMusic.model.discount.NullDiscount;
+import tds.AppMusic.model.discount.YoungDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
@@ -63,10 +66,10 @@ public class UserTest {
 
     @Test
     public void fixedDiscountTest() {
-        double payment = user.premiumPayment("FixedDiscount");
+        double payment = new FixedDiscount().calcDescuento();
 
         // Expected payment
-        double expectedPayment = User.PREMIUM_PRIZE * 0.70;
+        double expectedPayment = User.PREMIUM_PRIZE * 0.90;
 
         // Test
         assertEquals(payment, expectedPayment, 0.001);
@@ -75,7 +78,7 @@ public class UserTest {
 
     @Test
     public void youngDiscountTest() {
-        double payment = user.premiumPayment("YoungDiscount");
+        double payment = new YoungDiscount().calcDescuento();
 
         // Expected payment
         double expectedPayment = User.PREMIUM_PRIZE * 0.85;
@@ -86,7 +89,7 @@ public class UserTest {
 
     @Test
     public void nullDiscountTest1() { // Explicit form
-        double payment1 = user.premiumPayment("ninguno");
+        double payment1 = new NullDiscount().calcDescuento();
 
         // Expected payment
         double expectedPayment = User.PREMIUM_PRIZE;
@@ -97,7 +100,7 @@ public class UserTest {
 
     @Test
     public void nullDiscountTest2() { // Implicit form
-        double payment2 = user.premiumPayment("NullDiscount");
+        double payment2 = new NullDiscount().calcDescuento();
 
         // Expected payment
         double expectedPayment = User.PREMIUM_PRIZE;

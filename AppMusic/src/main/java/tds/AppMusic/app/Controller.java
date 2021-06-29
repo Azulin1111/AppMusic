@@ -5,6 +5,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tds.AppMusic.GUI.GenreComboBoxModel;
 import tds.AppMusic.model.discount.Discount;
+import tds.AppMusic.model.discount.NullDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
@@ -135,6 +136,8 @@ public enum Controller implements ISongsListener {
         if (player != null) player.stop();
         player = new MediaPlayer(mp);
         player.play();
+        s.addPlay();
+        SongRepository.INSTANCE.setSong(s);
         if (addToRecent) {
             currentUser.addRecentSong(s);
 
@@ -257,8 +260,27 @@ public enum Controller implements ISongsListener {
         return Discount.descuentos().stream()
                 .filter(d -> d.isApplicable(currentUser))
                 .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
-                .get();
+                .orElse(new NullDiscount());
     }
+
+    public boolean isPremium() {
+        return currentUser.isPremium();
+    }
+
+    public void buyPremium() {
+        currentUser.buyPremium();
+        UserRepository.INSTANCE.setUser(currentUser);
+    }
+
+    public Playlist getTopSongs() {
+        Playlist top = new Playlist("Top-" + Instant.now().toString());
+        SongRepository.INSTANCE.getAllSongs().stream()
+                .sorted(Comparator.comparing(Song::getPlayCount).reversed())
+                .limit(10)
+                .forEach(top::addSong);
+        return top;
+    }
+
     @Override
     public void newSongs(SongsEvent songsEvent) {
         Canciones c = songsEvent.getCanciones();

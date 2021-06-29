@@ -3,8 +3,9 @@ package tds.AppMusic.model.discount;
 import tds.AppMusic.model.users.User;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 public class YoungDiscount implements Discount {
 
@@ -19,6 +20,8 @@ public class YoungDiscount implements Discount {
 
     @Override
     public boolean isApplicable(User user) {
-        return Instant.now().minus(65, ChronoUnit.YEARS).isBefore(user.getBirthday().toInstant());
+        return LocalDate.now().minus(65 , ChronoUnit.YEARS).isBefore(Instant.ofEpochMilli(user.getBirthday().getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate());
     }
 }

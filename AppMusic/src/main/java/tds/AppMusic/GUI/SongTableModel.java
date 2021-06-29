@@ -4,18 +4,16 @@ import tds.AppMusic.model.music.Song;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SongTableModel implements TableModel {
+public class SongTableModel extends DefaultTableModel {
 
     private static final List<String> COLUMN_HEADERS = new LinkedList<>();
-
-    private final List<TableModelListener> listeners = new LinkedList<>();
-
     private final List<Song> songs = new LinkedList<>();
 
     static {
@@ -24,32 +22,22 @@ public class SongTableModel implements TableModel {
 
     public void addAll(Collection<Song> songs) {
         this.songs.addAll(songs);
-        TableModelEvent e = new TableModelEvent(this, 0, this.songs.size() - 1);
-        for (TableModelListener l : listeners) l.tableChanged(e);
+        fireTableDataChanged();
     }
 
     public void clear() {
-        int end = songs.size() - 1;
         songs.clear();
-        TableModelEvent e = new TableModelEvent(this, 0, end);
-        for (TableModelListener l : listeners) l.tableChanged(e);
+        fireTableDataChanged();
     }
 
     public void add(Song song) {
         this.songs.add(song);
-        TableModelEvent e = new TableModelEvent(this, 0, songs.size() - 1);
-        for (TableModelListener l : listeners) l.tableChanged(e);
+        fireTableDataChanged();
     }
 
     public void remove(Song song) {
-        int begin = songs.indexOf(song);
         songs.remove(song);
-
-        if (begin != -1) {
-            TableModelEvent e = new TableModelEvent(this, 0, songs.size() - 1);
-            for (TableModelListener l : listeners) l.tableChanged(e);
-        }
-
+        fireTableDataChanged();
     }
 
     public void replaceWith(Collection<Song> songs) {
@@ -67,7 +55,7 @@ public class SongTableModel implements TableModel {
 
     @Override
     public int getRowCount() {
-        return songs.size();
+        return songs != null ? songs.size() : 0;
     }
 
     @Override
@@ -78,11 +66,6 @@ public class SongTableModel implements TableModel {
     @Override
     public String getColumnName(int columnIndex) {
         return (columnIndex < COLUMN_HEADERS.size() && columnIndex >= 0) ? COLUMN_HEADERS.get(columnIndex) : null;
-    }
-
-    @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return Object.class;
     }
 
     @Override
@@ -97,20 +80,5 @@ public class SongTableModel implements TableModel {
         if (columnIndex == COLUMN_HEADERS.indexOf("Intérprete")) return song.getSinger();
         if (columnIndex == COLUMN_HEADERS.indexOf("Género")) return song.getGenre();
         return null;
-    }
-
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-        listeners.add(l);
-    }
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-        listeners.remove(l);
     }
 }

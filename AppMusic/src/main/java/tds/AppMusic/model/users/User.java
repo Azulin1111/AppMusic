@@ -303,6 +303,7 @@ public class User {
         playlists.remove(playlist);
     }
 
+    // TODO Coño, introspección
     private Discount createDiscount(String typeDiscount) {  // Factory method: create a type of discount
         try {
             return (Discount) Class.forName("tds.AppMusic.model.discount."+typeDiscount).getDeclaredConstructor().newInstance();

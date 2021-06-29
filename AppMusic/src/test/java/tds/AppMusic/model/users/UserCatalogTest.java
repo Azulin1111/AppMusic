@@ -12,22 +12,23 @@ import static org.junit.Assert.*;
 public class UserCatalogTest {
 
      @Before
-     public void setUp() {
-          UserRepository.INSTANCE.getUsers().clear();
+     public void setUp() { //TODO el clear() viola el experto
+          UserRepository.INSTANCE.getAllUsers().clear();
      }
 
      @After
      public void tearDown(){
-          UserRepository.INSTANCE.getUsers().clear();
+          UserRepository.INSTANCE.getAllUsers().clear();
      }
 
      @Test
      public void getFirstUser() {
           Date d = Date.from(Instant.now());
-          UserRepository.INSTANCE.addUser("Pepe", "Pepito123", false, "123456",
-                   "pepito@gmail.com", d);
+          User storedUser = new User("Pepe", "Pepito123", false, "123456",
+                  "pepito@gmail.com", d);
+          UserRepository.INSTANCE.storeUser(storedUser);
 
-          User user = UserRepository.INSTANCE.getUsers().get(0);
+          User user = UserRepository.INSTANCE.getAllUsers().get(0);
 
           // Expected user
           User expected = new User("Pepe", "Pepito123", false, "123456",

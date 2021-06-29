@@ -18,26 +18,26 @@ public enum PlaylistRepository {
     }
 
 
-    void storePlaylist(Playlist playlist){
+    public void storePlaylist(Playlist playlist){
         PLAYLISTS.put(playlist.getCode(), playlist);
         DAO.storePlaylist(playlist);
     };
 
-    void deletePlaylist(Playlist playlist){
+    public void deletePlaylist(Playlist playlist){
         PLAYLISTS.remove(playlist.getCode());
         DAO.deletePlaylist(playlist);
     };
 
-    void setPlaylist(Playlist playlist){
+    public void setPlaylist(Playlist playlist){
         PLAYLISTS.put(playlist.getCode(), playlist);
         DAO.setPlaylist(playlist);
     };
 
-    Playlist getPlaylist(int code){
+    public Playlist getPlaylist(int code){
         return PLAYLISTS.get(code);
     };
 
-    List<Playlist> getAllPlaylists(){
+    public List<Playlist> getAllPlaylists(){
         return (List<Playlist>) PLAYLISTS.values();
     };
 

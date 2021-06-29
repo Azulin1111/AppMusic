@@ -18,26 +18,26 @@ public enum SongRepository {
         listsSongs.forEach(s -> SONGS.put(s.getCode(), s));
     }
 
-    void storeSong(Song song){
+    public void storeSong(Song song){
         SONGS.put(song.getCode(), song);
         DAO.storeSong(song);
     };
 
-    void deleteSong(Song song){
+    public void deleteSong(Song song){
         SONGS.remove(song.getCode());
         DAO.deleteSong(song);
     };
 
-    void setSong(Song song){
+    public void setSong(Song song){
         SONGS.put(song.getCode(), song);
         DAO.setSong(song);
     };
 
-    Song getSong(int code){
+    public Song getSong(int code){
         return SONGS.get(code);
     };
 
-    List<Song> getAllSongs(){
+    public List<Song> getAllSongs(){
         return (List<Song>) SONGS.values();
     };
 }

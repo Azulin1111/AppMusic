@@ -40,8 +40,10 @@ public enum UserRepository {
         return USERS.get(code);
     };
 
-    public Collection<User> getAllUsers(){
-        return USERS.values();
+    public List<User> getAllUsers(){
+        List<User> listUsers = new LinkedList<>();
+        USERS.values().forEach(u -> listUsers.add(u));
+        return listUsers;
     }
 
 }

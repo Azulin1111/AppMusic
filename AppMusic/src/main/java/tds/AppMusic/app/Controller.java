@@ -171,7 +171,7 @@ public enum Controller implements ISongsListener {
         if (player != null) player.play();
     }
 
-    public int currentTrack() {
+    public int getCurrentTrack() {
         if (currentPlaylist == null) return -1;
         return currentTrack;
     }
@@ -256,7 +256,6 @@ public enum Controller implements ISongsListener {
     public void newSongs(SongsEvent songsEvent) {
         Canciones c = songsEvent.getCanciones();
         List<Song> songs = convertCancionesToSongs(c);
-        songs.forEach(s -> SongRepository.INSTANCE.storeSong(s));
-
+        songs.forEach(SongRepository.INSTANCE::storeSong);
     }
 }

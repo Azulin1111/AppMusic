@@ -1,5 +1,8 @@
 package tds.AppMusic.app;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -17,6 +20,7 @@ import umu.tds.SongsEvent;
 import umu.tds.componente.Cancion;
 import umu.tds.componente.Canciones;
 
+import java.io.FileOutputStream;
 import java.net.URI;
 import java.time.Instant;
 import java.util.*;
@@ -258,5 +262,15 @@ public enum Controller implements ISongsListener {
         List<Song> songs = convertCancionesToSongs(c);
         songs.forEach(s -> SongRepository.INSTANCE.storeSong(s));
 
+    }
+
+    public void generatePDF(){
+        FileOutputStream archivo = new FileOutputStream("C:\\hola.pdf");
+        Document documento = new Document();
+        PdfWriter.getInstance(documento, archivo);
+        documento.open();
+        documento.add(new Paragraph("Hola Mundo!"));
+        documento.add(new Paragraph("SoloInformaticaYAlgoMas.blogspot.com"));
+        documento.close();
     }
 }

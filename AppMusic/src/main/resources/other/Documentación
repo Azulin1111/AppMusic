@@ -3,3 +3,7 @@ SongCatalog y UserCatalog son Singleton.
 Para la creación de descuentos se emplea el método factoría empleando introspección.
 
 El adaptadorPlaylistDAO almacena si una playlist es normal o de recientes a través de un booleano "isRecent".
+
+Los repositorios tienen HashMap para realizar cachés. La política de escritura es escritura directa (cualquier cambio realizado en la
+caché será realizado inmediatamente en la base de datos). Los cambios primero se realizan en memoria y luego en el HashMap, de esta forma
+se pueden realizar los cambios a los códigos de las clases.

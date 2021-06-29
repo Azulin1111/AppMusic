@@ -19,25 +19,30 @@ public enum SongRepository {
     }
 
     public void storeSong(Song song){
-        SONGS.put(song.getCode(), song);
         DAO.storeSong(song);
+        SONGS.put(song.getCode(), song);
     }
 
     public void deleteSong(Song song){
-        SONGS.remove(song.getCode());
         DAO.deleteSong(song);
+        SONGS.remove(song.getCode());
     }
 
     public void setSong(Song song){
-        SONGS.put(song.getCode(), song);
         DAO.setSong(song);
+        SONGS.put(song.getCode(), song);
     }
 
     public Song getSong(int code){
-        return SONGS.get(code);
+        Song song = SONGS.get(code);
+        if (song == null) song = DAO.getSong(code);
+        return song;
     };
 
     public List<Song> getAllSongs(){
-        return new LinkedList<>(SONGS.values());
+        List<Song> listSongs = new LinkedList<>();
+        listSongs.addAll(SONGS.values());
+        return listSongs;
+
     }
 }

@@ -108,13 +108,15 @@ public enum Controller implements ISongsListener {
     /**
      * Cambia la canción que reproducir. En caso de ser {@code null}, detiene el reproductor de música.
      * @param song La nueva canción a reproducir, o {@code null}.
+     * @param addToRecent Si la canción debería añadirse a la lista de recientes.
      */
-    public void switchTrack(Song song) {
+    public void switchTrack(Song song, boolean addToRecent) {
         if (song != null) {
             Media s = new Media(song.getPath().toString());
             if (player != null) player.stop();
             player = new MediaPlayer(s);
             player.play();
+            if (addToRecent) currentUser.addRecentSong(song);
         } else if (player != null) player.stop();
     }
 

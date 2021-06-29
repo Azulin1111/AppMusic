@@ -186,7 +186,7 @@ public class MainWindow extends AppWindow {
 
         // Sign out listener
         logoutButton.addActionListener(e -> {
-            Controller.INSTANCE.switchTrack(null);
+            Controller.INSTANCE.switchTrack(null, false);
             dispose();
 
             LoginWindow l2 = new LoginWindow();
@@ -194,11 +194,17 @@ public class MainWindow extends AppWindow {
             l2.setLocationRelativeTo(null);
             l2.setVisible(true);
         });
+
+        // Playlist selection listener
+        playlistList.addListSelectionListener(l -> {
+            Playlist p = playlistList.getSelectedValue();
+            if (p != null) selectedModel.replaceWith(p.getSongs());
+        });
     }
 
     private void switchCards() {
         // Default: stop all music being played
-        Controller.INSTANCE.switchTrack(null);
+        Controller.INSTANCE.switchTrack(null, false);
 
         // Default: return all play buttons back to play state
         searchPlayButton.setIcon(ICON_PLAY);
@@ -223,7 +229,7 @@ public class MainWindow extends AppWindow {
             searchSearchButton.setEnabled(false);
 
             // Stop music
-            Controller.INSTANCE.switchTrack(null);
+            Controller.INSTANCE.switchTrack(null, false);
             searchPlayButton.setIcon(ICON_PLAY);
 
             // Search songs
@@ -251,27 +257,18 @@ public class MainWindow extends AppWindow {
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
                     searchPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(searchModel.getSongAt(searchTable.getSelectedRow()));
+                    Controller.INSTANCE.switchTrack(searchModel.getSongAt(searchTable.getSelectedRow()), true);
                 }
             }
         });
 
         // Music button listeners
-        searchBackButton.addActionListener(e -> songStep(-1, searchTable, searchModel));
-        searchPlayButton.addActionListener(e -> {
-            if (searchPlayButton.getIcon().equals(ICON_PLAY)) {
-                searchPlayButton.setIcon(ICON_PAUSE);
-                Controller.INSTANCE.resumeTrack();
-            } else if (searchPlayButton.getIcon().equals(ICON_PAUSE)) {
-                searchPlayButton.setIcon(ICON_PLAY);
-                Controller.INSTANCE.pauseTrack();
-            }
-        });
-        searchNextButton.addActionListener(e -> songStep(1, searchTable, searchModel));
+        searchBackButton.addActionListener(e -> songStep(-1, searchTable, searchModel, true));
+        searchPlayButton.addActionListener(e -> playSong(searchPlayButton));
+        searchNextButton.addActionListener(e -> songStep(1, searchTable, searchModel, true));
     }
 
     private void newPlaylistSetup() {
-        // TODO song searcher doesn't work here. Investigate
         // Hide playlist editing on first go
         setComponentVisible(false, playlistModifyPanel);
 
@@ -313,8 +310,6 @@ public class MainWindow extends AppWindow {
 
             // Display search results
             playlistAddModel.replaceWith(songs);
-            revalidate();
-            repaint();
             playlistSearchButton.setEnabled(true);
         });
 
@@ -353,23 +348,15 @@ public class MainWindow extends AppWindow {
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
                     recentPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(recentModel.getSongAt(recentTable.getSelectedRow()));
+                    Controller.INSTANCE.switchTrack(recentModel.getSongAt(recentTable.getSelectedRow()), false);
                 }
             }
         });
 
         // Music button listeners
-        recentBackButton.addActionListener(e -> songStep(-1, recentTable, recentModel));
-        recentPlayButton.addActionListener(e -> {
-            if (recentPlayButton.getIcon().equals(ICON_PLAY)) {
-                recentPlayButton.setIcon(ICON_PAUSE);
-                Controller.INSTANCE.resumeTrack();
-            } else if (recentPlayButton.getIcon().equals(ICON_PAUSE)) {
-                recentPlayButton.setIcon(ICON_PLAY);
-                Controller.INSTANCE.pauseTrack();
-            }
-        });
-        recentNextButton.addActionListener(e -> songStep(1, recentTable, recentModel));
+        recentBackButton.addActionListener(e -> songStep(-1, recentTable, recentModel, false));
+        recentPlayButton.addActionListener(e -> playSong(recentPlayButton));
+        recentNextButton.addActionListener(e -> songStep(1, recentTable, recentModel, false));
     }
 
     private void myPlaylistsSetup() {
@@ -386,27 +373,28 @@ public class MainWindow extends AppWindow {
                 // If double clicked, play
                 if (e.getClickCount() == 2) {
                     selectedPlayButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(selectedModel.getSongAt(selectedTable.getSelectedRow()));
+                    Controller.INSTANCE.switchTrack(selectedModel.getSongAt(selectedTable.getSelectedRow()), true);
                 }
             }
         });
 
         // Music button listeners
-        selectedBackButton.addActionListener(e -> songStep(-1, selectedTable, selectedModel));
-        selectedPlayButton.addActionListener(e -> {
-            if (selectedPlayButton.getIcon().equals(ICON_PLAY)) {
-                selectedPlayButton.setIcon(ICON_PAUSE);
-                Controller.INSTANCE.resumeTrack();
-            } else if (selectedPlayButton.getIcon().equals(ICON_PAUSE)) {
-                selectedPlayButton.setIcon(ICON_PLAY);
-                Controller.INSTANCE.pauseTrack();
-            }
-        });
-        selectedNextButton.addActionListener(e -> songStep(1, selectedTable, selectedModel));
+        selectedBackButton.addActionListener(e -> songStep(-1, selectedTable, selectedModel, true));
+        selectedPlayButton.addActionListener(e -> playSong(selectedPlayButton));
+        selectedNextButton.addActionListener(e -> songStep(1, selectedTable, selectedModel, true));
     }
 
+    private void playSong(JButton playButton) {
+        if (playButton.getIcon().equals(ICON_PLAY)) {
+            playButton.setIcon(ICON_PAUSE);
+            Controller.INSTANCE.resumeTrack();
+        } else if (playButton.getIcon().equals(ICON_PAUSE)) {
+            playButton.setIcon(ICON_PLAY);
+            Controller.INSTANCE.pauseTrack();
+        }
+    }
 
-    private void songStep(int step, JTable table, SongTableModel model) {
+    private void songStep(int step, JTable table, SongTableModel model, boolean addToRecent) {
         // Do nothing if nothing was selected
         int current = table.getSelectedRow();
         if (current == -1) return;
@@ -421,7 +409,7 @@ public class MainWindow extends AppWindow {
         table.scrollRectToVisible(table.getCellRect(current, 0, true));
 
         // Switch track
-        Controller.INSTANCE.switchTrack(model.getSongAt(current));
+        Controller.INSTANCE.switchTrack(model.getSongAt(current), addToRecent);
     }
 
     private void setComponentVisible(boolean visible, Component component) {

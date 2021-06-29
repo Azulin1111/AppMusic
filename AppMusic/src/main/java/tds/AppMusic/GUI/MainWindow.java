@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import pulsador.Luz;
 import tds.AppMusic.app.Controller;
+import tds.AppMusic.model.discount.Discount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
@@ -163,7 +164,10 @@ public class MainWindow extends AppWindow {
 
         // Upgrade account listener
         upgradeAccButton.addActionListener(e -> {
-            // TODO misterio
+            Discount d = Controller.INSTANCE.getMaximumDiscount();
+            if (ask("Comprar premium", "El descuento aplicado es: " + d.toString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
+                premiumSetup(true);
+            }
         });
 
         // Sign out listener
@@ -226,6 +230,10 @@ public class MainWindow extends AppWindow {
 
         updateTableSelection();
         pack();
+    }
+
+    private void premiumSetup(boolean isPremium) {
+
     }
 
     private void searchSetup() {

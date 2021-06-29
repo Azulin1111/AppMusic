@@ -4,6 +4,7 @@ import com.sun.javafx.application.PlatformImpl;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tds.AppMusic.GUI.GenreComboBoxModel;
+import tds.AppMusic.model.discount.Discount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
@@ -252,6 +253,12 @@ public enum Controller implements ISongsListener {
         return currentPlaylist;
     }
 
+    public Discount getMaximumDiscount() {
+        return Discount.descuentos().stream()
+                .filter(d -> d.isApplicable(currentUser))
+                .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
+                .get();
+    }
     @Override
     public void newSongs(SongsEvent songsEvent) {
         Canciones c = songsEvent.getCanciones();

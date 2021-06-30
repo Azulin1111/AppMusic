@@ -86,12 +86,7 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
 
     @Override
     public Playlist getPlaylist(int code) {
-
-        // Si la entidad está en el pool la devuelve directamente
-        if (PoolDAO.INSTANCE.contains(code))
-            return (Playlist) PoolDAO.INSTANCE.getObject(code);
-
-        // Si no está en el pool, se recupera de la base de datos
+        // Se recupera de la base de datos
         Entidad ePlaylist;
         boolean isRecent;
         String name;
@@ -111,9 +106,6 @@ public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
          else
              playlist = new Playlist(name);
         playlist.setCode(code);
-
-        // Se introduce playlist en el pool antes de llamar a otros adaptadores
-        PoolDAO.INSTANCE.addObject(code, playlist);
 
         // Recuperar propiedades que son objetos
         songs = getSongsFromCodes(SP.recuperarPropiedadEntidad(ePlaylist, TYPE_PLAYLIST_SONGS));

@@ -100,11 +100,7 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
     @Override
     public Song getSong(int code){
-        // Si la entidad está en el pool la devuelve directamente
-        if (PoolDAO.INSTANCE.contains(code))
-            return (Song) PoolDAO.INSTANCE.getObject(code);
-
-        // Si no está en el pool, se recupera de la base de datos
+        // Se recupera de la base de datos
         Entidad eSong;
         String name;
         String genre;
@@ -130,9 +126,6 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
 
         Song song = new Song(name, singer, genre, path, playCount);
         song.setCode(code);
-
-        // Se introduce song en el pool
-        PoolDAO.INSTANCE.addObject(code, song);
 
         return song;
     }

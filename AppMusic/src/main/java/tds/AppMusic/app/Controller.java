@@ -14,6 +14,7 @@ import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.music.SongRepository;
+import tds.AppMusic.model.pdfs.Builders;
 import tds.AppMusic.model.pdfs.ParserUser;
 import tds.AppMusic.model.scan.SongScanner;
 import tds.AppMusic.model.users.User;
@@ -295,7 +296,7 @@ public enum Controller implements ISongsListener {
     // Si devuelve false ha habido un error.
     public boolean generatePDF(File filePDF){
         ParserUser parser = new ParserUser(currentUser);
-        parser.setBuilder("iText");
+        parser.setBuilder(Builders.ITEXT);
         try {
             parser.parse(filePDF);
         } catch (Exception e) {

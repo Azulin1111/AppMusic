@@ -23,9 +23,8 @@ public class ParserUser {
     public ParserUser(User user){
         this.user = user;
     }
-
-    public void setBuilder(String tipo){
-        builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(Builders.ITEXT);
+    public void setBuilder(Builders tipo){
+        builder = BuilderPdfFactory.INSTANCE.getBuilderPdf(tipo);
     }
 
     public void parse(File filePDF) throws DocumentException, IOException {

@@ -307,14 +307,10 @@ public class User {
         premium = true;
     }
 
-    public boolean compareNickname(String nickname){
-        return nickname.equals(this.nickname);
-    }
-
-    public boolean comparePassword(String password){
-        return password.equals(this.password);
-    }
-
+    /**
+     * Cambia el código de la playlist recientes del usuario.
+     * @param code El nuevo código.
+     */
     public void setCodeRecent(int code) {
         recentSongs.setCode(code);
     }

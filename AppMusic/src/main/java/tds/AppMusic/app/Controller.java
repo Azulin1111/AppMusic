@@ -195,7 +195,7 @@ public enum Controller implements ISongsListener {
      */
     public boolean login(String username, String password) {
         Optional<User> login = UserRepository.INSTANCE.getAllUsers().stream()
-                .filter(u -> u.compareNickname(username) && u.comparePassword(password))
+                .filter(u -> u.getNickname().equals(username) && u.getPassword().equals(password))
                 .findAny();
         login.ifPresent(user -> currentUser = user);
 

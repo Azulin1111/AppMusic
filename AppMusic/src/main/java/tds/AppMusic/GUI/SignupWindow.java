@@ -102,7 +102,7 @@ public class SignupWindow extends AppWindow {
 
         // Success, nothing else to do
         noErrors();
-        say("Success", "Success.");
+        say("Éxito", "Registrado con éxito. Por favor, inicia sesión en la ventana de login.");
         dispose();
     }
 

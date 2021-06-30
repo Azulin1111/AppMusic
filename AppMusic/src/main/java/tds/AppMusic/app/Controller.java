@@ -1,20 +1,21 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.app;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import tds.AppMusic.GUI.GenreComboBoxModel;
 import tds.AppMusic.model.discount.Discount;
-import tds.AppMusic.model.discount.NullDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.music.SongRepository;
 import tds.AppMusic.model.pdfs.ParserUser;
+import tds.AppMusic.model.scan.SongScanner;
 import tds.AppMusic.model.users.User;
 import tds.AppMusic.model.users.UserRepository;
 import umu.tds.ISongFinder;
@@ -301,5 +302,13 @@ public enum Controller implements ISongsListener {
             return false;
         }
         return true;
+    }
+
+    public void scanSongs(File directory) {
+        SongScanner scanner = new SongScanner(directory);
+        Collection<Song> songs = SongRepository.INSTANCE.getAllSongs();
+        scanner.scanRoot().forEach(s -> {
+            if (!songs.contains(s)) SongRepository.INSTANCE.storeSong(s);
+        });
     }
 }

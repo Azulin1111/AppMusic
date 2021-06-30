@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.music;
 
 import org.junit.Before;
@@ -21,32 +26,11 @@ public class SongTest {
     }
 
     @Test
-    public void getName() {
-        // Assert that the name is set correctly
+    public void getterTest() {
         assertSame(SONG_NAME, song.getName());
-    }
-
-    @Test
-    public void getGenre() {
-        // Assert that the name is set correctly
         assertSame(SONG_GENRE, song.getGenre());
-    }
-
-    @Test
-    public void getSinger() {
-        // Assert that the name is set correctly
         assertSame(SONG_SINGER, song.getSinger());
-    }
-
-    @Test
-    public void getPath() {
-        // Assert that the name is set correctly
         assertSame(SONG_PATH, song.getPath());
-    }
-
-    @Test
-    public void getPlayCount() {
-        // Assert that the name is set correctly
         assertSame(0, song.getPlayCount());
     }
 
@@ -54,7 +38,19 @@ public class SongTest {
     public void addPlay() {
         // Assert that the play count updates correctly
         assertSame(0, song.getPlayCount());
+
         song.addPlay();
         assertSame(1, song.getPlayCount());
+
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        song.addPlay();
+        assertSame(10, song.getPlayCount());
     }
 }

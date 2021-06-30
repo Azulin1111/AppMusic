@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.users;
 
 import tds.AppMusic.model.discount.Discount;
@@ -5,13 +10,10 @@ import tds.AppMusic.model.discount.NullDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRecentSongs;
 import tds.AppMusic.model.music.Song;
-import java.time.LocalDate;
 import java.util.*;
-import java.lang.Class;
 
 import static java.lang.Class.forName;
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Representa un usuario del sistema.
@@ -228,18 +230,6 @@ public class User {
     }
 
     /**
-     * Devuelve una lista de canciones, correspondiente con la playlist de canciones recientemente escuchadas del usuario.
-     * @return La lista de canciones.
-     */
-    public List<Song> getMostPlayedSongs() {
-        return playlists.stream()
-                .flatMap(p -> p.getSongs().stream())
-                .sorted(comparing(Song::getPlayCount).reversed())
-                .limit(10)
-                .collect(toList());
-    }
-
-    /**
      * <p>Relaciona una playlist con el usuario.</p>
      * La relación indicaría que el usuario ha creado la playlist en cuestión.
      * @param playlist La playlist.
@@ -306,7 +296,7 @@ public class User {
     public Discount getMaximumDiscount() {
         return Discount.descuentos().stream()
                 .filter(d -> d.isApplicable(this))
-                .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
+                .reduce((d1, d2) -> d1.finalPrize() < d2.finalPrize() ? d1 : d2)
                 .orElse(new NullDiscount());
     }
 

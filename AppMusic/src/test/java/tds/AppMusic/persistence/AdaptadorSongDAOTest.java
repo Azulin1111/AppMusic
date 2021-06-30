@@ -1,9 +1,15 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.persistence;
 
 import beans.Entidad;
 import beans.Propiedad;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import tds.AppMusic.model.music.Song;
 import tds.driver.FactoriaServicioPersistencia;
@@ -27,6 +33,12 @@ public class AdaptadorSongDAOTest {
     private static final String TYPE_SONG_PLAYCOUNT = "Playcount";
 
     private static final Song SONG = new Song("song", "singer", "Genre", URI.create(""));
+
+
+    @BeforeClass
+    public static void beforeClass() {
+        PERSISTENCIA.recuperarEntidades().forEach(PERSISTENCIA::borrarEntidad);
+    }
 
     @Before
     public void setUp() {

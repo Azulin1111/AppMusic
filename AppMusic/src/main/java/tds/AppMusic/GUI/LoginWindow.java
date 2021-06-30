@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.GUI;
 
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -91,12 +96,6 @@ public class LoginWindow extends AppWindow {
 
     private void mainWindow(String user) {
         JFrame frame = new MainWindow(user);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                System.exit(0);
-            }
-        });
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();

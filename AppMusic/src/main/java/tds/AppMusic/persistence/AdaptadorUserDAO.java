@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.persistence;
 
 import beans.Entidad;
@@ -151,11 +156,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     }
 
     public User getUser(int code) {
-        // Si la entidad está en el pool la devuelve directamente
-        if (PoolDAO.INSTANCE.contains(code))
-            return (User) PoolDAO.INSTANCE.getObject(code);
-
-        // Si no está en el pool, se recupera de la base de datos
+        // Se recupera de la base de datos
         Entidad eUser;
         String name;
         String usernames;
@@ -183,9 +184,6 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
 
         User user = new User(name, usernames, nickname, premium, password, email, birthday);
         user.setCode(code);
-
-        // Se introduce user en el pool antes de llamar a otros adaptadores
-        PoolDAO.INSTANCE.addObject(code, user);
 
         // Recuperar propiedades que son objetos
         playlists = getPlaylistsFromCodes(SP.recuperarPropiedadEntidad(eUser, TYPE_USER_PLAYLISTS));

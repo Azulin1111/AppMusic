@@ -5,19 +5,13 @@
 
 package tds.AppMusic.model.music;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class PlaylistRecentSongsTest {
 
-
-    private PlaylistRecentSongs playlistRecentSongs;
-    @Before
-    public void setUp() {
-        playlistRecentSongs = new PlaylistRecentSongs("");
-    }
+    private final PlaylistRecentSongs playlistRecentSongs = new PlaylistRecentSongs("");
 
     @Test
     public void addSong() {

@@ -1,32 +1,33 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.discount;
 
-import org.junit.Before;
 import org.junit.Test;
 import tds.AppMusic.model.users.User;
 
 import static org.junit.Assert.*;
 
 public class DiscountTest {
-    private static final Discount DISCOUNT_1 = new FixedDiscount();
-    private static final Discount DISCOUNT_2 = new YoungDiscount();
-    private static final Discount DISCOUNT_3 = new NullDiscount();
+
+    private static final Discount NULL_DISCOUNT = new NullDiscount();
+    private static final double DELTA = 0.001;
+    private static final double PRIZE = User.PREMIUM_PRIZE;
 
     @Test
-    public void fixedDiscountTest() {
-        double expected = User.PREMIUM_PRIZE * 0.90;
-        assertEquals(expected, DISCOUNT_1.calcDescuento(), 0.01);
-    }
+    public void discountTest() {
+        // Assert that there's discounts to be had
+        assertFalse(Discount.descuentos().isEmpty());
 
-    @Test
-    public void youngDiscountTest() {
-        double expected = User.PREMIUM_PRIZE * 0.85;
-        assertEquals(expected, DISCOUNT_2.calcDescuento(), 0.01);
+        // Assert that all discounts reduce the premium prize
+        Discount.descuentos().forEach(d -> assertTrue(PRIZE > d.finalPrize()));
     }
-
 
     @Test
     public void nullDiscountTest() {
-        double expected = User.PREMIUM_PRIZE;
-        assertEquals(expected, DISCOUNT_3.calcDescuento(), 0.01);
+        // Assert that the null discount does not modify the premium prize
+        assertEquals(PRIZE, NULL_DISCOUNT.finalPrize(), DELTA);
     }
 }

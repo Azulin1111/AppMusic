@@ -1,17 +1,16 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.users;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tds.AppMusic.model.discount.FixedDiscount;
-import tds.AppMusic.model.discount.NullDiscount;
-import tds.AppMusic.model.discount.YoungDiscount;
-import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,8 +19,8 @@ import static org.junit.Assert.*;
 
 public class UserTest {
 
-    User user;
-    Date date = Date.from(Instant.now());
+    private User user;
+
     private static Song s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
     private static final String TEST_NAME = "Test name";
@@ -30,6 +29,7 @@ public class UserTest {
     private static final String TEST_NICKNAME = "Test nickname";
     private static final String TEST_PASSWORD = "Test password";
     private static final String TEST_EMAIL = "Test email";
+    private static final Date TEST_DATE = Date.from(Instant.now());
 
     @BeforeClass
     public static void beforeAll() {
@@ -49,69 +49,34 @@ public class UserTest {
 
     @Before
     public void setUp() {
-        user = new User(TEST_NAME, TEST_SURNAMES, TEST_NICKNAME, TEST_PREMIUM, TEST_PASSWORD, TEST_EMAIL, date);
+        user = new User(TEST_NAME, TEST_SURNAMES, TEST_NICKNAME, TEST_PREMIUM, TEST_PASSWORD, TEST_EMAIL, TEST_DATE);
     }
 
-
     @Test
-    public void parameterTests() {
+    public void getterTest() {
         assertEquals(TEST_NAME, user.getName());
         assertEquals(TEST_SURNAMES, user.getSurnames());
         assertEquals(TEST_NICKNAME, user.getNickname());
         assertFalse(user.isPremium() ^ TEST_PREMIUM);
         assertEquals(TEST_PASSWORD, user.getPassword());
         assertEquals(TEST_EMAIL, user.getEmail());
-        assertSame(date, user.getBirthday());
-    }
-
-    @Test
-    public void mostPlayedSongsTest1() {
-        List<Song> songs = new LinkedList<>();
-        Collections.addAll(songs, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12);
-        Playlist test = user.createPlaylist("test", songs);
-        List<Song> mostPlayedSongs = user.getMostPlayedSongs();
-
-        // Expected
-        List<Song> expected = new LinkedList<>();
-        Collections.addAll(expected, s12, s11, s10, s9, s8, s7, s6, s5, s4, s3);
-
-        // Test
-        assertEquals(mostPlayedSongs, expected);
-    }
-
-    @Test
-    public void mostPlayedSongsTest2() {
-        Playlist p1 = user.createPlaylist("p1");
-        Playlist p2 = user.createPlaylist("p2");
-
-        p1.addSong(s1); p2.addSong(s2); p2.addSong(s3); p1.addSong(s4); p2.addSong(s5); p1.addSong(s6);
-        p1.addSong(s7); p2.addSong(s8); p1.addSong(s9); p2.addSong(s10); p1.addSong(s11); p2.addSong(s12);
-
-        List<Song> mostPlayedSongs = user.getMostPlayedSongs();
-
-        // Expected
-        List<Song> expected = new LinkedList<>();
-        expected.add(s12); expected.add(s11); expected.add(s10); expected.add(s9); expected.add(s8);
-        expected.add(s7); expected.add(s6); expected.add(s5); expected.add(s4); expected.add(s3);
-
-        // Test
-        assertEquals(mostPlayedSongs, expected);
+        assertSame(TEST_DATE, user.getBirthday());
     }
 
     @Test
     public void addRecentSongTest() {
+        // Add songs 1-12 in order
         user.addRecentSong(s1); user.addRecentSong(s2); user.addRecentSong(s3); user.addRecentSong(s4);
         user.addRecentSong(s5); user.addRecentSong(s6); user.addRecentSong(s7); user.addRecentSong(s8);
         user.addRecentSong(s9); user.addRecentSong(s10); user.addRecentSong(s11); user.addRecentSong(s12);
 
         List<Song> recentSongs = user.getRecentSongs();
 
-        // Expected
+        // Expected: songs 3-12 (total size = 10, removed the oldest additions)
         List<Song> expected = new LinkedList<>();
         expected.add(s12); expected.add(s11); expected.add(s10); expected.add(s9); expected.add(s8);
         expected.add(s7);  expected.add(s6);  expected.add(s5);  expected.add(s4); expected.add(s3);
 
-        // Test
         assertEquals(recentSongs, expected);
     }
 }

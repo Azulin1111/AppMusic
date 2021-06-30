@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.music;
 
 import java.util.Collections;
@@ -107,8 +112,7 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return code == playlist.code &&
-                Objects.equals(name, playlist.name) &&
+        return Objects.equals(name, playlist.name) &&
                 Objects.equals(songs, playlist.songs);
     }
 

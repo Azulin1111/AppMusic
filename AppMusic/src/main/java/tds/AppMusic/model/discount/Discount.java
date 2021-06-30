@@ -1,10 +1,15 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 public interface Discount {
 
@@ -12,7 +17,7 @@ public interface Discount {
      * <p>Method to calculate the discount when a certain set of conditions are fulfilled.</p>
      * @return The updated upgrade cost, after applying the specific discount.
      */
-    double calcDescuento();
+    double finalPrize();
 
     /**
      * <p>Method to calculate a user's eligibility for a certain discount.</p>
@@ -21,9 +26,9 @@ public interface Discount {
      */
     boolean isApplicable(User user);
 
-    static Collection<Discount> descuentos() {
-        Collection<Discount> d = new HashSet<>();
-        Collections.addAll(d, new YoungDiscount(), new FixedDiscount(), new NullDiscount());
+    static Set<Discount> descuentos() {
+        Set<Discount> d = new HashSet<>();
+        Collections.addAll(d, new YoungDiscount(), new FixedDiscount());
         return d;
     }
 

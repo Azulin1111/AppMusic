@@ -18,21 +18,22 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Implementación de {@link IAdaptadorSongDAO}.
+ */
 public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     INSTANCE;
+
     private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
-
     private static final String TYPE_SONG = "Song";
-
     private static final String TYPE_SONG_NAME = "Name";
     private static final String TYPE_SONG_GENRE = "Genre";
     private static final String TYPE_SONG_PATH = "Path";
     private static final String TYPE_SONG_SINGER = "Singer";
     private static final String TYPE_SONG_PLAYCOUNT = "Playcount";
-
 
     @Override
     public void storeSong(Song song) {
@@ -140,5 +141,4 @@ public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
         }
         return songs;
     }
-
 }

@@ -16,15 +16,17 @@ import tds.driver.ServicioPersistencia;
 import java.time.Instant;
 import java.util.*;
 
+/**
+ * Implementación de {@link IAdaptadorUserDAO}.
+ */
 public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     INSTANCE;
+
     private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
-
     private static final String TYPE_USER = "User";
-
     private static final String TYPE_USER_USERNAME = "Username";
     private static final String TYPE_USER_SURNAMES = "Surnames";
     private static final String TYPE_USER_PASSWORD = "Password";
@@ -35,6 +37,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     private static final String TYPE_USER_PLAYLISTS = "Playlists";
     private static final String TYPE_USER_RECENTSONGS = "Recents";
 
+    @Override
     public void storeUser(User user) {
         Entidad eUser;
         // Si ya está registrado, no se registra de nuevo
@@ -73,11 +76,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         user.setCode(eUser.getId());
     }
 
-
-    /**
-     * Elimina un usuario de la base de datos. En caso de no existir el usuario, el método no hace nada.
-     * @param user El usuario.
-     */
+    @Override
     public void deleteUser(User user) {
         // Se borran las playlists del usuario y la de recientes
         Entidad eUser = SP.recuperarEntidad(user.getCode());
@@ -100,6 +99,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
 
     }
 
+    @Override
     public void setUser(User user) {
         // Se obtiene el usuario almacenado en memoria
         Entidad eUser = SP.recuperarEntidad(user.getCode());
@@ -155,6 +155,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         SP.modificarEntidad(eUser);
     }
 
+    @Override
     public User getUser(int code) {
         // Se recupera de la base de datos
         Entidad eUser;
@@ -202,14 +203,7 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         return user;
     }
 
-    private String parse(Date d) {
-        return d.toInstant().toString();
-    }
-
-    private Date parse(String s) {
-        return Date.from(Instant.parse(s));
-    }
-
+    @Override
     public List<User> getAllUsers(){
         List<Entidad> eUsers = SP.recuperarEntidades(TYPE_USER);
         List<User> users = new LinkedList<>();
@@ -218,6 +212,15 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
             users.add(getUser(eUser.getId()));
         }
         return users;
+    }
+
+
+    private String parse(Date d) {
+        return d.toInstant().toString();
+    }
+
+    private Date parse(String s) {
+        return Date.from(Instant.parse(s));
     }
 
 
@@ -238,7 +241,4 @@ public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
         }
         return listPlaylists;
     }
-
-
-
 }

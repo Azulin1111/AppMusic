@@ -15,16 +15,18 @@ import tds.driver.ServicioPersistencia;
 
 import java.util.*;
 
-
+/**
+ * Implementación de {@link IAdaptadorPlaylistDAO}.
+ */
 public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     INSTANCE;
+
+
     private static final ServicioPersistencia SP = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 
     // Los tipos descritos a continuación corresponden con los nombres de campos utilizados en la base de datos. Si
     // es necesario cambiarlos, se debe tener en cuenta que las entradas antiguas no se reconocerán con valores nuevos.
-
     private static final String TYPE_PLAYLIST = "Playlist";
-
     private static final String TYPE_PLAYLIST_IS_RECENT = "IsRecent";
     private static final String TYPE_PLAYLIST_NAME = "Name";
     private static final String TYPE_PLAYLIST_SONGS = "Songs";

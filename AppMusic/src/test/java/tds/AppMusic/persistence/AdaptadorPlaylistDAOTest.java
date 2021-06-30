@@ -9,6 +9,7 @@ import beans.Entidad;
 import beans.Propiedad;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
@@ -42,6 +43,11 @@ public class AdaptadorPlaylistDAOTest {
     private static final Playlist PLAYLIST = new Playlist(NAME);
 
     private static final String ID_FORMAT = "[0-9]+";
+
+    @BeforeClass
+    public static void beforeClass() {
+        PERSISTENCIA.recuperarEntidades().forEach(PERSISTENCIA::borrarEntidad);
+    }
 
     @Before
     public void setUp() {

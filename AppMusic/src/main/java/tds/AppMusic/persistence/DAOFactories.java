@@ -5,9 +5,16 @@
 
 package tds.AppMusic.persistence;
 
+/**
+ * Colección de tipos de factorías existentes.
+ */
 public enum DAOFactories {
     TDS;
 
+    /**
+     * Devuelve la instancia de factoría correspondiente al tipo de factoría seleccionado.
+     * @return Una instancia de  {@link FactoryDAO}.
+     */
     FactoryDAO getInstance() {
         switch (this) {
             case TDS:

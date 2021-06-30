@@ -11,41 +11,65 @@ import tds.AppMusic.persistence.IAdaptadorPlaylistDAO;
 
 import java.util.*;
 
+/**
+ * Repositorio de playlists.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public enum PlaylistRepository {
     INSTANCE;
 
-    private static final Map<Integer, Playlist> PLAYLISTS = new HashMap<Integer, Playlist>();
+    private static final Map<Integer, Playlist> PLAYLISTS = new HashMap<>();
     private static final IAdaptadorPlaylistDAO DAO = FactoryDAO.getInstance(DAOFactories.TDS).getPlaylistDAO();
 
     static {
-        List<Playlist> listsPlaylists = DAO.getAllPlaylists();
-        listsPlaylists.forEach(p -> PLAYLISTS.put(p.getCode(), p));
+        DAO.getAllPlaylists().forEach(p -> PLAYLISTS.put(p.getCode(), p));
     }
 
-
-    public void storePlaylist(Playlist playlist){
+    /**
+     * Almacena una playlist en memoria y persistencia. Si la playlist ya existe, el método no modifica nada.
+     * @param playlist La playlist a añadir.
+     */
+    public void storePlaylist(Playlist playlist) {
         DAO.storePlaylist(playlist);
-        PLAYLISTS.put(playlist.getCode(), playlist);
+        PLAYLISTS.putIfAbsent(playlist.getCode(), playlist);
     }
 
-    public void deletePlaylist(Playlist playlist){
+    /**
+     * Elimina una playlist de memoria y persistencia. Si la playlist no existe, el método no modifica nada.
+     * @param playlist La playlist a eliminar.
+     */
+    public void deletePlaylist(Playlist playlist) {
         DAO.deletePlaylist(playlist);
         PLAYLISTS.remove(playlist.getCode());
     }
 
-    public void setPlaylist(Playlist playlist){
+    /**
+     * Modifica una playlist en memoria y persistencia. Si la playlist no existe, el método no modifica nada.
+     * @param playlist La playlist a modificar.
+     */
+    public void setPlaylist(Playlist playlist) {
         DAO.setPlaylist(playlist);
-        PLAYLISTS.put(playlist.getCode(), playlist);
+        if (PLAYLISTS.containsKey(playlist.getCode())) PLAYLISTS.put(playlist.getCode(), playlist);
     }
 
-    public Playlist getPlaylist(int code){
+    /**
+     * Devuelve una playlist de memoria, o en su defecto, de persistencia.
+     * @param code El código de la playlist.
+     * @return La playlist solicitada, o {@code null} si no existe.
+     */
+    public Playlist getPlaylist(int code) {
         Playlist playlist = PLAYLISTS.get(code);
-        if (playlist == null) playlist = DAO.getPlaylist(code);
-        return playlist;
+        return playlist != null ? playlist : DAO.getPlaylist(code);
     };
 
-    public List<Playlist> getAllPlaylists(){
-        return new LinkedList<>(PLAYLISTS.values());
+    /**
+     * Devuelve todas las playlists disponibles en memoria.
+     * @return Una lista con todas las playlists almacenadas en memoria.
+     */
+    public List<Playlist> getAllPlaylists() {
+        return DAO.getAllPlaylists();
     }
-
 }

@@ -20,7 +20,7 @@ import java.io.IOException;
  * @author ekam.purin@um.es
  * @author sergio.requenam@um.es
  */
-public class BuilderItext implements BuilderPDFfromUser {
+public class BuilderItext implements BuilderPdf {
 
     private static final String SEPARATOR = "+--------------------------";
     private Document document;

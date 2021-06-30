@@ -18,9 +18,9 @@ public enum BuilderPdfFactory {
     /**
      * Devuelve un builder PDF en función del tipo solicitado.
      * @param tipo El tipo de builder.
-     * @return Una instancia de {@link BuilderPDFfromUser}.
+     * @return Una instancia de {@link BuilderPdf}.
      */
-    public BuilderPDFfromUser getBuilderPdf(Builders tipo){
+    public BuilderPdf getBuilderPdf(Builders tipo){
         return tipo.getBuilder();
     }
 }

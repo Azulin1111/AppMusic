@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class PdfGenerator {
 
-    private BuilderPDFfromUser builder;
+    private BuilderPdf builder;
     private final User user;
 
     public PdfGenerator(User user){

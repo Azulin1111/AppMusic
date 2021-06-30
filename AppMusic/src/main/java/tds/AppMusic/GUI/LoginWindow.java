@@ -20,6 +20,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
 
+/**
+ * Ventana de inicio de sesión.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class LoginWindow extends AppWindow {
     private JPanel mainPanel;
     private JButton okButton;
@@ -45,7 +52,10 @@ public class LoginWindow extends AppWindow {
 
     public LoginWindow() {
         super();
-        addWindowListener(closeListener);
+        $$$setupUI$$$();
+        setContentPane($$$getRootComponent$$$());
+
+        // Make window size static
         Dimension size = new Dimension(640, 480);
         setMinimumSize(size);
         setPreferredSize(size);
@@ -53,12 +63,13 @@ public class LoginWindow extends AppWindow {
         setResizable(false);
         revalidate();
 
-        $$$setupUI$$$();
-        setContentPane($$$getRootComponent$$$());
+        addWindowListener(closeListener);
 
+        // Label coloring
         registerFirstLabel.setForeground(ERROR_COLOR);
         registerSecondLabel.setForeground(SUCCESS_COLOR);
 
+        // Button listeners
         okButton.addActionListener(ev -> {
             String user = userTextField.getText();
             String passwd = new String(passwordField.getPassword());
@@ -69,14 +80,13 @@ public class LoginWindow extends AppWindow {
                     } else { // ErrorWindow
                         say("Usuario no válido", "Nombre de usuario o contraseña no valido");
                     }
-                }
-        );
-
+                });
         cancelButton.addActionListener(e -> {
             userTextField.setText("");
             passwordField.setText("");
         });
 
+        // Register click listener
         registerSecondLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -87,6 +97,7 @@ public class LoginWindow extends AppWindow {
     }
 
     private void register() {
+        // Open signup window, leave this one open
         JFrame frame = new SignupWindow();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
@@ -95,6 +106,7 @@ public class LoginWindow extends AppWindow {
     }
 
     private void mainWindow(String user) {
+        // Open main window, discard this one
         JFrame frame = new MainWindow(user);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);

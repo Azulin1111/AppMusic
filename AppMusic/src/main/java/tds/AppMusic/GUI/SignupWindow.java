@@ -16,6 +16,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
+/**
+ * Ventana de registro de usuario.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class SignupWindow extends AppWindow {
 
     private static final String ERROR_BADFIELDS = "* Hay campos sin rellenar.";
@@ -58,14 +65,13 @@ public class SignupWindow extends AppWindow {
         $$$setupUI$$$();
         setContentPane($$$getRootComponent$$$());
 
+        // Label coloring
         missingFieldsLabel.setForeground(ERROR_COLOR);
         mismatchingPasswordsLabel.setForeground(ERROR_COLOR);
         duplicateFoundLabel.setForeground(ERROR_COLOR);
 
-        // Register listener
+        // Button listeners
         registerButton.addActionListener(this::registerAction);
-
-        // Cancel button
         cancelButton.addActionListener(this::cancelAction);
     }
 
@@ -75,7 +81,6 @@ public class SignupWindow extends AppWindow {
         String surnames = surnameTextField.getText().trim();
         String email = emailLabel.getText().trim();
         String username = usernameTextField.getText().trim();
-
         Date birthday = dateChooser.getDate();
 
         if (name.equals("") || surnames.equals("") || email.equals("") || username.equals("") || birthday == null) {

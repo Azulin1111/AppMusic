@@ -23,7 +23,7 @@ public interface Discount {
 
     static Set<Discount> descuentos() {
         Set<Discount> d = new HashSet<>();
-        Collections.addAll(d, new YoungDiscount(), new FixedDiscount(), new NullDiscount());
+        Collections.addAll(d, new YoungDiscount(), new FixedDiscount());
         return d;
     }
 

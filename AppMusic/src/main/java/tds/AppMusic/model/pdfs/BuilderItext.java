@@ -13,16 +13,24 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class BuilderItext implements BuilderPDFfromUser{
+/**
+ * Implementación de constructor PDF.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
+public class BuilderItext implements BuilderPDFfromUser {
+
     private static final String SEPARATOR = "+--------------------------";
-    private FileOutputStream file;
     private Document document;
 
     @Override
     public void buildPDF(File filePDF) throws DocumentException, IOException {
         // Creates a new, empty file named by this abstract pathname if and only if a file with this name does not yet exist.
-        filePDF.createNewFile();
-        file = new FileOutputStream(filePDF.getPath());
+        if (!filePDF.createNewFile()) throw new IOException("El fichero ya existe.");
+
+        FileOutputStream file = new FileOutputStream(filePDF.getPath());
         document = new Document();
         PdfWriter.getInstance(document, file);
         document.open();
@@ -49,13 +57,9 @@ public class BuilderItext implements BuilderPDFfromUser{
         document.add(new Paragraph("| "));
     }
 
-
     @Override
-    public void getPDF() throws DocumentException, IOException {
+    public void getPDF() throws DocumentException {
         document.add(new Paragraph(SEPARATOR));
         document.close();
-//        file.close();
     }
-
-
 }

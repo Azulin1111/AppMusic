@@ -5,10 +5,21 @@
 
 package tds.AppMusic.model.pdfs;
 
+/**
+ * Colección de builders PDF disponibles en la aplicación.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public enum Builders {
     ITEXT;
 
-    public BuilderPDFfromUser getBuilder() {
+    /**
+     * Devuelve el builder asociado al tipo de builder seleccionado.
+     * @return Una instancia de {@link BuilderPDFfromUser}.
+     */
+    BuilderPDFfromUser getBuilder() {
         switch (this) {
             case ITEXT:
                 return new BuilderItext();

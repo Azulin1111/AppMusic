@@ -91,12 +91,6 @@ public class LoginWindow extends AppWindow {
 
     private void mainWindow(String user) {
         JFrame frame = new MainWindow(user);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                System.exit(0);
-            }
-        });
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();

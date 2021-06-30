@@ -15,6 +15,7 @@ import tds.AppMusic.model.music.PlaylistRepository;
 import tds.AppMusic.model.music.Song;
 import tds.AppMusic.model.music.SongRepository;
 import tds.AppMusic.model.pdfs.ParserUser;
+import tds.AppMusic.model.scan.SongScanner;
 import tds.AppMusic.model.users.User;
 import tds.AppMusic.model.users.UserRepository;
 import umu.tds.ISongFinder;
@@ -301,5 +302,13 @@ public enum Controller implements ISongsListener {
             return false;
         }
         return true;
+    }
+
+    public void scanSongs(File directory) {
+        SongScanner scanner = new SongScanner(directory);
+        Collection<Song> songs = SongRepository.INSTANCE.getAllSongs();
+        scanner.scanRoot().forEach(s -> {
+            if (!songs.contains(s)) SongRepository.INSTANCE.storeSong(s);
+        });
     }
 }

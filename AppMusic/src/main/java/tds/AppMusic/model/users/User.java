@@ -5,13 +5,10 @@ import tds.AppMusic.model.discount.NullDiscount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.PlaylistRecentSongs;
 import tds.AppMusic.model.music.Song;
-import java.time.LocalDate;
 import java.util.*;
-import java.lang.Class;
 
 import static java.lang.Class.forName;
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Representa un usuario del sistema.
@@ -294,7 +291,7 @@ public class User {
     public Discount getMaximumDiscount() {
         return Discount.descuentos().stream()
                 .filter(d -> d.isApplicable(this))
-                .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
+                .reduce((d1, d2) -> d1.finalPrize() < d2.finalPrize() ? d1 : d2)
                 .orElse(new NullDiscount());
     }
 

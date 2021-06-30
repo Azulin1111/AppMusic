@@ -5,7 +5,7 @@ import tds.AppMusic.model.users.User;
 public class FixedDiscount implements Discount {
 
     @Override
-    public double calcDescuento() {
+    public double finalPrize() {
         return User.PREMIUM_PRIZE * 0.90;
     }
 

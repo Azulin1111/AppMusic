@@ -14,7 +14,7 @@ public class YoungDiscount implements Discount {
      * @return 85% of the default premium upgrade cost.
      */
     @Override
-    public double calcDescuento() {
+    public double finalPrize() {
         return User.PREMIUM_PRIZE * 0.85;
     }
 

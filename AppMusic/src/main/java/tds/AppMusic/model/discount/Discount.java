@@ -12,7 +12,7 @@ public interface Discount {
      * <p>Method to calculate the discount when a certain set of conditions are fulfilled.</p>
      * @return The updated upgrade cost, after applying the specific discount.
      */
-    double calcDescuento();
+    double finalPrize();
 
     /**
      * <p>Method to calculate a user's eligibility for a certain discount.</p>

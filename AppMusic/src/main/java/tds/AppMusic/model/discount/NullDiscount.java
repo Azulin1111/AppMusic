@@ -5,7 +5,7 @@ import tds.AppMusic.model.users.User;
 public class NullDiscount implements Discount{ // Patron Null Object
 
     @Override
-    public double calcDescuento() {
+    public double finalPrize() {
         return User.PREMIUM_PRIZE;
     }
 

@@ -32,10 +32,18 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador de la aplicación.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public enum Controller implements ISongsListener {
     INSTANCE;
 
     static {
+        // Inicia la plataforma JavaFX.
         PlatformImpl.startup(()->{});
     }
 
@@ -51,19 +59,14 @@ public enum Controller implements ISongsListener {
      * Crea una playlist, o actualiza una existente.
      * @param name El nombre de la playlist.
      * @param songs Las canciones que componen la playlist.
-     * @return {@code true} si se ha creado una playlist, {@code false} si no.
      */
-    public boolean createOrUpdatePlaylist(String name, List<Song> songs) {
-        boolean exists = currentUser.hasPlaylist(name);
-
-        if (exists) {
+    public void createOrUpdatePlaylist(String name, List<Song> songs) {
+        if (currentUser.hasPlaylist(name)) {
             PlaylistRepository.INSTANCE.setPlaylist(currentUser.updatePlaylist(name, songs));
         } else {
             PlaylistRepository.INSTANCE.storePlaylist(currentUser.createPlaylist(name, songs));
             UserRepository.INSTANCE.setUser(currentUser);
         }
-
-        return exists;
     }
 
     /**
@@ -154,6 +157,10 @@ public enum Controller implements ISongsListener {
         }
     }
 
+    /**
+     * Procede a la siguiente canción de la playlist actual. En caso de no estar reproduciendo canciones, el método no hace nada.
+     * @param addToRecent Si la canción se debería añadir en la lista de canciones recientemente escuchadas del usuario.
+     */
     public void nextTrack(boolean addToRecent) {
         if (currentPlaylist != null && currentTrack != -1) {
             currentTrack = (currentTrack + 1) % currentPlaylist.getSongs().size();
@@ -161,6 +168,10 @@ public enum Controller implements ISongsListener {
         }
     }
 
+    /**
+     * Retorna a la canción anterior de la playlist actual. En caso de no estar reproduciendo canciones, el método no hace nada.
+     * @param addToRecent Si la canción se debería añadir en la lista de canciones recientemente escuchadas del usuario.
+     */
     public void previousTrack(boolean addToRecent) {
         if (currentPlaylist != null && currentTrack != -1) {
             currentTrack--;
@@ -183,6 +194,10 @@ public enum Controller implements ISongsListener {
         if (player != null) player.play();
     }
 
+    /**
+     * Devuelve la canción actual.
+     * @return Un entero representando la posición de la canción en la playlist actual.
+     */
     public int getCurrentTrack() {
         if (currentPlaylist == null) return -1;
         return currentTrack;
@@ -220,15 +235,27 @@ public enum Controller implements ISongsListener {
         return true;
     }
 
+    /**
+     * Carga canciones a partir de un fichero XML.
+     * @param fileXML La dirección del fichero XML.
+     */
     public void loadSongs(URI fileXML) {
         loader.setFileSongs(fileXML.getRawPath());
     }
 
+    /**
+     * Modifica el cargador de canciones XML actual.
+     * @param loader El nuevo cargador de canciones.
+     */
     public void setLoader(ISongFinder loader) {
         Controller.loader = loader;
         ((LoaderSong)loader).addSongsListener(this);
     }
 
+    /**
+     * Obtiene los géneros de canciones disponibles, dadas las canciones disponibles en memoria.
+     * @return Una lista de géneros.
+     */
     public List<String> getGenres() {
         Set<String> set = new HashSet<>();
         SongRepository.INSTANCE.getAllSongs().forEach(s -> set.add(s.getGenre()));
@@ -260,23 +287,39 @@ public enum Controller implements ISongsListener {
         return songs;
     }
 
+    /**
+     * @return La playlist actual.
+     */
     public Playlist getCurrentPlaylist() {
         return currentPlaylist;
     }
 
+    /**
+     * @return {@code true} si el usuario actual es premium, {@code false} si no.
+     */
     public boolean isPremium() {
         return currentUser.isPremium();
     }
 
+    /**
+     * @return El mayor descuento aplicable al usuario actual.
+     */
     public Discount getMaximumDiscount() {
         return currentUser.getMaximumDiscount();
     }
 
+    /**
+     * Simula la compra de premium del usuario actual.
+     */
     public void buyPremium() {
         currentUser.buyPremium();
         UserRepository.INSTANCE.setUser(currentUser);
     }
 
+    /**
+     * Devuelve las canciones más escuchadas de la aplicación.
+     * @return Una lista con las 10 canciones más escuchadas.
+     */
     public Playlist getTopSongs() {
         Playlist top = new Playlist("Top-" + Instant.now().toString());
         SongRepository.INSTANCE.getAllSongs().stream()
@@ -286,14 +329,11 @@ public enum Controller implements ISongsListener {
         return top;
     }
 
-    @Override
-    public void newSongs(SongsEvent songsEvent) {
-        Canciones c = songsEvent.getCanciones();
-        List<Song> songs = convertCancionesToSongs(c);
-        songs.forEach(SongRepository.INSTANCE::storeSong);
-    }
-
-    // Si devuelve false ha habido un error.
+    /**
+     * Genera un fichero PDF con las playlists del usuario.
+     * @param filePDF La ruta al fichero a crear.
+     * @return {@code true} en caso de éxito, {@code false} en cualquier otro caso.
+     */
     public boolean generatePDF(File filePDF){
         ParserUser parser = new ParserUser(currentUser);
         parser.setBuilder(Builders.ITEXT);
@@ -305,11 +345,22 @@ public enum Controller implements ISongsListener {
         return true;
     }
 
+    /**
+     * Escanea las canciones locales y añade nuevas entradas a la base de datos.
+     * @param directory El directorio donde buscar canciones.
+     */
     public void scanSongs(File directory) {
         SongScanner scanner = new SongScanner(directory);
         Collection<Song> songs = SongRepository.INSTANCE.getAllSongs();
         scanner.scanRoot().forEach(s -> {
             if (!songs.contains(s)) SongRepository.INSTANCE.storeSong(s);
         });
+    }
+
+    @Override
+    public void newSongs(SongsEvent songsEvent) {
+        Canciones c = songsEvent.getCanciones();
+        List<Song> songs = convertCancionesToSongs(c);
+        songs.forEach(SongRepository.INSTANCE::storeSong);
     }
 }

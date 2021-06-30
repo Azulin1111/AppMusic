@@ -1,3 +1,8 @@
+/*
+ * Proyecto AppMusic desarrollado para la asignatura de Tecnologías de Desarrollo de Software,
+ * curso 2020-2021. Proyecto desarrollado por Ekam Puri Nieto y Sergio Requena Martínez.
+ */
+
 package tds.AppMusic.model.users;
 
 import org.junit.Before;
@@ -15,7 +20,6 @@ import static org.junit.Assert.*;
 public class UserTest {
 
     private User user;
-
 
     private static Song s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
@@ -47,7 +51,6 @@ public class UserTest {
     public void setUp() {
         user = new User(TEST_NAME, TEST_SURNAMES, TEST_NICKNAME, TEST_PREMIUM, TEST_PASSWORD, TEST_EMAIL, TEST_DATE);
     }
-
 
     @Test
     public void getterTest() {

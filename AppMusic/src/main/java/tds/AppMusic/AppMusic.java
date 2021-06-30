@@ -12,6 +12,12 @@ import umu.tds.LoaderSong;
 
 import javax.swing.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class AppMusic {
 
     public static void main(String[] args) {

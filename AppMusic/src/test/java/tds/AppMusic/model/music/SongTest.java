@@ -12,6 +12,12 @@ import java.net.URI;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class SongTest {
 
     private static final String SONG_NAME = "Song name";

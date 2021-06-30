@@ -24,6 +24,12 @@ import java.util.Date;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class AdaptadorUserDAOTest {
 
     private static final ServicioPersistencia PERSISTENCIA = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();

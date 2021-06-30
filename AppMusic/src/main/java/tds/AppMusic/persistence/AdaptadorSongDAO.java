@@ -20,6 +20,10 @@ import java.util.List;
 
 /**
  * Implementación de {@link IAdaptadorSongDAO}.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public enum AdaptadorSongDAO implements IAdaptadorSongDAO {
     INSTANCE;

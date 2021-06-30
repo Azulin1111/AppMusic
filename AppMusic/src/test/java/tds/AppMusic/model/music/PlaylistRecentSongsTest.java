@@ -9,6 +9,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class PlaylistRecentSongsTest {
 
     private final PlaylistRecentSongs playlistRecentSongs = new PlaylistRecentSongs("");

@@ -13,6 +13,10 @@ import java.util.Set;
 
 /**
  * Representa un descuento aplicable a la hora de comprar premium en la aplicación.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public interface Discount {
 

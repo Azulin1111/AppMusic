@@ -18,6 +18,10 @@ import java.util.*;
 
 /**
  * Implementación de {@link IAdaptadorUserDAO}.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public enum AdaptadorUserDAO implements IAdaptadorUserDAO {
     INSTANCE;

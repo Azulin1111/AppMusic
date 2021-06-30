@@ -7,6 +7,10 @@ package tds.AppMusic.persistence;
 
 /**
  * Colección de tipos de factorías existentes.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public enum DAOFactories {
     TDS;

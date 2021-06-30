@@ -9,6 +9,10 @@ import tds.AppMusic.model.users.User;
 
 /**
  * Representa un descuento fijo del 10% a cualquier cliente.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public class FixedDiscount implements Discount {
 

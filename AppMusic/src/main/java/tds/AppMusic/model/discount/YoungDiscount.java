@@ -14,6 +14,10 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * Representa un descuento del 15% aplicable a los menores de 20 años.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public class YoungDiscount implements Discount {
 

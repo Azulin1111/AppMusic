@@ -7,6 +7,10 @@ package tds.AppMusic.persistence;
 
 /**
  * Factoría de adaptadores DAO para la persistencia.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public abstract class FactoryDAO {
     /**

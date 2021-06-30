@@ -17,6 +17,10 @@ import java.util.*;
 
 /**
  * Implementación de {@link IAdaptadorPlaylistDAO}.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public enum AdaptadorPlaylistDAO implements IAdaptadorPlaylistDAO {
     INSTANCE;

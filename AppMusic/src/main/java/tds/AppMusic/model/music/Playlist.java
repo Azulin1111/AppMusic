@@ -92,10 +92,12 @@ public class Playlist {
     }
 
     /**
-     * <p>Reemplaza todas las canciones de la playlist.</p>
+     * Reemplaza todas las canciones de la playlist.
+     * <p>
      * Es equivalente a eliminar todas las canciones individualmente utilizando {@link Playlist#getSongs()} y
      * {@link Playlist#removeSong(Song)}, y luego añadir todas las nuevas canciones con {@link Playlist#addSong(Song)}.
      * @param songs Una lista con las nuevas canciones de la playlist.
+     * </p>
      */
     public void updateSongs(List<Song> songs) {
         this.songs.clear();

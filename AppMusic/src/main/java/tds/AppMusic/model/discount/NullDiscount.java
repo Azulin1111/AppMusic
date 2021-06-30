@@ -9,6 +9,10 @@ import tds.AppMusic.model.users.User;
 
 /**
  * Representa un descuento inexistente, que no ofrece ningún tipo de rebaja al precio.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public class NullDiscount implements Discount { // Patron Null Object
 

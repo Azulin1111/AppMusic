@@ -20,6 +20,12 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class YoungDiscountTest {
 
     private static final User VALID_USER = new User("", "", "", false, "", "", Date.valueOf(LocalDate.now().minus(15, ChronoUnit.YEARS)));

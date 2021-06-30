@@ -11,6 +11,10 @@ import java.util.*;
 
 /**
  * Adaptador de almacenamiento de usuarios en memoria.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public interface IAdaptadorUserDAO {
 

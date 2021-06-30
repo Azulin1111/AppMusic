@@ -7,6 +7,10 @@ package tds.AppMusic.persistence;
 
 /**
  * Generador de adaptadores DAO para las distintas clases almacenadas.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public class TDSFactoryDAO extends FactoryDAO {
 

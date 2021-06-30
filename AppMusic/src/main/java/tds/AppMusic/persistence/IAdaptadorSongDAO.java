@@ -11,6 +11,10 @@ import java.util.List;
 
 /**
  * Adaptador de almacenamiento de canciones en persistencia.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
  */
 public interface IAdaptadorSongDAO {
 

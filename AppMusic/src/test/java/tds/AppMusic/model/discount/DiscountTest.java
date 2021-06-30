@@ -10,6 +10,12 @@ import tds.AppMusic.model.users.User;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class DiscountTest {
 
     private static final Discount NULL_DISCOUNT = new NullDiscount();

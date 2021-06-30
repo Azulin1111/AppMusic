@@ -10,6 +10,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class PlaylistTest {
 
     private static final String PLAYLIST_NAME = "test";

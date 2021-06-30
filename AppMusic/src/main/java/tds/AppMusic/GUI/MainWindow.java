@@ -24,7 +24,16 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.Objects;
 
+/**
+ * Ventana principal.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class MainWindow extends AppWindow {
+
+    // Las distintas tarjetas de la ventana principal
     private static final String CARD_SEARCH = "searchPanel";
     private static final String CARD_NEWPL = "newPlaylistPanel";
     private static final String CARD_RECENT = "recentPanel";
@@ -96,20 +105,20 @@ public class MainWindow extends AppWindow {
     private JButton makePDFButton;
     private JButton top10Button;
     private JLabel starLabel;
+
+    // Componentes UI personalizados
     private JMenuBar menuBar;
-
     private Luz luz;
-    JMenu menu;
-    JMenuItem menuItem;
+    private JMenu menu;
+    private JMenuItem menuItem;
 
+    // Modelos de componentes UI
     private final SongTableModel searchModel = new SongTableModel();
     private final SongTableModel playlistAddModel = new SongTableModel();
     private final SongTableModel playlistAddedModel = new SongTableModel();
     private final SongTableModel recentModel = new SongTableModel();
     private final SongTableModel selectedModel = new SongTableModel();
-
     private final PlaylistListModel playlistModel = new PlaylistListModel();
-
     private final GenreComboBoxModel genreCBModel = new GenreComboBoxModel();
     private final GenreComboBoxModel genreCBModel2 = new GenreComboBoxModel();
 
@@ -138,6 +147,21 @@ public class MainWindow extends AppWindow {
         playlistList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Main button listeners
+        makePDFButton.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+            chooser.setFileFilter(new FileNameExtensionFilter("Fichero PDF", "pdf"));
+            chooser.showOpenDialog(this);
+            File f = chooser.getSelectedFile();
+            boolean success = Controller.INSTANCE.generatePDF(f);
+            if (!success) say("Generar PDF", "Fallo al generar el PDF! Intenta reiniciar la aplicación.");
+            else say("Generar PDF", "Fichero generado con éxito!");
+        });
+        top10Button.addActionListener(e -> {
+            // Implementation goes on in the My Playlists menu, but hidden to the average user.
+            switchCard(CARD_PLAYLISTS);
+            selectedModel.replaceWith(Controller.INSTANCE.getTopSongs());
+        });
         searchButton.addActionListener(e -> {
             // Update genres
             genreCBModel.updateGenres();
@@ -229,8 +253,7 @@ public class MainWindow extends AppWindow {
             updateTableSelection();
         });
 
-        // Autoselect mouse listeners
-
+        // Autoselect text field mouse listeners
         MouseAdapter selectAllListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -244,23 +267,6 @@ public class MainWindow extends AppWindow {
         searchInterpreteTextField.addMouseListener(selectAllListener);
         searchTitleTextField.addMouseListener(selectAllListener);
 
-        // Premium listeners
-        top10Button.addActionListener(e -> {
-            // Implementation goes on in the My Playlists menu, but hidden to the average user.
-            switchCard(CARD_PLAYLISTS);
-            selectedModel.replaceWith(Controller.INSTANCE.getTopSongs());
-        });
-        makePDFButton.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-            chooser.setFileFilter(new FileNameExtensionFilter("Fichero PDF", "pdf"));
-            chooser.showOpenDialog(this);
-            File f = chooser.getSelectedFile();
-            boolean success = Controller.INSTANCE.generatePDF(f);
-            if (!success) say("Generar PDF", "Fallo al generar el PDF! Intenta reiniciar la aplicación.");
-            else say("Generar PDF", "Fichero generado con éxito!");
-        });
-
         // Root directory listener
         menuItem.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
@@ -270,16 +276,13 @@ public class MainWindow extends AppWindow {
             Controller.INSTANCE.scanSongs(chooser.getSelectedFile());
         });
 
-        // Finishing: switch to recent
-        // Additional work: update recent playlist
+        // Switch to "recent" card
         recentModel.replaceWith(Controller.INSTANCE.getRecentPlaylist());
-
         switchCard(CARD_RECENT);
     }
 
     private void switchCard(String newCard) {
         CardLayout cl = (CardLayout) mainCardPanel.getLayout();
-
         cl.show(mainCardPanel, newCard);
         CURRENT_CARD = newCard;
 
@@ -496,6 +499,8 @@ public class MainWindow extends AppWindow {
     }
 
 
+    // Utility functions
+
     private void setComponentVisible(boolean visible, Component component) {
         if (component instanceof Container)
             for (Component c : ((Container) component).getComponents())
@@ -512,6 +517,20 @@ public class MainWindow extends AppWindow {
         component.setVisible(visible);
     }
 
+
+    private void createUIComponents() {
+        luzPanel = new JPanel();
+        luz = new Luz();
+        luzPanel.add(luz);
+
+        menuBar = new JMenuBar();
+        menu = new JMenu("Opciones");
+        menuItem = new JMenuItem("Cambiar directorio raíz");
+
+        setJMenuBar(menuBar);
+        menuBar.add(menu);
+        menu.add(menuItem);
+    }
 
     /**
      * Method generated by IntelliJ IDEA GUI Designer
@@ -757,19 +776,5 @@ public class MainWindow extends AppWindow {
      */
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
-    }
-
-    private void createUIComponents() {
-        luzPanel = new JPanel();
-        luz = new Luz();
-        luzPanel.add(luz);
-
-        menuBar = new JMenuBar();
-        menu = new JMenu("Opciones");
-        menuItem = new JMenuItem("Cambiar directorio raíz");
-
-        setJMenuBar(menuBar);
-        menuBar.add(menu);
-        menu.add(menuItem);
     }
 }

@@ -133,9 +133,7 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return code == song.code &&
-                playCount == song.playCount &&
-                Objects.equals(name, song.name) &&
+        return Objects.equals(name, song.name) &&
                 Objects.equals(genre, song.genre) &&
                 Objects.equals(path, song.path) &&
                 Objects.equals(singer, song.singer);

@@ -107,8 +107,7 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return code == playlist.code &&
-                Objects.equals(name, playlist.name) &&
+        return Objects.equals(name, playlist.name) &&
                 Objects.equals(songs, playlist.songs);
     }
 

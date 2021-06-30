@@ -2,9 +2,9 @@ package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 public interface Discount {
 
@@ -21,8 +21,8 @@ public interface Discount {
      */
     boolean isApplicable(User user);
 
-    static Collection<Discount> descuentos() {
-        Collection<Discount> d = new HashSet<>();
+    static Set<Discount> descuentos() {
+        Set<Discount> d = new HashSet<>();
         Collections.addAll(d, new YoungDiscount(), new FixedDiscount(), new NullDiscount());
         return d;
     }

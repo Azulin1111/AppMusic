@@ -118,7 +118,7 @@ public enum Controller implements ISongsListener {
      */
     public Playlist getRecentPlaylist() {
         Playlist recent = new Playlist("Recent-" + Instant.now().toString());
-        currentUser.getRecentPlaylist().getSongs().forEach(recent::addSong);
+        currentUser.getRecentPlaylist().getSongs().forEach(recent::addSong); //TODO violación de experto
         return recent;
     }
 

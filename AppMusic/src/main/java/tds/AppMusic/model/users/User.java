@@ -228,18 +228,6 @@ public class User {
     }
 
     /**
-     * Devuelve una lista de canciones, correspondiente con la playlist de canciones recientemente escuchadas del usuario.
-     * @return La lista de canciones.
-     */
-    public List<Song> getMostPlayedSongs() {
-        return playlists.stream()
-                .flatMap(p -> p.getSongs().stream())
-                .sorted(comparing(Song::getPlayCount).reversed())
-                .limit(10)
-                .collect(toList());
-    }
-
-    /**
      * <p>Relaciona una playlist con el usuario.</p>
      * La relación indicaría que el usuario ha creado la playlist en cuestión.
      * @param playlist La playlist.

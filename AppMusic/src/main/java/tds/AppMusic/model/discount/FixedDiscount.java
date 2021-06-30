@@ -7,6 +7,9 @@ package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
+/**
+ * Representa un descuento fijo del 10% a cualquier cliente.
+ */
 public class FixedDiscount implements Discount {
 
     @Override

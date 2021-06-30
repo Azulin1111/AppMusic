@@ -7,7 +7,10 @@ package tds.AppMusic.model.discount;
 
 import tds.AppMusic.model.users.User;
 
-public class NullDiscount implements Discount{ // Patron Null Object
+/**
+ * Representa un descuento inexistente, que no ofrece ningún tipo de rebaja al precio.
+ */
+public class NullDiscount implements Discount { // Patron Null Object
 
     @Override
     public double finalPrize() {

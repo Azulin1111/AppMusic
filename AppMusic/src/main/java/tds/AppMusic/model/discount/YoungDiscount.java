@@ -12,12 +12,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Representa un descuento del 15% aplicable a los menores de 20 años.
+ */
 public class YoungDiscount implements Discount {
 
-    /**
-     * <p>Returns the discounted upgrade prize</p>
-     * @return 85% of the default premium upgrade cost.
-     */
     @Override
     public double finalPrize() {
         return User.PREMIUM_PRIZE * 0.85;

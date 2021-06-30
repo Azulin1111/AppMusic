@@ -15,7 +15,7 @@ import tds.appMusic.model.music.PlaylistRepository;
 import tds.appMusic.model.music.Song;
 import tds.appMusic.model.music.SongRepository;
 import tds.appMusic.model.pdfs.Builders;
-import tds.appMusic.model.pdfs.ParserUser;
+import tds.appMusic.model.pdfs.PdfGenerator;
 import tds.appMusic.model.scan.SongScanner;
 import tds.appMusic.model.users.User;
 import tds.appMusic.model.users.UserRepository;
@@ -335,7 +335,7 @@ public enum Controller implements ISongsListener {
      * @return {@code true} en caso de éxito, {@code false} en cualquier otro caso.
      */
     public boolean generatePDF(File filePDF){
-        ParserUser parser = new ParserUser(currentUser);
+        PdfGenerator parser = new PdfGenerator(currentUser);
         parser.setBuilder(Builders.ITEXT);
         try {
             parser.parse(filePDF);

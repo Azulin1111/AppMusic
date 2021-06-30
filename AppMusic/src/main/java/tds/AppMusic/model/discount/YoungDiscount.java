@@ -20,7 +20,7 @@ public class YoungDiscount implements Discount {
 
     @Override
     public boolean isApplicable(User user) {
-        return LocalDate.now().minus(65 , ChronoUnit.YEARS).isBefore(Instant.ofEpochMilli(user.getBirthday().getTime())
+        return LocalDate.now().minus(20 , ChronoUnit.YEARS).isBefore(Instant.ofEpochMilli(user.getBirthday().getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate());
     }

@@ -8,7 +8,6 @@ import tds.AppMusic.app.Controller;
 import tds.AppMusic.model.discount.Discount;
 import tds.AppMusic.model.music.Playlist;
 import tds.AppMusic.model.music.Song;
-import tds.AppMusic.model.scan.SongScanner;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,7 +17,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.time.Instant;
 import java.util.Objects;
 
 public class MainWindow extends AppWindow {
@@ -190,7 +188,7 @@ public class MainWindow extends AppWindow {
             Discount d = Controller.INSTANCE.getMaximumDiscount();
             if (Controller.INSTANCE.isPremium()) {
                 say("Comprar premium", "Usuario ya premium!");
-            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.asString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
+            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.asString() + "\nEl precio total es: " + d.finalPrize() + "\nDeseas pagarlo?")) {
                 premiumSetup(true);
                 Controller.INSTANCE.buyPremium();
             }

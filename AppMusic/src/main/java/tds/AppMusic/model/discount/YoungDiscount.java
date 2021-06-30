@@ -24,4 +24,9 @@ public class YoungDiscount implements Discount {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate());
     }
+
+    @Override
+    public String asString() {
+        return "Descuento jóvenes (15%)";
+    }
 }

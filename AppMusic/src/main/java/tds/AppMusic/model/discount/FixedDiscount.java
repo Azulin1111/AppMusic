@@ -13,4 +13,9 @@ public class FixedDiscount implements Discount {
     public boolean isApplicable(User user) {
         return true;
     }
+
+    @Override
+    public String asString() {
+        return "Descuento fijo (10%)";
+    }
 }

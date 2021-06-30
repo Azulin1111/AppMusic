@@ -175,7 +175,7 @@ public class MainWindow extends AppWindow {
             Discount d = Controller.INSTANCE.getMaximumDiscount();
             if (Controller.INSTANCE.isPremium()) {
                 say("Comprar premium", "Usuario ya premium!");
-            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.toString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
+            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.asString() + "\nEl precio total es: " + d.calcDescuento() + "\nDeseas pagarlo?")) {
                 premiumSetup(true);
                 Controller.INSTANCE.buyPremium();
             }

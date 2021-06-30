@@ -13,4 +13,9 @@ public class NullDiscount implements Discount{ // Patron Null Object
     public boolean isApplicable(User user) {
         return true;
     }
+
+    @Override
+    public String asString() {
+        return "(Ningún descuento)";
+    }
 }

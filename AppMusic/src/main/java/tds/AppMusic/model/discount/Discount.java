@@ -27,5 +27,5 @@ public interface Discount {
         return d;
     }
 
-    // TODO toString() para mostrar el descuento en el mensajito
+    String asString();
 }

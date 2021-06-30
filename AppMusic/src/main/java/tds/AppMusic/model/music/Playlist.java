@@ -45,7 +45,7 @@ public class Playlist {
      * Devuelve el código de la playlist. Este código se utiliza en la base de datos.
      * @return Un entero representando el código.
      */
-    public int getCode(){
+    public int getCode() {
         return code;
     }
 

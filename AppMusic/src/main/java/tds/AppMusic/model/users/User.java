@@ -223,10 +223,9 @@ public class User {
     /**
      * Añade una canción a la lista de canciones recientemente escuchadas por el usuario.
      * @param song La última canción escuchada.
-     * @return {@code true} si la canción se ha añadido con éxito, {@code false} si no.
      */
-    public boolean addRecentSong(Song song) {
-        return recentSongs.addSong(song);
+    public void addRecentSong(Song song) {
+        recentSongs.addSong(song);
     }
 
     /**
@@ -250,15 +249,6 @@ public class User {
         playlists.add(newPlayList);
 
         return newPlayList;
-    }
-
-    /**
-     * Crea una playlist vacía, y la relaciona con el usuario.
-     * @param name El nombre de la playlist.
-     * @return La playlist creada.
-     */
-    public Playlist createPlaylist(String name) {
-        return createPlaylist(name, new LinkedList<>());
     }
 
     /**
@@ -293,6 +283,10 @@ public class User {
         playlists.remove(playlist);
     }
 
+    /**
+     * Calcula el mejor descuento aplicable.
+     * @return Un descuento, o en su defecto el descuento nulo {@link NullDiscount}.
+     */
     public Discount getMaximumDiscount() {
         return Discount.descuentos().stream()
                 .filter(d -> d.isApplicable(this))
@@ -301,7 +295,7 @@ public class User {
     }
 
     /**
-     * Simula la compra del estatus premium.
+     * Simula la compra de premium.
      */
     public void buyPremium() {
         premium = true;

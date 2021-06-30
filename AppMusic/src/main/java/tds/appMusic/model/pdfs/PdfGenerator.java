@@ -20,12 +20,12 @@ import java.io.IOException;
  * @author ekam.purin@um.es
  * @author sergio.requenam@um.es
  */
-public class ParserUser {
+public class PdfGenerator {
 
-    private BuilderPDFfromUser builder;
+    private BuilderPdf builder;
     private final User user;
 
-    public ParserUser(User user){
+    public PdfGenerator(User user){
         this.user = user;
     }
 

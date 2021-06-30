@@ -17,9 +17,9 @@ public enum Builders {
 
     /**
      * Devuelve el builder asociado al tipo de builder seleccionado.
-     * @return Una instancia de {@link BuilderPDFfromUser}.
+     * @return Una instancia de {@link BuilderPdf}.
      */
-    BuilderPDFfromUser getBuilder() {
+    BuilderPdf getBuilder() {
         switch (this) {
             case ITEXT:
                 return new BuilderItext();

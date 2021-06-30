@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author ekam.purin@um.es
  * @author sergio.requenam@um.es
  */
-public interface BuilderPDFfromUser {
+public interface BuilderPdf {
 
     /**
      * Inicia la construcción del fichero PDF.

@@ -12,16 +12,31 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
 
+/**
+ * Escaneador de canciones locales.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class SongScanner {
 
     private final File root;
 
+    /**
+     * @param root La ruta del directorio raíz donde comenzar la búsqueda de canciones.
+     * @throws IllegalArgumentException Si {@code root} no es un directorio.
+     */
     public SongScanner(File root) throws IllegalArgumentException {
         if (root.isDirectory())
             this.root = root;
         else throw new IllegalArgumentException("Root is not a folder");
     }
 
+    /**
+     * Devuelve las canciones encontradas en el directorio raíz.
+     * @return Una colección de canciones.
+     */
     public Collection<Song> scanRoot() {
         Collection<Song> songs = new HashSet<>();
 

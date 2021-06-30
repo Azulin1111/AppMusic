@@ -87,7 +87,7 @@
       <artifactId>jcalendar</artifactId>
       <version>1.4</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/jcalendar-1.4.jar</systemPath>
+      <systemPath>${basedir}/lib/jcalendar-1.4.jar</systemPath>
     </dependency>
 
     <!-- Dependencia local: pulsador.jar -->
@@ -96,7 +96,7 @@
       <artifactId>pulsador</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/pulsador.jar</systemPath>
+      <systemPath>${basedir}/lib/pulsador.jar</systemPath>
     </dependency>
 
     <!-- Dependencia local: forms_rt.jar -->
@@ -105,7 +105,7 @@
       <artifactId>forms_rt</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/forms_rt.jar</systemPath>
+      <systemPath>${basedir}/lib/forms_rt.jar</systemPath>
     </dependency>
 
     <!-- Dependencia local: CargadorCanciones.jar -->
@@ -114,7 +114,7 @@
       <artifactId>CargadorCanciones</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/CargadorCanciones.jar</systemPath>
+      <systemPath>${basedir}/lib/CargadorCanciones.jar</systemPath>
     </dependency>
 
   </dependencies>

@@ -262,15 +262,12 @@ public enum Controller implements ISongsListener {
         return currentPlaylist;
     }
 
-    public Discount getMaximumDiscount() {
-        return Discount.descuentos().stream()
-                .filter(d -> d.isApplicable(currentUser))
-                .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
-                .orElse(new NullDiscount());
-    }
-
     public boolean isPremium() {
         return currentUser.isPremium();
+    }
+
+    public Discount getMaximumDiscount() {
+        return currentUser.getMaximumDiscount();
     }
 
     public void buyPremium() {

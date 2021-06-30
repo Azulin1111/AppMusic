@@ -303,6 +303,13 @@ public class User {
         playlists.remove(playlist);
     }
 
+    public Discount getMaximumDiscount() {
+        return Discount.descuentos().stream()
+                .filter(d -> d.isApplicable(this))
+                .reduce((d1, d2) -> d1.calcDescuento() < d2.calcDescuento() ? d1 : d2)
+                .orElse(new NullDiscount());
+    }
+
     /**
      * Simula la compra del estatus premium.
      */

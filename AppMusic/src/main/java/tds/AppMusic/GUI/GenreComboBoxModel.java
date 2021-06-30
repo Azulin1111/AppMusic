@@ -13,6 +13,13 @@ import javax.swing.event.ListDataListener;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Modelo de {@link JComboBox} especializado para géneros de canciones.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class GenreComboBoxModel implements ComboBoxModel<String> {
 
     public static final String ALL_GENRES = "<Cualquier género>";
@@ -25,11 +32,18 @@ public class GenreComboBoxModel implements ComboBoxModel<String> {
         genres.add(ALL_GENRES);
     }
 
+    /**
+     * Actualiza los géneros mostrados en el ComboBox.
+     */
     public void updateGenres() {
+        // Default
         genres.clear();
         genres.add(ALL_GENRES);
+
+        // Find new genres
         genres.addAll(Controller.INSTANCE.getGenres());
 
+        // If selection's no longer available, default to none
         if (selected >= genres.size()) selected = -1;
 
         ListDataEvent e = new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, genres.size() - 1);

@@ -14,12 +14,22 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Modelo de {@link JList} especializado para playlists.
+ * @author Ekam Puri Nieto
+ * @author Sergio Requena Martínez
+ * @author ekam.purin@um.es
+ * @author sergio.requenam@um.es
+ */
 public class PlaylistListModel implements ListModel<Playlist>{
 
     private final List<Playlist> playlists = new LinkedList<>();
     private final List<ListDataListener> listeners = new LinkedList<>();
 
-
+    /**
+     * Añade una playlist a la lista.
+     * @param playlist La playlist.
+     */
     public void add(Playlist playlist) {
         playlists.add(playlist);
         int index = playlists.indexOf(playlist) - 1;
@@ -28,6 +38,10 @@ public class PlaylistListModel implements ListModel<Playlist>{
         for (ListDataListener l : listeners) l.contentsChanged(e);
     }
 
+    /**
+     * Añade una colección de playlists a la lista.
+     * @param playlists Una colección no nula de playlists.
+     */
     public void addAll(Collection<Playlist> playlists) {
         int index = playlists.size() - 1;
         this.playlists.addAll(playlists);
@@ -36,6 +50,9 @@ public class PlaylistListModel implements ListModel<Playlist>{
         for (ListDataListener l : listeners) l.contentsChanged(e);
     }
 
+    /**
+     * Elimina los contenidos de la lista.
+     */
     public void clear() {
         int index = playlists.size() - 1;
         playlists.clear();
@@ -44,6 +61,10 @@ public class PlaylistListModel implements ListModel<Playlist>{
         for (ListDataListener l : listeners) l.contentsChanged(e);
     }
 
+    /**
+     * Cambia los contenidos de la lista.
+     * @param playlists Una colección no nula con los nuevos contenidos de la lista.
+     */
     public void replaceWith(Collection<Playlist> playlists) {
         clear();
         addAll(playlists);

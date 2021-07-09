@@ -566,6 +566,9 @@ public class MainWindow extends AppWindow {
         setJMenuBar(menuBar);
         menuBar.add(menu);
         menu.add(menuItem);
+
+        playButton = new JButton();
+        playButton.setIcon(ICON_PLAY);
     }
 
     /**
@@ -783,11 +786,10 @@ public class MainWindow extends AppWindow {
         backButton.setText("");
         backButton.setVisible(true);
         musicPanel.add(backButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, 1, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        playButton = new JButton();
         playButton.setBorderPainted(false);
         playButton.setContentAreaFilled(false);
         playButton.setFocusPainted(false);
-        playButton.setIcon(new ImageIcon(getClass().getResource("/Pictures/BotonPlay.png")));
+        playButton.setHideActionText(true);
         playButton.setIconTextGap(0);
         playButton.setText("");
         musicPanel.add(playButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

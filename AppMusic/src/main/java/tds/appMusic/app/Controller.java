@@ -42,11 +42,6 @@ import java.util.stream.Collectors;
 public enum Controller implements ISongsListener {
     INSTANCE;
 
-    static {
-        // Inicia la plataforma JavaFX.
-        PlatformImpl.startup(()->{});
-    }
-
     private static User currentUser;
     private static MediaPlayer player;
 
@@ -54,6 +49,19 @@ public enum Controller implements ISongsListener {
     private static int currentTrack;
 
     private static ISongFinder loader;
+
+    private static final Set<Song> topSongs = new HashSet<>();
+
+    static {
+        // Inicia la plataforma JavaFX.
+        PlatformImpl.startup(()->{});
+
+        topSongs.addAll(SongRepository.INSTANCE.getAllSongs().stream()
+                .filter(s -> s.getPlayCount() != 0)
+                .limit(10)
+                .sorted(Comparator.comparing(Song::getPlayCount).reversed())
+                .collect(Collectors.toList()));
+    }
 
     /**
      * Crea una playlist, o actualiza una existente.
@@ -147,7 +155,11 @@ public enum Controller implements ISongsListener {
         if (player != null) player.stop();
         player = new MediaPlayer(mp);
         player.play();
+
         s.addPlay();
+        OptionalInt min = topSongs.stream().mapToInt(Song::getPlayCount).min();
+        if (min.isPresent() && min.getAsInt() < s.getPlayCount()) addSongToTop(s);
+
         SongRepository.INSTANCE.setSong(s);
         if (addToRecent) {
             currentUser.addRecentSong(s);
@@ -177,6 +189,34 @@ public enum Controller implements ISongsListener {
             currentTrack--;
             if (currentTrack == -1) currentTrack = currentPlaylist.getSongs().size() - 1;
             switchTrack(currentPlaylist, currentTrack, addToRecent);
+        }
+    }
+
+    private void addSongToTop(Song song) {
+        // If song is already in top, update
+        Optional<Song> duplicate = topSongs.stream().filter(s -> s.getCode() == song.getCode()).findAny();
+        if (duplicate.isPresent()) {
+            topSongs.remove(duplicate.get());
+            topSongs.add(song);
+            return;
+        }
+
+        // If top has space, add
+        if (topSongs.size() < 10) {
+            topSongs.add(song);
+            return;
+        }
+
+        // Find least played song
+        Optional<Song> min = topSongs.stream().reduce((s1, s2) -> {
+            if (s1.getPlayCount() > s2.getPlayCount()) return s2;
+            return s1;
+        });
+
+        // Replace if less or equal than new song
+        if (min.get().getPlayCount() <= song.getPlayCount()) {
+            topSongs.remove(min.get());
+            topSongs.add(song);
         }
     }
 
@@ -322,10 +362,7 @@ public enum Controller implements ISongsListener {
      */
     public Playlist getTopSongs() {
         Playlist top = new Playlist("Top-" + Instant.now().toString());
-        SongRepository.INSTANCE.getAllSongs().stream()
-                .sorted(Comparator.comparing(Song::getPlayCount).reversed())
-                .limit(10)
-                .forEach(top::addSong);
+        topSongs.stream().sorted(Comparator.comparing(Song::getPlayCount).reversed()).forEach(top::addSong);
         return top;
     }
 

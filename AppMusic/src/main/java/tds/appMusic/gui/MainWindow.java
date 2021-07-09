@@ -181,15 +181,14 @@ public class MainWindow extends AppWindow {
             switchCard(CARD_RECENT);
         });
         myPlaylistsButton.addActionListener(e -> {
+            switchCard(CARD_PLAYLISTS);
+            // Update playlist list
+            playlistModel.replaceWith(Controller.INSTANCE.getPlaylists());
+
             // Select the first one and display contents
             playlistList.getSelectionModel().setSelectionInterval(0, 0);
             if (playlistList.getSelectedValue() != null)
                 selectedModel.replaceWith(playlistList.getSelectedValue());
-
-            switchCard(CARD_PLAYLISTS);
-
-            // Update playlist list
-            playlistModel.replaceWith(Controller.INSTANCE.getPlaylists());
         });
 
         // Specific card listeners

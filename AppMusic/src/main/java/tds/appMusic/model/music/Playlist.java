@@ -104,6 +104,17 @@ public class Playlist {
         this.songs.addAll(songs);
     }
 
+    /**
+     * Incrementa el número de reproducciones de la canción en 1. En caso de que esté repetida, se hará a todas.
+     * @param song La canción a aumentar sus reproducciones.
+     */
+    public void addPlaySong(Song song){
+        songs.stream()
+                .filter(s -> s.getCode() == song.getCode())
+                .forEach(s -> s.addPlay());
+    }
+
+
     @Override
     public String toString() {
         return name + " (" + songs.size() + " canciones)";

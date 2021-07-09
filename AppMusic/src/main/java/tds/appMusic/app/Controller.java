@@ -160,9 +160,7 @@ public enum Controller implements ISongsListener {
         player = new MediaPlayer(mp);
         player.play();
 
-        s.addPlay();
-
-        // TODO hazlo tu
+        playlist.addPlaySong(s);
 
         OptionalInt min = topSongs.stream().mapToInt(Song::getPlayCount).min();
         if (min.isPresent() && min.getAsInt() < s.getPlayCount()) addSongToTop(s);

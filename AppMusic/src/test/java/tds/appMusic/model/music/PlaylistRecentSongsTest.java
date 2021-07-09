@@ -25,6 +25,7 @@ public class PlaylistRecentSongsTest {
         Song[] songs = new Song[11];
         for (int i = 0; i < 11; i++) {
             songs[i] = new Song("Song " + i, null, null, null);
+            songs[i].setCode(i);
             playlistRecentSongs.addSong(songs[i]);
         }
         assertFalse(playlistRecentSongs.getSongs().contains(songs[0]));

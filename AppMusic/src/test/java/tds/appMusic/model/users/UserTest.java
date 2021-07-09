@@ -51,6 +51,19 @@ public class UserTest {
         s10 = new Song("t10", "Singer", "Genre", null, 10);
         s11 = new Song("t11", "Singer", "Genre", null, 11);
         s12 = new Song("t12", "Singer", "Genre", null, 12);
+
+        s1.setCode(1);
+        s2.setCode(2);
+        s3.setCode(3);
+        s4.setCode(4);
+        s5.setCode(5);
+        s6.setCode(6);
+        s7.setCode(7);
+        s8.setCode(8);
+        s9.setCode(9);
+        s10.setCode(10);
+        s11.setCode(11);
+        s12.setCode(12);
     }
 
     @Before
@@ -83,6 +96,6 @@ public class UserTest {
         expected.add(s12); expected.add(s11); expected.add(s10); expected.add(s9); expected.add(s8);
         expected.add(s7);  expected.add(s6);  expected.add(s5);  expected.add(s4); expected.add(s3);
 
-        assertEquals(recentSongs, expected);
+        assertEquals(expected, recentSongs);
     }
 }

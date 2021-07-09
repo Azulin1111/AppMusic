@@ -111,7 +111,7 @@ public class Playlist {
     public void addPlaySong(Song song){
         songs.stream()
                 .filter(s -> s.getCode() == song.getCode())
-                .forEach(s -> s.addPlay());
+                .forEach(Song::addPlay);
     }
 
 

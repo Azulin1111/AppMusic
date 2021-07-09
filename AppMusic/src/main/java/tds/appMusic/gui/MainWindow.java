@@ -162,6 +162,7 @@ public class MainWindow extends AppWindow {
         top10Button.addActionListener(e -> {
             // Implementation goes on in the My Playlists menu, but hidden to the average user.
             switchCard(CARD_PLAYLISTS);
+            Controller.updateTop();
             selectedModel.replaceWith(Controller.INSTANCE.getTopSongs());
         });
         searchButton.addActionListener(e -> {

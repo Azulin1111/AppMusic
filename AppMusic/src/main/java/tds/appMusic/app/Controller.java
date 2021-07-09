@@ -55,11 +55,15 @@ public enum Controller implements ISongsListener {
     static {
         // Inicia la plataforma JavaFX.
         PlatformImpl.startup(()->{});
+        updateTop();
+    }
 
+    public static void updateTop() {
+        topSongs.clear();
         topSongs.addAll(SongRepository.INSTANCE.getAllSongs().stream()
                 .filter(s -> s.getPlayCount() != 0)
-                .limit(10)
                 .sorted(Comparator.comparing(Song::getPlayCount).reversed())
+                .limit(10)
                 .collect(Collectors.toList()));
     }
 

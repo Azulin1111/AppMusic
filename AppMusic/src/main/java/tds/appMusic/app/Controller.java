@@ -161,6 +161,9 @@ public enum Controller implements ISongsListener {
         player.play();
 
         s.addPlay();
+
+        // TODO hazlo tu
+
         OptionalInt min = topSongs.stream().mapToInt(Song::getPlayCount).min();
         if (min.isPresent() && min.getAsInt() < s.getPlayCount()) addSongToTop(s);
 

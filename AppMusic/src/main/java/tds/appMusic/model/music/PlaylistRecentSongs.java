@@ -5,6 +5,8 @@
 
 package tds.appMusic.model.music;
 
+import java.util.Optional;
+
 /**
  * Representa la playlist de canciones recientes de un usuario.
  * @author Ekam Puri Nieto
@@ -30,6 +32,15 @@ public class PlaylistRecentSongs extends Playlist {
      */
     @Override
     public boolean addSong(Song song) {
+        // Update position if it already exists
+        Optional<Song> duplicate = songs.stream().filter(s -> s.getCode() == song.getCode()).findAny();
+        if (duplicate.isPresent()) {
+            songs.remove(duplicate.get());
+            songs.add(0, song);
+            return true;
+        }
+
+        // Add normally otherwise
         songs.add(0, song);
         while (songs.size() > 10) songs.remove(songs.size() - 1);
         return true;

@@ -192,6 +192,8 @@ public class MainWindow extends AppWindow {
             playlistList.getSelectionModel().setSelectionInterval(0, 0);
             if (playlistList.getSelectedValue() != null)
                 selectedModel.replaceWith(playlistList.getSelectedValue());
+            else
+                selectedModel.replaceWith(new Playlist(""));
         });
 
         // Specific card listeners

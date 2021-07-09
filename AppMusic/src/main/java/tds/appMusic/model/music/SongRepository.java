@@ -35,11 +35,10 @@ public enum SongRepository {
      * @param song La cancion a añadir.
      */
     public void storeSong(Song song) {
-        if (! SONGS.containsValue(song)){
+        if (!SONGS.containsValue(song)){
             DAO.storeSong(song);
             SONGS.putIfAbsent(song.getCode(), song);
         }
-
     }
 
     /**

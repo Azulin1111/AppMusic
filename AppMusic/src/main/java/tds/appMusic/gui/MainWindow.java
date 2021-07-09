@@ -216,9 +216,7 @@ public class MainWindow extends AppWindow {
         // Upgrade account listener
         upgradeAccButton.addActionListener(e -> {
             Discount d = Controller.INSTANCE.getMaximumDiscount();
-            if (Controller.INSTANCE.isPremium()) {
-                say("Comprar premium", "Usuario ya premium!");
-            } else if (ask("Comprar premium", "El descuento aplicado es: " + d.asString() + "\nEl precio total es: " + d.finalPrize() + "\nDeseas pagarlo?")) {
+            if (ask("Comprar premium", "El descuento aplicado es: " + d.asString() + "\nEl precio total es: " + d.finalPrize() + "\nDeseas pagarlo?")) {
                 premiumSetup(true);
                 Controller.INSTANCE.buyPremium();
             }
@@ -305,6 +303,7 @@ public class MainWindow extends AppWindow {
         top10Button.setEnabled(isPremium);
         makePDFButton.setEnabled(isPremium);
         starLabel.setVisible(isPremium);
+        upgradeAccButton.setEnabled(!isPremium);
     }
 
 

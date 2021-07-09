@@ -22,11 +22,11 @@ import java.util.List;
  */
 public class SongTableModel extends DefaultTableModel {
 
-    private static final List<String> COLUMN_HEADERS = new LinkedList<>();
-    private Playlist currentPlaylist = new Playlist("");
+    protected final List<String> columnHeaders = new LinkedList<>();
+    protected Playlist currentPlaylist = new Playlist("");
 
-    static {
-        Collections.addAll(COLUMN_HEADERS, "Título", "Intérprete", "Género");
+    {
+        Collections.addAll(columnHeaders, "Título", "Intérprete", "Género", "Reproducciones");
     }
 
     /**
@@ -97,12 +97,12 @@ public class SongTableModel extends DefaultTableModel {
 
     @Override
     public int getColumnCount() {
-        return COLUMN_HEADERS.size();
+        return columnHeaders.size();
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return (columnIndex < COLUMN_HEADERS.size() && columnIndex >= 0) ? COLUMN_HEADERS.get(columnIndex) : null;
+        return (columnIndex < columnHeaders.size() && columnIndex >= 0) ? columnHeaders.get(columnIndex) : null;
     }
 
     @Override
@@ -113,9 +113,10 @@ public class SongTableModel extends DefaultTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Song song = currentPlaylist.getSongs().get(rowIndex);
-        if (columnIndex == COLUMN_HEADERS.indexOf("Título")) return song.getName();
-        if (columnIndex == COLUMN_HEADERS.indexOf("Intérprete")) return song.getSinger();
-        if (columnIndex == COLUMN_HEADERS.indexOf("Género")) return song.getGenre();
+        if (columnIndex == columnHeaders.indexOf("Título")) return song.getName();
+        if (columnIndex == columnHeaders.indexOf("Intérprete")) return song.getSinger();
+        if (columnIndex == columnHeaders.indexOf("Género")) return song.getGenre();
+        if (columnIndex == columnHeaders.indexOf("Reproducciones")) return song.getPlayCount();
         return null;
     }
 }

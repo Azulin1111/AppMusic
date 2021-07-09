@@ -87,7 +87,7 @@ public class SongTableModel extends DefaultTableModel {
      * @return Una lista no modificable con las canciones de la tabla.
      */
     public List<Song> getSongs() {
-        return Collections.unmodifiableList(currentPlaylist.getSongs());
+        return new LinkedList<>(currentPlaylist.getSongs());
     }
 
     @Override

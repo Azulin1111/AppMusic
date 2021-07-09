@@ -249,12 +249,14 @@ public class MainWindow extends AppWindow {
             Controller.INSTANCE.previousTrack(!CURRENT_CARD.equals(CARD_RECENT));
             if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
             updateTableSelection();
+            repaint();
         });
         playButton.addActionListener(e -> playSong());
         nextButton.addActionListener(e -> {
             Controller.INSTANCE.nextTrack(!CURRENT_CARD.equals(CARD_RECENT));
             if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
             updateTableSelection();
+            repaint();
         });
 
         // Autoselect text field mouse listeners

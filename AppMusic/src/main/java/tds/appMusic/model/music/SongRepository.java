@@ -32,11 +32,14 @@ public enum SongRepository {
 
     /**
      * Almacena una canción en memoria y persistencia. Si la canción ya existe, el método no modifica nada.
-     * @param song La canciñon a añadir.
+     * @param song La cancion a añadir.
      */
     public void storeSong(Song song) {
-        DAO.storeSong(song);
-        SONGS.putIfAbsent(song.getCode(), song);
+        if (! SONGS.containsValue(song)){
+            DAO.storeSong(song);
+            SONGS.putIfAbsent(song.getCode(), song);
+        }
+
     }
 
     /**

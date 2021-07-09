@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Representa una playlist del sistema, creada por un usuario.
@@ -109,8 +110,8 @@ public class Playlist {
      * @param song La canción a aumentar sus reproducciones.
      */
     public void addPlaySong(Song song){
-        songs.stream()
-                .filter(s -> s.getCode() == song.getCode())
+        songs.stream().filter(s -> s.getCode() == song.getCode())
+                .distinct()
                 .forEach(Song::addPlay);
     }
 

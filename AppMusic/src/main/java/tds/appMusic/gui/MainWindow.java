@@ -22,6 +22,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -243,12 +245,14 @@ public class MainWindow extends AppWindow {
 
         // Music button listeners
         backButton.addActionListener(e -> {
-            Controller.INSTANCE.previousTrack(true);
+            Controller.INSTANCE.previousTrack(!CURRENT_CARD.equals(CARD_RECENT));
+            if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
             updateTableSelection();
         });
         playButton.addActionListener(e -> playSong());
         nextButton.addActionListener(e -> {
-            Controller.INSTANCE.nextTrack(true);
+            Controller.INSTANCE.nextTrack(!CURRENT_CARD.equals(CARD_RECENT));
+            if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
             updateTableSelection();
         });
 
@@ -456,12 +460,45 @@ public class MainWindow extends AppWindow {
 
 
     private void playSong() {
-        if (playButton.getIcon().equals(ICON_PLAY)) {
-            playButton.setIcon(ICON_PAUSE);
-            Controller.INSTANCE.resumeTrack();
-        } else if (playButton.getIcon().equals(ICON_PAUSE)) {
+        if (playButton.getIcon().equals(ICON_PAUSE)) {
             playButton.setIcon(ICON_PLAY);
             Controller.INSTANCE.pauseTrack();
+        } else if (playButton.getIcon().equals(ICON_PLAY)) {
+
+            if (!itemSelected()) Controller.INSTANCE.resumeTrack();
+            else {
+                // Start new playlist
+                Map.Entry<Playlist, Integer> pair = getSelected();
+                Controller.INSTANCE.switchTrack(pair.getKey(), pair.getValue(), !CURRENT_CARD.equals(CARD_RECENT));
+            }
+            // Only update visually if there's something that can be played
+            if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
+        }
+    }
+
+    private boolean itemSelected() {
+        switch (CURRENT_CARD) {
+            case CARD_SEARCH:
+                return searchTable.getSelectedRow() != -1;
+            case CARD_RECENT:
+                return recentTable.getSelectedRow() != -1;
+            case CARD_PLAYLISTS:
+                return selectedTable.getSelectedRow() != -1;
+            default:
+                return false;
+        }
+    }
+
+    private Map.Entry<Playlist, Integer> getSelected() {
+        switch (CURRENT_CARD) {
+            case CARD_SEARCH:
+                return new AbstractMap.SimpleImmutableEntry<>(searchModel.getCurrentPlaylist(), searchTable.getSelectedRow());
+            case CARD_RECENT:
+                return new AbstractMap.SimpleImmutableEntry<>(recentModel.getCurrentPlaylist(), recentTable.getSelectedRow());
+            case CARD_PLAYLISTS:
+                return new AbstractMap.SimpleImmutableEntry<>(selectedModel.getCurrentPlaylist(), selectedTable.getSelectedRow());
+            default:
+                return new AbstractMap.SimpleEntry<>(null, null);
         }
     }
 

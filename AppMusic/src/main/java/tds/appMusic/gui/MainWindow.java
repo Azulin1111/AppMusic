@@ -343,11 +343,7 @@ public class MainWindow extends AppWindow {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 // If double clicked, play
-                if (e.getClickCount() == 2) {
-                    Playlist currentPlaylist = searchModel.getCurrentPlaylist();
-                    playButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(currentPlaylist, searchTable.getSelectedRow(), true);
-                }
+                if (e.getClickCount() == 2) playSong();
             }
         });
     }
@@ -429,11 +425,7 @@ public class MainWindow extends AppWindow {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 // If double clicked, play
-                if (e.getClickCount() == 2) {
-                    Playlist currentPlaylist = recentModel.getCurrentPlaylist();
-                    playButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(currentPlaylist, recentTable.getSelectedRow(), false);
-                }
+                if (e.getClickCount() == 2) playSong();
             }
         });
     }
@@ -449,11 +441,7 @@ public class MainWindow extends AppWindow {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 // If double clicked, play
-                if (e.getClickCount() == 2) {
-                    Playlist currentPlaylist = playlistList.getSelectedValue();
-                    playButton.setIcon(ICON_PAUSE);
-                    Controller.INSTANCE.switchTrack(currentPlaylist, selectedTable.getSelectedRow(), true);
-                }
+                if (e.getClickCount() == 2) playSong();
             }
         });
     }
@@ -474,6 +462,7 @@ public class MainWindow extends AppWindow {
             // Only update visually if there's something that can be played
             if (Controller.INSTANCE.getCurrentPlaylist() != null) playButton.setIcon(ICON_PAUSE);
         }
+        repaint();
     }
 
     private boolean itemSelected() {
